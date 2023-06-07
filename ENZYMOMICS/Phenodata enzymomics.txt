@@ -1,0 +1,73 @@
+Sample ID Enyzmomics	Treatment	Plant material	Timepoint	Specie	Enzymomycs
+Water24	control	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum	YES
+Water24	control	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum	YES
+Water24	control	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum	YES
+Water24	control	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum	YES
+Water24	control	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum	YES
+Water24	control	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum	YES
+W inf24	control infested	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum	YES
+W inf24	control infested	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum	YES
+W inf24	control infested	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum	YES
+W inf24	control infested	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum	YES
+W inf24	control infested	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum	YES
+W inf24	control infested	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum	YES
+AM24	mycorrhized	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum	YES
+AM24	mycorrhized	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum	YES
+AM24	mycorrhized	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum	YES
+AM24	mycorrhized	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum	YES
+AM24	mycorrhized	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum	YES
+AM24	mycorrhized	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum	YES
+AM inf24	myco. infested	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum	YES
+AM inf24	myco. infested	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum	YES
+AM inf24	myco. infested	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum	YES
+AM inf24	myco. infested	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum	YES
+AM inf24	myco. infested	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum	YES
+AM inf24	myco. infested	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum	YES
+Water48	control	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum	YES
+Water48	control	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum	YES
+Water48	control	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum	YES
+Water48	control	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum	YES
+Water48	control	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum	YES
+Water48	control	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum	YES
+W inf48	control infested	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum	YES
+W inf48	control infested	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum	YES
+W inf48	control infested	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum	YES
+W inf48	control infested	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum	YES
+W inf48	control infested	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum	YES
+W inf48	control infested	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum	YES
+AM48	mycorrhized	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum	YES
+AM48	mycorrhized	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum	YES
+AM48	mycorrhized	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum	YES
+AM48	mycorrhized	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum	YES
+AM48	mycorrhized	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum	YES
+AM48	mycorrhized	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum	YES
+AM inf48	myco. infested	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum	YES
+AM inf48	myco. infested	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum	YES
+AM inf48	myco. infested	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum	YES
+AM inf48	myco. infested	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum	YES
+AM inf48	myco. infested	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum	YES
+AM inf48	myco. infested	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum	YES
+Water6	control		6 hpi	Solanum lycopersicum	YES
+Water6	control		6 hpi	Solanum lycopersicum	YES
+Water6	control		6 hpi	Solanum lycopersicum	YES
+Water6	control		6 hpi	Solanum lycopersicum	YES
+Water6	control		6 hpi	Solanum lycopersicum	YES
+Water6	control		6 hpi	Solanum lycopersicum	YES
+W inf6	control infested		6 hpi	Solanum lycopersicum	YES
+W inf6	control infested		6 hpi	Solanum lycopersicum	YES
+W inf6	control infested		6 hpi	Solanum lycopersicum	YES
+W inf6	control infested		6 hpi	Solanum lycopersicum	YES
+W inf6	control infested		6 hpi	Solanum lycopersicum	YES
+W inf6	control infested		6 hpi	Solanum lycopersicum	YES
+AM6	mycorrhized		6 hpi	Solanum lycopersicum	YES
+AM6	mycorrhized		6 hpi	Solanum lycopersicum	YES
+AM6	mycorrhized		6 hpi	Solanum lycopersicum	YES
+AM6	mycorrhized		6 hpi	Solanum lycopersicum	YES
+AM6	mycorrhized		6 hpi	Solanum lycopersicum	YES
+AM6	mycorrhized		6 hpi	Solanum lycopersicum	YES
+AM inf6	myco. infested		6 hpi	Solanum lycopersicum	YES
+AM inf6	myco. infested		6 hpi	Solanum lycopersicum	YES
+AM inf6	myco. infested		6 hpi	Solanum lycopersicum	YES
+AM inf6	myco. infested		6 hpi	Solanum lycopersicum	YES
+AM inf6	myco. infested		6 hpi	Solanum lycopersicum	YES
+AM inf6	myco. infested		6 hpi	Solanum lycopersicum	YES
