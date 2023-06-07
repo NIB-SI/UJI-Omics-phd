@@ -1,0 +1,26 @@
+Sample Name	Sample ID RNA-seq		Treatment	Sampling	Plant material	Timepoint	Specie
+NM24	NM24_1		control	pool 6 plants	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum
+NM24	NM24_2		control	pool 6 plants	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum
+NM24	NM24_3		control	pool 6 plants	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum
+NM INF 24	NM24_INF_1		control infested	pool 6 plants	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum
+NM INF 24	NM24_INF_2		control infested	pool 6 plants	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum
+NM INF 24	NM24_INF_3		control infested	pool 6 plants	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum
+AM 24	AM24_1		mycorrhized	pool 6 plants	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum
+AM 24	AM24_2		mycorrhized	pool 6 plants	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum
+AM 24	AM24_3		mycorrhized	pool 6 plants	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum
+AM INF 24	AM24_INF_1		myco. infested	pool 6 plants	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum
+AM INF 24	AM24_INF_2		myco. infested	pool 6 plants	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum
+AM INF 24	AM24_INF_3		myco. infested	pool 6 plants	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum
+NM 48	NM48_1		control	pool 6 plants	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum
+NM 48	NM48_2		control	pool 6 plants	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum
+NM 48	NM48_3		control	pool 6 plants	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum
+NM INF 48	NM48_INF_1		control infested	pool 6 plants	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum
+NM INF 48	NM48_INF_2		control infested	pool 6 plants	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum
+NM INF 48	NM48_INF_3		control infested	pool 6 plants	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum
+AM 48	AM48_1		mycorrhized	pool 6 plants	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum
+AM 48	AM48_2		mycorrhized	pool 6 plants	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum
+AM 48	AM48_3		mycorrhized	pool 6 plants	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum
+AM INF 48	AM48_INF_1		myco. infested	pool 6 plants	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum
+AM INF 48	AM48_INF_2		myco. infested	pool 6 plants	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum
+AM INF 48	AM48_INF_3		myco. infested	pool 6 plants	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum
+							
