@@ -29,4 +29,7 @@
 * [No. clu.](https://stackoverflow.com/questions/15376075/cluster-analysis-in-r-determine-the-optimal-number-of-clusters)
 * [caret](https://www.machinelearningplus.com/machine-learning/caret-package/)
 * [FS - RF](https://topepo.github.io/caret/recursive-feature-elimination.html)
+* [ComplexHeatmap](https://jokergoo.github.io/ComplexHeatmap-reference/book/)
+* [rstatix](https://rpkgs.datanovia.com/rstatix/)
+* [ggpubr](https://rpkgs.datanovia.com/ggpubr/index.html)
 ## Lectures
