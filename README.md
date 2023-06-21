@@ -10,6 +10,7 @@
 * [PLAZA](https://ftp.psb.ugent.be/pub/plaza/plaza_public_dicots_05/)
 * [MapMan](https://mapman.gabipd.org/)
 * [GSEA](https://www.gsea-msigdb.org/gsea/index.jsp)
+* [splinecluster](https://www.ma.imperial.ac.uk/~naheard/software/splinecluster/index.html)
 ## Articles
 * [Misunderstood parameter of NCBI BLAST impacts the correctness of bioinformatics workflows](https://academic.oup.com/bioinformatics/article/35/9/1613/5106166)
 * [Methods for the integration of multi-omics data: mathematical aspects](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-015-0857-9)
@@ -19,7 +20,13 @@
 * [mixOmics: An R package for ‘omics feature selection and multiple data integration](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005752)
 * [DIABLO: an integrative approach for identifying key molecular drivers from multi-omics assays](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6735831/)
 * [Integrating omics datasets with the OmicsPLS package](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-018-2371-3)
-## Vignetes/F-ctions
+## Vignetes/F-ctions/CheatSheets
 * [multi-block sPLS-DA](https://mixomicsteam.github.io/mixOmics-Vignette/)
 * [RBH search](https://drostlab.github.io/orthologr/reference/blast_rec.html)
+* [Biokit](https://github.com/martingarridorc/biokit)
+* [clusterProfiler](https://hbctraining.github.io/DGE_workshop_salmon_online/lessons/10_FA_over-representation_analysis.html)
+* [fgsea/clusterProfiler](https://pnnl-comp-mass-spec.github.io/proteomics-data-analysis-tutorial/gsea.html)
+* [No. clu.](https://stackoverflow.com/questions/15376075/cluster-analysis-in-r-determine-the-optimal-number-of-clusters)
+* [caret](https://www.machinelearningplus.com/machine-learning/caret-package/)
+* [FS - RF](https://topepo.github.io/caret/recursive-feature-elimination.html)
 ## Lectures
