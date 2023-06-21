@@ -1,0 +1,14 @@
+Assay:	_A_01_multiOmics-Dataset
+Assay Class:	DRY
+Assay Type:	Dataset
+Title:	multiOmics
+Description:	multiOmica datasets
+pISA Assay creation date:	2023-06-21
+pISA Assay creator:	MZ
+Phenodata:	../../phenodata_20230621.txt
+Featuredata:	
+Data:	
+Principal investigator:	*
+License:	CC BY 4.0
+Sharing permission:	Public
+Upload to FAIRDOMHub:	Yes

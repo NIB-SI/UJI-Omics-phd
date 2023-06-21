@@ -1,0 +1,10 @@
+Investigation:	_I_UJI-Omics-phd
+Title:	UJI-Omics-phd
+Description:	*
+Phenodata:	./phenodata_20230621.txt
+pISA Investigation creation date:	2023-06-21
+pISA Investigation creator:	MZ
+Principal investigator:	*
+License:	CC BY 4.0
+Sharing permission:	Public
+Upload to FAIRDOMHub:	Yes

@@ -1,0 +1,348 @@
+Bin	BinName	id	Fold Change		Pathway	Sub-pathway	Protein	Identificació	Gene ID (NCBI)	Coments	Article
+1.1.1.1	PS.lightreaction.photosystem II.LHC-II	solyc02g071000.1.1	1,4204127		Photosystem	Photosystem II	Chlorophyll a-b binding protein 1D	TGRD			From root to fruit: RNA-Seq analysis shows that arbuscular mycorrhizal symbiosis may affect tomato fruit metabolism
+1.1.1.1	PS.lightreaction.photosystem II.LHC-II	solyc03g115900.2.1	1,0391943		Photosystem	Photosystem II	Chlorophyll a-b binding protein P4	TGRD/UniProt			
+1.1.1.1	PS.lightreaction.photosystem II.LHC-II	solyc12g011280.1.1	-1,5097909		Photosystem	Photosystem II	Chlorophyll a-b binding protein 8	TGRD/UniProt/NCBI	101265617		
+1.1.1.2	PS.lightreaction.photosystem II.PSII polypeptide subunits	solyc02g011990.1.1	1,3872464		Photosystem	Photosystem II	Photosystem Q(B) protein //  Photosynthetic reaction centre, L/M 	TGRD			Synchronization of the flowering transition by the tomato TERMINATING FLOWER gene
+1.1.1.2	PS.lightreaction.photosystem II.PSII polypeptide subunits	solyc01g048590.1.1	2,6226315		Photosystem	Photosystem II	Photosystem II protein D1/D2 superfamily // Photosynthetic reaction centre, L/M	TGRD/UniProt			
+1.1.1.2	PS.lightreaction.photosystem II.PSII polypeptide subunits	Solyc00g230080.1.1 	-2,5308268		Photosystem	Photosystem II	Photosystem II protein D1/D2 superfamily // Photosynthetic reaction centre, L/M	UniProt			
+1.1.2.2	PS.lightreaction.photosystem I.PSI polypeptide subunits	solyc06g083680.2.1	1,2395903		Photosystem	Photosystem I	Photosystem I reaction center subunit IV A // Photosystem I PsaE	UniProt / NCBI	101266426		
+1.1.2.2	PS.lightreaction.photosystem I.PSI polypeptide subunits	solyc01g017320.1.1	1,2782465		Photosystem	Photosystem I	P700 chlorophyll a apoprotein A1 // psaA and psaB	TGRD			
+1.1.2.2	PS.lightreaction.photosystem I.PSI polypeptide subunits	solyc02g011760.1.1	-1,0260773		Photosystem	Photosystem I	Photosystem I iron-sulfur center // 4Fe-4S ferredoxin	TGRD			
+1.1.2.2	PS.lightreaction.photosystem I.PSI polypeptide subunits	solyc09g015290.1.1	2,390655		Photosystem	Photosystem I	P700 chlorophyll a apoprotein A1 // psaA and psaB	TGRD/UniProt			
+1.1.4.8	PS.lightreaction.ATP synthase.subunit B (ATPF)	solyc02g012020.1.1	2,2459087		Photosystem	ATP synthase	ATP synthase subunit b // F1/A1 complex, alpha/beta subunit	TGRD/UniProt			
+1.1.40	PS.lightreaction.cyclic electron flow-chlororespiration	solyc09g090570.2.1	1,3164756		Photosystem	Cyclic electron flow	Proton gradient regulation 5	TGRD			
+1.2.2	PS.photorespiration.glycolate oxydase	solyc10g007600.2.1	-1,7234126		Photosystem	Photorespiration	L-lactate dehydrogenase FMN dependent // FMN hydroxy acid dehydrogenase domain-containing protein // glycolate oxidase (GLO2)	TGRD/UniProt/NCBI	100134875		
+1.2.7	PS.photorespiration.glycerate kinase	solyc03g120430.2.1	-1,1607028		Photosystem	Photorespiration	Glycerate kinase	TGRD			
+1.3.13	PS.calvin cycle.rubisco interacting	solyc05g013160.2.1	-4,6894803		Photosystem	Calvin cycle	Rubisco methyltransferase large subunit N-methyltransferase	TGRD/UniProt/NCBI	101259632		
+2.1.2.2	major CHO metabolism.synthesis.starch.starch synthase	solyc02g080570.2.1	-1,2110547		Major CHO metab	Starch synthesis	Starch synthase III	TGRD/UniProt/NCBI	100316882		
+2.2.1.4	major CHO metabolism.degradation.sucrose.hexokinase	solyc03g121070.2.1	1,0387903		Major CHO metab	Sucose Degradation	Hexokinase (HXK-1)	TGRD/UniProt/NCBI	543779		
+2.2.2.2	major CHO metabolism.degradation.starch.starch phosphorylase	solyc05g012510.2.1	1,4729499		Major CHO metab	Starch degradation	Alpha-1,4 glucan phosphorylase	TGRD/UniProt/NCBI	101248295		
+3,5	minor CHO metabolism.others	solyc10g083710.1.1	-1,544595		Minor CHO metab	others	3-deoxy-D-manno-octulosonic acid transferase-like protein	TGRD			
+3,6	minor CHO metabolism.callose	solyc07g061920.2.1	1,7237246		Minor CHO metab	Callose	Glucan synthase like 3 // FKS1_dom1 domain-containing protein	TGRD/UniProt/NCBI			
+3.8.2	minor CHO metabolism.galactose.alpha-galactosidases	solyc04g008730.2.1	-1,6953434		Minor CHO metab	Galactose	alpha-galactosidase 1	TGRD/UniProt/NCBI	101249542		
+3.8.2	minor CHO metabolism.galactose.alpha-galactosidases	solyc06g050130.2.1	2,0437796		Minor CHO metab	Galactose	alpha-galactosidase 3	TGRD/UniProt/NCBI	101257269		
+4.2.3	glycolysis.plastid branch.glucose-6-phosphate isomerase	solyc12g014380.1.1	-1,3448893								
+4.2.3	glycolysis.plastid branch.glucose-6-phosphate isomerase	solyc04g076090.2.1	-2,1268725								
+4.3.3	glycolysis.unclear/dually targeted.glucose-6-phosphate isomerase	solyc12g014380.1.1	-1,3448893								
+4.3.3	glycolysis.unclear/dually targeted.glucose-6-phosphate isomerase	solyc04g076090.2.1	-2,1268725								
+4.3.12	glycolysis.unclear/dually targeted.phosphoglycerate mutase	solyc02g078240.2.1	3,0728705								
+4.3.12	glycolysis.unclear/dually targeted.phosphoglycerate mutase	solyc06g074510.2.1	-1,652429								
+6,3	gluconeogenesis.Malate DH	solyc02g063490.2.1	-2,503676								
+7.1.1	OPP.oxidative PP.G6PD	solyc05g015950.2.1	2,0264518								
+7.1.1	OPP.oxidative PP.G6PD	solyc02g093830.2.1	-1,0718067								
+8.1.1.2	TCA / org. transformation.TCA.pyruvate DH.E2	solyc12g005080.1.1	-1,1003386								
+8.1.1.2	TCA / org. transformation.TCA.pyruvate DH.E2	solyc07g006790.2.1	1,7100233								
+8.1.1.2	TCA / org. transformation.TCA.pyruvate DH.E2	solyc05g009530.2.1	1,3223602								
+8.1.2	TCA / org. transformation.TCA.CS	solyc01g073740.2.1	-1,0860218								
+8.1.3	TCA / org. transformation.TCA.aconitase	solyc07g052350.2.1	-1,0174111								
+8.1.4	TCA / org. transformation.TCA.IDH	solyc08g077920.2.1	-1,6178576								
+8.1.5	TCA / org. transformation.TCA.2-oxoglutarate dehydrogenase	solyc12g005080.1.1	-1,1003386								
+8.1.7	TCA / org. transformation.TCA.succinate dehydrogenase	solyc02g085350.2.1	-1,2375722								
+8.1.7	TCA / org. transformation.TCA.succinate dehydrogenase	solyc02g092730.2.1	-2,2168782								
+8.1.9	TCA / org. transformation.TCA.malate DH	solyc07g062650.2.1	-1,0847324								
+8.2.10	TCA / org. transformation.other organic acid transformaitons.malic	solyc08g013860.2.1	-1,4539319								
+8,3	TCA / org. transformation.carbonic anhydrases	solyc05g005490.2.1	-1,2941287								
+8,3	TCA / org. transformation.carbonic anhydrases	solyc02g086820.2.1	1,0141206								
+9.1.1.5	mitochondrial electron transport / ATP synthesis.NADH-DH.complex I.carbonic anhydrase	solyc04g080570.2.1	-1,0269088								
+9,6	mitochondrial electron transport / ATP synthesis.cytochrome c	solyc01g103220.2.1	1,0303184								
+9,9	mitochondrial electron transport / ATP synthesis.F1-ATPase	solyc07g026770.2.1	-2,0414112								
+10.1.3	cell wall.precursor synthesis.AXS	solyc01g009420.2.1	-1,7015499		Cell wall	Precursor synthesis	NAD-dependent epimerase // UDP-D-apiose/UDP-D-xylose synthase 2	TGRD/UniProt/NCBI	101247451		
+10.1.5	cell wall.precursor synthesis.UXS	solyc01g009420.2.1	-1,7015499				repe				
+10.6.1	cell wall.degradation.cellulases and beta -1,4-glucanases	solyc03g083820.1.1	-1,6241325		Cell wall	Degradation	Endoglucanase 1 // Glycoside hydrolase, family 9	TGRD/UniProt			
+11.1.3	lipid metabolism.FA synthesis and FA elongation.ketoacyl ACP synthase	solyc02g070790.2.1	-1,4355319		Lipid metab	FA synthesis	3-oxoacyl-[acyl-carrier-protein] synthase I	TGRD/UniProt/NCBI	101267959		
+11,3	lipid metabolism.Phospholipid synthesis	solyc10g008020.2.1	-2,0222192		Lipid metab	Phospholipid synthesis	Methyltransferase	TGRD			
+11.9.2.1	lipid metabolism.lipid degradation.lipases.triacylglycerol lipase	solyc02g077110.2.1	-1,6164953		Lipid metab	lipid degradation	Lipase-like protein	TGRD/UniProt			
+11.9.4.2	lipid metabolism.lipid degradation.beta-oxidation.acyl CoA DH	solyc04g054890.2.1	-2,2764726		Lipid metab	lipid degradation	Acyl-coenzyme A oxidase	TGRD/UniProt/NCBI	101265227		
+11.9.4.9	lipid metabolism.lipid degradation.beta-oxidation.multifunctional	solyc12g007170.1.1	4,8217587		Lipid metab	lipid degradation	3-hydroxyacyl-CoA dehydrogenase	TGRD/UniProt/NCBI	101252256		
+13.1.1.1.1	amino acid metabolism.synthesis.central amino acid metabolism.GABA.Glutamate decarboxylase	solyc03g098240.2.1	-1,0504683								
+13.1.1.3.1	amino acid metabolism.synthesis.central amino acid metabolism.alanine.alanine aminotransferase	solyc03g123610.2.1	-1,1354066								
+13.1.1.3.1	amino acid metabolism.synthesis.central amino acid metabolism.alanine.alanine aminotransferase	solyc03g123600.2.1	1,1137967								
+13.1.2.2	amino acid metabolism.synthesis.glutamate family.proline	solyc06g019170.2.1	-3,3715487								
+13.1.2.3	amino acid metabolism.synthesis.glutamate family.arginine	solyc01g108660.2.1	-1,1458987								
+13.1.2.3.2	amino acid metabolism.synthesis.glutamate family.arginine.acetylglutamate kinase	solyc09g010420.2.1	2,1803792								
+13.1.3.4	amino acid metabolism.synthesis.aspartate family.methionine	solyc10g083970.1.1	-1,02822								
+13.1.5.3.1	amino acid metabolism.synthesis.serine-glycine-cysteine group.cysteine.OASTL	solyc01g097920.2.1	1,0473932								
+13.1.6.1.10	amino acid metabolism.synthesis.aromatic aa.chorismate.dehydroquinate/shikimate dehydrogenase	solyc01g067750.2.1	-1,0572301								
+15,2	metal handling.binding, chelation and storage	solyc11g007200.1.1	-1,4991474								
+16.1.1.4	secondary metabolism.isoprenoids.non-mevalonate pathway.CMK	solyc01g009010.2.1	-1,2701532		Isoprenoids	Non-mevalonate pathway	4-diphosphocytidyl-2-C-methyl-D-erythritol kinase (ISPE)	TGRD/UniProt/NCBI	543658		
+16.1.2.7	secondary metabolism.isoprenoids.mevalonate pathway.isopentenyl pyrophosphate:dimethyllallyl pyrophosphate isomerase	solyc04g056390.2.1	-1,297626		Isoprenoids	Mevalonate pathway	Isopentenyl-diphosphate delta-isomerase (IPI)	TGRD/UniProt			
+16.1.4.3	secondary metabolism.isoprenoids.carotenoids.zeta-carotene desaturase	solyc01g097810.2.1	-2,2038517		Isoprenoids	Carotenoids	Zeta-carotene desaturase	TGRD/UniProt/NCBI	543629		
+16.1.5	secondary metabolism.isoprenoids.terpenoids	solyc03g007730.1.1	-1,1359835		Isoprenoids	Terpenoids	Beta-ocimene synthase // Alpha-farnesene synthase	TGRD/UniProt/NCBI	101258440		
+16,2	secondary metabolism.phenylpropanoids	solyc12g094520.1.1	4,268227		Phenylpropanoids		4-coumarate-coa ligase	TGRD/UniProt			
+16.8.2	secondary metabolism.flavonoids.chalcones	solyc07g062030.2.1	1,140259		Flavonoids	Chalcones	Chalcone-flavonone isomerase	TGRD/UniProt/NCBI	101252704		
+17.5.1	hormone metabolism.ethylene.synthesis-degradation	solyc02g036350.2.1	-1,0189681		Hormones	Ethylene	1-aminocyclopropane-1-carboxylate oxidase (ACO6)	TGRD/UniProt/NCBI	100125909		
+17.5.2	hormone metabolism.ethylene.signal transduction	solyc06g053710.2.1	-4,797878		Hormones	Ethylene	Ethylene receptor (ETR4)	TGRD/UniProt/NCBI	543588		
+17.7.1.2	hormone metabolism.jasmonate.synthesis-degradation.lipoxygenase	solyc08g029000.2.1	-1,009704		Hormones	Jasmonate	Lipoxygenase	TGRD/UniProt/NCBI	101263535		
+18	Co-factor and vitamine metabolism	solyc01g009050.2.1	-2,8236287		Co-factor and vitamine metabolism		Molybdenum cofactor biosynthesis protein	TGRD/UniProt/NCBI	101253012		
+18	Co-factor and vitamine metabolism	solyc08g015660.2.1	2,2709174				repe				
+18.3.2	Co-factor and vitamine metabolism.riboflavin.riboflavin synthase	solyc08g015660.2.1	2,2709174		Co-factor and vitamine metabolism	Riboflavin	6,7-dimethyl-8-ribityllumazine synthase	TGRD/UniProt/NCBI	101259864		
+18,7	Co-factor and vitamine metabolism.iron-sulphur clusters	solyc12g015910.1.1	-2,6268616		Co-factor and vitamine metabolism	Iron-sulphur	Cysteine desulfuration protein SufE	TGRD/UniProt			
+19,1	tetrapyrrole synthesis.glu-tRNA synthetase	solyc09g090840.2.1	1,466365								
+19,3	tetrapyrrole synthesis.GSA	solyc12g006470.1.1	-1,1546398								
+19,6	tetrapyrrole synthesis.uroporphyrinogen III synthase	solyc02g068350.1.1	-2,218182								
+19,14	tetrapyrrole synthesis.protochlorophyllide reductase	solyc10g006900.2.1	-1,1058173								
+20,1	stress.biotic	solyc11g069020.1.1	-1,0041059		Stress	Biotic	Cc-nbs-lrr, resistance protein // NB-ARC domain-containing protein	TGRD/UniProt			
+20,1	stress.biotic	solyc02g082920.2.1	-1,210303		Stress	Biotic	Endochitinase (CHI3)	TGRD/UniProt/NCBI	544149		
+20,1	stress.biotic	solyc10g055810.1.1	-1,0449337		Stress	Biotic	Endochitinase (CHI9)	TGRD/UniProt/NCBI	544148		
+20,1	stress.biotic	solyc12g044190.1.1	-1,1279054		Stress	Biotic	Cc-nbs-lrr, resistance protein // NB-ARC domain-containing protein	TGRD/UniProt			
+20,1	stress.biotic	solyc02g070750.1.1	2,7452013		Stress	Biotic	Cc-nbs, resistance protein	TGRD			
+20,1	stress.biotic	solyc04g005550.1.1	-1,3236535		Stress	Biotic	Cc-nbs-lrr, resistance protein // NB-ARC domain-containing protein	TGRD/UniProt			
+20,1	stress.biotic	solyc09g007010.1.1	-1,6687276		Stress	Biotic	Pathogenesis related protein PR-1 // PR4	TGRD/UniProt			
+20.1.7	stress.biotic.PR-proteins	solyc01g102840.2.1	-1,2741805		Stress	Biotic	Tir-nbs, resistance protein	TGRD/UniProt			
+20.1.7	stress.biotic.PR-proteins	solyc11g011080.1.1	1,3291515		Stress	Biotic	Tir-nbs, resistance protein	TGRD/UniProt			
+20.2.1	stress.abiotic.heat	solyc06g082970.2.1	-1,6019922		Stress	Abiotic	Heat shock protein DnaJ // NAD(P)H-quinone oxidoreductase subunit U	TGRD/UniProt/NCBI	101259949		
+20.2.1	stress.abiotic.heat	solyc05g010670.2.1	-1,309484		Stress	Abiotic	Heat shock protein Hsp90	TGRD			
+20.2.1	stress.abiotic.heat	solyc04g063390.2.1	-1,7037934		Stress	Abiotic	Heat shock protein DnaJ // chaperone protein dnaJ 10 	TGRD/UniProt/NCBI	101255291		
+20.2.1	stress.abiotic.heat	solyc01g106210.2.1	-1,2158922		Stress	Abiotic	Chaperone DnaK // heat shock 70	TGRD/UniProt/NCBI	101267273		
+20.2.1	stress.abiotic.heat	solyc07g065840.2.1	-1,5587902		Stress	Abiotic	Heat shock protein Hsp90 // Heat shock cognate protein 80 (HSC80)	TGRD/UniProt/NCBI	543903		
+20.2.3	stress.abiotic.drought/salt	solyc05g052500.2.1	-1,2448239		Stress	Abiotic	Methyltransferase	TGRD/UniProt			
+20.2.99	stress.abiotic.unspecified	solyc00g323130.2.1	-1,3727005		Stress	Abiotic	Major latex-like protein	SolGenomics			
+21,1	redox.thioredoxin	solyc01g100320.2.1	-2,06846		Redox	Thioredoxin	Protein disulfide-isomerase	TGRD/UniProt/NCBI	101244123		
+21,1	redox.thioredoxin	solyc10g080080.1.1	-1,0102295		Redox	Thioredoxin	Thioredoxin reductase	TGRD/UniProt			
+21,1	redox.thioredoxin	solyc04g071560.2.1	-2,066763		Redox	Thioredoxin	Thioredoxin Y1-like protein	TGRD			
+21,1	redox.thioredoxin	solyc06g005940.2.1	-1,0648452		Redox	Thioredoxin	Protein disulfide-isomerase	TGRD/UniProt			
+21.2.2	redox.ascorbate and glutathione.glutathione	solyc08g080940.2.1	-2,0131056		Redox	Glutathione	Glutathione peroxidase	TGRD/UniProt			
+21,3	redox.heme	solyc03g071690.2.1	-1,1173877		Redox	Heme	Non-symbiotic hemoglobin 2	TGRD/UniProt			
+21,4	redox.glutaredoxins	solyc06g005260.2.1	-1,4099227		Redox	Glutaredoxins	Glutaredoxin	TGRD/UniProt/NCBI	544298		
+21,6	redox.dismutases and catalases	solyc11g066390.1.1	1,7476126		Redox	Dismutases and catalases	Superoxide dismutase [Cu-Zn]	TGRD/UniProt/NCBI	543981		
+21,6	redox.dismutases and catalases	solyc06g048410.2.1	-1,0714699		Redox	Dismutases and catalases	Superoxide dismutase [Mn-Fe]	TGRD/UniProt			
+21,6	redox.dismutases and catalases	solyc01g100630.1.1	-1,8096443		Redox	Dismutases and catalases	Catalase	TGRD/UniProt			
+23.1.1.2	nucleotide metabolism.synthesis.pyrimidine.aspartate transcarbamoylase	solyc11g006350.1.1	-1,7748439								
+23.1.1.5	nucleotide metabolism.synthesis.pyrimidine.orotate phosphoribosyltransferase	solyc11g068830.1.1	-2,1303382								
+23.1.2.6	nucleotide metabolism.synthesis.purine.AIR carboxylase	solyc11g006340.1.1	-1,1217598								
+23,2	nucleotide metabolism.degradation	solyc02g079250.2.1	-1,6009239								
+24	Biodegradation of Xenobiotics	solyc10g050880.1.1	3,041558								
+26,1	misc.misc2	solyc09g072900.2.1	-1,1665177								
+26,2	misc.UDP glucosyl and glucoronyl transferases	solyc01g107820.2.1	-1,472015								
+26,2	misc.UDP glucosyl and glucoronyl transferases	solyc11g066670.1.1	-2,5254295								
+26,2	misc.UDP glucosyl and glucoronyl transferases	solyc12g019050.1.1	-2,7521772								
+26.3.1	misc.gluco-, galacto- and mannosidases.alpha-galactosidase	solyc04g049070.2.1	-3,4360695								
+26.4.1	misc.beta 1,3 glucan hydrolases.glucan endo-1,3-beta-glucosidase	solyc01g059980.2.1	-1,0399756		Miscellany	B-glucan hydrolases	Beta-glucanase	TGRD			
+26.4.1	misc.beta 1,3 glucan hydrolases.glucan endo-1,3-beta-glucosidase	solyc01g008620.2.1	-1,7231327		Miscellany	B-glucan hydrolases	Beta-1,3-glucanase	TGRD			
+26,7	misc.oxidases - copper, flavone etc.	solyc08g078040.2.1	-1,8687937								
+26,8	misc.nitrilases, *nitrile lyases, berberine bridge enzymes, reticuline oxidases, troponine reductases	solyc10g086620.1.1	3,446388								
+26,9	misc.glutathione S transferases	solyc07g056420.2.1	-1,0797716								
+26,9	misc.glutathione S transferases	solyc09g011570.2.1	1,0772887								
+26,1	misc.cytochrome P450	solyc06g051750.2.1	-1,1754924								
+26,12	misc.peroxidases	solyc02g087190.1.1	-2,7333987								
+26,13	misc.acid and other phosphatases	solyc06g054250.2.1	-2,6814303								
+26,17	misc.dynamin	solyc01g103130.1.1	1,6945167								
+26,19	misc.plastocyanin-like	solyc02g088390.2.1	-2,0822208								
+26,19	misc.plastocyanin-like	solyc07g064240.2.1	-1,9166734								
+26,21	misc.protease inhibitor/seed storage/lipid transfer protein (LTP) family protein	solyc12g009650.1.1	1,1390562								
+26,22	misc.short chain dehydrogenase/reductase (SDR)	solyc01g091660.2.1	-1,0276588								
+26,23	misc.rhodanese	solyc06g053140.2.1	2,4069302								
+27,1	RNA.processing	solyc12g088720.1.1	1,4110919								
+27,1	RNA.processing	solyc05g049950.2.1	2,115395								
+27,1	RNA.processing	solyc03g114410.2.1	1,299356								
+27,3	RNA.regulation of transcription	solyc07g042030.1.1	1,758197								
+27.3.6	RNA.regulation of transcription.bHLH,Basic Helix-Loop-Helix family	solyc10g079650.1.1	-1,2473631								
+27.3.9	RNA.regulation of transcription.C2C2(Zn) GATA transcription factor family	solyc10g047640.1.1	-2,7238493								
+27.3.22	RNA.regulation of transcription.HB,Homeobox transcription factor family	solyc07g054380.1.1	-1,4826945								
+27.3.25	RNA.regulation of transcription.MYB domain transcription factor family	solyc09g010070.1.1	-1,9841045								
+27.3.32	RNA.regulation of transcription.WRKY domain transcription factor family	solyc02g088350.2.1	1,3728718								
+27.3.35	RNA.regulation of transcription.bZIP transcription factor family	solyc06g060270.2.1	-2,2587261								
+27.3.36	RNA.regulation of transcription.Argonaute	solyc06g073540.2.1	1,879981								
+27.3.39	RNA.regulation of transcription.AtSR Transcription Factor family	solyc01g104170.2.1	-1,062284								
+27.3.44	RNA.regulation of transcription.Chromatin Remodeling Factors	solyc01g107330.2.1	-1,3039904								
+27.3.67	RNA.regulation of transcription.putative transcription regulator	solyc05g056220.2.1	-1,1925015								
+27.3.67	RNA.regulation of transcription.putative transcription regulator	solyc01g100580.2.1	-2,5693092								
+27.3.99	RNA.regulation of transcription.unclassified	solyc02g065120.1.1	-1,9300048								
+27,4	RNA.RNA binding	solyc05g056100.2.1	1,3160834								
+27,4	RNA.RNA binding	solyc02g093340.2.1	2,4496772								
+27,4	RNA.RNA binding	solyc05g053780.2.1	-1,5444306								
+27,4	RNA.RNA binding	solyc09g090960.2.1	-2,1266685								
+28,1	DNA.synthesis/chromatin structure	solyc01g020220.1.1	-2,893247								
+28,1	DNA.synthesis/chromatin structure	solyc01g068480.2.1	-1,0762714								
+28,1	DNA.synthesis/chromatin structure	solyc10g081250.1.1	-1,0838124								
+28,1	DNA.synthesis/chromatin structure	solyc02g078920.2.1	-2,256415								
+28,1	DNA.synthesis/chromatin structure	solyc09g090740.2.1	1,1207314								
+28.1.3	DNA.synthesis/chromatin structure.histone	solyc12g005270.1.1	-3,3505926								
+28.1.3	DNA.synthesis/chromatin structure.histone	solyc02g038690.1.1	-1,2717979								
+28.1.3	DNA.synthesis/chromatin structure.histone	solyc01g073970.2.1	1,3099151								
+28,2	DNA.repair	solyc03g113880.2.1	1,230006								
+28,99	DNA.unspecified	solyc10g051340.1.1	-2,0446863								
+29.1.10	protein.aa activation.methionine-tRNA ligase	solyc08g015960.2.1	-1,9570315								
+29.1.19	protein.aa activation.arginine-tRNA ligase	solyc12g008570.1.1	-1,0174226								
+29.1.20	protein.aa activation.phenylalanine-tRNA ligase	solyc05g056260.2.1	-1,8425536								
+29.2.1.1.1.2.9	protein.synthesis.ribosomal protein.prokaryotic.chloroplast.50S subunit.L9	solyc11g066410.1.1	-2,1393988								
+29.2.1.1.1.2.12	protein.synthesis.ribosomal protein.prokaryotic.chloroplast.50S subunit.L12	solyc02g086740.1.1	-1,0546685								
+29.2.1.1.1.2.20	protein.synthesis.ribosomal protein.prokaryotic.chloroplast.50S subunit.L20	solyc01g007470.1.1	-2,1724153								
+29.2.1.1.1.2.24	protein.synthesis.ribosomal protein.prokaryotic.chloroplast.50S subunit.L24	solyc08g075850.2.1	-3,9368055								
+29.2.1.1.1.2.31	protein.synthesis.ribosomal protein.prokaryotic.chloroplast.50S subunit.L31	solyc04g080630.2.1	1,2414738								
+29.2.1.2.1.12	protein.synthesis.ribosomal protein.eukaryotic.40S subunit.S12	solyc01g103800.2.1	2,0634766								
+29.2.1.2.1.15	protein.synthesis.ribosomal protein.eukaryotic.40S subunit.S15	solyc02g082000.2.1	-1,5743009								
+29.2.1.2.1.17	protein.synthesis.ribosomal protein.eukaryotic.40S subunit.S17	solyc05g055230.1.1	2,5978699								
+29.2.1.2.1.21	protein.synthesis.ribosomal protein.eukaryotic.40S subunit.S21	solyc01g066840.2.1	1,2849894								
+29.2.1.2.1.53	protein.synthesis.ribosomal protein.eukaryotic.40S subunit.S3A	solyc03g097900.2.1	1,0700178								
+29.2.1.2.2.8	protein.synthesis.ribosomal protein.eukaryotic.60S subunit.L8	solyc06g035600.2.1	-1,5197787								
+29.2.1.2.2.18	protein.synthesis.ribosomal protein.eukaryotic.60S subunit.L18	solyc01g099900.2.1	-1,0216355								
+29.2.1.2.2.19	protein.synthesis.ribosomal protein.eukaryotic.60S subunit.L19	solyc06g009210.2.1	-3,6617577								
+29.2.1.2.2.518	protein.synthesis.ribosomal protein.eukaryotic.60S subunit.L18A	solyc02g070640.2.1	-1,6081996								
+29.2.3	protein.synthesis.initiation	solyc07g064150.2.1	-1,4797825								
+29.2.3	protein.synthesis.initiation	solyc00g007270.2.1	-1,044744								
+29.2.4	protein.synthesis.elongation	solyc07g016150.2.1	1,4255632								
+29.3.1	protein.targeting.nucleus	solyc02g094200.2.1	1,4608892								
+29.3.1	protein.targeting.nucleus	solyc08g041890.2.1	-1,5432316								
+29.3.2	protein.targeting.mitochondria	solyc02g068130.2.1	-1,4963524								
+29.3.2	protein.targeting.mitochondria	solyc05g012480.2.1	-1,1489823								
+29.3.3	protein.targeting.chloroplast	solyc11g020300.1.1	-2,492864								
+29.3.5	protein.targeting.peroxisomes	solyc10g005650.2.1	4,5421352								
+29,4	protein.postranslational modification	solyc08g082840.1.1	-2,3625207								
+29,4	protein.postranslational modification	solyc02g082550.2.1	-4,4551816								
+29,4	protein.postranslational modification	solyc01g095550.2.1	1,0089998								
+29,4	protein.postranslational modification	solyc09g090280.1.1	-2,6292803								
+29,4	protein.postranslational modification	solyc09g090200.2.1	-1,7972268								
+29,4	protein.postranslational modification	solyc06g082440.1.1	1,9909356								
+29.4.1	protein.postranslational modification.kinase	solyc09g008260.2.1	2,8727787								
+29.4.1.57	protein.postranslational modification.kinase.receptor like cytoplasmatic kinase VII	solyc05g051610.1.1	1,1155275								
+29.4.1.57	protein.postranslational modification.kinase.receptor like cytoplasmatic kinase VII	solyc01g109950.2.1	1,9596312								
+29,5	protein.degradation	solyc12g010020.1.1	-2,416572								
+29,5	protein.degradation	solyc09g098150.2.1	-1,6222832								
+29,5	protein.degradation	solyc08g079620.2.1	1,0715092								
+29,5	protein.degradation	solyc01g100970.2.1	2,8228412								
+29,5	protein.degradation	solyc08g082320.2.1	-1,2271678								
+29,5	protein.degradation	solyc05g025590.2.1	-1,516765								
+29.5.1	protein.degradation.subtilases	solyc01g087800.2.1	-1,2790929		Protein	Degradation	Subtilisin-like protease // Peptidase S8	TGRD/UniProt			
+29.5.1	protein.degradation.subtilases	solyc08g079900.1.1	-1,2463818		Protein	Degradation	Subtilisin-like protease // Peptidase S9	TGRD/UniProt			
+29.5.3	protein.degradation.cysteine protease	solyc07g064590.2.1	1,0625288								
+29.5.4	protein.degradation.aspartate protease	solyc03g111180.2.1	-1,4117206								
+29.5.5	protein.degradation.serine protease	solyc08g077890.2.1	-1,1412601								
+29.5.5	protein.degradation.serine protease	solyc06g063410.2.1	-1,7115698								
+29.5.5	protein.degradation.serine protease	solyc06g084480.2.1	-1,4167839								
+29.5.5	protein.degradation.serine protease	solyc02g091280.2.1	-1,2482165								
+29.5.9	protein.degradation.AAA type	solyc06g008730.2.1	-1,0012035								
+29.5.11.2	protein.degradation.ubiquitin.E1	solyc06g007320.2.1	1,1157918								
+29.5.11.4.2	protein.degradation.ubiquitin.E3.RING	solyc03g115720.2.1	-1,5617132								
+29.5.11.4.2	protein.degradation.ubiquitin.E3.RING	solyc04g007500.1.1	-2,1874533								
+29.5.11.4.2	protein.degradation.ubiquitin.E3.RING	solyc01g107980.2.1	-1,4356273								
+29.5.11.4.2	protein.degradation.ubiquitin.E3.RING	solyc01g103980.2.1	-1,0485876								
+29.5.11.4.3.2	protein.degradation.ubiquitin.E3.SCF.FBOX	solyc02g080840.1.1	-1,021213								
+29.5.11.4.5.2	protein.degradation.ubiquitin.E3.BTB/POZ Cullin3.BTB/POZ	solyc05g052960.2.1	-1,2420027								
+29.5.11.5	protein.degradation.ubiquitin.ubiquitin protease	solyc04g051410.2.1	-1,6845229								
+29.5.11.20	protein.degradation.ubiquitin.proteasom	solyc05g013030.1.1	1,1820102								
+29.5.11.20	protein.degradation.ubiquitin.proteasom	solyc11g013440.1.1	-1,251525								
+29,6	protein.folding	solyc06g065520.2.1	-1,0301249								
+29,7	protein.glycosylation	solyc08g029170.2.1	-1,2134268								
+29,8	protein.assembly and cofactor ligation	solyc07g064940.2.1	-1,1136049								
+29,8	protein.assembly and cofactor ligation	solyc11g007120.1.1	-1,4266015								
+30.1.1	signalling.in sugar and nutrient physiology	solyc03g083560.1.1	-1,9140537		Signalling	Sugar and nutrient phisiology	Phosphate-induced protein 1  // EXORDIUM-like 3 	TGRD/UniProt/NCBI	101250380		
+30.2.11	signalling.receptor kinases.leucine rich repeat XI	solyc04g051510.1.1	-4,2988744		Signalling	Receptor kinases	Brassinosteroid LRR receptor kinase (CURL3)	TGRD/UniProt/NCBI	101261320	(almost identical to Systemin receptor SR160)	
+30.2.11	signalling.receptor kinases.leucine rich repeat XI	solyc11g020280.1.1	-2,746024		Signalling	Receptor kinases	Receptor protein-tyrosine kinase (CEPR2)	TGRD/UniProt/NCBI	101250763		
+30,3	signalling.calcium	solyc03g113970.2.1	-2,0442665		Signalling	Calcium	Calmodulin binding protein	TGRD/UniProt			
+30,4	signalling.phosphinositides	solyc00g007010.2.1	-1,1442486		Signalling	Phosphinositides	SAC domain-containing protein	UniProt			
+30,5	signalling.G-proteins	solyc01g090170.2.1	-1,2744863		Signalling	G-proteins	Ras-related protein Rab-1A, small GTPase // Fe2OG dioxygenase domain-containing protein	TGRD/UniProt			
+30,7	signalling.14-3-3 proteins	solyc11g010470.1.1	-1,9708135		Signalling	14-3-3 proteins	TFT1	TGRD/UniProt/NCBI	101243846		
+30,7	signalling.14-3-3 proteins	solyc12g010860.1.1	-1,3035194		Signalling	14-3-3 proteins	TFT8	TGRD/UniProt/NCBI	544114		
+30,7	signalling.14-3-3 proteins	solyc07g053260.2.1	-1,2980641		Signalling	14-3-3 proteins	TFT9	TGRD/UniProt/NCBI	544115		
+30,7	signalling.14-3-3 proteins	solyc02g063070.2.1	-1,0725749		Signalling	14-3-3 proteins	TFT4	TGRD/UniProt/NCBI	543791		
+30,11	signalling.light	solyc10g051110.1.1	-1,4688833		Signalling	Light	NAD dependent epimerase/dehydratase	TGRD			
+30,11	signalling.light	solyc07g045480.2.1	-1,3703088		Signalling	Light	Phytochrome F (PHYF)	TGRD/UniProt/NCBI	101259349		
+30,11	signalling.light	solyc07g043260.2.1	-1,2746476		Signalling	Light	Protein FAR1-RELATED SEQUENCE 2 , MULE transposase // SWIM-type domain-containing protein	TGRD/UniProt/NCBI	101257387		
+30,11	signalling.light	solyc02g070770.2.1	-1,465954		Signalling	Light	NAD-dependent epimerase/dehydratase	TGRD/UniProt/NCBI	101268541		
+30,11	signalling.light	solyc09g092110.2.1	1,625439		Signalling	Light	Light regulated protein 1	TGRD/UniProt/NCBI	101268227		
+31,1	cell.organisation	solyc02g024000.2.1	-1,9040471								
+31,1	cell.organisation	solyc08g076480.2.1	-1,3551869								
+31,1	cell.organisation	solyc03g095810.2.1	1,2897011								
+31,1	cell.organisation	solyc06g051350.2.1	-1,2174152								
+31,1	cell.organisation	solyc05g018500.2.1	-2,2159605								
+31,1	cell.organisation	solyc05g014200.2.1	1,4804989								
+31,1	cell.organisation	solyc04g077020.2.1	-1,2427139								
+31,1	cell.organisation	solyc04g011370.2.1	-1,3882009								
+31,1	cell.organisation	solyc10g006820.2.1	-1,3856118								
+31,2	cell.division	solyc05g051510.2.1	-1,4134828								
+31.2.5	cell.division.plastid	solyc03g007980.1.1	-1,2585866								
+31.3.1	cell.cycle.peptidylprolyl isomerase	solyc09g057670.2.1	-1,0792308								
+31,4	cell.vesicle transport	solyc04g025870.2.1	-1,6376637								
+31,4	cell.vesicle transport	solyc06g074650.2.1	-3,5647948								
+33,2	development.late embryogenesis abundant	solyc06g034130.2.1	-1,6231623								
+33,99	development.unspecified	solyc01g107320.2.1	1,5745178								
+33,99	development.unspecified	solyc07g066330.2.1	-1,4421065								
+33,99	development.unspecified	solyc06g050620.2.1	-1,1353828								
+33,99	development.unspecified	solyc03g111650.2.1	3,1075165								
+33,99	development.unspecified	solyc02g077880.2.1	1,309784								
+33,99	development.unspecified	solyc12g009440.1.1	-1,0407634								
+33,99	development.unspecified	solyc01g104510.2.1	-2,5849972								
+33,99	development.unspecified	solyc10g084090.1.1	2,1164112								
+34,3	transport.amino acids	solyc01g005920.2.1	-3,4590735								
+34,6	transport.sulphate	solyc12g056930.1.1	-1,178238								
+34.18.1	transport.unspecified anions.arsenite-transporting ATPase	solyc04g025160.2.1	-1,0683817								
+34,99	transport.misc	solyc01g109860.2.1	-1,1860667								
+34,99	transport.misc	solyc09g010070.1.1	-1,9841045								
+35,2	not assigned.unknown	solyc12g036780.1.1	-1,011666								
+35,2	not assigned.unknown	solyc01g091360.2.1	-1,327054								
+35,2	not assigned.unknown	solyc01g005880.1.1	-1,3803678								
+35,2	not assigned.unknown	solyc07g017940.1.1	1,116279								
+35,2	not assigned.unknown	solyc04g076570.2.1	-2,3165467								
+35,2	not assigned.unknown	solyc01g008450.1.1	-1,624621								
+35,2	not assigned.unknown	solyc09g084450.2.1	1,9367752				Proteinase inhibitor I	TGRD/UniProt/NCBI	101247557		
+35,2	not assigned.unknown	solyc00g027140.1.1	-1,087516								
+35,2	not assigned.unknown	solyc07g016070.1.1	-1,6014556								
+35,2	not assigned.unknown	solyc09g089510.2.1	-1,0673298				Proteinase inhibitor I	TGRD			
+35,2	not assigned.unknown	solyc01g017730.1.1	1,563674								
+35,2	not assigned.unknown	solyc02g011820.1.1	-1,3892595								
+35,2	not assigned.unknown	solyc03g123720.2.1	-3,5044348								
+35,2	not assigned.unknown	solyc05g051750.2.1	-1,2259184				Prosystemin / Systemin	TGRD/UniProt/NCBI	543989		
+35,2	not assigned.unknown	solyc08g014040.2.1	2,0140681								
+35,2	not assigned.unknown	solyc06g048850.2.1	-1,9948426								
+35,2	not assigned.unknown	solyc04g015720.1.1	-1,0296757								
+35,2	not assigned.unknown	solyc10g049590.1.1	1,6103204								
+35,2	not assigned.unknown	solyc08g082190.2.1	-1,0644203								
+35,2	not assigned.unknown	solyc02g030080.2.1	1,7946572								
+35,2	not assigned.unknown	solyc05g023700.1.1	-1,4990164								
+35,2	not assigned.unknown	solyc02g086340.2.1	-1,7356398								
+35,2	not assigned.unknown	solyc04g078530.1.1	-1,408371								
+35,2	not assigned.unknown	solyc07g056030.2.1	-5,6473804								
+35,2	not assigned.unknown	solyc06g018070.1.1	-1,8549976								
+35,2	not assigned.unknown	solyc10g086570.2.1	1,1286178								
+35,2	not assigned.unknown	solyc00g167800.1.1	-1,0982549								
+35,2	not assigned.unknown	solyc02g093170.2.1	-1,2065854								
+35,2	not assigned.unknown	solyc05g050800.2.1	-1,6731414								
+35,2	not assigned.unknown	solyc08g080990.2.1	-1,6284268								
+35,2	not assigned.unknown	solyc01g079450.2.1	-1,38052								
+35,2	not assigned.unknown	solyc01g097170.2.1	2,342668								
+35,2	not assigned.unknown	solyc06g062280.2.1	-1,3583348								
+35,2	not assigned.unknown	solyc01g111490.1.1	-1,1347347								
+35,2	not assigned.unknown	solyc12g100120.1.1	-1,5922436								
+35,2	not assigned.unknown	solyc01g020200.1.1	-1,047314								
+35,2	not assigned.unknown	solyc10g048030.1.1	-2,448712								
+35,2	not assigned.unknown	solyc03g121790.2.1	-1,6924797								
+35,2	not assigned.unknown	solyc11g020870.1.1	-1,0305943								
+35,2	not assigned.unknown	solyc04g054470.2.1	-1,4781376								
+35,2	not assigned.unknown	solyc03g114270.1.1	-1,779667								
+35,2	not assigned.unknown	solyc08g041700.1.1	-1,0814571								
+35,2	not assigned.unknown	solyc12g057130.1.1	1,0125011								
+35,2	not assigned.unknown	solyc03g118940.2.1	-1,5626425								
+35,2	not assigned.unknown	solyc03g006870.2.1	-1,382825								
+35,2	not assigned.unknown	solyc03g123710.2.1	-2,1406732								
+35,2	not assigned.unknown	solyc03g007190.2.1	2,9205902								
+35,2	not assigned.unknown	solyc03g082720.2.1	1,2364296								
+35,2	not assigned.unknown	solyc04g078440.2.1	1,3267356								
+35,2	not assigned.unknown	solyc07g005470.2.1	1,0268632								
+35,2	not assigned.unknown	solyc06g035750.1.1	-2,4224927								
+35,2	not assigned.unknown	solyc10g050130.1.1	1,5188613								
+35,2	not assigned.unknown	solyc09g084490.2.1	-1,2630421				Proteinase inhibitor I	TGRD			
+35,2	not assigned.unknown	solyc04g005920.1.1	-2,405136								
+35,2	not assigned.unknown	solyc11g065080.1.1	-1,4120246								
+35,2	not assigned.unknown	solyc05g051650.1.1	-2,06861								
+35,2	not assigned.unknown	solyc01g110960.2.1	1,7149409								
+35,2	not assigned.unknown	solyc11g066850.1.1	-1,2485695								
+35,2	not assigned.unknown	solyc09g083440.2.1	-1,4136328				Proteinase inhibitor I	TGRD/UniProt/NCBI	101246961		
+35,2	not assigned.unknown	solyc03g096600.1.1	-3,4104075								
+35,2	not assigned.unknown	solyc05g053540.2.1	-1,1764861								
+35,2	not assigned.unknown	solyc01g049660.1.1	-1,8080759								
+35,2	not assigned.unknown	solyc04g071350.2.1	-1,0454348								
+35,2	not assigned.unknown	solyc07g041490.1.1	-1,080819								
+35,2	not assigned.unknown	solyc00g020940.1.1	-1,7470235								
+35,2	not assigned.unknown	solyc08g074720.2.1	-1,238918								
+35,2	not assigned.unknown	solyc04g026020.2.1	-1,0349069								
+35,2	not assigned.unknown	solyc05g009850.2.1	-2,3962145								
+35,2	not assigned.unknown	solyc08g061810.2.1	-1,6584661								
+35,2	not assigned.unknown	solyc01g081480.2.1	-3,021424								
+35,2	not assigned.unknown	solyc10g054860.1.1	1,9572964								
+35,2	not assigned.unknown	solyc08g079110.2.1	-1,0553367								
+35,2	not assigned.unknown	solyc04g050340.1.1	-1,3528987								
+35,2	not assigned.unknown	solyc07g055980.2.1	1,0422344								
+											
+											
+											
