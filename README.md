@@ -1,7 +1,7 @@
 # multiOmics integration
 
 # useful links
-## Tools/Apps/...
+## Tools/Apps/DBs...
 * [pISA-tree](https://github.com/NIB-SI/pISA-tree)
 * [DiNAR](https://github.com/NIB-SI/DiNAR)
 * [Cytoscape](https://cytoscape.org/)
@@ -12,6 +12,7 @@
 * [GSEA](https://www.gsea-msigdb.org/gsea/index.jsp)
 * [splinecluster](https://www.ma.imperial.ac.uk/~naheard/software/splinecluster/index.html)
 * [igraph](https://igraph.org/)
+* [SKM](https://skm.nib.si/)
 ## Articles
 * [Misunderstood parameter of NCBI BLAST impacts the correctness of bioinformatics workflows](https://academic.oup.com/bioinformatics/article/35/9/1613/5106166)
 * [Methods for the integration of multi-omics data: mathematical aspects](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-015-0857-9)
