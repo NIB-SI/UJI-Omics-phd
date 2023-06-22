@@ -13,7 +13,6 @@
 * [splinecluster](https://www.ma.imperial.ac.uk/~naheard/software/splinecluster/index.html)
 * [igraph](https://igraph.org/)
 * [SKM](https://skm.nib.si/)
-* [CLC](https://resources.qiagenbioinformatics.com/manuals/clcgenomicsworkbench/551/index.php?manual=RNA_Seq_analysis.html)
 ## Articles
 * [Misunderstood parameter of NCBI BLAST impacts the correctness of bioinformatics workflows](https://academic.oup.com/bioinformatics/article/35/9/1613/5106166)
 * [Methods for the integration of multi-omics data: mathematical aspects](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-015-0857-9)
@@ -23,6 +22,7 @@
 * [mixOmics: An R package for ‘omics feature selection and multiple data integration](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005752)
 * [DIABLO: an integrative approach for identifying key molecular drivers from multi-omics assays](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6735831/)
 * [Integrating omics datasets with the OmicsPLS package](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-018-2371-3)
+* [CLC Application Note: RNA-seq analysis using long and short reads from pathogen-infected plant tissues](https://digitalinsights.qiagen.com/wp-content/uploads/2022/01/PROM-19784-001_1126624_AN_CLC_RNA-seq_1221_WW.pdf)
 ## Vignetes/F-ctions/CheatSheets
 * [multi-block sPLS-DA](https://mixomicsteam.github.io/mixOmics-Vignette/)
 * [RBH search](https://drostlab.github.io/orthologr/reference/blast_rec.html)
@@ -35,4 +35,5 @@
 * [ComplexHeatmap](https://jokergoo.github.io/ComplexHeatmap-reference/book/)
 * [rstatix](https://rpkgs.datanovia.com/rstatix/)
 * [ggpubr](https://rpkgs.datanovia.com/ggpubr/index.html)
+* [CLC](https://resources.qiagenbioinformatics.com/manuals/clcgenomicsworkbench/551/index.php?manual=RNA_Seq_analysis.html)
 ## Lectures
