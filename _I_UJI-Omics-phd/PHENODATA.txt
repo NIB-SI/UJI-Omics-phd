@@ -1,0 +1,49 @@
+Sample_ID	Label proteomics	proteomics	label rna_seq	rna_seq	label metabolomics 	metabolome	label enzymomics	enzymomics	label phosphoproteomics	phosphoproteomics	Sampling	Plant material	Timepoint	Specie
+NM24_1	1	YES	NM24_1	YES	NM24_1	YES	Water 24_1	YES	4387_RB_A_03	YES	pool 3 plants	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum
+NM24_2	2	YES	NM24_2	YES	NM24_2	YES	Water 24_2	YES	4387_RB_A_04	YES	pool 3 plants	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum
+NM24_3	3	YES	NM24_3	YES	NM24_3	YES	Water 24_3	YES	4387_RB_A_05	YES	pool 3 plants	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum
+NM24_4		NO		NO	NM24_4	YES	Water 24_4	YES	4387_RB_A_06	YES	pool 3 plants	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum
+NM24_5		NO		NO	NM24_5	YES	Water 24_5	YES		NO	pool 3 plants	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum
+NM24_6		NO		NO	NM24_6	YES	Water 24_6	YES		NO	pool 3 plants	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum
+NMINF24_1	10	YES	NMINF24_1	YES	NMINF24_1	YES	AM 24_1	YES	4387_RB_D_21	YES	pool 3 plants	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum
+NMINF24_2	11	YES	NMINF24_2	YES	NMINF24_2	YES	AM 24_2	YES	4387_RB_D_22	YES	pool 3 plants	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum
+NMINF24_3	12	YES	NMINF24_3	YES	NMINF24_3	YES	AM 24_3	YES	4387_RB_D_23	YES	pool 3 plants	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum
+NMINF24_4		NO		NO	NMINF24_4	YES	AM 24_4	YES	4387_RB_D_24	YES	pool 3 plants	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum
+NMINF24_5		NO		NO	NMINF24_5	YES	AM 24_5	YES		NO	pool 3 plants	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum
+NMINF24_6		NO		NO	NMINF24_6	YES	AM 24_6	YES		NO	pool 3 plants	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum
+AM24_1	7	YES	AM24_1	YES	AM24_1	YES	W inf 24_1	YES	4387_RB_B_09	YES	pool 3 plants	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum
+AM24_2	8	YES	AM24_2	YES	AM24_2	YES	W inf 24_2	YES	4387_RB_B_10	YES	pool 3 plants	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum
+AM24_3	9	YES	AM24_3	YES	AM24_3	YES	W inf 24_3	YES	4387_RB_B_12	YES	pool 3 plants	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum
+AM24_4		NO		NO	AM24_4	YES	W inf 24_4	YES		NO	pool 3 plants	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum
+AM24_5		NO		NO	AM24_5	YES	W inf 24_5	YES		NO	pool 3 plants	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum
+AM24_6		NO		NO	AM24_6	YES	W inf 24_6	YES		NO	pool 3 plants	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum
+AMINF24_1	16	YES	AMINF24_1	YES	AMINF24_1	YES	AM inf 24_1	YES	4387_RB_E_27	YES	pool 3 plants	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum
+AMINF24_2	17	YES	AMINF24_2	YES	AMINF24_2	YES	AM inf 24_2	YES	4387_RB_E_28	YES	pool 3 plants	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum
+AMINF24_3	18	YES	AMINF24_3	YES	AMINF24_3	YES	AM inf 24_3	YES	4387_RB_E_29	YES	pool 3 plants	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum
+AMINF24_4		NO		NO	AMINF24_4	YES	AM inf 24_4	YES	4387_RB_E_30	YES	pool 3 plants	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum
+AMINF24_5		NO		NO	AMINF24_5	YES	AM inf 24_5	YES		NO	pool 3 plants	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum
+AMINF24_6		NO		NO	AMINF24_6	YES	AM inf 24_6	YES		NO	pool 3 plants	Adult leaves 3 and 4	24 hpi	Solanum lycopersicum
+NM48_1		NO	NM48_1	YES	NM48_1	YES	Water 48_1	YES		NO	pool 3 plants	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum
+NM48_2		NO	NM48_2	YES	NM48_2	YES	Water 48_2	YES		NO	pool 3 plants	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum
+NM48_3		NO	NM48_3	YES	NM48_3	YES	Water 48_3	YES		NO	pool 3 plants	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum
+NM48_4		NO		NO	NM48_4	YES	Water 48_4	YES		NO	pool 3 plants	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum
+NM48_5		NO		NO	NM48_5	YES	Water 48_5	YES		NO	pool 3 plants	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum
+NM48_6		NO		NO	NM48_6	YES	Water 48_6	YES		NO	pool 3 plants	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum
+NMINF48_1		NO	NMINF48_1	YES	NMINF48_1	YES	AM 48_1	YES		NO	pool 3 plants	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum
+NMINF48_2		NO	NMINF48_2	YES	NMINF48_2	YES	AM 48_2	YES		NO	pool 3 plants	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum
+NMINF48_3		NO	NMINF48_3	YES	NMINF48_3	YES	AM 48_3	YES		NO	pool 3 plants	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum
+NMINF48_4		NO		NO	NMINF48_4	YES	AM 48_4	YES		NO	pool 3 plants	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum
+NMINF48_5		NO		NO	NMINF48_5	YES	AM 48_5	YES		NO	pool 3 plants	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum
+NMINF48_6		NO		NO	NMINF48_6	YES	AM 48_6	YES		NO	pool 3 plants	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum
+AM48_1		NO	AM48_1	YES	AM48_1	YES	W inf 48_1	YES		NO	pool 3 plants	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum
+AM48_2		NO	AM48_2	YES	AM48_2	YES	W inf 48_2	YES		NO	pool 3 plants	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum
+AM48_3		NO	AM48_3	YES	AM48_3	YES	W inf 48_3	YES		NO	pool 3 plants	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum
+AM48_4		NO		NO	AM48_4	YES	W inf 48_4	YES		NO	pool 3 plants	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum
+AM48_5		NO		NO	AM48_5	YES	W inf 48_5	YES		NO	pool 3 plants	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum
+AM48_6		NO		NO	AM48_6	YES	W inf 48_6	YES		NO	pool 3 plants	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum
+AMINF48_1		NO	AMINF48_1	YES	AMINF48_1	YES	AM inf 48_1	YES		NO	pool 3 plants	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum
+AMINF48_2		NO	AMINF48_2	YES	AMINF48_2	YES	AM inf 48_2	YES		NO	pool 3 plants	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum
+AMINF48_3		NO	AMINF48_3	YES	AMINF48_3	YES	AM inf 48_3	YES		NO	pool 3 plants	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum
+AMINF48_4		NO		NO	AMINF48_4	YES	AM inf 48_4	YES		NO	pool 3 plants	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum
+AMINF48_5		NO		NO	AMINF48_5	YES	AM inf 48_5	YES		NO	pool 3 plants	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum
+AMINF48_6		NO		NO	AMINF48_6	YES	AM inf 48_6	YES		NO	pool 3 plants	Adult leaves 3 and 4	48 hpi	Solanum lycopersicum
