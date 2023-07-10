@@ -111,36 +111,7 @@ system("blastp -help")
 
 
 
-```{r}
 
-function (query_file, subject_file, seq_type = "cds", format = "fasta", 
-    blast_algorithm = "blastp", delete_corrupt_cds = TRUE, eval = "1E-5", 
-    max.target.seqs = 10000, path = NULL, comp_cores = 1, blast_params = NULL, 
-    clean_folders = FALSE, save.output = NULL) 
-{
-    orthoA <- blast_best(query_file = query_file, subject_file = subject_file, 
-        eval = eval, max.target.seqs = max.target.seqs, format = format, 
-        seq_type = seq_type, blast_algorithm = blast_algorithm, 
-        delete_corrupt_cds = delete_corrupt_cds, path = path, 
-        comp_cores = comp_cores, blast_params = blast_params, 
-        save.output = save.output)
-    orthoB <- blast_best(query_file = subject_file, subject_file = query_file, 
-        seq_type = seq_type, eval = eval, max.target.seqs = max.target.seqs, 
-        format = format, blast_algorithm = blast_algorithm, delete_corrupt_cds = delete_corrupt_cds, 
-        path = path, comp_cores = comp_cores, blast_params = blast_params, 
-        clean_folders = clean_folders, save.output = save.output)
-     colnames(orthoB)[1:2] <- c("subject_id", "query_id")
-    tryCatch({
-        return(dplyr::semi_join(orthoA, orthoB, by = c("query_id", 
-            "subject_id")))
-    }, error = function(e) {
-        stop("The BLAST tables resulting from ", query_file, 
-            " and ", subject_file, " could not be joined properly to select only the reciprocal best hits.")
-    })
-}
-
-
-```
 
 
 
@@ -155,7 +126,7 @@ Also, ```orthologr::blast_rec``` demands file pathm not variable/object
 fp = file.path('..', 'input')
 list.files(fp, recursive = TRUE)
 
-fn1 = 'ITAG4.1_proteins.fasta'
+fn1 = 'test-ITAG4.1_proteins.fasta'
 # Sly.proteome = seqinr::read.fasta(file = file.path(fp, fn1),
 #                                   seqtype = "AA", 
 #                                   as.string = FALSE, 
@@ -164,7 +135,7 @@ fn1 = 'ITAG4.1_proteins.fasta'
 #                              format = 'fasta')
 
 # PLAZA
-fn2 = 'proteome.selected_transcript.ath.fasta'
+fn2 = 'test-proteome.selected_transcript.ath.fasta'
 # ARAPORT
 # fn2 = 'Araport11_pep_20220914_representative_gene_model'
 # Ath.proteome = seqinr::read.fasta(file = file.path(fp, 'PLAZA', fn2),
@@ -178,9 +149,61 @@ fn2 = 'proteome.selected_transcript.ath.fasta'
  
 # RBH
 
+<https://github.com/drostlab/orthologr/issues/26>
+
 ```{r}
 
+blast_rec = function (query_file, 
+                      subject_file, 
+                      seq_type = "protein", 
+                      format = "fasta", 
+                      blast_algorithm = "blastp", 
+                      eval = "1E-10", 
+                      max.target.seqs = 1000, 
+                      path = NULL, 
+                      comp_cores = 4, 
+                      blast_params = NULL, 
+                      clean_folders = FALSE, 
+                      save.output = fmtp
+                      ) 
+{
+  setwd(mydir)
+  
+    orthoA <- blast_best(query_file = query_file,
+                         subject_file = subject_file, 
+        eval = eval, max.target.seqs = max.target.seqs, format = format, 
+        seq_type = seq_type, blast_algorithm = blast_algorithm, 
+        delete_corrupt_cds = delete_corrupt_cds, path = path, 
+        comp_cores = comp_cores, blast_params = blast_params, 
+        save.output = mydir
+        )
+    
+    orthoB <- blast_best(query_file = subject_file, subject_file = query_file, 
+        seq_type = seq_type, eval = eval, max.target.seqs = max.target.seqs, 
+        format = format, blast_algorithm = blast_algorithm, delete_corrupt_cds = delete_corrupt_cds, 
+        path = path, comp_cores = comp_cores, blast_params = blast_params, 
+        clean_folders = clean_folders, save.output = save.output)
+    
+    colnames(orthoB)[1:2] <- c("subject_id", "query_id")
+    tryCatch({
+        return(dplyr::semi_join(orthoA, orthoB, by = c("query_id", 
+            "subject_id")))
+    }, error = function(e) {
+        stop("The BLAST tables resulting from ", query_file, 
+            " and ", subject_file, " could not be joined properly to select only the reciprocal best hits.")
+    })
+}
+
+```
+
+
+```{r, blast_rec}
+
 fmtp = file.path('..', 'other')
+
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+mydir =  getwd()
+
 
 myRBH = orthologr::blast_rec(query_file = file.path(fp, 'PLAZA', fn2)
                              ,
@@ -193,19 +216,20 @@ myRBH = orthologr::blast_rec(query_file = file.path(fp, 'PLAZA', fn2)
                              blast_algorithm = "blastp"
                              ,
                              # delete_corrupt_cds = TRUE,
-                             eval = "1E-100"
+                             eval = "1E-10"
                              ,  
-                             max.target.seqs = 100
+                             max.target.seqs = 200
                              ,
                              # a character string specifying the path to the BLAST program (in case you don't use the default path)
-                             # path = file.path('C:', 'Program Files', 'NCBI', 'blast-2.14.0+', 'bin')
+                             path = NULL
                              , 
                              comp_cores = 4
                              ,
                              # blast_params = NULL, # see whats this
-                             clean_folders = FALSE
+                             clean_folders = TRUE
                              ,
-                             save.output = fmtp
+                             # a path to the location were the BLAST output shall be stored. E.g. save.output = getwd() to store it in the current working directory, or save.output = file.path(put,your,path,here).
+                             save.output =  fmtp
                              )
 
 
