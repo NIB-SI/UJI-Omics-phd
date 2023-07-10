@@ -1,0 +1,14 @@
+Assay:	07_NetworksSKM-R
+Assay Class:	DRY
+Assay Type:	R
+Title:	07_NetworksSKM-R
+Description:	Analyses in SKM network framework
+pISA Assay creation date:	2023-07-10
+pISA Assay creator:	MZ
+Phenodata:	../../phenodata_20230621.txt
+Featuredata:	
+Data:	
+Principal investigator:	*
+License:	CC BY 4.0
+Sharing permission:	Public
+Upload to FAIRDOMHub:	Yes
