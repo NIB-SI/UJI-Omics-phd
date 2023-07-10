@@ -1,0 +1,4 @@
+# PLAZA instance : dicots_05
+# File generation timestamp : Fri Sep 17 13:33:00 CEST 2021
+#source	url	species	common_name	eco_type	description	paper	pubmed_id	tax_id	mitochondrion	chloroplast	disclaimer
+ITAG4.0	http://solgenomics.net/organism/Solanum_lycopersicum/genome	sly	Solanum lycopersicum		Solanum lycopersicum, tomato,  is a valuable genome for several reasons. Tomatoes are of significant agricultural importance and the genome sequence can assist breeders in developing varieties with better flavor, resistance and shelf-life. But also for evolutionary studies the solanaceae are of interest as they branched of other dicots earlier than grapevine.	The tomato genome sequence provides insights into fleshy fruit evolution.	22660326	4081			

@@ -1,0 +1,4 @@
+# PLAZA instance : dicots_05
+# File generation timestamp : Fri Sep 17 13:33:00 CEST 2021
+#source	url	species	common_name	eco_type	description	paper	pubmed_id	tax_id	mitochondrion	chloroplast	disclaimer
+Araport11	https://www.araport.org/	ath	Arabidopsis thaliana	COL-0	Arabidopsis thaliana, or the mouse-ear cress, is to plant sciences, what mouse is to animal biology. It has all features to make it a perfect model organism and has, despite several recent genome duplications, a very small genome. Additionally several techniques to manipulate these plants and their genome made it the perfect candidate to be the first plant to have it's genome sequenced. 	Araport11: a complete reannotation of the Arabidopsis thaliana reference genome.	27862469	3702	Y08501	AP000423	

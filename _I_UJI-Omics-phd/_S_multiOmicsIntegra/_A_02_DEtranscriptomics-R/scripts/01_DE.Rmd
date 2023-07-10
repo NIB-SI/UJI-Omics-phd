@@ -1,0 +1,416 @@
+---
+title: "01_DE"
+author: "Maria, MPE, zagor"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    fig_caption: yes
+    self_contained: yes
+    fig_width: 12
+    fig_height: 9
+    toc: yes
+    toc_depth: 2
+    number_sections: yes
+    theme: flatly
+    highlight: tango
+  pdf_document:
+    toc: yes
+    toc_depth: '2'
+  word_document:
+    toc: yes
+    toc_depth: '2'
+editor_options:
+  chunk_output_type: console
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(#dev = c('pdf', 'png'),  # this embeds pdf and crates scrolable blocks
+                      dev = c('png'), 
+                      fig.align = 'center', 
+                      fig.height = 9, 
+                      fig.width = 12 ,
+                      warning = FALSE, message = FALSE
+                      )
+# options(knitr.table.format = "html")
+
+```
+
+
+# Libraries
+
+```{r,  echo=FALSE, warning=FALSE, message=FALSE}
+
+rm(list = ls(all = TRUE))
+gc()
+
+set.seed(123456)
+
+
+`%nin%` = Negate(`%in%`)
+
+library(RColorBrewer)
+library(raster)
+
+# library(ComplexHeatmap)
+
+# library(ggplot2)
+
+library(magrittr)
+
+
+```
+
+
+# Functions
+
+## MDS
+
+<https://www.gastonsanchez.com/visually-enforced/how-to/2013/01/23/MDS-in-R/>
+
+```{r}
+
+my.NMDS <- function(mymat, stress.levels, title){
+
+    
+
+    nmds = vegan::metaMDS(mymat, 
+                          distance = "euclidean",
+                          k = 3, try = 2, trymax = 2,
+                          trace = FALSE)
+    
+    data.scores = as.data.frame(vegan::scores(nmds)$sites)
+    data.scores$Treatment = factor(subset$Stress, levels = stress.levels)
+    data.scores$SamplingDay = factor(subset$Time, levels = time.levels)
+    data.scores$PlantNo = as.factor(subset$Plant)
+    
+    g12 = ggplot(data.scores, aes(x = NMDS1, y = NMDS2)) +
+      geom_point(size = 3, aes( shape = Treatment, colour = SamplingDay )) +
+      theme(axis.text.y = element_text(colour = "black", size = 10, face = "bold"),
+            axis.text.x = element_text(colour = "black", face = "bold", size = 10),
+            legend.text = element_text(size = 6, 
+                                       #face ="bold", 
+                                       colour ="black"
+            ),
+            legend.position = "none", axis.title.y = element_text(face = "bold", size = 14),
+            axis.title.x = element_text(face = "bold", size = 14, colour = "black"),
+            legend.title = element_text(size = 8, 
+                                        colour = "black"#, 
+                                        #face = "bold"
+            ),
+            panel.background = element_blank(), panel.border = element_rect(colour = "black", 
+                                                                            fill = NA, 
+                                                                            size = 1.2),
+            legend.key=element_blank()) +
+      labs(x = "MDS1", colour = "SamplingDay", y = "MDS2", shape = "Treatment") + 
+      ggtitle(title) +
+      scale_color_manual(values = NMDS.palette)
+    
+    g13 = ggplot(data.scores, aes(x = NMDS1, y = NMDS3)) +
+      geom_point(size = 3, aes( shape = Treatment, colour = SamplingDay )) +
+      theme(axis.text.y = element_text(colour = "black", size = 10, face = "bold"),
+            axis.text.x = element_text(colour = "black", face = "bold", size = 10),
+            legend.text = element_text(size = 6, 
+                                       #face ="bold", 
+                                       colour ="black"
+                                       ),
+            legend.position = "none", axis.title.y = element_text(face = "bold", size = 14),
+            axis.title.x = element_text(face = "bold", size = 14, colour = "black"),
+            legend.title = element_text(size = 8, 
+                                        colour = "black"#, 
+                                        #face = "bold"
+                                        ),
+            panel.background = element_blank(), panel.border = element_rect(colour = "black", 
+                                                                            fill = NA, 
+                                                                            size = 1.2),
+            legend.key=element_blank()) +
+      labs(x = "MDS1", colour = "SamplingDay", y = "MDS3", shape = "Treatment") + 
+      ggtitle(title) +
+      scale_color_manual(values = NMDS.palette)
+    
+    g23 = ggplot(data.scores, aes(x = NMDS2, y = NMDS3)) +
+      geom_point(size = 3, aes( shape = Treatment, colour = SamplingDay )) +
+      theme(axis.text.y = element_text(colour = "black", size = 10, face = "bold"),
+            axis.text.x = element_text(colour = "black", face = "bold", size = 10),
+            legend.text = element_text(size = 6, 
+                                       #face ="bold", 
+                                       colour ="black"
+            ),
+            legend.position = "right", axis.title.y = element_text(face = "bold", size = 14),
+            axis.title.x = element_text(face = "bold", size = 14, colour = "black"),
+            legend.title = element_text(size = 8, 
+                                        colour = "black"#, 
+                                        #face = "bold"
+            ),
+            panel.background = element_blank(), panel.border = element_rect(colour = "black", 
+                                                                            fill = NA, 
+                                                                            size = 1.2),
+            legend.key=element_blank()) +
+      labs(x = "MDS2", colour = "SamplingDay", y = "MDS3", shape = "Treatment") + 
+      ggtitle(title) +
+      scale_color_manual(values = NMDS.palette)
+    
+    
+    ds = data.scores
+    ds$trt = paste(ds$Treatment, ds$SamplingDay, sep = '_')
+    cent <- aggregate(cbind(NMDS1, NMDS2) ~ trt, data = ds, FUN = mean)
+    cent$time = factor(as.numeric(gsub('.*_', '', cent$trt)), levels = time.levels)
+    cent$stress = factor(gsub('_.*', '', cent$trt), levels = stress.levels)
+    segs <- merge(ds, setNames(cent, c('trt','oNMDS1','oNMDS2')),
+                  by = 'trt', sort = FALSE)
+    ds$time = factor(as.numeric(gsub('.*_', '', ds$trt)), levels = time.levels)
+    ds$stress = factor(gsub('_.*', '', ds$trt), levels = stress.levels)
+    
+    gc12 = ggplot(ds, aes(x = NMDS1, y = NMDS2, colour = ds$stress)) +
+      geom_segment(data = segs,
+                   mapping = aes(xend = oNMDS1, yend = oNMDS2)) + 
+      geom_point(data = cent, 
+                 size = 3, 
+                 aes(colour = stress,
+                 shape = time)) +
+      geom_point(size = 1) +
+      coord_fixed()     + 
+      scale_color_manual(values = my.ggplot.palette) +
+      ggtitle('Centroids') + 
+      scale_shape_manual(name = "Day",
+                         breaks = time.levels,
+                         values =  c(1, 16, 0, 15, 2, 17, 8)) +
+      theme(axis.text.y = element_text(colour = "black", size = 10, face = "bold"),
+            axis.text.x = element_text(colour = "black", face = "bold", size = 10),
+            legend.text = element_text(size = 6, 
+                                       #face ="bold", 
+                                       colour ="black"
+            ),
+            legend.position = "none", axis.title.y = element_text(face = "bold", size = 14),
+            axis.title.x = element_text(face = "bold", size = 14, colour = "black"),
+            legend.title = element_text(size = 8, 
+                                        colour = "black"#, 
+                                        #face = "bold"
+            ),
+            panel.background = element_blank(), panel.border = element_rect(colour = "black", 
+                                                                            fill = NA, 
+                                                                            size = 1.2),
+            legend.key=element_blank())
+
+    
+    ds = data.scores
+    ds$trt = paste(ds$Treatment, ds$SamplingDay, sep = '_')
+    cent <- aggregate(cbind(NMDS1, NMDS3) ~ trt, data = ds, FUN = mean)
+    cent$time = factor(as.numeric(gsub('.*_', '', cent$trt)), levels = time.levels)
+    cent$stress = factor(gsub('_.*', '', cent$trt), levels = stress.levels)
+    segs <- merge(ds, setNames(cent, c('trt','oNMDS1','oNMDS3')),
+                  by = 'trt', sort = FALSE)
+    ds$time = factor(as.numeric(gsub('.*_', '', ds$trt)), levels = time.levels)
+    ds$stress = factor(gsub('_.*', '', ds$trt), levels = stress.levels)
+    
+    gc13 = ggplot(ds, aes(x = NMDS1, y = NMDS3, colour = ds$stress)) +
+      geom_segment(data = segs,
+                   mapping = aes(xend = oNMDS1, yend = oNMDS3)) +
+      geom_point(data = cent, 
+                 size = 3, 
+                 aes(colour = stress,
+                     shape = time)) +
+      geom_point(size = 1) +
+      coord_fixed()     + 
+      scale_color_manual(name = "Stress", values = my.ggplot.palette) +
+      ggtitle('Centroids') + 
+      scale_shape_manual(name = "Day",
+                         breaks = time.levels,
+                         values =  c(1, 16, 0, 15, 2, 17, 8)) +
+      theme(axis.text.y = element_text(colour = "black", size = 10, face = "bold"),
+            axis.text.x = element_text(colour = "black", face = "bold", size = 10),
+            legend.text = element_text(size = 6, 
+                                       #face ="bold", 
+                                       colour ="black"
+            ),
+            legend.position = "none", axis.title.y = element_text(face = "bold", size = 14),
+            axis.title.x = element_text(face = "bold", size = 14, colour = "black"),
+            legend.title = element_text(size = 8, 
+                                        colour = "black"#, 
+                                        #face = "bold"
+            ),
+            panel.background = element_blank(), panel.border = element_rect(colour = "black", 
+                                                                            fill = NA, 
+                                                                            size = 1.2),
+            legend.key=element_blank())
+    
+    ds = data.scores
+    ds$trt = paste(ds$Treatment, ds$SamplingDay, sep = '_')
+    cent <- aggregate(cbind(NMDS2, NMDS3) ~ trt, data = ds, FUN = mean)
+    cent$time = factor(as.numeric(gsub('.*_', '', cent$trt)), levels = time.levels)
+    cent$stress = factor(gsub('_.*', '', cent$trt), levels = stress.levels)
+    segs <- merge(ds, setNames(cent, c('trt','oNMDS2','oNMDS3')),
+                  by = 'trt', sort = FALSE)
+    ds$time = factor(as.numeric(gsub('.*_', '', ds$trt)), levels = time.levels)
+    ds$stress = factor(gsub('_.*', '', ds$trt), levels = stress.levels)
+    
+    gc23 = ggplot(ds, aes(x = NMDS2, y = NMDS3, colour = ds$stress)) +
+      geom_segment(data = segs,
+                   mapping = aes(xend = oNMDS2, yend = oNMDS3)) +
+      geom_point(data = cent, 
+                 size = 3, 
+                 aes(colour = stress,
+                     shape = time)) +
+      geom_point(size = 1) +
+      coord_fixed()     + 
+      scale_color_manual(values = my.ggplot.palette) +
+      ggtitle('Centroids') + 
+      scale_shape_manual(name = "Day",
+                         breaks = time.levels,
+                         values =  c(1, 16, 0, 15, 2, 17, 8)) +
+      theme(axis.text.y = element_text(colour = "black", size = 10, face = "bold"),
+            axis.text.x = element_text(colour = "black", face = "bold", size = 10),
+            legend.text = element_text(size = 6, 
+                                       #face ="bold", 
+                                       colour ="black"
+            ),
+            legend.position = "right", axis.title.y = element_text(face = "bold", size = 14),
+            axis.title.x = element_text(face = "bold", size = 14, colour = "black"),
+            legend.title = element_text(size = 8, 
+                                        colour = "black"#, 
+                                        #face = "bold"
+            ),
+            panel.background = element_blank(), panel.border = element_rect(colour = "black", 
+                                                                            fill = NA, 
+                                                                            size = 1.2),
+            legend.key=element_blank())
+    
+    
+    return(list(g12, g13, g23, gc12, gc13, gc23))
+
+    }
+
+```
+
+
+
+# Input data
+
+```{r}
+
+fp = file.path('..', 'input')
+fn = 'raw_counts.txt'
+
+counts = data.table::fread(file = file.path(fp, fn))
+
+fn = 'analytes.txt'
+pheno = data.table::fread(file = file.path(fp, fn))
+
+```
+
+
+## Define sample groups for later comparisons
+
+```{r}
+
+
+group = factor(pheno$Group, levels = c( "control_24h",
+                                        "control_48h",
+                                        "mycorrhized_24h",
+                                        "mycorrhized_48h",
+                                        "infected_24h",
+                                        "infected_48h",
+                                        "myco_infected_24h",
+                                        "myco_infected_48h"))
+# group 
+(n = length(levels(group)))
+
+
+
+```
+
+### Palletes
+
+<https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html#the-color-scales>
+
+<https://renenyffenegger.ch/notes/development/languages/R/packages/RColorBrewer/index>
+
+```{r}
+
+
+
+palette = brewer.pal(n,'Paired')[c(3,4, 7,8, 1,2, 5,6)]
+
+grid = raster(ncols=n, nrows = 1, xmn=1, xmx=n, ymn=1, ymx=2)
+
+values(grid) = 1:n
+
+par(mar=rep(0.5, 4))
+plot(grid, 
+     col=palette, 
+     legend=FALSE, 
+     axes = 0, 
+     box=FALSE)
+text(grid, labels = levels(group), srt = 90)
+
+```
+
+
+
+## Raw reads
+
+### Specify library sizes for each sample
+
+
+```{r}
+
+rownames(counts) = counts$GeneID
+reads.raw = edgeR::DGEList(counts=counts, group=group)
+
+
+```
+
+
+
+### Filter low expressed reads
+
+```{r}
+
+keep.exprs = edgeR::filterByExpr(reads.raw, group = group, min.count = 30, min.total.count = 60)
+table(keep.exprs)
+
+reads.norm = reads.raw[keep.exprs, keep.lib.sizes=TRUE]
+reads.norm = edgeR::calcNormFactors(reads.norm, method = 'TMM')
+reads.norm$samples ## check if it makes sense per your experiment
+
+
+
+```
+
+
+
+### Plot filtered raw counts
+
+```{r}
+
+mymat = reads.norm$counts
+all(colnames(mymat) == pheno$SampleName)
+dim(mymat)
+stress.levels = interaction(pheno$type, pheno$treatment)
+title = 'raw unfiltered'
+time = pheno$time
+
+
+```
+
+
+
+
+### Normalise
+
+```{r}
+
+reads.norm = edgeR::calcNormFactors(reads.raw, method = "TMM")
+
+```
+
+
+# Session Info
+
+```{r}
+
+sessionInfo()
+
+
+```
+
