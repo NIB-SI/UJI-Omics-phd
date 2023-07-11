@@ -1,0 +1,5 @@
+myco_infected_24h-mycorrhized_24h	mycorrhized_24h-control_24h	mycorrhized_48h-control_48h
+myco_infected_48h-mycorrhized_48h	myco_infected_24h-mycorrhized_24h	myco_infected_48h-mycorrhized_48h
+infected_24h-control_24h	infected_24h-control_24h	infected_48h-control_48h
+infected_48h-control_48h	myco_infected_24h-control_24h	myco_infected_48h-control_48h
+	myco_infected_24h-infected_24h	myco_infected_48h-infected_48h
