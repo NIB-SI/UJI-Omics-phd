@@ -1578,8 +1578,8 @@ border-radius: 0px;
 <div id="libraries" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Libraries</h1>
 <pre><code>##          used (Mb) gc trigger (Mb) max used (Mb)
-## Ncells 526926 28.2    1175311 62.8   660382 35.3
-## Vcells 968183  7.4    8388608 64.0  1770517 13.6</code></pre>
+## Ncells 526960 28.2    1175408 62.8   660382 35.3
+## Vcells 968346  7.4    8388608 64.0  1770517 13.6</code></pre>
 </div>
 <div id="functions" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Functions</h1>
@@ -2072,81 +2072,137 @@ results</h1>
 <div id="venndiagramvenn.diagram" class="section level2" number="6.3">
 <h2><span class="header-section-number">6.3</span>
 VennDiagram::venn.diagram</h2>
+<p>Count up/down regulated together</p>
 <div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" tabindex="-1"></a>mylist <span class="ot">=</span> <span class="fu">list</span>()</span>
 <span id="cb49-2"><a href="#cb49-2" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(toPlot)){</span>
-<span id="cb49-3"><a href="#cb49-3" tabindex="-1"></a>    mylist[[i]] <span class="ot">=</span> <span class="fu">rownames</span>(toPlot)[<span class="sc">!</span><span class="fu">is.na</span>(toPlot[,i])]</span>
-<span id="cb49-4"><a href="#cb49-4" tabindex="-1"></a>  }</span>
-<span id="cb49-5"><a href="#cb49-5" tabindex="-1"></a><span class="fu">length</span>(mylist)</span></code></pre></div>
+<span id="cb49-3"><a href="#cb49-3" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">colnames</span>(toPlot)[i])</span>
+<span id="cb49-4"><a href="#cb49-4" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">table</span>(toPlot[, i]))</span>
+<span id="cb49-5"><a href="#cb49-5" tabindex="-1"></a>    mylist[[i]] <span class="ot">=</span> <span class="fu">rownames</span>(toPlot)[toPlot[,i] <span class="sc">!=</span> <span class="dv">0</span>]</span>
+<span id="cb49-6"><a href="#cb49-6" tabindex="-1"></a>  }</span></code></pre></div>
+<pre><code>## [1] &quot;logFC | mycorrhized_24h-control_24h&quot;
+## 
+##     0 
+## 16157 
+## [1] &quot;logFC | mycorrhized_48h-control_48h&quot;
+## 
+##     0 
+## 16157 
+## [1] &quot;logFC | myco_infected_24h-mycorrhized_24h&quot;
+## 
+##    -1     0 
+##     1 16156 
+## [1] &quot;logFC | myco_infected_48h-mycorrhized_48h&quot;
+## 
+##    -1     0     1 
+##   540 15033   584 
+## [1] &quot;logFC | infected_24h-control_24h&quot;
+## 
+##     0 
+## 16157 
+## [1] &quot;logFC | infected_48h-control_48h&quot;
+## 
+##    -1     0     1 
+##  2343 11763  2051 
+## [1] &quot;logFC | myco_infected_24h-control_24h&quot;
+## 
+##     0 
+## 16157 
+## [1] &quot;logFC | myco_infected_48h-control_48h&quot;
+## 
+##    -1     0     1 
+##   371 15216   570 
+## [1] &quot;logFC | myco_infected_24h-infected_24h&quot;
+## 
+##     0 
+## 16157 
+## [1] &quot;logFC | myco_infected_48h-infected_48h&quot;
+## 
+##     0 
+## 16157</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" tabindex="-1"></a><span class="fu">length</span>(mylist)</span></code></pre></div>
 <pre><code>## [1] 10</code></pre>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" tabindex="-1"></a><span class="fu">names</span>(mylist) <span class="ot">=</span> <span class="fu">gsub</span>(<span class="st">&#39;logFC </span><span class="sc">\\</span><span class="st">| &#39;</span>, <span class="st">&#39;&#39;</span>, <span class="fu">colnames</span>(toPlot))</span>
-<span id="cb51-2"><a href="#cb51-2" tabindex="-1"></a></span>
-<span id="cb51-3"><a href="#cb51-3" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(VennCombo)) {</span>
-<span id="cb51-4"><a href="#cb51-4" tabindex="-1"></a>  </span>
-<span id="cb51-5"><a href="#cb51-5" tabindex="-1"></a>  <span class="co"># print(i)</span></span>
-<span id="cb51-6"><a href="#cb51-6" tabindex="-1"></a>  <span class="co"># paste0(VennCombo[, i], collapse = &#39;|&#39;)</span></span>
-<span id="cb51-7"><a href="#cb51-7" tabindex="-1"></a>  ind <span class="ot">=</span> <span class="fu">setdiff</span>(<span class="fu">match</span>(VennCombo[, i], <span class="fu">gsub</span>(<span class="st">&#39;logFC </span><span class="sc">\\</span><span class="st">| &#39;</span>, <span class="st">&#39;&#39;</span>, <span class="fu">names</span>(mylist))), <span class="cn">NA</span>)</span>
-<span id="cb51-8"><a href="#cb51-8" tabindex="-1"></a>  <span class="co"># print(ind)</span></span>
-<span id="cb51-9"><a href="#cb51-9" tabindex="-1"></a>  subset <span class="ot">=</span> mylist[ind]</span>
-<span id="cb51-10"><a href="#cb51-10" tabindex="-1"></a>  </span>
-<span id="cb51-11"><a href="#cb51-11" tabindex="-1"></a>  VennDiagram<span class="sc">::</span><span class="fu">venn.diagram</span>(</span>
-<span id="cb51-12"><a href="#cb51-12" tabindex="-1"></a>      <span class="at">x =</span> (<span class="fu">as.list</span>(subset)),</span>
-<span id="cb51-13"><a href="#cb51-13" tabindex="-1"></a>      <span class="at">category.names =</span> <span class="fu">names</span>(subset),</span>
-<span id="cb51-14"><a href="#cb51-14" tabindex="-1"></a>      <span class="at">filename =</span> <span class="fu">file.path</span>(<span class="st">&quot;..&quot;</span> , <span class="st">&#39;output&#39;</span>, <span class="fu">paste0</span>(i, <span class="st">&#39;_Venn.png&#39;</span>)),</span>
-<span id="cb51-15"><a href="#cb51-15" tabindex="-1"></a>      <span class="at">output=</span><span class="cn">TRUE</span>,</span>
-<span id="cb51-16"><a href="#cb51-16" tabindex="-1"></a>      </span>
-<span id="cb51-17"><a href="#cb51-17" tabindex="-1"></a>      <span class="at">main =</span> <span class="fu">paste0</span>(<span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>, <span class="st">&#39;</span><span class="sc">\n</span><span class="st">Venn&#39;</span>, i),</span>
-<span id="cb51-18"><a href="#cb51-18" tabindex="-1"></a>      <span class="at">main.cex =</span> <span class="fl">0.5</span>,</span>
-<span id="cb51-19"><a href="#cb51-19" tabindex="-1"></a>      <span class="at">main.pos  =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">1.20</span>),</span>
-<span id="cb51-20"><a href="#cb51-20" tabindex="-1"></a>      <span class="at">sub.cex =</span> <span class="fl">1.25</span>,</span>
-<span id="cb51-21"><a href="#cb51-21" tabindex="-1"></a>      </span>
-<span id="cb51-22"><a href="#cb51-22" tabindex="-1"></a>      </span>
-<span id="cb51-23"><a href="#cb51-23" tabindex="-1"></a>      <span class="co"># Output features</span></span>
-<span id="cb51-24"><a href="#cb51-24" tabindex="-1"></a>      <span class="at">imagetype=</span><span class="st">&quot;png&quot;</span> ,</span>
-<span id="cb51-25"><a href="#cb51-25" tabindex="-1"></a>      <span class="at">height =</span> <span class="dv">600</span> , </span>
-<span id="cb51-26"><a href="#cb51-26" tabindex="-1"></a>      <span class="at">width =</span> <span class="dv">600</span> , </span>
-<span id="cb51-27"><a href="#cb51-27" tabindex="-1"></a>      <span class="at">resolution =</span> <span class="dv">300</span>,</span>
-<span id="cb51-28"><a href="#cb51-28" tabindex="-1"></a>      <span class="at">compression =</span> <span class="st">&quot;lzw&quot;</span>,</span>
-<span id="cb51-29"><a href="#cb51-29" tabindex="-1"></a>      </span>
-<span id="cb51-30"><a href="#cb51-30" tabindex="-1"></a>      <span class="co"># Circles</span></span>
-<span id="cb51-31"><a href="#cb51-31" tabindex="-1"></a>      <span class="at">lwd =</span> <span class="dv">2</span>,</span>
-<span id="cb51-32"><a href="#cb51-32" tabindex="-1"></a>      <span class="at">lty =</span> <span class="st">&#39;blank&#39;</span>,</span>
-<span id="cb51-33"><a href="#cb51-33" tabindex="-1"></a>      <span class="at">fill =</span> <span class="fu">brewer.pal</span>(<span class="fu">length</span>(<span class="fu">names</span>(subset)), <span class="st">&quot;Set1&quot;</span>),</span>
-<span id="cb51-34"><a href="#cb51-34" tabindex="-1"></a>      </span>
-<span id="cb51-35"><a href="#cb51-35" tabindex="-1"></a>      <span class="co"># Numbers</span></span>
-<span id="cb51-36"><a href="#cb51-36" tabindex="-1"></a>      <span class="at">cex =</span> .<span class="dv">2</span>,</span>
-<span id="cb51-37"><a href="#cb51-37" tabindex="-1"></a>      <span class="at">fontface =</span> <span class="st">&quot;bold&quot;</span>,</span>
-<span id="cb51-38"><a href="#cb51-38" tabindex="-1"></a>      <span class="at">fontfamily =</span> <span class="st">&quot;sans&quot;</span>,</span>
-<span id="cb51-39"><a href="#cb51-39" tabindex="-1"></a>      </span>
-<span id="cb51-40"><a href="#cb51-40" tabindex="-1"></a>      <span class="co"># Set names</span></span>
-<span id="cb51-41"><a href="#cb51-41" tabindex="-1"></a>      <span class="at">cat.cex =</span> <span class="fl">0.2</span>,</span>
-<span id="cb51-42"><a href="#cb51-42" tabindex="-1"></a>      <span class="at">cat.fontface =</span> <span class="st">&quot;bold&quot;</span>,</span>
-<span id="cb51-43"><a href="#cb51-43" tabindex="-1"></a>      <span class="at">cat.default.pos =</span> <span class="st">&quot;outer&quot;</span>,</span>
-<span id="cb51-44"><a href="#cb51-44" tabindex="-1"></a>      <span class="co"># cat.pos = c(-27, 27, 135),</span></span>
-<span id="cb51-45"><a href="#cb51-45" tabindex="-1"></a>      <span class="co"># cat.dist = c(0.055, 0.055, 0.085),</span></span>
-<span id="cb51-46"><a href="#cb51-46" tabindex="-1"></a>      <span class="at">margin =</span> <span class="fl">0.2</span>,</span>
-<span id="cb51-47"><a href="#cb51-47" tabindex="-1"></a>      <span class="at">cat.fontfamily =</span> <span class="st">&quot;sans&quot;</span><span class="co">#,</span></span>
-<span id="cb51-48"><a href="#cb51-48" tabindex="-1"></a>      <span class="co">#rotation = 1</span></span>
-<span id="cb51-49"><a href="#cb51-49" tabindex="-1"></a>  )</span>
-<span id="cb51-50"><a href="#cb51-50" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" tabindex="-1"></a><span class="fu">names</span>(mylist) <span class="ot">=</span> <span class="fu">gsub</span>(<span class="st">&#39;logFC </span><span class="sc">\\</span><span class="st">| &#39;</span>, <span class="st">&#39;&#39;</span>, <span class="fu">colnames</span>(toPlot))</span>
+<span id="cb53-2"><a href="#cb53-2" tabindex="-1"></a></span>
+<span id="cb53-3"><a href="#cb53-3" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(VennCombo)) {</span>
+<span id="cb53-4"><a href="#cb53-4" tabindex="-1"></a>  </span>
+<span id="cb53-5"><a href="#cb53-5" tabindex="-1"></a>  <span class="co"># print(i)</span></span>
+<span id="cb53-6"><a href="#cb53-6" tabindex="-1"></a>  <span class="co"># paste0(VennCombo[, i], collapse = &#39;|&#39;)</span></span>
+<span id="cb53-7"><a href="#cb53-7" tabindex="-1"></a>  ind <span class="ot">=</span> <span class="fu">setdiff</span>(<span class="fu">match</span>(VennCombo[, i], <span class="fu">gsub</span>(<span class="st">&#39;logFC </span><span class="sc">\\</span><span class="st">| &#39;</span>, <span class="st">&#39;&#39;</span>, <span class="fu">names</span>(mylist))), <span class="cn">NA</span>)</span>
+<span id="cb53-8"><a href="#cb53-8" tabindex="-1"></a>  <span class="co"># print(ind)</span></span>
+<span id="cb53-9"><a href="#cb53-9" tabindex="-1"></a>  subset <span class="ot">=</span> mylist[ind]</span>
+<span id="cb53-10"><a href="#cb53-10" tabindex="-1"></a>  <span class="co"># print(names(subset))</span></span>
+<span id="cb53-11"><a href="#cb53-11" tabindex="-1"></a>  </span>
+<span id="cb53-12"><a href="#cb53-12" tabindex="-1"></a>  VennDiagram<span class="sc">::</span><span class="fu">venn.diagram</span>(</span>
+<span id="cb53-13"><a href="#cb53-13" tabindex="-1"></a>      <span class="at">x =</span> (<span class="fu">as.list</span>(subset)),</span>
+<span id="cb53-14"><a href="#cb53-14" tabindex="-1"></a>      <span class="at">category.names =</span> <span class="fu">names</span>(subset),</span>
+<span id="cb53-15"><a href="#cb53-15" tabindex="-1"></a>      <span class="at">filename =</span> <span class="fu">file.path</span>(<span class="st">&quot;..&quot;</span> , <span class="st">&#39;output&#39;</span>, <span class="fu">paste0</span>(i, <span class="st">&#39;_Venn.png&#39;</span>)),</span>
+<span id="cb53-16"><a href="#cb53-16" tabindex="-1"></a>      <span class="at">output=</span><span class="cn">TRUE</span>,</span>
+<span id="cb53-17"><a href="#cb53-17" tabindex="-1"></a>      </span>
+<span id="cb53-18"><a href="#cb53-18" tabindex="-1"></a>      <span class="at">main =</span> <span class="fu">paste0</span>(<span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>, <span class="st">&#39;</span><span class="sc">\n</span><span class="st">Venn&#39;</span>, i),</span>
+<span id="cb53-19"><a href="#cb53-19" tabindex="-1"></a>      <span class="at">main.cex =</span> <span class="fl">0.5</span>,</span>
+<span id="cb53-20"><a href="#cb53-20" tabindex="-1"></a>      <span class="at">main.pos  =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">1.20</span>),</span>
+<span id="cb53-21"><a href="#cb53-21" tabindex="-1"></a>      <span class="at">sub.cex =</span> <span class="fl">1.25</span>,</span>
+<span id="cb53-22"><a href="#cb53-22" tabindex="-1"></a>      </span>
+<span id="cb53-23"><a href="#cb53-23" tabindex="-1"></a>      </span>
+<span id="cb53-24"><a href="#cb53-24" tabindex="-1"></a>      <span class="co"># Output features</span></span>
+<span id="cb53-25"><a href="#cb53-25" tabindex="-1"></a>      <span class="at">imagetype=</span><span class="st">&quot;png&quot;</span> ,</span>
+<span id="cb53-26"><a href="#cb53-26" tabindex="-1"></a>      <span class="at">height =</span> <span class="dv">600</span> , </span>
+<span id="cb53-27"><a href="#cb53-27" tabindex="-1"></a>      <span class="at">width =</span> <span class="dv">600</span> , </span>
+<span id="cb53-28"><a href="#cb53-28" tabindex="-1"></a>      <span class="at">resolution =</span> <span class="dv">300</span>,</span>
+<span id="cb53-29"><a href="#cb53-29" tabindex="-1"></a>      <span class="at">compression =</span> <span class="st">&quot;lzw&quot;</span>,</span>
+<span id="cb53-30"><a href="#cb53-30" tabindex="-1"></a>      </span>
+<span id="cb53-31"><a href="#cb53-31" tabindex="-1"></a>      <span class="co"># Circles</span></span>
+<span id="cb53-32"><a href="#cb53-32" tabindex="-1"></a>      <span class="at">lwd =</span> <span class="dv">2</span>,</span>
+<span id="cb53-33"><a href="#cb53-33" tabindex="-1"></a>      <span class="at">lty =</span> <span class="st">&#39;blank&#39;</span>,</span>
+<span id="cb53-34"><a href="#cb53-34" tabindex="-1"></a>      <span class="at">fill =</span> <span class="fu">brewer.pal</span>(<span class="fu">length</span>(<span class="fu">names</span>(subset)), <span class="st">&quot;Set1&quot;</span>),</span>
+<span id="cb53-35"><a href="#cb53-35" tabindex="-1"></a>      </span>
+<span id="cb53-36"><a href="#cb53-36" tabindex="-1"></a>      <span class="co"># Numbers</span></span>
+<span id="cb53-37"><a href="#cb53-37" tabindex="-1"></a>      <span class="at">cex =</span> .<span class="dv">2</span>,</span>
+<span id="cb53-38"><a href="#cb53-38" tabindex="-1"></a>      <span class="at">fontface =</span> <span class="st">&quot;bold&quot;</span>,</span>
+<span id="cb53-39"><a href="#cb53-39" tabindex="-1"></a>      <span class="at">fontfamily =</span> <span class="st">&quot;sans&quot;</span>,</span>
+<span id="cb53-40"><a href="#cb53-40" tabindex="-1"></a>      </span>
+<span id="cb53-41"><a href="#cb53-41" tabindex="-1"></a>      <span class="co"># Set names</span></span>
+<span id="cb53-42"><a href="#cb53-42" tabindex="-1"></a>      <span class="at">cat.cex =</span> <span class="fl">0.2</span>,</span>
+<span id="cb53-43"><a href="#cb53-43" tabindex="-1"></a>      <span class="at">cat.fontface =</span> <span class="st">&quot;bold&quot;</span>,</span>
+<span id="cb53-44"><a href="#cb53-44" tabindex="-1"></a>      <span class="at">cat.default.pos =</span> <span class="st">&quot;outer&quot;</span>,</span>
+<span id="cb53-45"><a href="#cb53-45" tabindex="-1"></a>      <span class="co"># cat.pos = c(-27, 27, 135),</span></span>
+<span id="cb53-46"><a href="#cb53-46" tabindex="-1"></a>      <span class="co"># cat.dist = c(0.055, 0.055, 0.085),</span></span>
+<span id="cb53-47"><a href="#cb53-47" tabindex="-1"></a>      <span class="at">margin =</span> <span class="fl">0.2</span>,</span>
+<span id="cb53-48"><a href="#cb53-48" tabindex="-1"></a>      <span class="at">cat.fontfamily =</span> <span class="st">&quot;sans&quot;</span><span class="co">#,</span></span>
+<span id="cb53-49"><a href="#cb53-49" tabindex="-1"></a>      <span class="co">#rotation = 1</span></span>
+<span id="cb53-50"><a href="#cb53-50" tabindex="-1"></a>  )</span>
+<span id="cb53-51"><a href="#cb53-51" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="ggvenndiagram" class="section level2" number="6.4">
+<h2><span class="header-section-number">6.4</span> ggVennDiagram</h2>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(VennCombo)) {</span>
+<span id="cb54-2"><a href="#cb54-2" tabindex="-1"></a>  </span>
+<span id="cb54-3"><a href="#cb54-3" tabindex="-1"></a>  ind <span class="ot">=</span> <span class="fu">setdiff</span>(<span class="fu">match</span>(VennCombo[, i], <span class="fu">gsub</span>(<span class="st">&#39;logFC </span><span class="sc">\\</span><span class="st">| &#39;</span>, <span class="st">&#39;&#39;</span>, <span class="fu">names</span>(mylist))), <span class="cn">NA</span>)</span>
+<span id="cb54-4"><a href="#cb54-4" tabindex="-1"></a>  <span class="co"># print(ind)</span></span>
+<span id="cb54-5"><a href="#cb54-5" tabindex="-1"></a>  subset <span class="ot">=</span> mylist[ind]</span>
+<span id="cb54-6"><a href="#cb54-6" tabindex="-1"></a>  </span>
+<span id="cb54-7"><a href="#cb54-7" tabindex="-1"></a>  ggVennDiagram<span class="sc">::</span><span class="fu">ggVennDiagram</span>(subset) <span class="sc">+</span> </span>
+<span id="cb54-8"><a href="#cb54-8" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Paired&quot;</span>)</span>
+<span id="cb54-9"><a href="#cb54-9" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 </div>
 <div id="for-gsea" class="section level1" number="7">
 <h1><span class="header-section-number">7</span> For GSEA</h1>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" tabindex="-1"></a>fn <span class="ot">=</span> <span class="st">&#39;norm.txt&#39;</span></span>
-<span id="cb52-2"><a href="#cb52-2" tabindex="-1"></a>norm <span class="ot">=</span> edgeR<span class="sc">::</span><span class="fu">cpm</span>(reads.norm, </span>
-<span id="cb52-3"><a href="#cb52-3" tabindex="-1"></a>                  <span class="at">normalized.lib.sizes =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb52-4"><a href="#cb52-4" tabindex="-1"></a>                  <span class="at">log =</span> <span class="cn">FALSE</span>, <span class="at">prior.count =</span> <span class="dv">2</span>)</span>
-<span id="cb52-5"><a href="#cb52-5" tabindex="-1"></a>norm <span class="ot">=</span> <span class="fu">cbind</span>(reads.norm<span class="sc">$</span>genes, norm)</span>
-<span id="cb52-6"><a href="#cb52-6" tabindex="-1"></a><span class="fu">colnames</span>(norm)[<span class="dv">1</span>] <span class="ot">=</span> <span class="st">&#39;GeneID&#39;</span></span>
-<span id="cb52-7"><a href="#cb52-7" tabindex="-1"></a></span>
-<span id="cb52-8"><a href="#cb52-8" tabindex="-1"></a></span>
-<span id="cb52-9"><a href="#cb52-9" tabindex="-1"></a>data.table<span class="sc">::</span><span class="fu">fwrite</span>(norm, </span>
-<span id="cb52-10"><a href="#cb52-10" tabindex="-1"></a>                   <span class="fu">file.path</span>(fpo, fn), <span class="at">sep =</span> <span class="st">&#39;</span><span class="sc">\t</span><span class="st">&#39;</span>,</span>
-<span id="cb52-11"><a href="#cb52-11" tabindex="-1"></a>                   <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" tabindex="-1"></a>fn <span class="ot">=</span> <span class="st">&#39;norm.txt&#39;</span></span>
+<span id="cb55-2"><a href="#cb55-2" tabindex="-1"></a>norm <span class="ot">=</span> edgeR<span class="sc">::</span><span class="fu">cpm</span>(reads.norm, </span>
+<span id="cb55-3"><a href="#cb55-3" tabindex="-1"></a>                  <span class="at">normalized.lib.sizes =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb55-4"><a href="#cb55-4" tabindex="-1"></a>                  <span class="at">log =</span> <span class="cn">FALSE</span>, <span class="at">prior.count =</span> <span class="dv">2</span>)</span>
+<span id="cb55-5"><a href="#cb55-5" tabindex="-1"></a>norm <span class="ot">=</span> <span class="fu">cbind</span>(reads.norm<span class="sc">$</span>genes, norm)</span>
+<span id="cb55-6"><a href="#cb55-6" tabindex="-1"></a><span class="fu">colnames</span>(norm)[<span class="dv">1</span>] <span class="ot">=</span> <span class="st">&#39;GeneID&#39;</span></span>
+<span id="cb55-7"><a href="#cb55-7" tabindex="-1"></a></span>
+<span id="cb55-8"><a href="#cb55-8" tabindex="-1"></a></span>
+<span id="cb55-9"><a href="#cb55-9" tabindex="-1"></a>data.table<span class="sc">::</span><span class="fu">fwrite</span>(norm, </span>
+<span id="cb55-10"><a href="#cb55-10" tabindex="-1"></a>                   <span class="fu">file.path</span>(fpo, fn), <span class="at">sep =</span> <span class="st">&#39;</span><span class="sc">\t</span><span class="st">&#39;</span>,</span>
+<span id="cb55-11"><a href="#cb55-11" tabindex="-1"></a>                   <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 </div>
 <div id="session-info" class="section level1" number="8">
 <h1><span class="header-section-number">8</span> Session Info</h1>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
 <pre><code>## R version 4.3.1 (2023-06-16 ucrt)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
 ## Running under: Windows 10 x64 (build 19045)
@@ -2180,31 +2236,31 @@ VennDiagram::venn.diagram</h2>
 ## [16] shape_1.4.6           crayon_1.5.2          fastmap_1.1.1        
 ## [19] labeling_0.4.2        utf8_1.2.3            rmarkdown_2.23       
 ## [22] purrr_1.0.1           xfun_0.39             cachem_1.0.8         
-## [25] jsonlite_1.8.7        highr_0.10            terra_1.7-39         
-## [28] parallel_4.3.1        cluster_2.1.4         R6_2.5.1             
-## [31] bslib_0.5.0           stringi_1.7.12        limma_3.56.2         
-## [34] jquerylib_0.1.4       Rcpp_1.0.10           iterators_1.0.14     
-## [37] knitr_1.43            IRanges_2.34.1        VennDiagram_1.7.3    
-## [40] Matrix_1.5-4.1        splines_4.3.1         tidyselect_1.2.0     
-## [43] rstudioapi_0.14       yaml_2.3.7            vegan_2.6-4          
-## [46] doParallel_1.0.17     codetools_0.2-19      lattice_0.21-8       
-## [49] tibble_3.2.1          withr_2.5.0           evaluate_0.21        
-## [52] lambda.r_1.2.4        sf_1.0-13             futile.logger_1.4.3  
-## [55] units_0.8-2           proxy_0.4-27          zip_2.3.0            
-## [58] circlize_0.4.15       pillar_1.9.0          KernSmooth_2.23-21   
-## [61] foreach_1.5.2         stats4_4.3.1          generics_0.1.3       
-## [64] paletteer_1.5.0       S4Vectors_0.38.1      munsell_0.5.0        
-## [67] scales_1.2.1          class_7.3-22          glue_1.6.2           
-## [70] tools_4.3.1           data.table_1.14.8     openxlsx_4.2.5.2     
-## [73] locfit_1.5-9.8        cowplot_1.1.1         grid_4.3.1           
-## [76] ape_5.7-1             edgeR_3.42.4          colorspace_2.1-0     
-## [79] nlme_3.1-162          cli_3.6.1             futile.options_1.0.1 
-## [82] fansi_1.0.4           ggthemes_4.2.4        ComplexHeatmap_2.16.0
-## [85] dplyr_1.1.2           gtable_0.3.3          sass_0.4.6           
-## [88] digest_0.6.33         prismatic_1.1.1       BiocGenerics_0.46.0  
-## [91] classInt_0.4-9        rjson_0.2.21          farver_2.1.1         
-## [94] htmltools_0.5.5       lifecycle_1.0.3       GlobalOptions_0.1.2  
-## [97] MASS_7.3-60</code></pre>
+## [25] jsonlite_1.8.7        RVenn_1.1.0           highr_0.10           
+## [28] terra_1.7-39          parallel_4.3.1        cluster_2.1.4        
+## [31] R6_2.5.1              bslib_0.5.0           stringi_1.7.12       
+## [34] limma_3.56.2          jquerylib_0.1.4       Rcpp_1.0.10          
+## [37] iterators_1.0.14      knitr_1.43            IRanges_2.34.1       
+## [40] VennDiagram_1.7.3     Matrix_1.5-4.1        splines_4.3.1        
+## [43] tidyselect_1.2.0      rstudioapi_0.14       yaml_2.3.7           
+## [46] ggVennDiagram_1.2.2   vegan_2.6-4           doParallel_1.0.17    
+## [49] codetools_0.2-19      lattice_0.21-8        tibble_3.2.1         
+## [52] withr_2.5.0           evaluate_0.21         lambda.r_1.2.4       
+## [55] sf_1.0-13             futile.logger_1.4.3   units_0.8-2          
+## [58] proxy_0.4-27          zip_2.3.0             circlize_0.4.15      
+## [61] pillar_1.9.0          KernSmooth_2.23-21    foreach_1.5.2        
+## [64] stats4_4.3.1          generics_0.1.3        paletteer_1.5.0      
+## [67] S4Vectors_0.38.1      munsell_0.5.0         scales_1.2.1         
+## [70] class_7.3-22          glue_1.6.2            tools_4.3.1          
+## [73] data.table_1.14.8     openxlsx_4.2.5.2      locfit_1.5-9.8       
+## [76] cowplot_1.1.1         grid_4.3.1            ape_5.7-1            
+## [79] edgeR_3.42.4          colorspace_2.1-0      nlme_3.1-162         
+## [82] cli_3.6.1             futile.options_1.0.1  fansi_1.0.4          
+## [85] ggthemes_4.2.4        ComplexHeatmap_2.16.0 dplyr_1.1.2          
+## [88] gtable_0.3.3          sass_0.4.6            digest_0.6.33        
+## [91] prismatic_1.1.1       BiocGenerics_0.46.0   classInt_0.4-9       
+## [94] rjson_0.2.21          farver_2.1.1          htmltools_0.5.5      
+## [97] lifecycle_1.0.3       GlobalOptions_0.1.2   MASS_7.3-60</code></pre>
 </div>
 
 

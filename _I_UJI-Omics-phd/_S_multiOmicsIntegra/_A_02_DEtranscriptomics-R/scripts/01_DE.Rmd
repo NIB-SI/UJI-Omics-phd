@@ -1133,11 +1133,15 @@ for (i in 1:ncol(VennCombo)) {
 
 ## VennDiagram::venn.diagram
 
+Count up/down regulated together
+
 ```{r}
 
 mylist = list()
 for(i in 1:ncol(toPlot)){
-    mylist[[i]] = rownames(toPlot)[!is.na(toPlot[,i])]
+  print(colnames(toPlot)[i])
+  print(table(toPlot[, i]))
+    mylist[[i]] = rownames(toPlot)[toPlot[,i] != 0]
   }
 length(mylist)
 names(mylist) = gsub('logFC \\| ', '', colnames(toPlot))
@@ -1149,6 +1153,7 @@ for (i in 1:ncol(VennCombo)) {
   ind = setdiff(match(VennCombo[, i], gsub('logFC \\| ', '', names(mylist))), NA)
   # print(ind)
   subset = mylist[ind]
+  # print(names(subset))
   
   VennDiagram::venn.diagram(
       x = (as.list(subset)),
@@ -1191,6 +1196,23 @@ for (i in 1:ncol(VennCombo)) {
   )
 }
 
+
+```
+
+
+## ggVennDiagram
+
+```{r}
+
+for (i in 1:ncol(VennCombo)) {
+  
+  ind = setdiff(match(VennCombo[, i], gsub('logFC \\| ', '', names(mylist))), NA)
+  # print(ind)
+  subset = mylist[ind]
+  
+  ggVennDiagram::ggVennDiagram(subset) + 
+    scale_color_brewer(palette = "Paired")
+}
 
 ```
 
