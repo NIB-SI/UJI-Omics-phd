@@ -10,6 +10,7 @@ output:
     fig_height: 9
     toc: yes
     toc_depth: 2
+    toc_float: true
     number_sections: yes
     theme: flatly
     highlight: tango
@@ -58,7 +59,7 @@ devtools::install_github("HajkD/orthologr")
 
 # Libraries
 
-```{r,  echo=FALSE, warning=FALSE, message=FALSE}
+```{r,  echo=TRUE, warning=FALSE, message=FALSE}
 
 rm(list = ls(all = TRUE))
 gc()
@@ -118,23 +119,20 @@ system("blastp -version")
 
 
 
-
-
-
 # Input fasta
 
 To read fasta for some ```orthologr``` function do not use functions from ```seqinr```, rather from ```orthologr```, because they create different objects
 
-Also, ```orthologr::blast_rec``` demands file pathm not variable/object
+Also, ```orthologr::blast_rec``` demands file path not variable/object
 
-```{r}
+```{r,  echo=TRUE, warning=FALSE, message=FALSE}
 
 fp = file.path('..', 'input')
 list.files(fp, recursive = TRUE)
 
-fn1 = 'ITAG4.1_proteins.fasta'
+# fn1 = 'ITAG4.1_proteins.fasta'
 # fn1 = 'test-ITAG4.1_proteins.fasta'
-# fn1 = 'a.fasta'
+fn1 = 'a.fasta'
 # Sly.proteome = seqinr::read.fasta(file = file.path(fp, fn1),
 #                                   seqtype = "AA", 
 #                                   as.string = FALSE, 
@@ -143,9 +141,9 @@ fn1 = 'ITAG4.1_proteins.fasta'
 #                              format = 'fasta')
 
 # PLAZA
-fn2 = 'proteome.selected_transcript.ath.fasta'
+# fn2 = 'proteome.selected_transcript.ath.fasta'
 # fn2 = 'test-proteome.selected_transcript.ath.fasta'
-# fn2 = 'b.fasta'
+fn2 = 'b.fasta'
 # ARAPORT
 # fn2 = 'Araport11_pep_20220914_representative_gene_model'
 # Ath.proteome = seqinr::read.fasta(file = file.path(fp, 'PLAZA', fn2),
@@ -169,7 +167,7 @@ fn2 = 'proteome.selected_transcript.ath.fasta'
 
 
 
-```{r, blast_rec}
+```{r blast_rec, echo=TRUE, warning=FALSE, message=FALSE}
 
 # where the script is
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
@@ -239,6 +237,26 @@ myRBH = orthologr::blast_rec(query_file = fn1
                              # a path to the location were the BLAST output shall be stored. E.g. save.output = getwd() to store it in the current working directory, or save.output = file.path(put,your,path,here).
                              save.output =  tempdir()
                              )
+
+
+
+```
+
+
+# Write results
+
+```{r res, echo=TRUE, warning=FALSE, message=FALSE}
+
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+fpo = file.path('..', 'output')
+fno = 'RBHresults.txt'
+data.table::fwrite(myRBH, 
+                   file = file.path(fpo, fno),
+                   sep = '\t')
+fno = 'RBHresults.xlsx'
+openxlsx::write.xlsx(myRBH, file = file.path(fpo, fno), 
+                     asTable = TRUE, 
+                     overwrite = TRUE)
 
 
 ```

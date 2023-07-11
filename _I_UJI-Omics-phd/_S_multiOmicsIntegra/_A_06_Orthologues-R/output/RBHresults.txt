@@ -1,0 +1,3 @@
+query_id	subject_id	perc_identity	num_ident_matches	alig_length	mismatches	gap_openings	n_gaps	pos_match	ppos	q_start	q_end	q_len	qcov	qcovhsp	s_start	s_end	s_len	evalue	bit_score	score_raw
+Solyc00g160260.1.1	Solyc00g160260.1.X	100	60	60	0	0	0	60	100	1	60	101	59	59	1	60	60	4.07e-42	120	300
+Solyc00g160270.1.1	Solyc00g160270.1.1	100	167	167	0	0	0	167	100	1	167	167	100	100	1	167	167	2.2e-128	344	883
