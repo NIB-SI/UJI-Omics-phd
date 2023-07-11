@@ -94,7 +94,13 @@ library(metablastr)
 
 library(orthologr)
 
-system("blastp -help")
+
+
+# system("blastp -help")
+# Sys.getenv("PATH")
+Sys.which("blastp")
+system("blastp -version")
+
 
 ```
 
@@ -126,7 +132,9 @@ Also, ```orthologr::blast_rec``` demands file pathm not variable/object
 fp = file.path('..', 'input')
 list.files(fp, recursive = TRUE)
 
-fn1 = 'test-ITAG4.1_proteins.fasta'
+fn1 = 'ITAG4.1_proteins.fasta'
+# fn1 = 'test-ITAG4.1_proteins.fasta'
+# fn1 = 'a.fasta'
 # Sly.proteome = seqinr::read.fasta(file = file.path(fp, fn1),
 #                                   seqtype = "AA", 
 #                                   as.string = FALSE, 
@@ -135,7 +143,9 @@ fn1 = 'test-ITAG4.1_proteins.fasta'
 #                              format = 'fasta')
 
 # PLAZA
-fn2 = 'test-proteome.selected_transcript.ath.fasta'
+fn2 = 'proteome.selected_transcript.ath.fasta'
+# fn2 = 'test-proteome.selected_transcript.ath.fasta'
+# fn2 = 'b.fasta'
 # ARAPORT
 # fn2 = 'Araport11_pep_20220914_representative_gene_model'
 # Ath.proteome = seqinr::read.fasta(file = file.path(fp, 'PLAZA', fn2),
@@ -151,63 +161,61 @@ fn2 = 'test-proteome.selected_transcript.ath.fasta'
 
 <https://github.com/drostlab/orthologr/issues/26>
 
-```{r}
+<https://rdrr.io/github/mhahsler/rBLAST/man/BLAST.html>
 
-blast_rec = function (query_file, 
-                      subject_file, 
-                      seq_type = "protein", 
-                      format = "fasta", 
-                      blast_algorithm = "blastp", 
-                      eval = "1E-10", 
-                      max.target.seqs = 1000, 
-                      path = NULL, 
-                      comp_cores = 4, 
-                      blast_params = NULL, 
-                      clean_folders = FALSE, 
-                      save.output = fmtp
-                      ) 
-{
-  setwd(mydir)
-  
-    orthoA <- blast_best(query_file = query_file,
-                         subject_file = subject_file, 
-        eval = eval, max.target.seqs = max.target.seqs, format = format, 
-        seq_type = seq_type, blast_algorithm = blast_algorithm, 
-        delete_corrupt_cds = delete_corrupt_cds, path = path, 
-        comp_cores = comp_cores, blast_params = blast_params, 
-        save.output = mydir
-        )
-    
-    orthoB <- blast_best(query_file = subject_file, subject_file = query_file, 
-        seq_type = seq_type, eval = eval, max.target.seqs = max.target.seqs, 
-        format = format, blast_algorithm = blast_algorithm, delete_corrupt_cds = delete_corrupt_cds, 
-        path = path, comp_cores = comp_cores, blast_params = blast_params, 
-        clean_folders = clean_folders, save.output = save.output)
-    
-    colnames(orthoB)[1:2] <- c("subject_id", "query_id")
-    tryCatch({
-        return(dplyr::semi_join(orthoA, orthoB, by = c("query_id", 
-            "subject_id")))
-    }, error = function(e) {
-        stop("The BLAST tables resulting from ", query_file, 
-            " and ", subject_file, " could not be joined properly to select only the reciprocal best hits.")
-    })
-}
+<https://rdrr.io/github/drostlab/orthologr/man/blast.html>
 
-```
+<https://github.com/tidyverse/readr/issues/1419>
+
 
 
 ```{r, blast_rec}
 
-fmtp = file.path('..', 'other')
-
+# where the script is
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 mydir =  getwd()
 
+# will not work, BLAST forces temp directories
+# fmtp = file.path('..', 'other')
+# normalizePath(fmtp)
+# tools::file_path_as_absolute(fmtp)
+# apparently tempdir only within working one, so this also doesnt work
+# write(paste0("TMP = ",normalizePath(fmtp)), file=file.path(Sys.getenv('R_USER'), '.Renviron'))
+unlink(tempdir(), recursive = TRUE, force = TRUE) # will delete directory called 'mydir'
+dir.create(tempdir())
 
-myRBH = orthologr::blast_rec(query_file = file.path(fp, 'PLAZA', fn2)
+
+# orthologr::blast_rec(query_file    = system.file('seqs/ortho_thal_cds.fasta', package = 'orthologr'), 
+#            subject_file = system.file('seqs/ortho_lyra_cds.fasta', package = 'orthologr'),
+#            comp_cores   = 2)
+
+Q = normalizePath(file.path(fp, 'PLAZA', fn2))
+S = normalizePath(file.path(fp, fn1))
+
+  setwd(mydir)
+  
+  query_file = Q
+  subject_file = S
+  seq_type = "protein"
+  format = "fasta"
+  blast_algorithm = "blastp"
+  eval = "1E-10"
+  max.target.seqs = 200
+  path = NULL
+  comp_cores = 4
+  blast_params = NULL
+  clean_folders = TRUE
+  save.output = tempdir()
+  
+  file.copy(Q, paste0(tempdir()))
+  file.copy(S, paste0(tempdir()))
+  list.files(tempdir(), pattern = '.fasta')
+  setwd(tempdir())
+  
+
+myRBH = orthologr::blast_rec(query_file = fn1
                              ,
-                             subject_file = file.path(fp, fn1)
+                             subject_file = fn2
                              ,
                              seq_type = "protein"
                              ,
@@ -229,7 +237,7 @@ myRBH = orthologr::blast_rec(query_file = file.path(fp, 'PLAZA', fn2)
                              clean_folders = TRUE
                              ,
                              # a path to the location were the BLAST output shall be stored. E.g. save.output = getwd() to store it in the current working directory, or save.output = file.path(put,your,path,here).
-                             save.output =  fmtp
+                             save.output =  tempdir()
                              )
 
 

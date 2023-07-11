@@ -68,6 +68,16 @@ library(magrittr)
 
 <https://www.gastonsanchez.com/visually-enforced/how-to/2013/01/23/MDS-in-R/>
 
+```
+vegan::metaMDS(,
+distance = "euclidean",
+k = 3, 
+try = 20, 
+trymax = 20,
+trace = FALSE
+```
+doe not finish in a day
+
 ```{r}
 
 my.NMDS <- function(mymat, stress.levels, title){
@@ -75,8 +85,8 @@ my.NMDS <- function(mymat, stress.levels, title){
     
 
     nmds = vegan::metaMDS(mymat, 
-                          distance = "euclidean",
-                          k = 3, try = 2, trymax = 2,
+                          distance = "bray",
+                          k = 2, try = 2, trymax = 2,
                           trace = FALSE)
     
     data.scores = as.data.frame(vegan::scores(nmds)$sites)
@@ -379,16 +389,28 @@ reads.norm$samples ## check if it makes sense per your experiment
 
 
 
-### Plot filtered raw counts
+### Plot filtered raw and normalised counts
 
 ```{r}
 
-mymat = reads.norm$counts
+mymat = edgeR::cpm(reads.norm, 
+            normalized.lib.sizes = TRUE,
+            log = FALSE, prior.count = 2)
 all(colnames(mymat) == pheno$SampleName)
 dim(mymat)
 stress.levels = interaction(pheno$type, pheno$treatment)
 title = 'raw unfiltered'
 time = pheno$time
+
+
+mds5 = ape::pcoa(dist(mymat, method = "euclidean"))
+
+# plot
+plot(mds5$vectors[,1], mds5$vectors[,2], type = "n", xlab = "", ylab = "",
+     axes = FALSE, main = "pcoa (ape)")
+text(mds5$vectors[,1], mds5$vectors[,2], labels(eurodist), 
+     cex = 0.9, xpd = TRUE)
+
 
 
 ```
