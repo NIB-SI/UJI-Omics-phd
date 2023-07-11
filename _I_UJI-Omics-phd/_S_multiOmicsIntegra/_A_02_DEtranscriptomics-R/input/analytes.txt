@@ -1,25 +1,25 @@
-SampleName	Group	time	type	treatment
-NM24_1	control_24h	24	plain	control
-NM24_2	control_24h	24	plain	control
-NM24_3	control_24h	24	plain	control
-NM48_1	control_48h	48	plain	control
-NM48_2	control_48h	48	plain	control
-NM48_3	control_48h	48	plain	control
-NM24_INF_1	infected_24h	24	plain	infected
-NM24_INF_2	infected_24h	24	plain	infected
-NM24_INF_3	infected_24h	24	plain	infected
-NM48_INF_1	infected_48h	48	plain	infected
-NM48_INF_2	infected_48h	48	plain	infected
-NM48_INF_3	infected_48h	48	plain	infected
-AM24_INF_1	myco_infected_24h	24	mycorrhiza	control
-AM24_INF_2	myco_infected_24h	24	mycorrhiza	control
-AM24_INF_3	myco_infected_24h	24	mycorrhiza	control
-AM48_INF_1	myco_infected_48h	48	mycorrhiza	control
-AM48_INF_2	myco_infected_48h	48	mycorrhiza	control
-AM48_INF_3	myco_infected_48h	48	mycorrhiza	control
-AM24_1	mycorrhized_24h	24	mycorrhiza	infected
-AM24_2	mycorrhized_24h	24	mycorrhiza	infected
-AM24_3	mycorrhized_24h	24	mycorrhiza	infected
-AM48_1	mycorrhized_48h	48	mycorrhiza	infected
-AM48_2	mycorrhized_48h	48	mycorrhiza	infected
-AM48_3	mycorrhized_48h	48	mycorrhiza	infected
+SampleName	Group	time	type	treatment	replicate
+NM24_1	control_24h	24	plain	control	1
+NM24_2	control_24h	24	plain	control	2
+NM24_3	control_24h	24	plain	control	3
+NM48_1	control_48h	48	plain	control	1
+NM48_2	control_48h	48	plain	control	2
+NM48_3	control_48h	48	plain	control	3
+NM24_INF_1	infected_24h	24	plain	infected	1
+NM24_INF_2	infected_24h	24	plain	infected	2
+NM24_INF_3	infected_24h	24	plain	infected	3
+NM48_INF_1	infected_48h	48	plain	infected	1
+NM48_INF_2	infected_48h	48	plain	infected	2
+NM48_INF_3	infected_48h	48	plain	infected	3
+AM24_INF_1	myco_infected_24h	24	mycorrhiza	control	1
+AM24_INF_2	myco_infected_24h	24	mycorrhiza	control	2
+AM24_INF_3	myco_infected_24h	24	mycorrhiza	control	3
+AM48_INF_1	myco_infected_48h	48	mycorrhiza	control	1
+AM48_INF_2	myco_infected_48h	48	mycorrhiza	control	2
+AM48_INF_3	myco_infected_48h	48	mycorrhiza	control	3
+AM24_1	mycorrhized_24h	24	mycorrhiza	infected	1
+AM24_2	mycorrhized_24h	24	mycorrhiza	infected	2
+AM24_3	mycorrhized_24h	24	mycorrhiza	infected	3
+AM48_1	mycorrhized_48h	48	mycorrhiza	infected	1
+AM48_2	mycorrhized_48h	48	mycorrhiza	infected	2
+AM48_3	mycorrhized_48h	48	mycorrhiza	infected	3

@@ -10,6 +10,7 @@ output:
     fig_height: 9
     toc: yes
     toc_depth: 2
+    toc_float: true
     number_sections: yes
     theme: flatly
     highlight: tango
@@ -53,10 +54,13 @@ library(RColorBrewer)
 library(raster)
 
 # library(ComplexHeatmap)
+# library(circlize)
 
-# library(ggplot2)
+library(ggplot2)
 
 library(magrittr)
+
+# devtools::install_github("gaospecial/ggVennDiagram")
 
 
 ```
@@ -76,26 +80,32 @@ try = 20,
 trymax = 20,
 trace = FALSE
 ```
-doe not finish in a day
+
+or
+
+```
+ape::pcoa
+```
+do not compute in a day
 
 ```{r}
 
-my.NMDS <- function(mymat, stress.levels, title){
+my.NMDS <- function(mymat, stress.levels, time.levels, title, my.ggplot.palette){
 
     
 
-    nmds = vegan::metaMDS(mymat, 
-                          distance = "bray",
-                          k = 2, try = 2, trymax = 2,
+    nmds = vegan::metaMDS(t(mymat), 
+                          distance = "euclidean",
+                          k = 3, try = 20, trymax = 100,
                           trace = FALSE)
     
     data.scores = as.data.frame(vegan::scores(nmds)$sites)
-    data.scores$Treatment = factor(subset$Stress, levels = stress.levels)
-    data.scores$SamplingDay = factor(subset$Time, levels = time.levels)
-    data.scores$PlantNo = as.factor(subset$Plant)
+    data.scores$Treatment = stress.levels
+    data.scores$SamplingDay = time.levels
+    data.scores$PlantNo = PlantNo
     
     g12 = ggplot(data.scores, aes(x = NMDS1, y = NMDS2)) +
-      geom_point(size = 3, aes( shape = Treatment, colour = SamplingDay )) +
+      geom_point(size = 3, aes( shape = PlantNo, colour = Treatment)) +
       theme(axis.text.y = element_text(colour = "black", size = 10, face = "bold"),
             axis.text.x = element_text(colour = "black", face = "bold", size = 10),
             legend.text = element_text(size = 6, 
@@ -112,12 +122,12 @@ my.NMDS <- function(mymat, stress.levels, title){
                                                                             fill = NA, 
                                                                             size = 1.2),
             legend.key=element_blank()) +
-      labs(x = "MDS1", colour = "SamplingDay", y = "MDS2", shape = "Treatment") + 
+      labs(x = "MDS1", colour = "Condition", y = "MDS2", shape = "Replicate") + 
       ggtitle(title) +
-      scale_color_manual(values = NMDS.palette)
+      scale_color_manual(values = my.ggplot.palette)
     
     g13 = ggplot(data.scores, aes(x = NMDS1, y = NMDS3)) +
-      geom_point(size = 3, aes( shape = Treatment, colour = SamplingDay )) +
+      geom_point(size = 3, aes( shape = PlantNo, colour = Treatment)) +
       theme(axis.text.y = element_text(colour = "black", size = 10, face = "bold"),
             axis.text.x = element_text(colour = "black", face = "bold", size = 10),
             legend.text = element_text(size = 6, 
@@ -134,12 +144,12 @@ my.NMDS <- function(mymat, stress.levels, title){
                                                                             fill = NA, 
                                                                             size = 1.2),
             legend.key=element_blank()) +
-      labs(x = "MDS1", colour = "SamplingDay", y = "MDS3", shape = "Treatment") + 
+      labs(x = "MDS1", colour = "Condition", y = "MDS3", shape = "Replicate") + 
       ggtitle(title) +
-      scale_color_manual(values = NMDS.palette)
+      scale_color_manual(values = my.ggplot.palette)
     
     g23 = ggplot(data.scores, aes(x = NMDS2, y = NMDS3)) +
-      geom_point(size = 3, aes( shape = Treatment, colour = SamplingDay )) +
+      geom_point(size = 3, aes( shape = PlantNo, colour = Treatment)) +
       theme(axis.text.y = element_text(colour = "black", size = 10, face = "bold"),
             axis.text.x = element_text(colour = "black", face = "bold", size = 10),
             legend.text = element_text(size = 6, 
@@ -156,35 +166,36 @@ my.NMDS <- function(mymat, stress.levels, title){
                                                                             fill = NA, 
                                                                             size = 1.2),
             legend.key=element_blank()) +
-      labs(x = "MDS2", colour = "SamplingDay", y = "MDS3", shape = "Treatment") + 
+      labs(x = "MDS2", colour = "Condition", y = "MDS3", shape = "Replicate") + 
       ggtitle(title) +
-      scale_color_manual(values = NMDS.palette)
+      scale_color_manual(values = my.ggplot.palette)
     
     
     ds = data.scores
-    ds$trt = paste(ds$Treatment, ds$SamplingDay, sep = '_')
+    ds$trt = ds$Treatment # paste(ds$Treatment, ds$SamplingDay, sep = '_')
     cent <- aggregate(cbind(NMDS1, NMDS2) ~ trt, data = ds, FUN = mean)
-    cent$time = factor(as.numeric(gsub('.*_', '', cent$trt)), levels = time.levels)
-    cent$stress = factor(gsub('_.*', '', cent$trt), levels = stress.levels)
+    cent$time = factor(as.numeric(gsub('h', '', gsub('.*_', '', cent$trt))), levels = levels(time.levels))
+    cent$stress = factor(gsub('_.*', '', cent$trt), levels = unique(gsub('_.*', '', cent$trt)))
     segs <- merge(ds, setNames(cent, c('trt','oNMDS1','oNMDS2')),
                   by = 'trt', sort = FALSE)
-    ds$time = factor(as.numeric(gsub('.*_', '', ds$trt)), levels = time.levels)
-    ds$stress = factor(gsub('_.*', '', ds$trt), levels = stress.levels)
+    ds$time = factor(as.numeric(gsub('h', '', gsub('.*_', '', ds$trt))), levels = levels(time.levels))
+    ds$stress = factor(gsub('_.*', '', ds$trt), levels = unique(gsub('_.*', '', ds$trt)))
     
-    gc12 = ggplot(ds, aes(x = NMDS1, y = NMDS2, colour = ds$stress)) +
+    gc12 = ggplot(ds, aes(x = NMDS1, y = NMDS2, colour = ds$trt)) +
       geom_segment(data = segs,
                    mapping = aes(xend = oNMDS1, yend = oNMDS2)) + 
       geom_point(data = cent, 
                  size = 3, 
-                 aes(colour = stress,
+                 aes(colour = trt,
                  shape = time)) +
       geom_point(size = 1) +
       coord_fixed()     + 
-      scale_color_manual(values = my.ggplot.palette) +
+      scale_color_manual(name = "Condition", values = my.ggplot.palette) +
       ggtitle('Centroids') + 
-      scale_shape_manual(name = "Day",
-                         breaks = time.levels,
-                         values =  c(1, 16, 0, 15, 2, 17, 8)) +
+      scale_shape_manual(name = "Hours",
+                         breaks = levels(time.levels) ,
+                         values =  c(1, 16) #, 0, 15, 2, 17, 8)
+                         ) +
       theme(axis.text.y = element_text(colour = "black", size = 10, face = "bold"),
             axis.text.x = element_text(colour = "black", face = "bold", size = 10),
             legend.text = element_text(size = 6, 
@@ -204,29 +215,30 @@ my.NMDS <- function(mymat, stress.levels, title){
 
     
     ds = data.scores
-    ds$trt = paste(ds$Treatment, ds$SamplingDay, sep = '_')
+    ds$trt = ds$Treatment # paste(ds$Treatment, ds$SamplingDay, sep = '_')
     cent <- aggregate(cbind(NMDS1, NMDS3) ~ trt, data = ds, FUN = mean)
-    cent$time = factor(as.numeric(gsub('.*_', '', cent$trt)), levels = time.levels)
-    cent$stress = factor(gsub('_.*', '', cent$trt), levels = stress.levels)
+    cent$time = factor(as.numeric(gsub('h', '', gsub('.*_', '', cent$trt))), levels = levels(time.levels))
+    cent$stress = factor(gsub('_.*', '', cent$trt), levels = unique(gsub('_.*', '', cent$trt)))
     segs <- merge(ds, setNames(cent, c('trt','oNMDS1','oNMDS3')),
                   by = 'trt', sort = FALSE)
-    ds$time = factor(as.numeric(gsub('.*_', '', ds$trt)), levels = time.levels)
-    ds$stress = factor(gsub('_.*', '', ds$trt), levels = stress.levels)
+    ds$time = factor(as.numeric(gsub('h', '', gsub('.*_', '', ds$trt))), levels = levels(time.levels))
+    ds$stress = factor(gsub('_.*', '', ds$trt), levels = unique(gsub('_.*', '', ds$trt)))
     
-    gc13 = ggplot(ds, aes(x = NMDS1, y = NMDS3, colour = ds$stress)) +
+    gc13 = ggplot(ds, aes(x = NMDS1, y = NMDS3, colour = ds$trt)) +
       geom_segment(data = segs,
                    mapping = aes(xend = oNMDS1, yend = oNMDS3)) +
       geom_point(data = cent, 
                  size = 3, 
-                 aes(colour = stress,
+                 aes(colour = trt,
                      shape = time)) +
       geom_point(size = 1) +
       coord_fixed()     + 
-      scale_color_manual(name = "Stress", values = my.ggplot.palette) +
+      scale_color_manual(name = "Condition", values = my.ggplot.palette) +
       ggtitle('Centroids') + 
-      scale_shape_manual(name = "Day",
-                         breaks = time.levels,
-                         values =  c(1, 16, 0, 15, 2, 17, 8)) +
+      scale_shape_manual(name = "Hours",
+                         breaks = levels(time.levels) ,
+                         values =  c(1, 16) #, 0, 15, 2, 17, 8)
+                         ) +
       theme(axis.text.y = element_text(colour = "black", size = 10, face = "bold"),
             axis.text.x = element_text(colour = "black", face = "bold", size = 10),
             legend.text = element_text(size = 6, 
@@ -245,29 +257,30 @@ my.NMDS <- function(mymat, stress.levels, title){
             legend.key=element_blank())
     
     ds = data.scores
-    ds$trt = paste(ds$Treatment, ds$SamplingDay, sep = '_')
+    ds$trt = ds$Treatment # paste(ds$Treatment, ds$SamplingDay, sep = '_')
     cent <- aggregate(cbind(NMDS2, NMDS3) ~ trt, data = ds, FUN = mean)
-    cent$time = factor(as.numeric(gsub('.*_', '', cent$trt)), levels = time.levels)
-    cent$stress = factor(gsub('_.*', '', cent$trt), levels = stress.levels)
+    cent$time = factor(as.numeric(gsub('h', '', gsub('.*_', '', cent$trt))), levels = levels(time.levels))
+    cent$stress = factor(gsub('_.*', '', cent$trt), levels = unique(gsub('_.*', '', cent$trt)))
     segs <- merge(ds, setNames(cent, c('trt','oNMDS2','oNMDS3')),
                   by = 'trt', sort = FALSE)
-    ds$time = factor(as.numeric(gsub('.*_', '', ds$trt)), levels = time.levels)
-    ds$stress = factor(gsub('_.*', '', ds$trt), levels = stress.levels)
+    ds$time = factor(as.numeric(gsub('h', '', gsub('.*_', '', ds$trt))), levels = levels(time.levels))
+    ds$stress = factor(gsub('_.*', '', ds$trt), levels = unique(gsub('_.*', '', ds$trt)))
     
-    gc23 = ggplot(ds, aes(x = NMDS2, y = NMDS3, colour = ds$stress)) +
+    gc23 = ggplot(ds, aes(x = NMDS2, y = NMDS3, colour = ds$trt)) +
       geom_segment(data = segs,
                    mapping = aes(xend = oNMDS2, yend = oNMDS3)) +
       geom_point(data = cent, 
                  size = 3, 
-                 aes(colour = stress,
+                 aes(colour = trt,
                      shape = time)) +
       geom_point(size = 1) +
       coord_fixed()     + 
-      scale_color_manual(values = my.ggplot.palette) +
+      scale_color_manual(name = "Condition", values = my.ggplot.palette) +
       ggtitle('Centroids') + 
-      scale_shape_manual(name = "Day",
-                         breaks = time.levels,
-                         values =  c(1, 16, 0, 15, 2, 17, 8)) +
+      scale_shape_manual(name = "Hours",
+                         breaks = levels(time.levels) ,
+                         values =  c(1, 16) #, 0, 15, 2, 17, 8)
+                         ) +
       theme(axis.text.y = element_text(colour = "black", size = 10, face = "bold"),
             axis.text.x = element_text(colour = "black", face = "bold", size = 10),
             legend.text = element_text(size = 6, 
@@ -376,10 +389,19 @@ reads.raw = edgeR::DGEList(counts=counts, group=group)
 
 ```{r}
 
-keep.exprs = edgeR::filterByExpr(reads.raw, group = group, min.count = 30, min.total.count = 60)
+keep.exprs = edgeR::filterByExpr(reads.raw, group = group, min.count = 50, min.total.count = 150)
 table(keep.exprs)
-
 reads.norm = reads.raw[keep.exprs, keep.lib.sizes=TRUE]
+
+
+```
+
+
+### Normalise
+
+
+```{r}
+
 reads.norm = edgeR::calcNormFactors(reads.norm, method = 'TMM')
 reads.norm$samples ## check if it makes sense per your experiment
 
@@ -389,40 +411,331 @@ reads.norm$samples ## check if it makes sense per your experiment
 
 
 
+
 ### Plot filtered raw and normalised counts
+
+#### 'spiderplots' raw
 
 ```{r}
 
-mymat = edgeR::cpm(reads.norm, 
-            normalized.lib.sizes = TRUE,
-            log = FALSE, prior.count = 2)
+mymat = counts[, -1]
 all(colnames(mymat) == pheno$SampleName)
 dim(mymat)
-stress.levels = interaction(pheno$type, pheno$treatment)
+stress.levels = group
+time.levels = factor(pheno$time, levels = c('24', '48'))
 title = 'raw unfiltered'
-time = pheno$time
+PlantNo = as.factor(pheno$replicate)
+NMDS.palette = palette
 
 
-mds5 = ape::pcoa(dist(mymat, method = "euclidean"))
+NMDS.plots = my.NMDS(mymat = mymat, 
+                     stress.levels = stress.levels, 
+                     time.levels = time.levels, 
+                     title = title,
+                     my.ggplot.palette = palette)
 
-# plot
-plot(mds5$vectors[,1], mds5$vectors[,2], type = "n", xlab = "", ylab = "",
-     axes = FALSE, main = "pcoa (ape)")
-text(mds5$vectors[,1], mds5$vectors[,2], labels(eurodist), 
-     cex = 0.9, xpd = TRUE)
+cowplot::plot_grid(NMDS.plots[[1]], NMDS.plots[[2]], NMDS.plots[[3]],  
+                   NMDS.plots[[4]], NMDS.plots[[5]], NMDS.plots[[6]],
+                   ncol=3, nrow = 2)
 
 
 
 ```
 
 
-
-
-### Normalise
+#### 'spiderplots' normalised and filtered
 
 ```{r}
 
-reads.norm = edgeR::calcNormFactors(reads.raw, method = "TMM")
+
+
+
+mymat = edgeR::cpm(reads.norm, 
+            normalized.lib.sizes = TRUE,
+            log = FALSE, prior.count = 2)
+all(colnames(mymat) == pheno$SampleName)
+dim(mymat)
+stress.levels = group
+time.levels = factor(pheno$time, levels = c('24', '48'))
+title = 'filtered normalised'
+PlantNo = as.factor(pheno$replicate)
+NMDS.palette = palette
+
+
+NMDS.plots = my.NMDS(mymat = mymat, 
+                     stress.levels = stress.levels, 
+                     time.levels = time.levels, 
+                     title = title,
+                     my.ggplot.palette = palette)
+
+cowplot::plot_grid(NMDS.plots[[1]], NMDS.plots[[2]], NMDS.plots[[3]],  
+                   NMDS.plots[[4]], NMDS.plots[[5]], NMDS.plots[[6]],
+                   ncol=3, nrow = 2)
+
+
+
+
+
+
+```
+
+#### Principal Coordinate Analysis
+
+```{r}
+
+
+d = dist(t(mymat), method = "euclidean", diag = TRUE, upper = TRUE)
+dim(d)
+mds = ape::pcoa(d)
+
+all(pheno$SampleName == labels(d))
+l = gsub('_.*', '', labels(d))
+
+# plot
+plot(mds$vectors[,1], mds$vectors[,2], type = "p", xlab = "", ylab = "",
+     axes = FALSE, main = "PCoA", col = palette[as.numeric(group)], pch = 19, cex = 2.5)
+text(mds$vectors[,1], mds$vectors[,2], l, 
+     cex = 0.75, xpd = TRUE)
+
+
+
+```
+
+
+#### Heatmaps
+
+<https://jokergoo.github.io/ComplexHeatmap-reference/book/>
+
+<https://r-charts.com/color-palettes/>
+
+```{r}
+
+d = as.matrix(d)
+
+# col_fun = colorRamp2(c(-2, 0, 2), c("blue", "white", "red"))
+# col_fun(seq(-3, 3))
+
+
+ComplexHeatmap::Heatmap(d, 
+                        column_title = "Euclidean distance", 
+                        col = paletteer::paletteer_c("ggthemes::Blue-Green Sequential", 30),
+                        rect_gp = grid::gpar(col = "white", lwd = 2))
+
+
+col_fun = circlize::colorRamp2(c(-1, 0, 1), c("blue", "white", "red"))
+
+
+cr = cor(mymat, 
+         use = "pairwise.complete.obs",
+         method = 'pearson') #"kendall")
+range(cr)
+
+ComplexHeatmap::Heatmap(cr, 
+                        column_title = 'PCC', # "kendall cor", 
+                        rect_gp = grid::gpar(col = "white", lwd = 2),
+                        col = col_fun)
+
+```
+
+
+#### Density plot
+
+```{r}
+
+par(mfrow = c(1,3))
+op = par(mar = c(8,7,4,2) + 0.1)
+boxplot(log(counts[, -1] + 0.5, 2), 
+        xlab="", 
+        ylab="Log2 (Unfiltered counts)",
+        las=2,
+        col=rep(palette, each = 3),
+        cex = 1.5, cex.axis = 1.0, cex.lab=1.5)
+boxplot(log(reads.norm$counts + 0.5, 2), 
+        xlab="", 
+        ylab="Log2 (Filtered counts)",
+        las=2,
+        col=rep(palette, each = 3),
+        cex = 1.5, cex.axis = 1.0, cex.lab=1.5)
+boxplot(log(edgeR::cpm(reads.norm, 
+            normalized.lib.sizes = TRUE,
+            log = FALSE, prior.count = 2) + 0.5, 2),
+        xlab="", 
+        ylab="Log2 (Normalised filtered counts)",
+        las=2,
+        col=rep(palette, each = 3),
+        cex = 1.5, cex.axis = 1.0, cex.lab=1.5)
+
+par(op)
+par(mfrow = c(1,1))
+
+```
+
+# limma-voom protocol
+
+## Create design matrix
+
+```{r}
+
+design = model.matrix(~0+group)
+colnames(design)
+colnames(design) = levels(group)
+rownames(design) = pheno$SampleName
+# design
+
+```
+
+
+## voom
+
+```{r}
+
+
+v = limma::voom(counts = reads.norm, design = design, plot = TRUE)
+
+
+
+```
+
+
+## Fit linear model for each gene given a series of arrays
+
+```{r}
+
+fit = limma::lmFit(v, design)
+
+```
+
+## Construct Matrix of Custom Contrasts
+
+### by hand
+
+```{r}
+
+contrastMatrix = limma::makeContrasts("mycorrhized_24h-control_24h",
+                                "infected_24h-control_24h",
+                                "myco_infected_24h-control_24h",
+                                "myco_infected_24h-mycorrhized_24h",
+                                "myco_infected_24h-infected_24h",
+                                "mycorrhized_48h-control_48h",
+                                "infected_48h-control_48h",
+                                "myco_infected_48h-control_48h",
+                                "myco_infected_48h-mycorrhized_48h",
+                                "myco_infected_48h-infected_48h",      
+                                levels=design)
+
+```
+
+## Compute Contrasts from Linear Model Fit
+
+```{r}
+
+
+fit2 = limma::contrasts.fit(fit, contrastMatrix)
+
+
+```
+
+## Empirical Bayes Statistics for Differential Expression
+
+```{r}
+
+
+fit2 = limma::eBayes(fit2)
+
+
+```
+
+
+## Venn
+
+```{r}
+
+# results = limma::decideTests(fit2, 
+#                              adjust.method = "BH", 
+#                              p.value = 0.05,
+#                              lfc = 0)
+# r = limma::vennCounts(results)
+# 
+# # ggVennDiagram::ggVennDiagram(as.list(r[, 1:7]), 
+# #                              label = "none", edge_size = 2) + 
+# #   scale_fill_distiller(palette = "RdBu")
+# 
+# limma::vennDiagram(r[, 1:5], 
+#     include=c("up", "down"),
+#     counts.col=c("red", "blue"),
+#     circle.col = c("red", "blue", "green3"))
+# limma::vennDiagram(r[, 6:10], 
+#     include=c("up", "down"),
+#     counts.col=c("red", "blue"),
+#     circle.col = c("red", "blue", "green3"))
+
+```
+
+
+# Collect (merge) results
+
+```{r}
+
+cnt = 1
+res = NULL
+by = 'GeneID'
+fpo = file.path('..', 'output', 'limma-out')
+dir.create(fpo)
+
+for (i in colnames(fit2$coefficients) ) {
+  
+  # sprintf("%03.0f", cnt)
+  print(i)
+  print('DE')
+
+  topTn = limma::topTable(fit2, coef = i, number=Inf, sort.by="none")
+  
+  table(topTn$adj.P.Val < 0.05)
+  
+  fn = paste0(sprintf("%03.0f", cnt), '_', i, '.txt')
+  
+  data.table::fwrite(topTn, file.path(fpo, fn), sep = '\t')
+  
+  
+  colnames(topTn)[2:ncol(topTn)] = paste(colnames(topTn)[2:ncol(topTn)], i, sep = ' | ')
+  
+  if (cnt == 1) {
+    res = topTn
+  } else {
+    res = merge(res, topTn, by = by, all.x =  TRUE, all.y = TRUE)
+  }
+
+  cnt = cnt + 1
+
+}
+
+fpo = file.path('..', 'output')
+fn = 'limmaResults.xlsx'
+
+ind = grep('GeneID|logFC|P.Val', colnames(res))
+
+openxlsx::write.xlsx(res[, ind], file = file.path(fpo, fn), asTable = TRUE, overwrite = TRUE)
+
+merge = merge(res[, ind], counts, by = by, all.x = TRUE, all.y = FALSE)
+
+fn = 'filtered.xlsx'
+openxlsx::write.xlsx(merge, file = file.path(fpo, fn), asTable = TRUE, overwrite = TRUE)
+
+
+```
+
+
+# For GSEA
+
+```{r}
+
+fn = 'norm.txt'
+data.table::fwrite(edgeR::cpm(reads.norm, 
+                              normalized.lib.sizes = TRUE,
+                              log = FALSE, prior.count = 2), 
+                   file.path(fpo, fn), sep = '\t',
+                   row.names = TRUE)
+
 
 ```
 

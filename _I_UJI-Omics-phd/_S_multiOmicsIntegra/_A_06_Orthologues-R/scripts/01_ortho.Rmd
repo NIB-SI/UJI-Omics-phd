@@ -42,7 +42,7 @@ knitr::opts_chunk$set(#dev = c('pdf', 'png'),  # this embeds pdf and crates scro
 
 2. Add path to to NCBI blast /bin (could be ```C:\Program Files\NCBI\blast-2.14.0+\bin```) in System Enviroment Variables, e.g. on how to here <https://www.hanss.info/sebastian/post/rtools-path/>
 
-3.Install dependencies ```iocManager::install(c("Biostrings", "GenomicFeatures", "GenomicRanges", "Rsamtools", "IRanges", "rtracklayer", "biomaRt"))```
+3.Install dependencies ```BiocManager::install(c("Biostrings", "GenomicFeatures", "GenomicRanges", "Rsamtools", "IRanges", "rtracklayer", "biomaRt"))```
 
 3. Install ```metablastr``` and ```orthologr``` packages in R
 
