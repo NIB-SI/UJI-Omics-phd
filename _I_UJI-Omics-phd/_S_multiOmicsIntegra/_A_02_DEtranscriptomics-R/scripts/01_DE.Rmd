@@ -690,7 +690,7 @@ for (i in colnames(fit2$coefficients) ) {
 
   topTn = limma::topTable(fit2, coef = i, number=Inf, sort.by="none")
   
-  table(topTn$adj.P.Val < 0.05)
+  print(table(topTn$adj.P.Val < 0.05))
   
   fn = paste0(sprintf("%03.0f", cnt), '_', i, '.txt')
   

@@ -1579,7 +1579,7 @@ border-radius: 0px;
 <h1><span class="header-section-number">1</span> Libraries</h1>
 <pre><code>##          used (Mb) gc trigger (Mb) max used (Mb)
 ## Ncells 526453 28.2    1173960 62.7   660382 35.3
-## Vcells 963113  7.4    8388608 64.0  1770517 13.6</code></pre>
+## Vcells 963117  7.4    8388608 64.0  1770517 13.6</code></pre>
 </div>
 <div id="functions" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Functions</h1>
@@ -2128,7 +2128,7 @@ results</h1>
 <span id="cb45-12"><a href="#cb45-12" tabindex="-1"></a></span>
 <span id="cb45-13"><a href="#cb45-13" tabindex="-1"></a>  topTn <span class="ot">=</span> limma<span class="sc">::</span><span class="fu">topTable</span>(fit2, <span class="at">coef =</span> i, <span class="at">number=</span><span class="cn">Inf</span>, <span class="at">sort.by=</span><span class="st">&quot;none&quot;</span>)</span>
 <span id="cb45-14"><a href="#cb45-14" tabindex="-1"></a>  </span>
-<span id="cb45-15"><a href="#cb45-15" tabindex="-1"></a>  <span class="fu">table</span>(topTn<span class="sc">$</span>adj.P.Val <span class="sc">&lt;</span> <span class="fl">0.05</span>)</span>
+<span id="cb45-15"><a href="#cb45-15" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">table</span>(topTn<span class="sc">$</span>adj.P.Val <span class="sc">&lt;</span> <span class="fl">0.05</span>))</span>
 <span id="cb45-16"><a href="#cb45-16" tabindex="-1"></a>  </span>
 <span id="cb45-17"><a href="#cb45-17" tabindex="-1"></a>  fn <span class="ot">=</span> <span class="fu">paste0</span>(<span class="fu">sprintf</span>(<span class="st">&quot;%03.0f&quot;</span>, cnt), <span class="st">&#39;_&#39;</span>, i, <span class="st">&#39;.txt&#39;</span>)</span>
 <span id="cb45-18"><a href="#cb45-18" tabindex="-1"></a>  </span>
@@ -2148,24 +2148,54 @@ results</h1>
 <span id="cb45-32"><a href="#cb45-32" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;mycorrhized_24h-control_24h&quot;
 ## [1] &quot;DE&quot;
+## 
+## FALSE 
+## 16157 
 ## [1] &quot;infected_24h-control_24h&quot;
 ## [1] &quot;DE&quot;
+## 
+## FALSE 
+## 16157 
 ## [1] &quot;myco_infected_24h-control_24h&quot;
 ## [1] &quot;DE&quot;
+## 
+## FALSE 
+## 16157 
 ## [1] &quot;myco_infected_24h-mycorrhized_24h&quot;
 ## [1] &quot;DE&quot;
+## 
+## FALSE  TRUE 
+## 16156     1 
 ## [1] &quot;myco_infected_24h-infected_24h&quot;
 ## [1] &quot;DE&quot;
+## 
+## FALSE 
+## 16157 
 ## [1] &quot;mycorrhized_48h-control_48h&quot;
 ## [1] &quot;DE&quot;
+## 
+## FALSE 
+## 16157 
 ## [1] &quot;infected_48h-control_48h&quot;
 ## [1] &quot;DE&quot;
+## 
+## FALSE  TRUE 
+## 11763  4394 
 ## [1] &quot;myco_infected_48h-control_48h&quot;
 ## [1] &quot;DE&quot;
+## 
+## FALSE  TRUE 
+## 15216   941 
 ## [1] &quot;myco_infected_48h-mycorrhized_48h&quot;
 ## [1] &quot;DE&quot;
+## 
+## FALSE  TRUE 
+## 15033  1124 
 ## [1] &quot;myco_infected_48h-infected_48h&quot;
-## [1] &quot;DE&quot;</code></pre>
+## [1] &quot;DE&quot;
+## 
+## FALSE 
+## 16157</code></pre>
 <div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" tabindex="-1"></a>fpo <span class="ot">=</span> <span class="fu">file.path</span>(<span class="st">&#39;..&#39;</span>, <span class="st">&#39;output&#39;</span>)</span>
 <span id="cb47-2"><a href="#cb47-2" tabindex="-1"></a>fn <span class="ot">=</span> <span class="st">&#39;limmaResults.xlsx&#39;</span></span>
 <span id="cb47-3"><a href="#cb47-3" tabindex="-1"></a></span>
