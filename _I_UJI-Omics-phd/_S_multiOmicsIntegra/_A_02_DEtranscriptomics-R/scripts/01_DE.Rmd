@@ -1210,8 +1210,11 @@ for (i in 1:ncol(VennCombo)) {
   # print(ind)
   subset = mylist[ind]
   
-  ggVennDiagram::ggVennDiagram(subset) + 
-    scale_color_brewer(palette = "Paired")
+  g = ggVennDiagram::ggVennDiagram(subset) +
+  scale_color_brewer(palette = "Paired")
+  
+  plot(g)
+  
 }
 
 ```
