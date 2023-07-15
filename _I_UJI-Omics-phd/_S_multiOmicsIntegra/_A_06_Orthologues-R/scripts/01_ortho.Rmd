@@ -130,9 +130,9 @@ Also, ```orthologr::blast_rec``` demands file path not variable/object
 fp = file.path('..', 'input')
 list.files(fp, recursive = TRUE)
 
-# fn1 = 'ITAG4.1_proteins.fasta'
+fn1 = 'ITAG4.1_proteins.fasta'
 # fn1 = 'test-ITAG4.1_proteins.fasta'
-fn1 = 'a.fasta'
+# fn1 = 'a.fasta'
 # Sly.proteome = seqinr::read.fasta(file = file.path(fp, fn1),
 #                                   seqtype = "AA", 
 #                                   as.string = FALSE, 
@@ -141,9 +141,9 @@ fn1 = 'a.fasta'
 #                              format = 'fasta')
 
 # PLAZA
-# fn2 = 'proteome.selected_transcript.ath.fasta'
+fn2 = 'proteome.selected_transcript.ath.fasta'
 # fn2 = 'test-proteome.selected_transcript.ath.fasta'
-fn2 = 'b.fasta'
+# fn2 = 'b.fasta'
 # ARAPORT
 # fn2 = 'Araport11_pep_20220914_representative_gene_model'
 # Ath.proteome = seqinr::read.fasta(file = file.path(fp, 'PLAZA', fn2),
@@ -166,8 +166,9 @@ fn2 = 'b.fasta'
 <https://github.com/tidyverse/readr/issues/1419>
 
 
+## Files
 
-```{r blast_rec, echo=TRUE, warning=FALSE, message=FALSE}
+```{r files, echo=TRUE, warning=FALSE, message=FALSE}
 
 # where the script is
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
@@ -209,321 +210,542 @@ S = normalizePath(file.path(fp, fn1))
   file.copy(S, paste0(tempdir()))
   list.files(tempdir(), pattern = '.fasta')
   setwd(tempdir())
+
   
+```
+ 
+## orthologr::blast_rec
 
-myRBH = orthologr::blast_rec(query_file = fn1
-                             ,
-                             subject_file = fn2
-                             ,
-                             seq_type = "protein"
-                             ,
-                             format = "fasta"
-                             ,
-                             blast_algorithm = "blastp"
-                             ,
-                             # delete_corrupt_cds = TRUE,
-                             eval = "1E-10"
-                             ,  
-                             max.target.seqs = 200
-                             ,
-                             # a character string specifying the path to the BLAST program (in case you don't use the default path)
-                             path = NULL
-                             , 
-                             comp_cores = 4
-                             ,
-                             # blast_params = NULL, # see whats this
-                             clean_folders = TRUE
-                             ,
-                             # a path to the location were the BLAST output shall be stored. E.g. save.output = getwd() to store it in the current working directory, or save.output = file.path(put,your,path,here).
-                             save.output =  tempdir()
-                             )
+```{r blast_rec, echo=TRUE, warning=FALSE, message=FALSE}  
 
-myRBH.o = orthologr::orthologs(query_file = fn1
-                             ,
-                             subject_file = fn2
-                             ,
-                             seq_type = "protein"
-                             ,
-                             format = "fasta",  
-                             outgroup_file = NULL,
-                             eval = "1E-5",
-                             ortho_detection = "RBH",
-                             # delete_corrupt_cds = FALSE,
-                             # cdd.path = NULL,
-                             # path = NULL,
-                             add_params = NULL,
-                             comp_cores = 1,
-                             quiet = FALSE,
-                             clean_folders = FALSE)
+# myRBH = orthologr::blast_rec(query_file = fn1
+#                              ,
+#                              subject_file = fn2
+#                              ,
+#                              seq_type = "protein"
+#                              ,
+#                              format = "fasta"
+#                              ,
+#                              blast_algorithm = "blastp"
+#                              ,
+#                              # delete_corrupt_cds = TRUE,
+#                              eval = "1E-10"
+#                              ,  
+#                              max.target.seqs = 200
+#                              ,
+#                              # a character string specifying the path to the BLAST program (in case you don't use the default path)
+#                              path = NULL
+#                              , 
+#                              comp_cores = 4
+#                              ,
+#                              # blast_params = NULL, # see whats this
+#                              clean_folders = TRUE
+#                              ,
+#                              # a path to the location were the BLAST output shall be stored. E.g. save.output = getwd() to store it in the current working directory, or save.output = file.path(put,your,path,here).
+#                              save.output =  tempdir()
+#                              )
+
+```
+ 
+## orthologr::orthologs
+
+```{r orthologs, echo=TRUE, warning=FALSE, message=FALSE} 
+
+# myRBH.o = orthologr::orthologs(query_file = fn1
+#                              ,
+#                              subject_file = fn2
+#                              ,
+#                              seq_type = "protein"
+#                              ,
+#                              format = "fasta",  
+#                              outgroup_file = NULL,
+#                              eval = "1E-5",
+#                              ortho_detection = "RBH",
+#                              # delete_corrupt_cds = FALSE,
+#                              # cdd.path = NULL,
+#                              # path = NULL,
+#                              add_params = NULL,
+#                              comp_cores = 1,
+#                              quiet = FALSE,
+#                              clean_folders = FALSE)
 
 
 ```
 
 
+## (almost) all functions
+
+
 ```{r}
 
-# orthologr::orthologs = function (query_file, subject_files, seq_type = "protein", outgroup_file = NULL, 
-#     eval = "1E-5", format = "fasta", ortho_detection = "RBH", 
-#     delete_corrupt_cds = FALSE, cdd.path = NULL, path = NULL, 
-#     add_params = NULL, comp_cores = 1, quiet = FALSE, clean_folders = FALSE) 
-# {
-#     if (!is.element(ortho_detection, c("BH", "RBH", "Orthofinder2"))) 
-#         stop("Please choose a orthology detection method that is supported by this function.", 
+# cat(crayon::blue("debug params"), "\n")
+# 
+# query_file = file.path('..', 'input', fn1)
+# subject_files = file.path('..', 'input', 'PLAZA', fn2)
+# subject_file = file.path('..', 'input', 'PLAZA', fn2)
+# query_file = fn1
+# subject_file = fn2
+# subject_files = fn2
+# seq_type = "protein"
+# blast_algorithm = "blastp"
+# outgroup_file = NULL
+# eval = "1E-10"
+# format = "fasta"
+# ortho_detection = "RBH"
+# delete_corrupt_cds = FALSE
+# cdd.path = NULL
+# path = NULL
+# add_params = NULL
+# comp_cores = 4
+# quiet = FALSE
+# clean_folders = FALSE
+# max.target.seqs = 200
+# path = NULL
+# save.output =  tempdir
+# default_pars = "-best_hit_score_edge 0.05 -best_hit_overhang 0.25"
+# remote = FALSE
+# db = NULL
+# blast_params = NULL 
+# min_qcovhsp = 50
+# ortho_detection = 'RBH'
+                   
+
+
+```
+
+
+
+
+```{r}
+
+cat(crayon::red("wrapper of a wrapper of a wrapper of a wrapper!"), "\n")
+
+# orthologr::orthologs = function (query_file, 
+# orthologs = function (query_file, 
+#                                  subject_files, 
+#                                  seq_type = "protein", 
+#                                  outgroup_file = NULL,
+#                                  eval = "1E-5", 
+#                                  format = "fasta", 
+#                                  ortho_detection = "RBH",
+#                                  delete_corrupt_cds = FALSE, 
+#                                  cdd.path = NULL, 
+#                                  path = NULL,
+#                                  add_params = NULL, 
+#                                  comp_cores = 1, 
+#                                  quiet = FALSE, 
+#                                  clean_folders = FALSE
+#                                  ) {
+#   
+#    cat(crayon::yellow("\n\northologs"), "\n\n")
+#   
+#   
+#     if (!is.element(ortho_detection, c("BH", "RBH", "Orthofinder2")))
+#         stop("Please choose a orthology detection method that is supported by this function.",
 #             call. = FALSE)
+#   
 #     i <- NULL
+#     
 #     if (seq_type == "cds") {
 #         f_sep <- .Platform$file.sep
-#         filename_qry <- unlist(strsplit(query_file, f_sep, fixed = FALSE, 
+#         filename_qry <- unlist(strsplit(query_file, f_sep, fixed = FALSE,
 #             perl = TRUE, useBytes = FALSE))
 #         filename_qry <- filename_qry[length(filename_qry)]
-#         write.proteome(proteome = cds2aa(read.cds(query_file, 
-#             format = format, delete_corrupt_cds = delete_corrupt_cds)), 
-#             file.name = file.path(tempdir(), paste0(filename_qry, 
+#         write.proteome(proteome = cds2aa(read.cds(query_file,
+#             format = format, delete_corrupt_cds = delete_corrupt_cds)),
+#             file.name = file.path(tempdir(), paste0(filename_qry,
 #                 "_translated.fasta")))
+#         
 #         if (length(subject_files) > 1) {
 #             subj_short.names <- vector("character", length(subject_files))
 #             for (organism in 1:length(subject_files)) {
-#                 short.name <- unlist(strsplit(subject_files[organism], 
+#                 short.name <- unlist(strsplit(subject_files[organism],
 #                   f_sep, fixed = FALSE, perl = TRUE, useBytes = FALSE))
 #                 short.name <- short.name[length(short.name)]
 #                 subj_short.names[i] <- short.name
-#                 write.proteome(proteome = cds2aa(read.cds(subject_files[organism], 
-#                   format = format, delete_corrupt_cds = delete_corrupt_cds), 
-#                   delete_corrupt_cds = delete_corrupt_cds), file.name = file.path(tempdir(), 
+#                 write.proteome(proteome = cds2aa(read.cds(subject_files[organism],
+#                   format = format, delete_corrupt_cds = delete_corrupt_cds),
+#                   delete_corrupt_cds = delete_corrupt_cds), file.name = file.path(tempdir(),
 #                   paste0(short.name, "_translated.fasta")))
 #             }
-#             subject_files <- file.path(tempdir(), paste0(short.name, 
+#             subject_files <- file.path(tempdir(), paste0(short.name,
 #                 "_translated.fasta"))
-#         }
-#         else {
-#             filename_subj <- unlist(strsplit(subject_files, f_sep, 
+#         } else {
+#             filename_subj <- unlist(strsplit(subject_files, f_sep,
 #                 fixed = FALSE, perl = TRUE, useBytes = FALSE))
 #             filename_subj <- filename_subj[length(filename_subj)]
-#             write.proteome(proteome = cds2aa(read.cds(subject_files, 
-#                 format = format, delete_corrupt_cds = delete_corrupt_cds), 
-#                 delete_corrupt_cds = delete_corrupt_cds), file.name = file.path(tempdir(), 
+#             write.proteome(proteome = cds2aa(read.cds(subject_files,
+#                 format = format, delete_corrupt_cds = delete_corrupt_cds),
+#                 delete_corrupt_cds = delete_corrupt_cds), file.name = file.path(tempdir(),
 #                 paste0(filename_subj, "_translated.fasta")))
-#             subject_files <- file.path(tempdir(), paste0(filename_subj, 
+#             subject_files <- file.path(tempdir(), paste0(filename_subj,
 #                 "_translated.fasta"))
 #         }
-#         query_file <- file.path(tempdir(), paste0(filename_qry, 
+#         query_file <- file.path(tempdir(), paste0(filename_qry,
 #             "_translated.fasta"))
 #     }
+#     
+#     
 #     if (ortho_detection == "BH") {
-#         if (length(subject_files) > 1) 
-#             stop("The BLAST best hit method is only defined for pairwise comparisons.", 
+#         if (length(subject_files) > 1)
+#             stop("The BLAST best hit method is only defined for pairwise comparisons.",
 #                 call. = FALSE)
-#         ortho_tbl <- data.table::copy(blast_best(query_file = query_file, 
-#             subject_file = subject_files, path = path, delete_corrupt_cds = delete_corrupt_cds, 
-#             comp_cores = comp_cores, eval = eval, blast_params = add_params, 
+#         ortho_tbl <- data.table::copy(blast_best(query_file = query_file,
+#             subject_file = subject_files, path = path, delete_corrupt_cds = delete_corrupt_cds,
+#             comp_cores = comp_cores, eval = eval, blast_params = add_params,
 #             seq_type = seq_type, format = format))
-#         if (clean_folders) 
+#         if (clean_folders)
 #             clean_all_folders(file.path(tempdir(), "_blast_db"))
 #     }
+#     
+#     # this uses orthologr::blast_rec
 #     if (ortho_detection == "RBH") {
-#         if (length(subject_files) > 1) 
-#             stop("The BLAST best reciprocal hit method is only defined for pairwise comparisons.", 
+#         if (length(subject_files) > 1)
+#             stop("The BLAST best reciprocal hit method is only defined for pairwise comparisons.",
 #                 call. = FALSE)
-#         ortho_tbl <- data.table::copy(blast_rec(query_file = query_file, 
-#             subject_file = subject_files, path = path, delete_corrupt_cds = delete_corrupt_cds, 
-#             comp_cores = comp_cores, eval = eval, blast_params = add_params, 
+#         ortho_tbl <- data.table::copy(blast_rec(query_file = query_file,
+#             subject_file = subject_files, path = path, delete_corrupt_cds = delete_corrupt_cds,
+#             comp_cores = comp_cores, eval = eval, blast_params = add_params,
 #             seq_type = seq_type, format = format))
-#         if (clean_folders) 
+#         if (clean_folders)
 #             clean_all_folders(file.path(tempdir(), "_blast_db"))
 #     }
+#     
 #     if (ortho_detection == "Orthofinder2") {
-#         message("This option is currently under development and will be available soon.", 
+#         message("This option is currently under development and will be available soon.",
 #             call. = FALSE)
 #     }
+#     
 #     return(ortho_tbl)
 # }
 
-# orthologr::blast_rec = function (query_file, subject_file, seq_type = "cds", format = "fasta", 
-#     blast_algorithm = "blastp", delete_corrupt_cds = TRUE, eval = "1E-5", 
-#     max.target.seqs = 10000, path = NULL, comp_cores = 1, blast_params = NULL, 
-#     clean_folders = FALSE, save.output = NULL) 
-# {
-#     orthoA <- blast_best(query_file = query_file, subject_file = subject_file, 
-#         eval = eval, max.target.seqs = max.target.seqs, format = format, 
-#         seq_type = seq_type, blast_algorithm = blast_algorithm, 
-#         delete_corrupt_cds = delete_corrupt_cds, path = path, 
-#         comp_cores = comp_cores, blast_params = blast_params, 
-#         save.output = save.output)
-#     orthoB <- blast_best(query_file = subject_file, subject_file = query_file, 
-#         seq_type = seq_type, eval = eval, max.target.seqs = max.target.seqs, 
-#         format = format, blast_algorithm = blast_algorithm, delete_corrupt_cds = delete_corrupt_cds, 
-#         path = path, comp_cores = comp_cores, blast_params = blast_params, 
-#         clean_folders = clean_folders, save.output = save.output)
-#     colnames(orthoB)[1:2] <- c("subject_id", "query_id")
-#     tryCatch({
-#         return(dplyr::semi_join(orthoA, orthoB, by = c("query_id", 
-#             "subject_id")))
-#     }, error = function(e) {
-#         stop("The BLAST tables resulting from ", query_file, 
-#             " and ", subject_file, " could not be joined properly to select only the reciprocal best hits.")
-#     })
-# }
 
-# orthologr::blast_best = function (query_file, subject_file, seq_type = "cds", format = "fasta",
-#     blast_algorithm = "blastp", delete_corrupt_cds = TRUE, eval = "1E-5",
-#     max.target.seqs = 10000, path = NULL, comp_cores = 1, blast_params = NULL,
-#     clean_folders = FALSE, save.output = NULL)
-# {
-#     default_pars <- "-best_hit_score_edge 0.05 -best_hit_overhang 0.25"
-#     hit_tbl <- blast(query_file = query_file, subject_file = subject_file,
-#         eval = eval, max.target.seqs = max.target.seqs, delete_corrupt_cds = delete_corrupt_cds,
-#         seq_type = seq_type, format = format, path = path, comp_cores = comp_cores,
-#         blast_params = ifelse(!is.null(blast_params), paste0(blast_params,
-#             " ", default_pars), default_pars), clean_folders = clean_folders,
-#         save.output = save.output)
-#     query_id <- "." <- NULL
-#     hit_tbl <- dplyr::do(dplyr::group_by(hit_tbl, query_id),
-#         filter_best_hits(.))
-#     return(hit_tbl)
-# }
 
-# orthologr::blast = function (query_file, subject_file, seq_type = "cds", format = "fasta", 
-#     blast_algorithm = "blastp", eval = "1E-5", max.target.seqs = 10000, 
-#     delete_corrupt_cds = TRUE, remote = FALSE, db = NULL, path = NULL, 
-#     comp_cores = 1, blast_params = NULL, clean_folders = FALSE, 
-#     save.output = NULL) 
-# {
-#     if (!is.element(blast_algorithm, c("blastp"))) 
-#         stop("Please choose a valid BLAST mode. Only 'blastp' is available for this function.", 
-#             call. = FALSE)
-#     if (remote & is.null(db)) 
-#         stop("To use the remote option of blast() please specify the 'db' argument, e.g. db = 'nr'", 
-#             call. = FALSE)
-#     if (!is.null(db)) {
-#         if (!is.element(db, c("nr", "plaza"))) 
-#             stop("Please choose a database that is supported by remote BLAST.", 
-#                 call. = FALSE)
-#     }
-#     is_installed_blast(path = path)
-#     if (is.null(path)) {
-#         message("Running ", system("blastp -version", intern = TRUE)[1], 
-#             " ...")
-#     }
-#     else {
-#         message("Running ", system(paste0("export PATH=$PATH:", 
-#             path, "' ; blastp -version '"), intern = TRUE)[1], 
-#             " ...")
-#     }
-#     aa <- geneids <- NULL
-#     query.dt <- set_blast(file = query_file, seq_type = seq_type, 
-#         format = format, delete_corrupt_cds = delete_corrupt_cds)[[1]]
-#     database <- set_blast(file = subject_file, seq_type = seq_type, 
-#         format = format, makedb = TRUE, delete_corrupt_cds = delete_corrupt_cds)[[2]]
-#     filename <- unlist(strsplit(query_file, .Platform$file.sep, 
-#         fixed = FALSE, perl = TRUE, useBytes = FALSE))
-#     filename <- filename[length(filename)]
-#     input = paste0("query_", filename, ".fasta")
-#     output = paste0("blastresult_", filename, ".csv")
-#     if (!file.exists(file.path(tempdir(), "_blast_db"))) {
-#         dir.create(file.path(tempdir(), "_blast_db"))
-#     }
-#     currwd <- getwd()
-#     setwd(file.path(tempdir(), "_blast_db"))
-#     cores <- parallel::detectCores()
-#     if (comp_cores > cores) 
-#         stop("You chose more cores than are available on your machine.", 
-#             call. = FALSE)
-#     tryCatch({
-#         seqinr::write.fasta(sequences = as.list(query.dt[, aa]), 
-#             names = query.dt[, geneids], nbchar = 80, open = "w", 
-#             file.out = input)
-#     }, error = function(e) {
-#         stop("File ", input, " could not be written properly to the internal folder environment.", 
-#             " Please check the path to ", input, ".")
-#     })
-#     tryCatch({
-#         if (remote) {
-#             system(paste0("blastp -db ", db, " -query ", input, 
-#                 " -remote -evalue ", eval, " -out ", output, 
-#                 " -outfmt 6"))
-#         }
-#         else {
-#             if (is.null(path)) {
-#                 if (blast_algorithm == "blastp") {
-#                   if (is.null(blast_params)) {
-#                     system(paste0("blastp -db ", database, " -query ", 
-#                       input, " -evalue ", eval, " -max_target_seqs ", 
-#                       max.target.seqs, " -out ", output, " -num_threads ", 
-#                       comp_cores, " -outfmt \"6", " qseqid sseqid pident nident length mismatch gapopen gaps positive ppos qstart qend qlen qcovs qcovhsp sstart send slen evalue bitscore score\""))
-#                   }
-#                   else {
-#                     system(paste0("blastp -db ", database, " -query ", 
-#                       input, " -evalue ", eval, " -max_target_seqs ", 
-#                       max.target.seqs, " -out ", output, " -num_threads ", 
-#                       comp_cores, " ", blast_params, " -outfmt 6\"", 
-#                       " qseqid sseqid pident nident length mismatch gapopen gaps positive ppos qstart qend qlen qcovs qcovhsp sstart send slen evalue bitscore score\""))
-#                   }
-#                 }
-#             }
-#             else {
-#                 if (blast_algorithm == "blastp") {
-#                   if (is.null(blast_params)) {
-#                     system(paste0("export PATH=$PATH:", path, 
-#                       "; blastp -db ", database, " -query ", 
-#                       input, " -evalue ", eval, " -max_target_seqs ", 
-#                       max.target.seqs, " -out ", output, " -num_threads ", 
-#                       comp_cores, " -outfmt 6\"", " qseqid sseqid pident nident length mismatch gapopen gaps positive ppos qstart qend qlen qcovs qcovhsp sstart send slen evalue bitscore score\""))
-#                   }
-#                   else {
-#                     system(paste0("export PATH=$PATH:", path, 
-#                       "; blastp -db ", database, " -query ", 
-#                       input, " -evalue ", eval, " -max_target_seqs ", 
-#                       max.target.seqs, " -out ", output, " -num_threads ", 
-#                       comp_cores, " ", blast_params, " -outfmt 6\"", 
-#                       " qseqid sseqid pident nident length mismatch gapopen gaps positive ppos qstart qend qlen qcovs qcovhsp sstart send slen evalue bitscore score\""))
-#                   }
-#                 }
-#             }
-#         }
-#     }, error = function(e) {
-#         stop("Please check the correct path to ", blast_algorithm, 
-#             "... the interface call did not work properly.")
-#     })
-#     blast_table_names <- c("query_id", "subject_id", "perc_identity", 
-#         "num_ident_matches", "alig_length", "mismatches", "gap_openings", 
-#         "n_gaps", "pos_match", "ppos", "q_start", "q_end", "q_len", 
-#         "qcov", "qcovhsp", "s_start", "s_end", "s_len", "evalue", 
-#         "bit_score", "score_raw")
-#     tryCatch({
-#         hit_table <- data.table::as.data.table(readr::read_delim(file = output, 
-#             delim = "\t", col_names = FALSE, col_types = readr::cols(X1 = readr::col_character(), 
-#                 X2 = readr::col_character(), X3 = readr::col_double(), 
-#                 X4 = readr::col_integer(), X5 = readr::col_integer(), 
-#                 X6 = readr::col_integer(), X7 = readr::col_integer(), 
-#                 X8 = readr::col_integer(), X9 = readr::col_integer(), 
-#                 X10 = readr::col_double(), X11 = readr::col_integer(), 
-#                 X12 = readr::col_integer(), X13 = readr::col_integer(), 
-#                 X14 = readr::col_double(), X15 = readr::col_double(), 
-#                 X16 = readr::col_integer(), X17 = readr::col_integer(), 
-#                 X18 = readr::col_integer(), X19 = readr::col_double(), 
-#                 X20 = readr::col_number(), X21 = readr::col_double())))
-#         data.table::setnames(x = hit_table, old = paste0("X", 
-#             1:length(blast_table_names)), new = blast_table_names)
-#         data.table::setkeyv(hit_table, c("query_id", "subject_id"))
-#         setwd(file.path(currwd))
-#         if (clean_folders) {
-#             if (!is.null(save.output)) 
-#                 file.copy(file.path(tempdir(), "_blast_db", output), 
-#                   save.output)
-#             clean_all_folders(file.path(tempdir(), "_blast_db"))
-#         }
-#         if (!clean_folders) {
-#             if (!is.null(save.output)) 
-#                 file.copy(file.path(tempdir(), "_blast_db", output), 
-#                   save.output)
-#         }
-#         hit_table <- tibble::as_tibble(hit_table)
-#         return(hit_table)
-#     }, error = function(e) {
-#         stop("File ", output, " could not be read correctly.", 
-#             " Please check the correct path to ", output, " or whether BLAST did write the resulting hit table correctly.")
-#     })
-# }
+
+# orthologr::blast_rec = function (query_file, 
+blast_rec = function (query_file, 
+                                 subject_file, 
+                                 seq_type = "cds", 
+                                 format = "fasta",
+                                 blast_algorithm = "blastp", 
+                                 delete_corrupt_cds = TRUE, 
+                                 eval = "1E-5",
+                                 max.target.seqs = 10000, 
+                                 path = NULL, 
+                                 comp_cores = 1, 
+                                 blast_params = NULL,
+                                 clean_folders = FALSE, 
+                                 save.output = NULL
+                                 ) {
+    
+   cat(crayon::yellow("\n\nblast_rec"), "\n\n")
+  
+  
+  # this uses orthologr::blast_best
+    orthoA <- blast_best(query_file = query_file, subject_file = subject_file,
+        eval = eval, max.target.seqs = max.target.seqs, format = format,
+        seq_type = seq_type, blast_algorithm = blast_algorithm,
+        delete_corrupt_cds = delete_corrupt_cds, path = path,
+        comp_cores = comp_cores, blast_params = blast_params,
+        save.output = save.output)
+    
+    orthoB <- blast_best(query_file = subject_file, subject_file = query_file,
+        seq_type = seq_type, eval = eval, max.target.seqs = max.target.seqs,
+        format = format, blast_algorithm = blast_algorithm, delete_corrupt_cds = delete_corrupt_cds,
+        path = path, comp_cores = comp_cores, blast_params = blast_params,
+        clean_folders = clean_folders, save.output = save.output)
+    
+    
+    colnames(orthoB)[1:2] <- c("subject_id", "query_id")
+    
+    
+    tryCatch({
+        return(dplyr::semi_join(orthoA, orthoB, by = c("query_id",
+            "subject_id")))
+    }, error = function(e) {
+        stop("The BLAST tables resulting from ", query_file,
+            " and ", subject_file, " could not be joined properly to select only the reciprocal best hits.")
+    })
+    
+}
+
+
+
+
+# orthologr::blast_best = function (query_file, 
+blast_best = function (query_file, 
+                                  subject_file, 
+                                  seq_type = "cds", 
+                                  format = "fasta",
+                                  blast_algorithm = "blastp", 
+                                  delete_corrupt_cds = TRUE, 
+                                  eval = "1E-5",
+                                  max.target.seqs = 10000, 
+                                  path = NULL, 
+                                  comp_cores = 1, 
+                                  blast_params = NULL,
+                                  clean_folders = FALSE, 
+                                  save.output = NULL
+                                  ) {
+  
+  
+    default_pars <- "-best_hit_score_edge 0.05 -best_hit_overhang 0.25"
+    
+    # this uses orthologr::blast
+    hit_tbl <- blast(query_file = query_file, subject_file = subject_file,
+        eval = eval, max.target.seqs = max.target.seqs, delete_corrupt_cds = delete_corrupt_cds,
+        seq_type = seq_type, format = format, path = path, comp_cores = comp_cores,
+        blast_params = ifelse(!is.null(blast_params), paste0(blast_params,
+            " ", default_pars), default_pars), clean_folders = clean_folders,
+        save.output = save.output)
+    
+    query_id <- "." <- NULL
+    
+    hit_tbl <- dplyr::do(dplyr::group_by(hit_tbl, query_id),
+                         filter_best_hitsX(.))
+    
+    return(hit_tbl)
+    
+}
+
+is_installed_blast <- function(path = NULL) {
+        # test if a valid BLAST version is installed
+        tryCatch({
+                if (is.null(path)) {
+                        sys_out <-
+                                system("blastp -version", intern = TRUE)
+                } else {
+                        sys_out <-
+                                system(paste0(
+                                        'export PATH=$PATH:',
+                                        path, "'; blastp -version '"), intern = TRUE)
+                }
+                
+                
+        }, error = function(e)
+                stop(
+                        "It seems like you don't have BLAST installed locally on your machine or the PATH variable to the BLAST program is not set correctly.",
+                        call. = FALSE
+                ))
+        
+        if (any(stringr::str_detect(sys_out, "blast")))
+                return(TRUE)
+        
+}
+
+
+
+
+# orthologr::blast = function (query_file, 
+blast = function (query_file, 
+                             subject_file, 
+                             seq_type = "cds", 
+                             format = "fasta",
+                             blast_algorithm = "blastp", 
+                             eval = "1E-5", 
+                             max.target.seqs = 10000,
+                             delete_corrupt_cds = TRUE, 
+                             remote = FALSE, 
+                             db = NULL, 
+                             path = NULL,
+                             comp_cores = 1, 
+                             blast_params = NULL, 
+                             clean_folders = FALSE,
+                             save.output = NULL
+                             ) {
+  
+  
+   cat(crayon::green("\n\nBLAST"), "\n\n")
+  
+    if (!is.element(blast_algorithm, c("blastp")))
+        stop("Please choose a valid BLAST mode. Only 'blastp' is available for this function.",
+            call. = FALSE)
+  
+    if (remote & is.null(db))
+        stop("To use the remote option of blast() please specify the 'db' argument, e.g. db = 'nr'",
+            call. = FALSE)
+  
+    if (!is.null(db)) {
+        if (!is.element(db, c("nr", "plaza")))
+            stop("Please choose a database that is supported by remote BLAST.",
+                call. = FALSE)
+    }
+  
+  
+    is_installed_blast(path = path)
+    
+    if (is.null(path)) {
+        message("Running ", system("blastp -version", intern = TRUE)[1],
+            " ...")
+    } else {
+        message("Running ", system(paste0("export PATH=$PATH:",
+            path, "' ; blastp -version '"), intern = TRUE)[1],
+            " ...")
+    }
+    
+    
+    aa <- geneids <- NULL
+    
+    query.dt <- set_blast(file = query_file, 
+                          seq_type = seq_type,
+                          format = format, 
+                          delete_corrupt_cds = delete_corrupt_cds)[[1]]
+    
+    database <- set_blast(file = subject_file, 
+                          seq_type = seq_type,
+                          format = format, 
+                          makedb = TRUE, 
+                          delete_corrupt_cds = delete_corrupt_cds)[[2]]
+    
+    filename <- unlist(strsplit(query_file, 
+                                .Platform$file.sep,
+                                fixed = FALSE, 
+                                perl = TRUE, 
+                                useBytes = FALSE))
+    
+    filename <- filename[length(filename)]
+    
+    input = paste0("query_", filename, ".fasta")
+    
+    output = paste0("blastresult_", filename, ".csv")
+    
+    
+    if (!file.exists(file.path(tempdir(), "_blast_db"))) {
+      dir.create(file.path(tempdir(), "_blast_db"))
+    }
+    
+    
+    currwd <- getwd()
+    
+    setwd(file.path(tempdir(), "_blast_db"))
+    
+    cores <- parallel::detectCores()
+    
+    if (comp_cores > cores)
+        stop("You chose more cores than are available on your machine.",
+            call. = FALSE)
+    
+    
+    tryCatch({
+        seqinr::write.fasta(sequences = as.list(query.dt[, aa]),
+            names = query.dt[, geneids], nbchar = 80, open = "w",
+            file.out = input)
+    }, error = function(e) {
+        stop("File ", input, " could not be written properly to the internal folder environment.",
+            " Please check the path to ", input, ".")
+    })
+    
+    
+    tryCatch({
+        if (remote) {
+            system(paste0("blastp -db ", db, " -query ", input,
+                " -remote -evalue ", eval, " -out ", output,
+                " -outfmt 6"))
+        } else {
+            if (is.null(path)) {
+                if (blast_algorithm == "blastp") {
+                  if (is.null(blast_params)) {
+                    system(paste0("blastp -db ", database, " -query ",
+                      input, " -evalue ", eval, " -max_target_seqs ",
+                      max.target.seqs, " -out ", output, " -num_threads ",
+                      comp_cores, " -outfmt \"6", 
+                      " qseqid sseqid pident nident length mismatch gapopen gaps positive ppos qstart qend qlen qcovs qcovhsp sstart send slen evalue bitscore score\""))
+                  }
+                  else {
+                    system(paste0("blastp -db ", database, " -query ",
+                      input, " -evalue ", eval, " -max_target_seqs ",
+                      max.target.seqs, " -out ", output, " -num_threads ",
+                      comp_cores, " ", blast_params, " -outfmt 6\"",
+                      " qseqid sseqid pident nident length mismatch gapopen gaps positive ppos qstart qend qlen qcovs qcovhsp sstart send slen evalue bitscore score\""))
+                  }
+                }
+            }
+            else {
+                if (blast_algorithm == "blastp") {
+                  if (is.null(blast_params)) {
+                    system(paste0("export PATH=$PATH:", path,
+                      "; blastp -db ", database, " -query ",
+                      input, " -evalue ", eval, " -max_target_seqs ",
+                      max.target.seqs, " -out ", output, " -num_threads ",
+                      comp_cores, " -outfmt 6\"", 
+                      " qseqid sseqid pident nident length mismatch gapopen gaps positive ppos qstart qend qlen qcovs qcovhsp sstart send slen evalue bitscore score\""))
+                  }
+                  else {
+                    system(paste0("export PATH=$PATH:", path,
+                      "; blastp -db ", database, " -query ",
+                      input, " -evalue ", eval, " -max_target_seqs ",
+                      max.target.seqs, " -out ", output, " -num_threads ",
+                      comp_cores, " ", blast_params, " -outfmt 6\"",
+                      " qseqid sseqid pident nident length mismatch gapopen gaps positive ppos qstart qend qlen qcovs qcovhsp sstart send slen evalue bitscore score\""))
+                  }
+                }
+            }
+        }
+    }, error = function(e) {
+        stop("Please check the correct path to ", blast_algorithm,
+            "... the interface call did not work properly.")
+    })
+    
+    
+    blast_table_names <- c("query_id", 
+                           "subject_id", 
+                           "perc_identity",
+                           "num_ident_matches", 
+                           "alig_length", 
+                           "mismatches", 
+                           "gap_openings",
+                           "n_gaps", 
+                           "pos_match", 
+                           "ppos", 
+                           "q_start", 
+                           "q_end", 
+                           "q_len",
+                           "qcov", 
+                           "qcovhsp", 
+                           "s_start", 
+                           "s_end", 
+                           "s_len", 
+                           "evalue",
+                           "bit_score", 
+                           "score_raw")
+    
+    
+    tryCatch({
+        hit_table <- data.table::as.data.table(readr::read_delim(file = output,
+            delim = "\t", col_names = FALSE, col_types = readr::cols(X1 = readr::col_character(),
+                X2 = readr::col_character(), X3 = readr::col_double(),
+                X4 = readr::col_integer(), X5 = readr::col_integer(),
+                X6 = readr::col_integer(), X7 = readr::col_integer(),
+                X8 = readr::col_integer(), X9 = readr::col_integer(),
+                X10 = readr::col_double(), X11 = readr::col_integer(),
+                X12 = readr::col_integer(), X13 = readr::col_integer(),
+                X14 = readr::col_double(), X15 = readr::col_double(),
+                X16 = readr::col_integer(), X17 = readr::col_integer(),
+                X18 = readr::col_integer(), X19 = readr::col_double(),
+                X20 = readr::col_number(), X21 = readr::col_double())))
+        data.table::setnames(x = hit_table, old = paste0("X",
+            1:length(blast_table_names)), new = blast_table_names)
+        data.table::setkeyv(hit_table, c("query_id", "subject_id"))
+        setwd(file.path(currwd))
+        if (clean_folders) {
+            if (!is.null(save.output))
+                file.copy(file.path(tempdir(), "_blast_db", output),
+                  save.output)
+            clean_all_folders(file.path(tempdir(), "_blast_db"))
+        }
+        if (!clean_folders) {
+            if (!is.null(save.output))
+                file.copy(file.path(tempdir(), "_blast_db", output),
+                  save.output)
+        }
+        hit_table <- tibble::as_tibble(hit_table)
+        return(hit_table)
+    }, error = function(e) {
+        stop("File ", output, " could not be read correctly.",
+            " Please check the correct path to ", output, " or whether BLAST did write the resulting hit table correctly.")
+    })
+    
+}
 
 
 
@@ -533,15 +755,25 @@ myRBH.o = orthologr::orthologs(query_file = fn1
 # orthologr::filter_best_hits		Helper function to select best BLAST hit based on minimum evalue
 
 
-filter_best_hits = function (blast_tbl, min_qcovhsp = 50) 
-{
+filter_best_hitsX = function (blast_tbl, 
+                             min_qcovhsp = 50
+                             ) {
+  
+ cat(crayon::yellow("\n\nfilter_best_hitsX"), "\n\n")
+  
     if (!dplyr::between(min_qcovhsp, 10, 100)) 
         stop("Please provide a min_qcovhsp value between 10 and 100.", 
             call. = FALSE)
+  
+  
     if (nrow(blast_tbl) == 0) 
         stop("Please provide a blast_tbl that contains at least one row.", 
             call. = FALSE)
+  
+  
     alig_length <- qcovhsp <- bitscore <- species <- query_id <- "." <- NULL
+    
+    
     message("Retrieving best blast hits using the following criteria: ")
     message(" 1) the query coverage ('qcovhsp') of the hit must be at least greater than ", 
         qcovhsp)
@@ -549,51 +781,188 @@ filter_best_hits = function (blast_tbl, min_qcovhsp = 50)
     message(" 3) select the blast hit that in addition has the maximum bit_score")
     message("--------")
     message("Number of hits before filtering: ", nrow(blast_tbl))
+    
     blast_tbl <- dplyr::filter(blast_tbl, qcovhsp >= min_qcovhsp)
-    filter_best_hits <- function(x) {
-        min_val <- min(x$bit_score)
-        bitscore <- alig_length <- NULL
-        # res <- dplyr::filter(x, bitscore == min_val)
-        # if (nrow(res) > 1) {
-        #     max_len <- max(res$alig_length)
-        #     res <- dplyr::filter(res, alig_length == max_len)
-        # }
-        # if (nrow(res) > 1) 
-        #     res <- dplyr::slice(res, 1)
-        return(res)
-    }
-    best_hit_df <- dplyr::do(dplyr::group_by(blast_tbl, species, 
-        query_id), filter_best_hits(.))
+    
+    # filter_best_hitsX <- function(x) {
+    #     min_val <- min(x$bit_score)
+    #     bitscore <- alig_length <- NULL
+    #     
+    #     # remove filter
+    #     res = x
+    #     
+    #     # res <- dplyr::filter(x, bitscore == min_val)
+    #     # if (nrow(res) > 1) {
+    #     #     max_len <- max(res$alig_length)
+    #     #     res <- dplyr::filter(res, alig_length == max_len)
+    #     # }
+    #     # if (nrow(res) > 1) 
+    #     #     res <- dplyr::slice(res, 1)
+    #     return(res)
+    # }
+    
+    # best_hit_df <- dplyr::do(dplyr::group_by(blast_tbl, 
+    #                                          species, 
+    #                                          query_id), 
+    #                          filter_best_hitsX(.))
+    
+    
+    # remove filter
+    best_hit_df = blast_tbl
+    
+    
     message("Number of best hits after filtering: ", nrow(best_hit_df))
+    
+    
     if (nrow(best_hit_df) == 0) 
         stop("The filter process resultet in 0 best hits. Please provide more liberal filter criteria to retrieve a best hit table.", 
             call. = FALSE)
+    
     return(best_hit_df)
+    
 }
 
 
 ```
 
 
-```{r}
+```{r calc, echo=TRUE, warning=FALSE, message=FALSE}
 
-myRBH.o = orthologr::orthologs(query_file = fn1
-                             ,
-                             subject_file = fn2
-                             ,
-                             seq_type = "protein"
-                             ,
-                             format = "fasta",  
-                             outgroup_file = NULL,
-                             eval = "1E-5",
-                             ortho_detection = "RBH",
-                             # delete_corrupt_cds = FALSE,
-                             # cdd.path = NULL,
-                             # path = NULL,
-                             add_params = NULL,
-                             comp_cores = 1,
-                             quiet = FALSE,
-                             clean_folders = FALSE)
+# myRBH.o = orthologr::orthologs(query_file = fn1
+#                              ,
+#                              subject_file = fn2
+#                              ,
+#                              seq_type = "protein"
+#                              ,
+#                              format = "fasta",  
+#                              outgroup_file = NULL,
+#                              eval = "1E-5",
+#                              ortho_detection = "RBH",
+#                              # delete_corrupt_cds = FALSE,
+#                              # cdd.path = NULL,
+#                              # path = NULL,
+#                              add_params = NULL,
+#                              comp_cores = 1,
+#                              quiet = FALSE,
+#                              clean_folders = FALSE)
+
+
+cat(crayon::blue("debug params"), "\n")
+
+# query_file = file.path('..', 'input', fn1)
+# subject_files = file.path('..', 'input', 'PLAZA', fn2)
+# subject_file = file.path('..', 'input', 'PLAZA', fn2)
+query_file = fn1
+subject_file = fn2
+subject_files = fn2
+seq_type = "protein"
+blast_algorithm = "blastp"
+outgroup_file = NULL
+eval = "1E-10"
+format = "fasta"
+ortho_detection = "RBH"
+delete_corrupt_cds = FALSE
+cdd.path = NULL
+path = NULL
+add_params = NULL
+comp_cores = 8
+quiet = FALSE
+clean_folders = FALSE
+max.target.seqs = 200
+path = NULL
+save.output =  tempdir
+default_pars = "-best_hit_score_edge 0.05 -best_hit_overhang 0.25"
+remote = FALSE
+db = NULL
+blast_params = NULL 
+min_qcovhsp = 50
+ortho_detection = 'RBH'
+                   
+
+
+
+cat(crayon::yellow("\n\northologs"), "\n\n")
+  
+
+i <- NULL
+    
+# if (seq_type == "cds") {
+#   f_sep <- .Platform$file.sep
+#   filename_qry <- unlist(strsplit(query_file, 
+#                                   f_sep, 
+#                                   fixed = FALSE,
+#                                   perl = TRUE, 
+#                                   useBytes = FALSE))
+#   filename_qry <- filename_qry[length(filename_qry)]
+#   write.proteome(proteome = cds2aa(read.cds(query_file,
+#                                             format = format, 
+#                                             delete_corrupt_cds = delete_corrupt_cds)),
+#                  file.name = file.path(tempdir(), 
+#                                        paste0(filename_qry,
+#                                               "_translated.fasta")))
+#         
+# if (length(subject_files) > 1) {
+#   subj_short.names <- vector("character", 
+#                              length(subject_files))
+#   for (organism in 1:length(subject_files)) {
+#     short.name <- unlist(strsplit(subject_files[organism],
+#                                   f_sep, 
+#                                   fixed = FALSE, 
+#                                   perl = TRUE, 
+#                                   useBytes = FALSE))
+#     short.name <- short.name[length(short.name)]
+#     subj_short.names[i] <- short.name
+#     write.proteome(proteome = cds2aa(read.cds(subject_files[organism],
+#                                               format = format, 
+#                                               delete_corrupt_cds = delete_corrupt_cds),
+#                                      delete_corrupt_cds = delete_corrupt_cds), 
+#                    file.name = file.path(tempdir(),
+#                                          paste0(short.name, "_translated.fasta")))
+#     }
+#             subject_files <- file.path(tempdir(), paste0(short.name,
+#                                                          "_translated.fasta"))
+#         } else {
+#             filename_subj <- unlist(strsplit(subject_files, f_sep,
+#                 fixed = FALSE, perl = TRUE, useBytes = FALSE))
+#             filename_subj <- filename_subj[length(filename_subj)]
+#             write.proteome(proteome = cds2aa(read.cds(subject_files,
+#                 format = format, delete_corrupt_cds = delete_corrupt_cds),
+#                 delete_corrupt_cds = delete_corrupt_cds), file.name = file.path(tempdir(),
+#                 paste0(filename_subj, "_translated.fasta")))
+#             subject_files <- file.path(tempdir(), paste0(filename_subj,
+#                 "_translated.fasta"))
+#         }
+#         query_file <- file.path(tempdir(), paste0(filename_qry,
+#             "_translated.fasta"))
+#     }
+    
+    
+
+    
+    # this uses orthologr::blast_rec
+if (ortho_detection == "RBH") {
+  if (length(subject_files) > 1)
+    stop("The BLAST best reciprocal hit method is only defined for pairwise comparisons.",
+         call. = FALSE)
+  ortho_tbl <- data.table::copy(blast_rec(query_file = query_file,
+                                          subject_file = subject_files, 
+                                          path = path, 
+                                          delete_corrupt_cds = delete_corrupt_cds,
+                                          comp_cores = comp_cores, 
+                                          eval = eval, 
+                                          blast_params = add_params,
+                                          seq_type = seq_type, 
+                                          format = format))
+  if (clean_folders)
+    clean_all_folders(file.path(tempdir(), 
+                                "_blast_db"))
+  }
+    
+
+myRBH.o =  ortho_tbl
+head(myRBH.o)
+    
+    
 
 
 ```
@@ -606,11 +975,11 @@ myRBH.o = orthologr::orthologs(query_file = fn1
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 fpo = file.path('..', 'output')
 fno = 'RBHresults.txt'
-data.table::fwrite(myRBH, 
+data.table::fwrite(myRBH.o, 
                    file = file.path(fpo, fno),
                    sep = '\t')
 fno = 'RBHresults.xlsx'
-openxlsx::write.xlsx(myRBH, file = file.path(fpo, fno), 
+openxlsx::write.xlsx(myRBH.o, file = file.path(fpo, fno), 
                      asTable = TRUE, 
                      overwrite = TRUE)
 
