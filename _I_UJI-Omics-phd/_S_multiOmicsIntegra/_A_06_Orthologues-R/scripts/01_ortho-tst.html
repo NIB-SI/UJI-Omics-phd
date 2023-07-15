@@ -11,7 +11,7 @@
 
 <meta name="author" content="Maria, zagor" />
 
-<meta name="date" content="2023-07-11" />
+<meta name="date" content="2023-07-15" />
 
 <title>01_ortho</title>
 
@@ -1570,7 +1570,7 @@ border-radius: 0px;
 
 <h1 class="title toc-ignore">01_ortho</h1>
 <h4 class="author">Maria, zagor</h4>
-<h4 class="date">2023-07-11</h4>
+<h4 class="date">2023-07-15</h4>
 
 </div>
 
@@ -1584,7 +1584,7 @@ and install locally</p></li>
 Enviroment Variables, e.g. on how to here <a href="https://www.hanss.info/sebastian/post/rtools-path/" class="uri">https://www.hanss.info/sebastian/post/rtools-path/</a></p></li>
 </ol>
 <p>3.Install dependencies
-<code>iocManager::install(c(&quot;Biostrings&quot;, &quot;GenomicFeatures&quot;, &quot;GenomicRanges&quot;, &quot;Rsamtools&quot;, &quot;IRanges&quot;, &quot;rtracklayer&quot;, &quot;biomaRt&quot;))</code></p>
+<code>BiocManager::install(c(&quot;Biostrings&quot;, &quot;GenomicFeatures&quot;, &quot;GenomicRanges&quot;, &quot;Rsamtools&quot;, &quot;IRanges&quot;, &quot;rtracklayer&quot;, &quot;biomaRt&quot;))</code></p>
 <ol start="3" style="list-style-type: decimal">
 <li>Install <code>metablastr</code> and <code>orthologr</code> packages
 in R</li>
@@ -1601,8 +1601,8 @@ working</li>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>(<span class="at">all =</span> <span class="cn">TRUE</span>))</span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">gc</span>()</span></code></pre></div>
 <pre><code>##          used (Mb) gc trigger (Mb) max used (Mb)
-## Ncells 525888 28.1    1172345 62.7   660382 35.3
-## Vcells 960109  7.4    8388608 64.0  1770494 13.6</code></pre>
+## Ncells 526497 28.2    1174085 62.8   660382 35.3
+## Vcells 966688  7.4    8388608 64.0  1770425 13.6</code></pre>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123456</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a></span>
@@ -1697,6 +1697,8 @@ variable/object</p>
 <p><a href="https://rdrr.io/github/mhahsler/rBLAST/man/BLAST.html" class="uri">https://rdrr.io/github/mhahsler/rBLAST/man/BLAST.html</a></p>
 <p><a href="https://rdrr.io/github/drostlab/orthologr/man/blast.html" class="uri">https://rdrr.io/github/drostlab/orthologr/man/blast.html</a></p>
 <p><a href="https://github.com/tidyverse/readr/issues/1419" class="uri">https://github.com/tidyverse/readr/issues/1419</a></p>
+<div id="files" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Files</h2>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="co"># where the script is</span></span>
 <span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="fu">setwd</span>(<span class="fu">dirname</span>(rstudioapi<span class="sc">::</span><span class="fu">getActiveDocumentContext</span>()<span class="sc">$</span>path))</span>
 <span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>mydir <span class="ot">=</span>  <span class="fu">getwd</span>()</span>
@@ -1739,52 +1741,814 @@ variable/object</p>
 <pre><code>## [1] TRUE</code></pre>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>  <span class="fu">list.files</span>(<span class="fu">tempdir</span>(), <span class="at">pattern =</span> <span class="st">&#39;.fasta&#39;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;a.fasta&quot; &quot;b.fasta&quot;</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>  <span class="fu">setwd</span>(<span class="fu">tempdir</span>())</span>
-<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>  </span>
-<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a></span>
-<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a>myRBH <span class="ot">=</span> orthologr<span class="sc">::</span><span class="fu">blast_rec</span>(<span class="at">query_file =</span> fn1</span>
-<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a>                             ,</span>
-<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a>                             <span class="at">subject_file =</span> fn2</span>
-<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a>                             ,</span>
-<span id="cb17-8"><a href="#cb17-8" tabindex="-1"></a>                             <span class="at">seq_type =</span> <span class="st">&quot;protein&quot;</span></span>
-<span id="cb17-9"><a href="#cb17-9" tabindex="-1"></a>                             ,</span>
-<span id="cb17-10"><a href="#cb17-10" tabindex="-1"></a>                             <span class="at">format =</span> <span class="st">&quot;fasta&quot;</span></span>
-<span id="cb17-11"><a href="#cb17-11" tabindex="-1"></a>                             ,</span>
-<span id="cb17-12"><a href="#cb17-12" tabindex="-1"></a>                             <span class="at">blast_algorithm =</span> <span class="st">&quot;blastp&quot;</span></span>
-<span id="cb17-13"><a href="#cb17-13" tabindex="-1"></a>                             ,</span>
-<span id="cb17-14"><a href="#cb17-14" tabindex="-1"></a>                             <span class="co"># delete_corrupt_cds = TRUE,</span></span>
-<span id="cb17-15"><a href="#cb17-15" tabindex="-1"></a>                             <span class="at">eval =</span> <span class="st">&quot;1E-10&quot;</span></span>
-<span id="cb17-16"><a href="#cb17-16" tabindex="-1"></a>                             ,  </span>
-<span id="cb17-17"><a href="#cb17-17" tabindex="-1"></a>                             <span class="at">max.target.seqs =</span> <span class="dv">200</span></span>
-<span id="cb17-18"><a href="#cb17-18" tabindex="-1"></a>                             ,</span>
-<span id="cb17-19"><a href="#cb17-19" tabindex="-1"></a>                             <span class="co"># a character string specifying the path to the BLAST program (in case you don&#39;t use the default path)</span></span>
-<span id="cb17-20"><a href="#cb17-20" tabindex="-1"></a>                             <span class="at">path =</span> <span class="cn">NULL</span></span>
-<span id="cb17-21"><a href="#cb17-21" tabindex="-1"></a>                             , </span>
-<span id="cb17-22"><a href="#cb17-22" tabindex="-1"></a>                             <span class="at">comp_cores =</span> <span class="dv">4</span></span>
-<span id="cb17-23"><a href="#cb17-23" tabindex="-1"></a>                             ,</span>
-<span id="cb17-24"><a href="#cb17-24" tabindex="-1"></a>                             <span class="co"># blast_params = NULL, # see whats this</span></span>
-<span id="cb17-25"><a href="#cb17-25" tabindex="-1"></a>                             <span class="at">clean_folders =</span> <span class="cn">TRUE</span></span>
-<span id="cb17-26"><a href="#cb17-26" tabindex="-1"></a>                             ,</span>
-<span id="cb17-27"><a href="#cb17-27" tabindex="-1"></a>                             <span class="co"># a path to the location were the BLAST output shall be stored. E.g. save.output = getwd() to store it in the current working directory, or save.output = file.path(put,your,path,here).</span></span>
-<span id="cb17-28"><a href="#cb17-28" tabindex="-1"></a>                             <span class="at">save.output =</span>  <span class="fu">tempdir</span>()</span>
-<span id="cb17-29"><a href="#cb17-29" tabindex="-1"></a>                             )</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>  <span class="fu">setwd</span>(<span class="fu">tempdir</span>())</span></code></pre></div>
+</div>
+<div id="orthologrblast_rec" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span>
+orthologr::blast_rec</h2>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="co"># myRBH = orthologr::blast_rec(query_file = fn1</span></span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="co">#                              ,</span></span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a><span class="co">#                              subject_file = fn2</span></span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a><span class="co">#                              ,</span></span>
+<span id="cb18-5"><a href="#cb18-5" tabindex="-1"></a><span class="co">#                              seq_type = &quot;protein&quot;</span></span>
+<span id="cb18-6"><a href="#cb18-6" tabindex="-1"></a><span class="co">#                              ,</span></span>
+<span id="cb18-7"><a href="#cb18-7" tabindex="-1"></a><span class="co">#                              format = &quot;fasta&quot;</span></span>
+<span id="cb18-8"><a href="#cb18-8" tabindex="-1"></a><span class="co">#                              ,</span></span>
+<span id="cb18-9"><a href="#cb18-9" tabindex="-1"></a><span class="co">#                              blast_algorithm = &quot;blastp&quot;</span></span>
+<span id="cb18-10"><a href="#cb18-10" tabindex="-1"></a><span class="co">#                              ,</span></span>
+<span id="cb18-11"><a href="#cb18-11" tabindex="-1"></a><span class="co">#                              # delete_corrupt_cds = TRUE,</span></span>
+<span id="cb18-12"><a href="#cb18-12" tabindex="-1"></a><span class="co">#                              eval = &quot;1E-10&quot;</span></span>
+<span id="cb18-13"><a href="#cb18-13" tabindex="-1"></a><span class="co">#                              ,  </span></span>
+<span id="cb18-14"><a href="#cb18-14" tabindex="-1"></a><span class="co">#                              max.target.seqs = 200</span></span>
+<span id="cb18-15"><a href="#cb18-15" tabindex="-1"></a><span class="co">#                              ,</span></span>
+<span id="cb18-16"><a href="#cb18-16" tabindex="-1"></a><span class="co">#                              # a character string specifying the path to the BLAST program (in case you don&#39;t use the default path)</span></span>
+<span id="cb18-17"><a href="#cb18-17" tabindex="-1"></a><span class="co">#                              path = NULL</span></span>
+<span id="cb18-18"><a href="#cb18-18" tabindex="-1"></a><span class="co">#                              , </span></span>
+<span id="cb18-19"><a href="#cb18-19" tabindex="-1"></a><span class="co">#                              comp_cores = 4</span></span>
+<span id="cb18-20"><a href="#cb18-20" tabindex="-1"></a><span class="co">#                              ,</span></span>
+<span id="cb18-21"><a href="#cb18-21" tabindex="-1"></a><span class="co">#                              # blast_params = NULL, # see whats this</span></span>
+<span id="cb18-22"><a href="#cb18-22" tabindex="-1"></a><span class="co">#                              clean_folders = TRUE</span></span>
+<span id="cb18-23"><a href="#cb18-23" tabindex="-1"></a><span class="co">#                              ,</span></span>
+<span id="cb18-24"><a href="#cb18-24" tabindex="-1"></a><span class="co">#                              # a path to the location were the BLAST output shall be stored. E.g. save.output = getwd() to store it in the current working directory, or save.output = file.path(put,your,path,here).</span></span>
+<span id="cb18-25"><a href="#cb18-25" tabindex="-1"></a><span class="co">#                              save.output =  tempdir()</span></span>
+<span id="cb18-26"><a href="#cb18-26" tabindex="-1"></a><span class="co">#                              )</span></span></code></pre></div>
+</div>
+<div id="orthologrorthologs" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span>
+orthologr::orthologs</h2>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="co"># myRBH.o = orthologr::orthologs(query_file = fn1</span></span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="co">#                              ,</span></span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a><span class="co">#                              subject_file = fn2</span></span>
+<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a><span class="co">#                              ,</span></span>
+<span id="cb19-5"><a href="#cb19-5" tabindex="-1"></a><span class="co">#                              seq_type = &quot;protein&quot;</span></span>
+<span id="cb19-6"><a href="#cb19-6" tabindex="-1"></a><span class="co">#                              ,</span></span>
+<span id="cb19-7"><a href="#cb19-7" tabindex="-1"></a><span class="co">#                              format = &quot;fasta&quot;,  </span></span>
+<span id="cb19-8"><a href="#cb19-8" tabindex="-1"></a><span class="co">#                              outgroup_file = NULL,</span></span>
+<span id="cb19-9"><a href="#cb19-9" tabindex="-1"></a><span class="co">#                              eval = &quot;1E-5&quot;,</span></span>
+<span id="cb19-10"><a href="#cb19-10" tabindex="-1"></a><span class="co">#                              ortho_detection = &quot;RBH&quot;,</span></span>
+<span id="cb19-11"><a href="#cb19-11" tabindex="-1"></a><span class="co">#                              # delete_corrupt_cds = FALSE,</span></span>
+<span id="cb19-12"><a href="#cb19-12" tabindex="-1"></a><span class="co">#                              # cdd.path = NULL,</span></span>
+<span id="cb19-13"><a href="#cb19-13" tabindex="-1"></a><span class="co">#                              # path = NULL,</span></span>
+<span id="cb19-14"><a href="#cb19-14" tabindex="-1"></a><span class="co">#                              add_params = NULL,</span></span>
+<span id="cb19-15"><a href="#cb19-15" tabindex="-1"></a><span class="co">#                              comp_cores = 1,</span></span>
+<span id="cb19-16"><a href="#cb19-16" tabindex="-1"></a><span class="co">#                              quiet = FALSE,</span></span>
+<span id="cb19-17"><a href="#cb19-17" tabindex="-1"></a><span class="co">#                              clean_folders = FALSE)</span></span></code></pre></div>
+</div>
+<div id="almost-all-functions" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> (almost) all
+functions</h2>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="co"># cat(crayon::blue(&quot;debug params&quot;), &quot;\n&quot;)</span></span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a><span class="co"># query_file = file.path(&#39;..&#39;, &#39;input&#39;, fn1)</span></span>
+<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a><span class="co"># subject_files = file.path(&#39;..&#39;, &#39;input&#39;, &#39;PLAZA&#39;, fn2)</span></span>
+<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a><span class="co"># subject_file = file.path(&#39;..&#39;, &#39;input&#39;, &#39;PLAZA&#39;, fn2)</span></span>
+<span id="cb20-6"><a href="#cb20-6" tabindex="-1"></a><span class="co"># query_file = fn1</span></span>
+<span id="cb20-7"><a href="#cb20-7" tabindex="-1"></a><span class="co"># subject_file = fn2</span></span>
+<span id="cb20-8"><a href="#cb20-8" tabindex="-1"></a><span class="co"># subject_files = fn2</span></span>
+<span id="cb20-9"><a href="#cb20-9" tabindex="-1"></a><span class="co"># seq_type = &quot;protein&quot;</span></span>
+<span id="cb20-10"><a href="#cb20-10" tabindex="-1"></a><span class="co"># blast_algorithm = &quot;blastp&quot;</span></span>
+<span id="cb20-11"><a href="#cb20-11" tabindex="-1"></a><span class="co"># outgroup_file = NULL</span></span>
+<span id="cb20-12"><a href="#cb20-12" tabindex="-1"></a><span class="co"># eval = &quot;1E-10&quot;</span></span>
+<span id="cb20-13"><a href="#cb20-13" tabindex="-1"></a><span class="co"># format = &quot;fasta&quot;</span></span>
+<span id="cb20-14"><a href="#cb20-14" tabindex="-1"></a><span class="co"># ortho_detection = &quot;RBH&quot;</span></span>
+<span id="cb20-15"><a href="#cb20-15" tabindex="-1"></a><span class="co"># delete_corrupt_cds = FALSE</span></span>
+<span id="cb20-16"><a href="#cb20-16" tabindex="-1"></a><span class="co"># cdd.path = NULL</span></span>
+<span id="cb20-17"><a href="#cb20-17" tabindex="-1"></a><span class="co"># path = NULL</span></span>
+<span id="cb20-18"><a href="#cb20-18" tabindex="-1"></a><span class="co"># add_params = NULL</span></span>
+<span id="cb20-19"><a href="#cb20-19" tabindex="-1"></a><span class="co"># comp_cores = 4</span></span>
+<span id="cb20-20"><a href="#cb20-20" tabindex="-1"></a><span class="co"># quiet = FALSE</span></span>
+<span id="cb20-21"><a href="#cb20-21" tabindex="-1"></a><span class="co"># clean_folders = FALSE</span></span>
+<span id="cb20-22"><a href="#cb20-22" tabindex="-1"></a><span class="co"># max.target.seqs = 200</span></span>
+<span id="cb20-23"><a href="#cb20-23" tabindex="-1"></a><span class="co"># path = NULL</span></span>
+<span id="cb20-24"><a href="#cb20-24" tabindex="-1"></a><span class="co"># save.output =  tempdir</span></span>
+<span id="cb20-25"><a href="#cb20-25" tabindex="-1"></a><span class="co"># default_pars = &quot;-best_hit_score_edge 0.05 -best_hit_overhang 0.25&quot;</span></span>
+<span id="cb20-26"><a href="#cb20-26" tabindex="-1"></a><span class="co"># remote = FALSE</span></span>
+<span id="cb20-27"><a href="#cb20-27" tabindex="-1"></a><span class="co"># db = NULL</span></span>
+<span id="cb20-28"><a href="#cb20-28" tabindex="-1"></a><span class="co"># blast_params = NULL </span></span>
+<span id="cb20-29"><a href="#cb20-29" tabindex="-1"></a><span class="co"># min_qcovhsp = 50</span></span>
+<span id="cb20-30"><a href="#cb20-30" tabindex="-1"></a><span class="co"># ortho_detection = &#39;RBH&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="fu">cat</span>(crayon<span class="sc">::</span><span class="fu">red</span>(<span class="st">&quot;wrapper of a wrapper of a wrapper of a wrapper!&quot;</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## wrapper of a wrapper of a wrapper of a wrapper!</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="co"># orthologr::orthologs = function (query_file, </span></span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a><span class="co"># orthologs = function (query_file, </span></span>
+<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a><span class="co">#                                  subject_files, </span></span>
+<span id="cb23-4"><a href="#cb23-4" tabindex="-1"></a><span class="co">#                                  seq_type = &quot;protein&quot;, </span></span>
+<span id="cb23-5"><a href="#cb23-5" tabindex="-1"></a><span class="co">#                                  outgroup_file = NULL,</span></span>
+<span id="cb23-6"><a href="#cb23-6" tabindex="-1"></a><span class="co">#                                  eval = &quot;1E-5&quot;, </span></span>
+<span id="cb23-7"><a href="#cb23-7" tabindex="-1"></a><span class="co">#                                  format = &quot;fasta&quot;, </span></span>
+<span id="cb23-8"><a href="#cb23-8" tabindex="-1"></a><span class="co">#                                  ortho_detection = &quot;RBH&quot;,</span></span>
+<span id="cb23-9"><a href="#cb23-9" tabindex="-1"></a><span class="co">#                                  delete_corrupt_cds = FALSE, </span></span>
+<span id="cb23-10"><a href="#cb23-10" tabindex="-1"></a><span class="co">#                                  cdd.path = NULL, </span></span>
+<span id="cb23-11"><a href="#cb23-11" tabindex="-1"></a><span class="co">#                                  path = NULL,</span></span>
+<span id="cb23-12"><a href="#cb23-12" tabindex="-1"></a><span class="co">#                                  add_params = NULL, </span></span>
+<span id="cb23-13"><a href="#cb23-13" tabindex="-1"></a><span class="co">#                                  comp_cores = 1, </span></span>
+<span id="cb23-14"><a href="#cb23-14" tabindex="-1"></a><span class="co">#                                  quiet = FALSE, </span></span>
+<span id="cb23-15"><a href="#cb23-15" tabindex="-1"></a><span class="co">#                                  clean_folders = FALSE</span></span>
+<span id="cb23-16"><a href="#cb23-16" tabindex="-1"></a><span class="co">#                                  ) {</span></span>
+<span id="cb23-17"><a href="#cb23-17" tabindex="-1"></a><span class="co">#   </span></span>
+<span id="cb23-18"><a href="#cb23-18" tabindex="-1"></a><span class="co">#    cat(crayon::yellow(&quot;\n\northologs&quot;), &quot;\n\n&quot;)</span></span>
+<span id="cb23-19"><a href="#cb23-19" tabindex="-1"></a><span class="co">#   </span></span>
+<span id="cb23-20"><a href="#cb23-20" tabindex="-1"></a><span class="co">#   </span></span>
+<span id="cb23-21"><a href="#cb23-21" tabindex="-1"></a><span class="co">#     if (!is.element(ortho_detection, c(&quot;BH&quot;, &quot;RBH&quot;, &quot;Orthofinder2&quot;)))</span></span>
+<span id="cb23-22"><a href="#cb23-22" tabindex="-1"></a><span class="co">#         stop(&quot;Please choose a orthology detection method that is supported by this function.&quot;,</span></span>
+<span id="cb23-23"><a href="#cb23-23" tabindex="-1"></a><span class="co">#             call. = FALSE)</span></span>
+<span id="cb23-24"><a href="#cb23-24" tabindex="-1"></a><span class="co">#   </span></span>
+<span id="cb23-25"><a href="#cb23-25" tabindex="-1"></a><span class="co">#     i &lt;- NULL</span></span>
+<span id="cb23-26"><a href="#cb23-26" tabindex="-1"></a><span class="co">#     </span></span>
+<span id="cb23-27"><a href="#cb23-27" tabindex="-1"></a><span class="co">#     if (seq_type == &quot;cds&quot;) {</span></span>
+<span id="cb23-28"><a href="#cb23-28" tabindex="-1"></a><span class="co">#         f_sep &lt;- .Platform$file.sep</span></span>
+<span id="cb23-29"><a href="#cb23-29" tabindex="-1"></a><span class="co">#         filename_qry &lt;- unlist(strsplit(query_file, f_sep, fixed = FALSE,</span></span>
+<span id="cb23-30"><a href="#cb23-30" tabindex="-1"></a><span class="co">#             perl = TRUE, useBytes = FALSE))</span></span>
+<span id="cb23-31"><a href="#cb23-31" tabindex="-1"></a><span class="co">#         filename_qry &lt;- filename_qry[length(filename_qry)]</span></span>
+<span id="cb23-32"><a href="#cb23-32" tabindex="-1"></a><span class="co">#         write.proteome(proteome = cds2aa(read.cds(query_file,</span></span>
+<span id="cb23-33"><a href="#cb23-33" tabindex="-1"></a><span class="co">#             format = format, delete_corrupt_cds = delete_corrupt_cds)),</span></span>
+<span id="cb23-34"><a href="#cb23-34" tabindex="-1"></a><span class="co">#             file.name = file.path(tempdir(), paste0(filename_qry,</span></span>
+<span id="cb23-35"><a href="#cb23-35" tabindex="-1"></a><span class="co">#                 &quot;_translated.fasta&quot;)))</span></span>
+<span id="cb23-36"><a href="#cb23-36" tabindex="-1"></a><span class="co">#         </span></span>
+<span id="cb23-37"><a href="#cb23-37" tabindex="-1"></a><span class="co">#         if (length(subject_files) &gt; 1) {</span></span>
+<span id="cb23-38"><a href="#cb23-38" tabindex="-1"></a><span class="co">#             subj_short.names &lt;- vector(&quot;character&quot;, length(subject_files))</span></span>
+<span id="cb23-39"><a href="#cb23-39" tabindex="-1"></a><span class="co">#             for (organism in 1:length(subject_files)) {</span></span>
+<span id="cb23-40"><a href="#cb23-40" tabindex="-1"></a><span class="co">#                 short.name &lt;- unlist(strsplit(subject_files[organism],</span></span>
+<span id="cb23-41"><a href="#cb23-41" tabindex="-1"></a><span class="co">#                   f_sep, fixed = FALSE, perl = TRUE, useBytes = FALSE))</span></span>
+<span id="cb23-42"><a href="#cb23-42" tabindex="-1"></a><span class="co">#                 short.name &lt;- short.name[length(short.name)]</span></span>
+<span id="cb23-43"><a href="#cb23-43" tabindex="-1"></a><span class="co">#                 subj_short.names[i] &lt;- short.name</span></span>
+<span id="cb23-44"><a href="#cb23-44" tabindex="-1"></a><span class="co">#                 write.proteome(proteome = cds2aa(read.cds(subject_files[organism],</span></span>
+<span id="cb23-45"><a href="#cb23-45" tabindex="-1"></a><span class="co">#                   format = format, delete_corrupt_cds = delete_corrupt_cds),</span></span>
+<span id="cb23-46"><a href="#cb23-46" tabindex="-1"></a><span class="co">#                   delete_corrupt_cds = delete_corrupt_cds), file.name = file.path(tempdir(),</span></span>
+<span id="cb23-47"><a href="#cb23-47" tabindex="-1"></a><span class="co">#                   paste0(short.name, &quot;_translated.fasta&quot;)))</span></span>
+<span id="cb23-48"><a href="#cb23-48" tabindex="-1"></a><span class="co">#             }</span></span>
+<span id="cb23-49"><a href="#cb23-49" tabindex="-1"></a><span class="co">#             subject_files &lt;- file.path(tempdir(), paste0(short.name,</span></span>
+<span id="cb23-50"><a href="#cb23-50" tabindex="-1"></a><span class="co">#                 &quot;_translated.fasta&quot;))</span></span>
+<span id="cb23-51"><a href="#cb23-51" tabindex="-1"></a><span class="co">#         } else {</span></span>
+<span id="cb23-52"><a href="#cb23-52" tabindex="-1"></a><span class="co">#             filename_subj &lt;- unlist(strsplit(subject_files, f_sep,</span></span>
+<span id="cb23-53"><a href="#cb23-53" tabindex="-1"></a><span class="co">#                 fixed = FALSE, perl = TRUE, useBytes = FALSE))</span></span>
+<span id="cb23-54"><a href="#cb23-54" tabindex="-1"></a><span class="co">#             filename_subj &lt;- filename_subj[length(filename_subj)]</span></span>
+<span id="cb23-55"><a href="#cb23-55" tabindex="-1"></a><span class="co">#             write.proteome(proteome = cds2aa(read.cds(subject_files,</span></span>
+<span id="cb23-56"><a href="#cb23-56" tabindex="-1"></a><span class="co">#                 format = format, delete_corrupt_cds = delete_corrupt_cds),</span></span>
+<span id="cb23-57"><a href="#cb23-57" tabindex="-1"></a><span class="co">#                 delete_corrupt_cds = delete_corrupt_cds), file.name = file.path(tempdir(),</span></span>
+<span id="cb23-58"><a href="#cb23-58" tabindex="-1"></a><span class="co">#                 paste0(filename_subj, &quot;_translated.fasta&quot;)))</span></span>
+<span id="cb23-59"><a href="#cb23-59" tabindex="-1"></a><span class="co">#             subject_files &lt;- file.path(tempdir(), paste0(filename_subj,</span></span>
+<span id="cb23-60"><a href="#cb23-60" tabindex="-1"></a><span class="co">#                 &quot;_translated.fasta&quot;))</span></span>
+<span id="cb23-61"><a href="#cb23-61" tabindex="-1"></a><span class="co">#         }</span></span>
+<span id="cb23-62"><a href="#cb23-62" tabindex="-1"></a><span class="co">#         query_file &lt;- file.path(tempdir(), paste0(filename_qry,</span></span>
+<span id="cb23-63"><a href="#cb23-63" tabindex="-1"></a><span class="co">#             &quot;_translated.fasta&quot;))</span></span>
+<span id="cb23-64"><a href="#cb23-64" tabindex="-1"></a><span class="co">#     }</span></span>
+<span id="cb23-65"><a href="#cb23-65" tabindex="-1"></a><span class="co">#     </span></span>
+<span id="cb23-66"><a href="#cb23-66" tabindex="-1"></a><span class="co">#     </span></span>
+<span id="cb23-67"><a href="#cb23-67" tabindex="-1"></a><span class="co">#     if (ortho_detection == &quot;BH&quot;) {</span></span>
+<span id="cb23-68"><a href="#cb23-68" tabindex="-1"></a><span class="co">#         if (length(subject_files) &gt; 1)</span></span>
+<span id="cb23-69"><a href="#cb23-69" tabindex="-1"></a><span class="co">#             stop(&quot;The BLAST best hit method is only defined for pairwise comparisons.&quot;,</span></span>
+<span id="cb23-70"><a href="#cb23-70" tabindex="-1"></a><span class="co">#                 call. = FALSE)</span></span>
+<span id="cb23-71"><a href="#cb23-71" tabindex="-1"></a><span class="co">#         ortho_tbl &lt;- data.table::copy(blast_best(query_file = query_file,</span></span>
+<span id="cb23-72"><a href="#cb23-72" tabindex="-1"></a><span class="co">#             subject_file = subject_files, path = path, delete_corrupt_cds = delete_corrupt_cds,</span></span>
+<span id="cb23-73"><a href="#cb23-73" tabindex="-1"></a><span class="co">#             comp_cores = comp_cores, eval = eval, blast_params = add_params,</span></span>
+<span id="cb23-74"><a href="#cb23-74" tabindex="-1"></a><span class="co">#             seq_type = seq_type, format = format))</span></span>
+<span id="cb23-75"><a href="#cb23-75" tabindex="-1"></a><span class="co">#         if (clean_folders)</span></span>
+<span id="cb23-76"><a href="#cb23-76" tabindex="-1"></a><span class="co">#             clean_all_folders(file.path(tempdir(), &quot;_blast_db&quot;))</span></span>
+<span id="cb23-77"><a href="#cb23-77" tabindex="-1"></a><span class="co">#     }</span></span>
+<span id="cb23-78"><a href="#cb23-78" tabindex="-1"></a><span class="co">#     </span></span>
+<span id="cb23-79"><a href="#cb23-79" tabindex="-1"></a><span class="co">#     # this uses orthologr::blast_rec</span></span>
+<span id="cb23-80"><a href="#cb23-80" tabindex="-1"></a><span class="co">#     if (ortho_detection == &quot;RBH&quot;) {</span></span>
+<span id="cb23-81"><a href="#cb23-81" tabindex="-1"></a><span class="co">#         if (length(subject_files) &gt; 1)</span></span>
+<span id="cb23-82"><a href="#cb23-82" tabindex="-1"></a><span class="co">#             stop(&quot;The BLAST best reciprocal hit method is only defined for pairwise comparisons.&quot;,</span></span>
+<span id="cb23-83"><a href="#cb23-83" tabindex="-1"></a><span class="co">#                 call. = FALSE)</span></span>
+<span id="cb23-84"><a href="#cb23-84" tabindex="-1"></a><span class="co">#         ortho_tbl &lt;- data.table::copy(blast_rec(query_file = query_file,</span></span>
+<span id="cb23-85"><a href="#cb23-85" tabindex="-1"></a><span class="co">#             subject_file = subject_files, path = path, delete_corrupt_cds = delete_corrupt_cds,</span></span>
+<span id="cb23-86"><a href="#cb23-86" tabindex="-1"></a><span class="co">#             comp_cores = comp_cores, eval = eval, blast_params = add_params,</span></span>
+<span id="cb23-87"><a href="#cb23-87" tabindex="-1"></a><span class="co">#             seq_type = seq_type, format = format))</span></span>
+<span id="cb23-88"><a href="#cb23-88" tabindex="-1"></a><span class="co">#         if (clean_folders)</span></span>
+<span id="cb23-89"><a href="#cb23-89" tabindex="-1"></a><span class="co">#             clean_all_folders(file.path(tempdir(), &quot;_blast_db&quot;))</span></span>
+<span id="cb23-90"><a href="#cb23-90" tabindex="-1"></a><span class="co">#     }</span></span>
+<span id="cb23-91"><a href="#cb23-91" tabindex="-1"></a><span class="co">#     </span></span>
+<span id="cb23-92"><a href="#cb23-92" tabindex="-1"></a><span class="co">#     if (ortho_detection == &quot;Orthofinder2&quot;) {</span></span>
+<span id="cb23-93"><a href="#cb23-93" tabindex="-1"></a><span class="co">#         message(&quot;This option is currently under development and will be available soon.&quot;,</span></span>
+<span id="cb23-94"><a href="#cb23-94" tabindex="-1"></a><span class="co">#             call. = FALSE)</span></span>
+<span id="cb23-95"><a href="#cb23-95" tabindex="-1"></a><span class="co">#     }</span></span>
+<span id="cb23-96"><a href="#cb23-96" tabindex="-1"></a><span class="co">#     </span></span>
+<span id="cb23-97"><a href="#cb23-97" tabindex="-1"></a><span class="co">#     return(ortho_tbl)</span></span>
+<span id="cb23-98"><a href="#cb23-98" tabindex="-1"></a><span class="co"># }</span></span>
+<span id="cb23-99"><a href="#cb23-99" tabindex="-1"></a></span>
+<span id="cb23-100"><a href="#cb23-100" tabindex="-1"></a></span>
+<span id="cb23-101"><a href="#cb23-101" tabindex="-1"></a></span>
+<span id="cb23-102"><a href="#cb23-102" tabindex="-1"></a></span>
+<span id="cb23-103"><a href="#cb23-103" tabindex="-1"></a><span class="co"># orthologr::blast_rec = function (query_file, </span></span>
+<span id="cb23-104"><a href="#cb23-104" tabindex="-1"></a>blast_rec <span class="ot">=</span> <span class="cf">function</span> (query_file, </span>
+<span id="cb23-105"><a href="#cb23-105" tabindex="-1"></a>                                 subject_file, </span>
+<span id="cb23-106"><a href="#cb23-106" tabindex="-1"></a>                                 <span class="at">seq_type =</span> <span class="st">&quot;cds&quot;</span>, </span>
+<span id="cb23-107"><a href="#cb23-107" tabindex="-1"></a>                                 <span class="at">format =</span> <span class="st">&quot;fasta&quot;</span>,</span>
+<span id="cb23-108"><a href="#cb23-108" tabindex="-1"></a>                                 <span class="at">blast_algorithm =</span> <span class="st">&quot;blastp&quot;</span>, </span>
+<span id="cb23-109"><a href="#cb23-109" tabindex="-1"></a>                                 <span class="at">delete_corrupt_cds =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb23-110"><a href="#cb23-110" tabindex="-1"></a>                                 <span class="at">eval =</span> <span class="st">&quot;1E-5&quot;</span>,</span>
+<span id="cb23-111"><a href="#cb23-111" tabindex="-1"></a>                                 <span class="at">max.target.seqs =</span> <span class="dv">10000</span>, </span>
+<span id="cb23-112"><a href="#cb23-112" tabindex="-1"></a>                                 <span class="at">path =</span> <span class="cn">NULL</span>, </span>
+<span id="cb23-113"><a href="#cb23-113" tabindex="-1"></a>                                 <span class="at">comp_cores =</span> <span class="dv">1</span>, </span>
+<span id="cb23-114"><a href="#cb23-114" tabindex="-1"></a>                                 <span class="at">blast_params =</span> <span class="cn">NULL</span>,</span>
+<span id="cb23-115"><a href="#cb23-115" tabindex="-1"></a>                                 <span class="at">clean_folders =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb23-116"><a href="#cb23-116" tabindex="-1"></a>                                 <span class="at">save.output =</span> <span class="cn">NULL</span></span>
+<span id="cb23-117"><a href="#cb23-117" tabindex="-1"></a>                                 ) {</span>
+<span id="cb23-118"><a href="#cb23-118" tabindex="-1"></a>    </span>
+<span id="cb23-119"><a href="#cb23-119" tabindex="-1"></a>   <span class="fu">cat</span>(crayon<span class="sc">::</span><span class="fu">yellow</span>(<span class="st">&quot;</span><span class="sc">\n\n</span><span class="st">blast_rec&quot;</span>), <span class="st">&quot;</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span>
+<span id="cb23-120"><a href="#cb23-120" tabindex="-1"></a>  </span>
+<span id="cb23-121"><a href="#cb23-121" tabindex="-1"></a>  </span>
+<span id="cb23-122"><a href="#cb23-122" tabindex="-1"></a>  <span class="co"># this uses orthologr::blast_best</span></span>
+<span id="cb23-123"><a href="#cb23-123" tabindex="-1"></a>    orthoA <span class="ot">&lt;-</span> <span class="fu">blast_best</span>(<span class="at">query_file =</span> query_file, <span class="at">subject_file =</span> subject_file,</span>
+<span id="cb23-124"><a href="#cb23-124" tabindex="-1"></a>        <span class="at">eval =</span> eval, <span class="at">max.target.seqs =</span> max.target.seqs, <span class="at">format =</span> format,</span>
+<span id="cb23-125"><a href="#cb23-125" tabindex="-1"></a>        <span class="at">seq_type =</span> seq_type, <span class="at">blast_algorithm =</span> blast_algorithm,</span>
+<span id="cb23-126"><a href="#cb23-126" tabindex="-1"></a>        <span class="at">delete_corrupt_cds =</span> delete_corrupt_cds, <span class="at">path =</span> path,</span>
+<span id="cb23-127"><a href="#cb23-127" tabindex="-1"></a>        <span class="at">comp_cores =</span> comp_cores, <span class="at">blast_params =</span> blast_params,</span>
+<span id="cb23-128"><a href="#cb23-128" tabindex="-1"></a>        <span class="at">save.output =</span> save.output)</span>
+<span id="cb23-129"><a href="#cb23-129" tabindex="-1"></a>    </span>
+<span id="cb23-130"><a href="#cb23-130" tabindex="-1"></a>    orthoB <span class="ot">&lt;-</span> <span class="fu">blast_best</span>(<span class="at">query_file =</span> subject_file, <span class="at">subject_file =</span> query_file,</span>
+<span id="cb23-131"><a href="#cb23-131" tabindex="-1"></a>        <span class="at">seq_type =</span> seq_type, <span class="at">eval =</span> eval, <span class="at">max.target.seqs =</span> max.target.seqs,</span>
+<span id="cb23-132"><a href="#cb23-132" tabindex="-1"></a>        <span class="at">format =</span> format, <span class="at">blast_algorithm =</span> blast_algorithm, <span class="at">delete_corrupt_cds =</span> delete_corrupt_cds,</span>
+<span id="cb23-133"><a href="#cb23-133" tabindex="-1"></a>        <span class="at">path =</span> path, <span class="at">comp_cores =</span> comp_cores, <span class="at">blast_params =</span> blast_params,</span>
+<span id="cb23-134"><a href="#cb23-134" tabindex="-1"></a>        <span class="at">clean_folders =</span> clean_folders, <span class="at">save.output =</span> save.output)</span>
+<span id="cb23-135"><a href="#cb23-135" tabindex="-1"></a>    </span>
+<span id="cb23-136"><a href="#cb23-136" tabindex="-1"></a>    </span>
+<span id="cb23-137"><a href="#cb23-137" tabindex="-1"></a>    <span class="fu">colnames</span>(orthoB)[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;subject_id&quot;</span>, <span class="st">&quot;query_id&quot;</span>)</span>
+<span id="cb23-138"><a href="#cb23-138" tabindex="-1"></a>    </span>
+<span id="cb23-139"><a href="#cb23-139" tabindex="-1"></a>    </span>
+<span id="cb23-140"><a href="#cb23-140" tabindex="-1"></a>    <span class="fu">tryCatch</span>({</span>
+<span id="cb23-141"><a href="#cb23-141" tabindex="-1"></a>        <span class="fu">return</span>(dplyr<span class="sc">::</span><span class="fu">semi_join</span>(orthoA, orthoB, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;query_id&quot;</span>,</span>
+<span id="cb23-142"><a href="#cb23-142" tabindex="-1"></a>            <span class="st">&quot;subject_id&quot;</span>)))</span>
+<span id="cb23-143"><a href="#cb23-143" tabindex="-1"></a>    }, <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
+<span id="cb23-144"><a href="#cb23-144" tabindex="-1"></a>        <span class="fu">stop</span>(<span class="st">&quot;The BLAST tables resulting from &quot;</span>, query_file,</span>
+<span id="cb23-145"><a href="#cb23-145" tabindex="-1"></a>            <span class="st">&quot; and &quot;</span>, subject_file, <span class="st">&quot; could not be joined properly to select only the reciprocal best hits.&quot;</span>)</span>
+<span id="cb23-146"><a href="#cb23-146" tabindex="-1"></a>    })</span>
+<span id="cb23-147"><a href="#cb23-147" tabindex="-1"></a>    </span>
+<span id="cb23-148"><a href="#cb23-148" tabindex="-1"></a>}</span>
+<span id="cb23-149"><a href="#cb23-149" tabindex="-1"></a></span>
+<span id="cb23-150"><a href="#cb23-150" tabindex="-1"></a></span>
+<span id="cb23-151"><a href="#cb23-151" tabindex="-1"></a></span>
+<span id="cb23-152"><a href="#cb23-152" tabindex="-1"></a></span>
+<span id="cb23-153"><a href="#cb23-153" tabindex="-1"></a><span class="co"># orthologr::blast_best = function (query_file, </span></span>
+<span id="cb23-154"><a href="#cb23-154" tabindex="-1"></a>blast_best <span class="ot">=</span> <span class="cf">function</span> (query_file, </span>
+<span id="cb23-155"><a href="#cb23-155" tabindex="-1"></a>                                  subject_file, </span>
+<span id="cb23-156"><a href="#cb23-156" tabindex="-1"></a>                                  <span class="at">seq_type =</span> <span class="st">&quot;cds&quot;</span>, </span>
+<span id="cb23-157"><a href="#cb23-157" tabindex="-1"></a>                                  <span class="at">format =</span> <span class="st">&quot;fasta&quot;</span>,</span>
+<span id="cb23-158"><a href="#cb23-158" tabindex="-1"></a>                                  <span class="at">blast_algorithm =</span> <span class="st">&quot;blastp&quot;</span>, </span>
+<span id="cb23-159"><a href="#cb23-159" tabindex="-1"></a>                                  <span class="at">delete_corrupt_cds =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb23-160"><a href="#cb23-160" tabindex="-1"></a>                                  <span class="at">eval =</span> <span class="st">&quot;1E-5&quot;</span>,</span>
+<span id="cb23-161"><a href="#cb23-161" tabindex="-1"></a>                                  <span class="at">max.target.seqs =</span> <span class="dv">10000</span>, </span>
+<span id="cb23-162"><a href="#cb23-162" tabindex="-1"></a>                                  <span class="at">path =</span> <span class="cn">NULL</span>, </span>
+<span id="cb23-163"><a href="#cb23-163" tabindex="-1"></a>                                  <span class="at">comp_cores =</span> <span class="dv">1</span>, </span>
+<span id="cb23-164"><a href="#cb23-164" tabindex="-1"></a>                                  <span class="at">blast_params =</span> <span class="cn">NULL</span>,</span>
+<span id="cb23-165"><a href="#cb23-165" tabindex="-1"></a>                                  <span class="at">clean_folders =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb23-166"><a href="#cb23-166" tabindex="-1"></a>                                  <span class="at">save.output =</span> <span class="cn">NULL</span></span>
+<span id="cb23-167"><a href="#cb23-167" tabindex="-1"></a>                                  ) {</span>
+<span id="cb23-168"><a href="#cb23-168" tabindex="-1"></a>  </span>
+<span id="cb23-169"><a href="#cb23-169" tabindex="-1"></a>  </span>
+<span id="cb23-170"><a href="#cb23-170" tabindex="-1"></a>    default_pars <span class="ot">&lt;-</span> <span class="st">&quot;-best_hit_score_edge 0.05 -best_hit_overhang 0.25&quot;</span></span>
+<span id="cb23-171"><a href="#cb23-171" tabindex="-1"></a>    </span>
+<span id="cb23-172"><a href="#cb23-172" tabindex="-1"></a>    <span class="co"># this uses orthologr::blast</span></span>
+<span id="cb23-173"><a href="#cb23-173" tabindex="-1"></a>    hit_tbl <span class="ot">&lt;-</span> <span class="fu">blast</span>(<span class="at">query_file =</span> query_file, <span class="at">subject_file =</span> subject_file,</span>
+<span id="cb23-174"><a href="#cb23-174" tabindex="-1"></a>        <span class="at">eval =</span> eval, <span class="at">max.target.seqs =</span> max.target.seqs, <span class="at">delete_corrupt_cds =</span> delete_corrupt_cds,</span>
+<span id="cb23-175"><a href="#cb23-175" tabindex="-1"></a>        <span class="at">seq_type =</span> seq_type, <span class="at">format =</span> format, <span class="at">path =</span> path, <span class="at">comp_cores =</span> comp_cores,</span>
+<span id="cb23-176"><a href="#cb23-176" tabindex="-1"></a>        <span class="at">blast_params =</span> <span class="fu">ifelse</span>(<span class="sc">!</span><span class="fu">is.null</span>(blast_params), <span class="fu">paste0</span>(blast_params,</span>
+<span id="cb23-177"><a href="#cb23-177" tabindex="-1"></a>            <span class="st">&quot; &quot;</span>, default_pars), default_pars), <span class="at">clean_folders =</span> clean_folders,</span>
+<span id="cb23-178"><a href="#cb23-178" tabindex="-1"></a>        <span class="at">save.output =</span> save.output)</span>
+<span id="cb23-179"><a href="#cb23-179" tabindex="-1"></a>    </span>
+<span id="cb23-180"><a href="#cb23-180" tabindex="-1"></a>    query_id <span class="ot">&lt;-</span> <span class="st">&quot;.&quot;</span> <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb23-181"><a href="#cb23-181" tabindex="-1"></a>    </span>
+<span id="cb23-182"><a href="#cb23-182" tabindex="-1"></a>    hit_tbl <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">do</span>(dplyr<span class="sc">::</span><span class="fu">group_by</span>(hit_tbl, query_id),</span>
+<span id="cb23-183"><a href="#cb23-183" tabindex="-1"></a>                         <span class="fu">filter_best_hitsX</span>(.))</span>
+<span id="cb23-184"><a href="#cb23-184" tabindex="-1"></a>    </span>
+<span id="cb23-185"><a href="#cb23-185" tabindex="-1"></a>    <span class="fu">return</span>(hit_tbl)</span>
+<span id="cb23-186"><a href="#cb23-186" tabindex="-1"></a>    </span>
+<span id="cb23-187"><a href="#cb23-187" tabindex="-1"></a>}</span>
+<span id="cb23-188"><a href="#cb23-188" tabindex="-1"></a></span>
+<span id="cb23-189"><a href="#cb23-189" tabindex="-1"></a>is_installed_blast <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">path =</span> <span class="cn">NULL</span>) {</span>
+<span id="cb23-190"><a href="#cb23-190" tabindex="-1"></a>        <span class="co"># test if a valid BLAST version is installed</span></span>
+<span id="cb23-191"><a href="#cb23-191" tabindex="-1"></a>        <span class="fu">tryCatch</span>({</span>
+<span id="cb23-192"><a href="#cb23-192" tabindex="-1"></a>                <span class="cf">if</span> (<span class="fu">is.null</span>(path)) {</span>
+<span id="cb23-193"><a href="#cb23-193" tabindex="-1"></a>                        sys_out <span class="ot">&lt;-</span></span>
+<span id="cb23-194"><a href="#cb23-194" tabindex="-1"></a>                                <span class="fu">system</span>(<span class="st">&quot;blastp -version&quot;</span>, <span class="at">intern =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb23-195"><a href="#cb23-195" tabindex="-1"></a>                } <span class="cf">else</span> {</span>
+<span id="cb23-196"><a href="#cb23-196" tabindex="-1"></a>                        sys_out <span class="ot">&lt;-</span></span>
+<span id="cb23-197"><a href="#cb23-197" tabindex="-1"></a>                                <span class="fu">system</span>(<span class="fu">paste0</span>(</span>
+<span id="cb23-198"><a href="#cb23-198" tabindex="-1"></a>                                        <span class="st">&#39;export PATH=$PATH:&#39;</span>,</span>
+<span id="cb23-199"><a href="#cb23-199" tabindex="-1"></a>                                        path, <span class="st">&quot;&#39;; blastp -version &#39;&quot;</span>), <span class="at">intern =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb23-200"><a href="#cb23-200" tabindex="-1"></a>                }</span>
+<span id="cb23-201"><a href="#cb23-201" tabindex="-1"></a>                </span>
+<span id="cb23-202"><a href="#cb23-202" tabindex="-1"></a>                </span>
+<span id="cb23-203"><a href="#cb23-203" tabindex="-1"></a>        }, <span class="at">error =</span> <span class="cf">function</span>(e)</span>
+<span id="cb23-204"><a href="#cb23-204" tabindex="-1"></a>                <span class="fu">stop</span>(</span>
+<span id="cb23-205"><a href="#cb23-205" tabindex="-1"></a>                        <span class="st">&quot;It seems like you don&#39;t have BLAST installed locally on your machine or the PATH variable to the BLAST program is not set correctly.&quot;</span>,</span>
+<span id="cb23-206"><a href="#cb23-206" tabindex="-1"></a>                        <span class="at">call. =</span> <span class="cn">FALSE</span></span>
+<span id="cb23-207"><a href="#cb23-207" tabindex="-1"></a>                ))</span>
+<span id="cb23-208"><a href="#cb23-208" tabindex="-1"></a>        </span>
+<span id="cb23-209"><a href="#cb23-209" tabindex="-1"></a>        <span class="cf">if</span> (<span class="fu">any</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(sys_out, <span class="st">&quot;blast&quot;</span>)))</span>
+<span id="cb23-210"><a href="#cb23-210" tabindex="-1"></a>                <span class="fu">return</span>(<span class="cn">TRUE</span>)</span>
+<span id="cb23-211"><a href="#cb23-211" tabindex="-1"></a>        </span>
+<span id="cb23-212"><a href="#cb23-212" tabindex="-1"></a>}</span>
+<span id="cb23-213"><a href="#cb23-213" tabindex="-1"></a></span>
+<span id="cb23-214"><a href="#cb23-214" tabindex="-1"></a></span>
+<span id="cb23-215"><a href="#cb23-215" tabindex="-1"></a></span>
+<span id="cb23-216"><a href="#cb23-216" tabindex="-1"></a></span>
+<span id="cb23-217"><a href="#cb23-217" tabindex="-1"></a><span class="co"># orthologr::blast = function (query_file, </span></span>
+<span id="cb23-218"><a href="#cb23-218" tabindex="-1"></a>blast <span class="ot">=</span> <span class="cf">function</span> (query_file, </span>
+<span id="cb23-219"><a href="#cb23-219" tabindex="-1"></a>                             subject_file, </span>
+<span id="cb23-220"><a href="#cb23-220" tabindex="-1"></a>                             <span class="at">seq_type =</span> <span class="st">&quot;cds&quot;</span>, </span>
+<span id="cb23-221"><a href="#cb23-221" tabindex="-1"></a>                             <span class="at">format =</span> <span class="st">&quot;fasta&quot;</span>,</span>
+<span id="cb23-222"><a href="#cb23-222" tabindex="-1"></a>                             <span class="at">blast_algorithm =</span> <span class="st">&quot;blastp&quot;</span>, </span>
+<span id="cb23-223"><a href="#cb23-223" tabindex="-1"></a>                             <span class="at">eval =</span> <span class="st">&quot;1E-5&quot;</span>, </span>
+<span id="cb23-224"><a href="#cb23-224" tabindex="-1"></a>                             <span class="at">max.target.seqs =</span> <span class="dv">10000</span>,</span>
+<span id="cb23-225"><a href="#cb23-225" tabindex="-1"></a>                             <span class="at">delete_corrupt_cds =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb23-226"><a href="#cb23-226" tabindex="-1"></a>                             <span class="at">remote =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb23-227"><a href="#cb23-227" tabindex="-1"></a>                             <span class="at">db =</span> <span class="cn">NULL</span>, </span>
+<span id="cb23-228"><a href="#cb23-228" tabindex="-1"></a>                             <span class="at">path =</span> <span class="cn">NULL</span>,</span>
+<span id="cb23-229"><a href="#cb23-229" tabindex="-1"></a>                             <span class="at">comp_cores =</span> <span class="dv">1</span>, </span>
+<span id="cb23-230"><a href="#cb23-230" tabindex="-1"></a>                             <span class="at">blast_params =</span> <span class="cn">NULL</span>, </span>
+<span id="cb23-231"><a href="#cb23-231" tabindex="-1"></a>                             <span class="at">clean_folders =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb23-232"><a href="#cb23-232" tabindex="-1"></a>                             <span class="at">save.output =</span> <span class="cn">NULL</span></span>
+<span id="cb23-233"><a href="#cb23-233" tabindex="-1"></a>                             ) {</span>
+<span id="cb23-234"><a href="#cb23-234" tabindex="-1"></a>  </span>
+<span id="cb23-235"><a href="#cb23-235" tabindex="-1"></a>  </span>
+<span id="cb23-236"><a href="#cb23-236" tabindex="-1"></a>   <span class="fu">cat</span>(crayon<span class="sc">::</span><span class="fu">green</span>(<span class="st">&quot;</span><span class="sc">\n\n</span><span class="st">BLAST&quot;</span>), <span class="st">&quot;</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span>
+<span id="cb23-237"><a href="#cb23-237" tabindex="-1"></a>  </span>
+<span id="cb23-238"><a href="#cb23-238" tabindex="-1"></a>    <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.element</span>(blast_algorithm, <span class="fu">c</span>(<span class="st">&quot;blastp&quot;</span>)))</span>
+<span id="cb23-239"><a href="#cb23-239" tabindex="-1"></a>        <span class="fu">stop</span>(<span class="st">&quot;Please choose a valid BLAST mode. Only &#39;blastp&#39; is available for this function.&quot;</span>,</span>
+<span id="cb23-240"><a href="#cb23-240" tabindex="-1"></a>            <span class="at">call. =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb23-241"><a href="#cb23-241" tabindex="-1"></a>  </span>
+<span id="cb23-242"><a href="#cb23-242" tabindex="-1"></a>    <span class="cf">if</span> (remote <span class="sc">&amp;</span> <span class="fu">is.null</span>(db))</span>
+<span id="cb23-243"><a href="#cb23-243" tabindex="-1"></a>        <span class="fu">stop</span>(<span class="st">&quot;To use the remote option of blast() please specify the &#39;db&#39; argument, e.g. db = &#39;nr&#39;&quot;</span>,</span>
+<span id="cb23-244"><a href="#cb23-244" tabindex="-1"></a>            <span class="at">call. =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb23-245"><a href="#cb23-245" tabindex="-1"></a>  </span>
+<span id="cb23-246"><a href="#cb23-246" tabindex="-1"></a>    <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(db)) {</span>
+<span id="cb23-247"><a href="#cb23-247" tabindex="-1"></a>        <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.element</span>(db, <span class="fu">c</span>(<span class="st">&quot;nr&quot;</span>, <span class="st">&quot;plaza&quot;</span>)))</span>
+<span id="cb23-248"><a href="#cb23-248" tabindex="-1"></a>            <span class="fu">stop</span>(<span class="st">&quot;Please choose a database that is supported by remote BLAST.&quot;</span>,</span>
+<span id="cb23-249"><a href="#cb23-249" tabindex="-1"></a>                <span class="at">call. =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb23-250"><a href="#cb23-250" tabindex="-1"></a>    }</span>
+<span id="cb23-251"><a href="#cb23-251" tabindex="-1"></a>  </span>
+<span id="cb23-252"><a href="#cb23-252" tabindex="-1"></a>  </span>
+<span id="cb23-253"><a href="#cb23-253" tabindex="-1"></a>    <span class="fu">is_installed_blast</span>(<span class="at">path =</span> path)</span>
+<span id="cb23-254"><a href="#cb23-254" tabindex="-1"></a>    </span>
+<span id="cb23-255"><a href="#cb23-255" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">is.null</span>(path)) {</span>
+<span id="cb23-256"><a href="#cb23-256" tabindex="-1"></a>        <span class="fu">message</span>(<span class="st">&quot;Running &quot;</span>, <span class="fu">system</span>(<span class="st">&quot;blastp -version&quot;</span>, <span class="at">intern =</span> <span class="cn">TRUE</span>)[<span class="dv">1</span>],</span>
+<span id="cb23-257"><a href="#cb23-257" tabindex="-1"></a>            <span class="st">&quot; ...&quot;</span>)</span>
+<span id="cb23-258"><a href="#cb23-258" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb23-259"><a href="#cb23-259" tabindex="-1"></a>        <span class="fu">message</span>(<span class="st">&quot;Running &quot;</span>, <span class="fu">system</span>(<span class="fu">paste0</span>(<span class="st">&quot;export PATH=$PATH:&quot;</span>,</span>
+<span id="cb23-260"><a href="#cb23-260" tabindex="-1"></a>            path, <span class="st">&quot;&#39; ; blastp -version &#39;&quot;</span>), <span class="at">intern =</span> <span class="cn">TRUE</span>)[<span class="dv">1</span>],</span>
+<span id="cb23-261"><a href="#cb23-261" tabindex="-1"></a>            <span class="st">&quot; ...&quot;</span>)</span>
+<span id="cb23-262"><a href="#cb23-262" tabindex="-1"></a>    }</span>
+<span id="cb23-263"><a href="#cb23-263" tabindex="-1"></a>    </span>
+<span id="cb23-264"><a href="#cb23-264" tabindex="-1"></a>    </span>
+<span id="cb23-265"><a href="#cb23-265" tabindex="-1"></a>    aa <span class="ot">&lt;-</span> geneids <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb23-266"><a href="#cb23-266" tabindex="-1"></a>    </span>
+<span id="cb23-267"><a href="#cb23-267" tabindex="-1"></a>    query.dt <span class="ot">&lt;-</span> <span class="fu">set_blast</span>(<span class="at">file =</span> query_file, </span>
+<span id="cb23-268"><a href="#cb23-268" tabindex="-1"></a>                          <span class="at">seq_type =</span> seq_type,</span>
+<span id="cb23-269"><a href="#cb23-269" tabindex="-1"></a>                          <span class="at">format =</span> format, </span>
+<span id="cb23-270"><a href="#cb23-270" tabindex="-1"></a>                          <span class="at">delete_corrupt_cds =</span> delete_corrupt_cds)[[<span class="dv">1</span>]]</span>
+<span id="cb23-271"><a href="#cb23-271" tabindex="-1"></a>    </span>
+<span id="cb23-272"><a href="#cb23-272" tabindex="-1"></a>    database <span class="ot">&lt;-</span> <span class="fu">set_blast</span>(<span class="at">file =</span> subject_file, </span>
+<span id="cb23-273"><a href="#cb23-273" tabindex="-1"></a>                          <span class="at">seq_type =</span> seq_type,</span>
+<span id="cb23-274"><a href="#cb23-274" tabindex="-1"></a>                          <span class="at">format =</span> format, </span>
+<span id="cb23-275"><a href="#cb23-275" tabindex="-1"></a>                          <span class="at">makedb =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb23-276"><a href="#cb23-276" tabindex="-1"></a>                          <span class="at">delete_corrupt_cds =</span> delete_corrupt_cds)[[<span class="dv">2</span>]]</span>
+<span id="cb23-277"><a href="#cb23-277" tabindex="-1"></a>    </span>
+<span id="cb23-278"><a href="#cb23-278" tabindex="-1"></a>    filename <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">strsplit</span>(query_file, </span>
+<span id="cb23-279"><a href="#cb23-279" tabindex="-1"></a>                                .Platform<span class="sc">$</span>file.sep,</span>
+<span id="cb23-280"><a href="#cb23-280" tabindex="-1"></a>                                <span class="at">fixed =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb23-281"><a href="#cb23-281" tabindex="-1"></a>                                <span class="at">perl =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb23-282"><a href="#cb23-282" tabindex="-1"></a>                                <span class="at">useBytes =</span> <span class="cn">FALSE</span>))</span>
+<span id="cb23-283"><a href="#cb23-283" tabindex="-1"></a>    </span>
+<span id="cb23-284"><a href="#cb23-284" tabindex="-1"></a>    filename <span class="ot">&lt;-</span> filename[<span class="fu">length</span>(filename)]</span>
+<span id="cb23-285"><a href="#cb23-285" tabindex="-1"></a>    </span>
+<span id="cb23-286"><a href="#cb23-286" tabindex="-1"></a>    input <span class="ot">=</span> <span class="fu">paste0</span>(<span class="st">&quot;query_&quot;</span>, filename, <span class="st">&quot;.fasta&quot;</span>)</span>
+<span id="cb23-287"><a href="#cb23-287" tabindex="-1"></a>    </span>
+<span id="cb23-288"><a href="#cb23-288" tabindex="-1"></a>    output <span class="ot">=</span> <span class="fu">paste0</span>(<span class="st">&quot;blastresult_&quot;</span>, filename, <span class="st">&quot;.csv&quot;</span>)</span>
+<span id="cb23-289"><a href="#cb23-289" tabindex="-1"></a>    </span>
+<span id="cb23-290"><a href="#cb23-290" tabindex="-1"></a>    </span>
+<span id="cb23-291"><a href="#cb23-291" tabindex="-1"></a>    <span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(<span class="fu">file.path</span>(<span class="fu">tempdir</span>(), <span class="st">&quot;_blast_db&quot;</span>))) {</span>
+<span id="cb23-292"><a href="#cb23-292" tabindex="-1"></a>      <span class="fu">dir.create</span>(<span class="fu">file.path</span>(<span class="fu">tempdir</span>(), <span class="st">&quot;_blast_db&quot;</span>))</span>
+<span id="cb23-293"><a href="#cb23-293" tabindex="-1"></a>    }</span>
+<span id="cb23-294"><a href="#cb23-294" tabindex="-1"></a>    </span>
+<span id="cb23-295"><a href="#cb23-295" tabindex="-1"></a>    </span>
+<span id="cb23-296"><a href="#cb23-296" tabindex="-1"></a>    currwd <span class="ot">&lt;-</span> <span class="fu">getwd</span>()</span>
+<span id="cb23-297"><a href="#cb23-297" tabindex="-1"></a>    </span>
+<span id="cb23-298"><a href="#cb23-298" tabindex="-1"></a>    <span class="fu">setwd</span>(<span class="fu">file.path</span>(<span class="fu">tempdir</span>(), <span class="st">&quot;_blast_db&quot;</span>))</span>
+<span id="cb23-299"><a href="#cb23-299" tabindex="-1"></a>    </span>
+<span id="cb23-300"><a href="#cb23-300" tabindex="-1"></a>    cores <span class="ot">&lt;-</span> parallel<span class="sc">::</span><span class="fu">detectCores</span>()</span>
+<span id="cb23-301"><a href="#cb23-301" tabindex="-1"></a>    </span>
+<span id="cb23-302"><a href="#cb23-302" tabindex="-1"></a>    <span class="cf">if</span> (comp_cores <span class="sc">&gt;</span> cores)</span>
+<span id="cb23-303"><a href="#cb23-303" tabindex="-1"></a>        <span class="fu">stop</span>(<span class="st">&quot;You chose more cores than are available on your machine.&quot;</span>,</span>
+<span id="cb23-304"><a href="#cb23-304" tabindex="-1"></a>            <span class="at">call. =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb23-305"><a href="#cb23-305" tabindex="-1"></a>    </span>
+<span id="cb23-306"><a href="#cb23-306" tabindex="-1"></a>    </span>
+<span id="cb23-307"><a href="#cb23-307" tabindex="-1"></a>    <span class="fu">tryCatch</span>({</span>
+<span id="cb23-308"><a href="#cb23-308" tabindex="-1"></a>        seqinr<span class="sc">::</span><span class="fu">write.fasta</span>(<span class="at">sequences =</span> <span class="fu">as.list</span>(query.dt[, aa]),</span>
+<span id="cb23-309"><a href="#cb23-309" tabindex="-1"></a>            <span class="at">names =</span> query.dt[, geneids], <span class="at">nbchar =</span> <span class="dv">80</span>, <span class="at">open =</span> <span class="st">&quot;w&quot;</span>,</span>
+<span id="cb23-310"><a href="#cb23-310" tabindex="-1"></a>            <span class="at">file.out =</span> input)</span>
+<span id="cb23-311"><a href="#cb23-311" tabindex="-1"></a>    }, <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
+<span id="cb23-312"><a href="#cb23-312" tabindex="-1"></a>        <span class="fu">stop</span>(<span class="st">&quot;File &quot;</span>, input, <span class="st">&quot; could not be written properly to the internal folder environment.&quot;</span>,</span>
+<span id="cb23-313"><a href="#cb23-313" tabindex="-1"></a>            <span class="st">&quot; Please check the path to &quot;</span>, input, <span class="st">&quot;.&quot;</span>)</span>
+<span id="cb23-314"><a href="#cb23-314" tabindex="-1"></a>    })</span>
+<span id="cb23-315"><a href="#cb23-315" tabindex="-1"></a>    </span>
+<span id="cb23-316"><a href="#cb23-316" tabindex="-1"></a>    </span>
+<span id="cb23-317"><a href="#cb23-317" tabindex="-1"></a>    <span class="fu">tryCatch</span>({</span>
+<span id="cb23-318"><a href="#cb23-318" tabindex="-1"></a>        <span class="cf">if</span> (remote) {</span>
+<span id="cb23-319"><a href="#cb23-319" tabindex="-1"></a>            <span class="fu">system</span>(<span class="fu">paste0</span>(<span class="st">&quot;blastp -db &quot;</span>, db, <span class="st">&quot; -query &quot;</span>, input,</span>
+<span id="cb23-320"><a href="#cb23-320" tabindex="-1"></a>                <span class="st">&quot; -remote -evalue &quot;</span>, eval, <span class="st">&quot; -out &quot;</span>, output,</span>
+<span id="cb23-321"><a href="#cb23-321" tabindex="-1"></a>                <span class="st">&quot; -outfmt 6&quot;</span>))</span>
+<span id="cb23-322"><a href="#cb23-322" tabindex="-1"></a>        } <span class="cf">else</span> {</span>
+<span id="cb23-323"><a href="#cb23-323" tabindex="-1"></a>            <span class="cf">if</span> (<span class="fu">is.null</span>(path)) {</span>
+<span id="cb23-324"><a href="#cb23-324" tabindex="-1"></a>                <span class="cf">if</span> (blast_algorithm <span class="sc">==</span> <span class="st">&quot;blastp&quot;</span>) {</span>
+<span id="cb23-325"><a href="#cb23-325" tabindex="-1"></a>                  <span class="cf">if</span> (<span class="fu">is.null</span>(blast_params)) {</span>
+<span id="cb23-326"><a href="#cb23-326" tabindex="-1"></a>                    <span class="fu">system</span>(<span class="fu">paste0</span>(<span class="st">&quot;blastp -db &quot;</span>, database, <span class="st">&quot; -query &quot;</span>,</span>
+<span id="cb23-327"><a href="#cb23-327" tabindex="-1"></a>                      input, <span class="st">&quot; -evalue &quot;</span>, eval, <span class="st">&quot; -max_target_seqs &quot;</span>,</span>
+<span id="cb23-328"><a href="#cb23-328" tabindex="-1"></a>                      max.target.seqs, <span class="st">&quot; -out &quot;</span>, output, <span class="st">&quot; -num_threads &quot;</span>,</span>
+<span id="cb23-329"><a href="#cb23-329" tabindex="-1"></a>                      comp_cores, <span class="st">&quot; -outfmt </span><span class="sc">\&quot;</span><span class="st">6&quot;</span>, </span>
+<span id="cb23-330"><a href="#cb23-330" tabindex="-1"></a>                      <span class="st">&quot; qseqid sseqid pident nident length mismatch gapopen gaps positive ppos qstart qend qlen qcovs qcovhsp sstart send slen evalue bitscore score</span><span class="sc">\&quot;</span><span class="st">&quot;</span>))</span>
+<span id="cb23-331"><a href="#cb23-331" tabindex="-1"></a>                  }</span>
+<span id="cb23-332"><a href="#cb23-332" tabindex="-1"></a>                  <span class="cf">else</span> {</span>
+<span id="cb23-333"><a href="#cb23-333" tabindex="-1"></a>                    <span class="fu">system</span>(<span class="fu">paste0</span>(<span class="st">&quot;blastp -db &quot;</span>, database, <span class="st">&quot; -query &quot;</span>,</span>
+<span id="cb23-334"><a href="#cb23-334" tabindex="-1"></a>                      input, <span class="st">&quot; -evalue &quot;</span>, eval, <span class="st">&quot; -max_target_seqs &quot;</span>,</span>
+<span id="cb23-335"><a href="#cb23-335" tabindex="-1"></a>                      max.target.seqs, <span class="st">&quot; -out &quot;</span>, output, <span class="st">&quot; -num_threads &quot;</span>,</span>
+<span id="cb23-336"><a href="#cb23-336" tabindex="-1"></a>                      comp_cores, <span class="st">&quot; &quot;</span>, blast_params, <span class="st">&quot; -outfmt 6</span><span class="sc">\&quot;</span><span class="st">&quot;</span>,</span>
+<span id="cb23-337"><a href="#cb23-337" tabindex="-1"></a>                      <span class="st">&quot; qseqid sseqid pident nident length mismatch gapopen gaps positive ppos qstart qend qlen qcovs qcovhsp sstart send slen evalue bitscore score</span><span class="sc">\&quot;</span><span class="st">&quot;</span>))</span>
+<span id="cb23-338"><a href="#cb23-338" tabindex="-1"></a>                  }</span>
+<span id="cb23-339"><a href="#cb23-339" tabindex="-1"></a>                }</span>
+<span id="cb23-340"><a href="#cb23-340" tabindex="-1"></a>            }</span>
+<span id="cb23-341"><a href="#cb23-341" tabindex="-1"></a>            <span class="cf">else</span> {</span>
+<span id="cb23-342"><a href="#cb23-342" tabindex="-1"></a>                <span class="cf">if</span> (blast_algorithm <span class="sc">==</span> <span class="st">&quot;blastp&quot;</span>) {</span>
+<span id="cb23-343"><a href="#cb23-343" tabindex="-1"></a>                  <span class="cf">if</span> (<span class="fu">is.null</span>(blast_params)) {</span>
+<span id="cb23-344"><a href="#cb23-344" tabindex="-1"></a>                    <span class="fu">system</span>(<span class="fu">paste0</span>(<span class="st">&quot;export PATH=$PATH:&quot;</span>, path,</span>
+<span id="cb23-345"><a href="#cb23-345" tabindex="-1"></a>                      <span class="st">&quot;; blastp -db &quot;</span>, database, <span class="st">&quot; -query &quot;</span>,</span>
+<span id="cb23-346"><a href="#cb23-346" tabindex="-1"></a>                      input, <span class="st">&quot; -evalue &quot;</span>, eval, <span class="st">&quot; -max_target_seqs &quot;</span>,</span>
+<span id="cb23-347"><a href="#cb23-347" tabindex="-1"></a>                      max.target.seqs, <span class="st">&quot; -out &quot;</span>, output, <span class="st">&quot; -num_threads &quot;</span>,</span>
+<span id="cb23-348"><a href="#cb23-348" tabindex="-1"></a>                      comp_cores, <span class="st">&quot; -outfmt 6</span><span class="sc">\&quot;</span><span class="st">&quot;</span>, </span>
+<span id="cb23-349"><a href="#cb23-349" tabindex="-1"></a>                      <span class="st">&quot; qseqid sseqid pident nident length mismatch gapopen gaps positive ppos qstart qend qlen qcovs qcovhsp sstart send slen evalue bitscore score</span><span class="sc">\&quot;</span><span class="st">&quot;</span>))</span>
+<span id="cb23-350"><a href="#cb23-350" tabindex="-1"></a>                  }</span>
+<span id="cb23-351"><a href="#cb23-351" tabindex="-1"></a>                  <span class="cf">else</span> {</span>
+<span id="cb23-352"><a href="#cb23-352" tabindex="-1"></a>                    <span class="fu">system</span>(<span class="fu">paste0</span>(<span class="st">&quot;export PATH=$PATH:&quot;</span>, path,</span>
+<span id="cb23-353"><a href="#cb23-353" tabindex="-1"></a>                      <span class="st">&quot;; blastp -db &quot;</span>, database, <span class="st">&quot; -query &quot;</span>,</span>
+<span id="cb23-354"><a href="#cb23-354" tabindex="-1"></a>                      input, <span class="st">&quot; -evalue &quot;</span>, eval, <span class="st">&quot; -max_target_seqs &quot;</span>,</span>
+<span id="cb23-355"><a href="#cb23-355" tabindex="-1"></a>                      max.target.seqs, <span class="st">&quot; -out &quot;</span>, output, <span class="st">&quot; -num_threads &quot;</span>,</span>
+<span id="cb23-356"><a href="#cb23-356" tabindex="-1"></a>                      comp_cores, <span class="st">&quot; &quot;</span>, blast_params, <span class="st">&quot; -outfmt 6</span><span class="sc">\&quot;</span><span class="st">&quot;</span>,</span>
+<span id="cb23-357"><a href="#cb23-357" tabindex="-1"></a>                      <span class="st">&quot; qseqid sseqid pident nident length mismatch gapopen gaps positive ppos qstart qend qlen qcovs qcovhsp sstart send slen evalue bitscore score</span><span class="sc">\&quot;</span><span class="st">&quot;</span>))</span>
+<span id="cb23-358"><a href="#cb23-358" tabindex="-1"></a>                  }</span>
+<span id="cb23-359"><a href="#cb23-359" tabindex="-1"></a>                }</span>
+<span id="cb23-360"><a href="#cb23-360" tabindex="-1"></a>            }</span>
+<span id="cb23-361"><a href="#cb23-361" tabindex="-1"></a>        }</span>
+<span id="cb23-362"><a href="#cb23-362" tabindex="-1"></a>    }, <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
+<span id="cb23-363"><a href="#cb23-363" tabindex="-1"></a>        <span class="fu">stop</span>(<span class="st">&quot;Please check the correct path to &quot;</span>, blast_algorithm,</span>
+<span id="cb23-364"><a href="#cb23-364" tabindex="-1"></a>            <span class="st">&quot;... the interface call did not work properly.&quot;</span>)</span>
+<span id="cb23-365"><a href="#cb23-365" tabindex="-1"></a>    })</span>
+<span id="cb23-366"><a href="#cb23-366" tabindex="-1"></a>    </span>
+<span id="cb23-367"><a href="#cb23-367" tabindex="-1"></a>    </span>
+<span id="cb23-368"><a href="#cb23-368" tabindex="-1"></a>    blast_table_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;query_id&quot;</span>, </span>
+<span id="cb23-369"><a href="#cb23-369" tabindex="-1"></a>                           <span class="st">&quot;subject_id&quot;</span>, </span>
+<span id="cb23-370"><a href="#cb23-370" tabindex="-1"></a>                           <span class="st">&quot;perc_identity&quot;</span>,</span>
+<span id="cb23-371"><a href="#cb23-371" tabindex="-1"></a>                           <span class="st">&quot;num_ident_matches&quot;</span>, </span>
+<span id="cb23-372"><a href="#cb23-372" tabindex="-1"></a>                           <span class="st">&quot;alig_length&quot;</span>, </span>
+<span id="cb23-373"><a href="#cb23-373" tabindex="-1"></a>                           <span class="st">&quot;mismatches&quot;</span>, </span>
+<span id="cb23-374"><a href="#cb23-374" tabindex="-1"></a>                           <span class="st">&quot;gap_openings&quot;</span>,</span>
+<span id="cb23-375"><a href="#cb23-375" tabindex="-1"></a>                           <span class="st">&quot;n_gaps&quot;</span>, </span>
+<span id="cb23-376"><a href="#cb23-376" tabindex="-1"></a>                           <span class="st">&quot;pos_match&quot;</span>, </span>
+<span id="cb23-377"><a href="#cb23-377" tabindex="-1"></a>                           <span class="st">&quot;ppos&quot;</span>, </span>
+<span id="cb23-378"><a href="#cb23-378" tabindex="-1"></a>                           <span class="st">&quot;q_start&quot;</span>, </span>
+<span id="cb23-379"><a href="#cb23-379" tabindex="-1"></a>                           <span class="st">&quot;q_end&quot;</span>, </span>
+<span id="cb23-380"><a href="#cb23-380" tabindex="-1"></a>                           <span class="st">&quot;q_len&quot;</span>,</span>
+<span id="cb23-381"><a href="#cb23-381" tabindex="-1"></a>                           <span class="st">&quot;qcov&quot;</span>, </span>
+<span id="cb23-382"><a href="#cb23-382" tabindex="-1"></a>                           <span class="st">&quot;qcovhsp&quot;</span>, </span>
+<span id="cb23-383"><a href="#cb23-383" tabindex="-1"></a>                           <span class="st">&quot;s_start&quot;</span>, </span>
+<span id="cb23-384"><a href="#cb23-384" tabindex="-1"></a>                           <span class="st">&quot;s_end&quot;</span>, </span>
+<span id="cb23-385"><a href="#cb23-385" tabindex="-1"></a>                           <span class="st">&quot;s_len&quot;</span>, </span>
+<span id="cb23-386"><a href="#cb23-386" tabindex="-1"></a>                           <span class="st">&quot;evalue&quot;</span>,</span>
+<span id="cb23-387"><a href="#cb23-387" tabindex="-1"></a>                           <span class="st">&quot;bit_score&quot;</span>, </span>
+<span id="cb23-388"><a href="#cb23-388" tabindex="-1"></a>                           <span class="st">&quot;score_raw&quot;</span>)</span>
+<span id="cb23-389"><a href="#cb23-389" tabindex="-1"></a>    </span>
+<span id="cb23-390"><a href="#cb23-390" tabindex="-1"></a>    </span>
+<span id="cb23-391"><a href="#cb23-391" tabindex="-1"></a>    <span class="fu">tryCatch</span>({</span>
+<span id="cb23-392"><a href="#cb23-392" tabindex="-1"></a>        hit_table <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">as.data.table</span>(readr<span class="sc">::</span><span class="fu">read_delim</span>(<span class="at">file =</span> output,</span>
+<span id="cb23-393"><a href="#cb23-393" tabindex="-1"></a>            <span class="at">delim =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>, <span class="at">col_types =</span> readr<span class="sc">::</span><span class="fu">cols</span>(<span class="at">X1 =</span> readr<span class="sc">::</span><span class="fu">col_character</span>(),</span>
+<span id="cb23-394"><a href="#cb23-394" tabindex="-1"></a>                <span class="at">X2 =</span> readr<span class="sc">::</span><span class="fu">col_character</span>(), <span class="at">X3 =</span> readr<span class="sc">::</span><span class="fu">col_double</span>(),</span>
+<span id="cb23-395"><a href="#cb23-395" tabindex="-1"></a>                <span class="at">X4 =</span> readr<span class="sc">::</span><span class="fu">col_integer</span>(), <span class="at">X5 =</span> readr<span class="sc">::</span><span class="fu">col_integer</span>(),</span>
+<span id="cb23-396"><a href="#cb23-396" tabindex="-1"></a>                <span class="at">X6 =</span> readr<span class="sc">::</span><span class="fu">col_integer</span>(), <span class="at">X7 =</span> readr<span class="sc">::</span><span class="fu">col_integer</span>(),</span>
+<span id="cb23-397"><a href="#cb23-397" tabindex="-1"></a>                <span class="at">X8 =</span> readr<span class="sc">::</span><span class="fu">col_integer</span>(), <span class="at">X9 =</span> readr<span class="sc">::</span><span class="fu">col_integer</span>(),</span>
+<span id="cb23-398"><a href="#cb23-398" tabindex="-1"></a>                <span class="at">X10 =</span> readr<span class="sc">::</span><span class="fu">col_double</span>(), <span class="at">X11 =</span> readr<span class="sc">::</span><span class="fu">col_integer</span>(),</span>
+<span id="cb23-399"><a href="#cb23-399" tabindex="-1"></a>                <span class="at">X12 =</span> readr<span class="sc">::</span><span class="fu">col_integer</span>(), <span class="at">X13 =</span> readr<span class="sc">::</span><span class="fu">col_integer</span>(),</span>
+<span id="cb23-400"><a href="#cb23-400" tabindex="-1"></a>                <span class="at">X14 =</span> readr<span class="sc">::</span><span class="fu">col_double</span>(), <span class="at">X15 =</span> readr<span class="sc">::</span><span class="fu">col_double</span>(),</span>
+<span id="cb23-401"><a href="#cb23-401" tabindex="-1"></a>                <span class="at">X16 =</span> readr<span class="sc">::</span><span class="fu">col_integer</span>(), <span class="at">X17 =</span> readr<span class="sc">::</span><span class="fu">col_integer</span>(),</span>
+<span id="cb23-402"><a href="#cb23-402" tabindex="-1"></a>                <span class="at">X18 =</span> readr<span class="sc">::</span><span class="fu">col_integer</span>(), <span class="at">X19 =</span> readr<span class="sc">::</span><span class="fu">col_double</span>(),</span>
+<span id="cb23-403"><a href="#cb23-403" tabindex="-1"></a>                <span class="at">X20 =</span> readr<span class="sc">::</span><span class="fu">col_number</span>(), <span class="at">X21 =</span> readr<span class="sc">::</span><span class="fu">col_double</span>())))</span>
+<span id="cb23-404"><a href="#cb23-404" tabindex="-1"></a>        data.table<span class="sc">::</span><span class="fu">setnames</span>(<span class="at">x =</span> hit_table, <span class="at">old =</span> <span class="fu">paste0</span>(<span class="st">&quot;X&quot;</span>,</span>
+<span id="cb23-405"><a href="#cb23-405" tabindex="-1"></a>            <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(blast_table_names)), <span class="at">new =</span> blast_table_names)</span>
+<span id="cb23-406"><a href="#cb23-406" tabindex="-1"></a>        data.table<span class="sc">::</span><span class="fu">setkeyv</span>(hit_table, <span class="fu">c</span>(<span class="st">&quot;query_id&quot;</span>, <span class="st">&quot;subject_id&quot;</span>))</span>
+<span id="cb23-407"><a href="#cb23-407" tabindex="-1"></a>        <span class="fu">setwd</span>(<span class="fu">file.path</span>(currwd))</span>
+<span id="cb23-408"><a href="#cb23-408" tabindex="-1"></a>        <span class="cf">if</span> (clean_folders) {</span>
+<span id="cb23-409"><a href="#cb23-409" tabindex="-1"></a>            <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(save.output))</span>
+<span id="cb23-410"><a href="#cb23-410" tabindex="-1"></a>                <span class="fu">file.copy</span>(<span class="fu">file.path</span>(<span class="fu">tempdir</span>(), <span class="st">&quot;_blast_db&quot;</span>, output),</span>
+<span id="cb23-411"><a href="#cb23-411" tabindex="-1"></a>                  save.output)</span>
+<span id="cb23-412"><a href="#cb23-412" tabindex="-1"></a>            <span class="fu">clean_all_folders</span>(<span class="fu">file.path</span>(<span class="fu">tempdir</span>(), <span class="st">&quot;_blast_db&quot;</span>))</span>
+<span id="cb23-413"><a href="#cb23-413" tabindex="-1"></a>        }</span>
+<span id="cb23-414"><a href="#cb23-414" tabindex="-1"></a>        <span class="cf">if</span> (<span class="sc">!</span>clean_folders) {</span>
+<span id="cb23-415"><a href="#cb23-415" tabindex="-1"></a>            <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(save.output))</span>
+<span id="cb23-416"><a href="#cb23-416" tabindex="-1"></a>                <span class="fu">file.copy</span>(<span class="fu">file.path</span>(<span class="fu">tempdir</span>(), <span class="st">&quot;_blast_db&quot;</span>, output),</span>
+<span id="cb23-417"><a href="#cb23-417" tabindex="-1"></a>                  save.output)</span>
+<span id="cb23-418"><a href="#cb23-418" tabindex="-1"></a>        }</span>
+<span id="cb23-419"><a href="#cb23-419" tabindex="-1"></a>        hit_table <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">as_tibble</span>(hit_table)</span>
+<span id="cb23-420"><a href="#cb23-420" tabindex="-1"></a>        <span class="fu">return</span>(hit_table)</span>
+<span id="cb23-421"><a href="#cb23-421" tabindex="-1"></a>    }, <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
+<span id="cb23-422"><a href="#cb23-422" tabindex="-1"></a>        <span class="fu">stop</span>(<span class="st">&quot;File &quot;</span>, output, <span class="st">&quot; could not be read correctly.&quot;</span>,</span>
+<span id="cb23-423"><a href="#cb23-423" tabindex="-1"></a>            <span class="st">&quot; Please check the correct path to &quot;</span>, output, <span class="st">&quot; or whether BLAST did write the resulting hit table correctly.&quot;</span>)</span>
+<span id="cb23-424"><a href="#cb23-424" tabindex="-1"></a>    })</span>
+<span id="cb23-425"><a href="#cb23-425" tabindex="-1"></a>    </span>
+<span id="cb23-426"><a href="#cb23-426" tabindex="-1"></a>}</span>
+<span id="cb23-427"><a href="#cb23-427" tabindex="-1"></a></span>
+<span id="cb23-428"><a href="#cb23-428" tabindex="-1"></a></span>
+<span id="cb23-429"><a href="#cb23-429" tabindex="-1"></a></span>
+<span id="cb23-430"><a href="#cb23-430" tabindex="-1"></a></span>
+<span id="cb23-431"><a href="#cb23-431" tabindex="-1"></a></span>
+<span id="cb23-432"><a href="#cb23-432" tabindex="-1"></a><span class="co"># metablastr::filter_best_hits      Retrieve the best hits across species from a BLAST table</span></span>
+<span id="cb23-433"><a href="#cb23-433" tabindex="-1"></a><span class="co"># orthologr::filter_best_hits       Helper function to select best BLAST hit based on minimum evalue</span></span>
+<span id="cb23-434"><a href="#cb23-434" tabindex="-1"></a></span>
+<span id="cb23-435"><a href="#cb23-435" tabindex="-1"></a></span>
+<span id="cb23-436"><a href="#cb23-436" tabindex="-1"></a>filter_best_hitsX <span class="ot">=</span> <span class="cf">function</span> (blast_tbl, </span>
+<span id="cb23-437"><a href="#cb23-437" tabindex="-1"></a>                             <span class="at">min_qcovhsp =</span> <span class="dv">50</span></span>
+<span id="cb23-438"><a href="#cb23-438" tabindex="-1"></a>                             ) {</span>
+<span id="cb23-439"><a href="#cb23-439" tabindex="-1"></a>  </span>
+<span id="cb23-440"><a href="#cb23-440" tabindex="-1"></a> <span class="fu">cat</span>(crayon<span class="sc">::</span><span class="fu">yellow</span>(<span class="st">&quot;</span><span class="sc">\n\n</span><span class="st">filter_best_hitsX&quot;</span>), <span class="st">&quot;</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span>
+<span id="cb23-441"><a href="#cb23-441" tabindex="-1"></a>  </span>
+<span id="cb23-442"><a href="#cb23-442" tabindex="-1"></a>    <span class="cf">if</span> (<span class="sc">!</span>dplyr<span class="sc">::</span><span class="fu">between</span>(min_qcovhsp, <span class="dv">10</span>, <span class="dv">100</span>)) </span>
+<span id="cb23-443"><a href="#cb23-443" tabindex="-1"></a>        <span class="fu">stop</span>(<span class="st">&quot;Please provide a min_qcovhsp value between 10 and 100.&quot;</span>, </span>
+<span id="cb23-444"><a href="#cb23-444" tabindex="-1"></a>            <span class="at">call. =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb23-445"><a href="#cb23-445" tabindex="-1"></a>  </span>
+<span id="cb23-446"><a href="#cb23-446" tabindex="-1"></a>  </span>
+<span id="cb23-447"><a href="#cb23-447" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">nrow</span>(blast_tbl) <span class="sc">==</span> <span class="dv">0</span>) </span>
+<span id="cb23-448"><a href="#cb23-448" tabindex="-1"></a>        <span class="fu">stop</span>(<span class="st">&quot;Please provide a blast_tbl that contains at least one row.&quot;</span>, </span>
+<span id="cb23-449"><a href="#cb23-449" tabindex="-1"></a>            <span class="at">call. =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb23-450"><a href="#cb23-450" tabindex="-1"></a>  </span>
+<span id="cb23-451"><a href="#cb23-451" tabindex="-1"></a>  </span>
+<span id="cb23-452"><a href="#cb23-452" tabindex="-1"></a>    alig_length <span class="ot">&lt;-</span> qcovhsp <span class="ot">&lt;-</span> bitscore <span class="ot">&lt;-</span> species <span class="ot">&lt;-</span> query_id <span class="ot">&lt;-</span> <span class="st">&quot;.&quot;</span> <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb23-453"><a href="#cb23-453" tabindex="-1"></a>    </span>
+<span id="cb23-454"><a href="#cb23-454" tabindex="-1"></a>    </span>
+<span id="cb23-455"><a href="#cb23-455" tabindex="-1"></a>    <span class="fu">message</span>(<span class="st">&quot;Retrieving best blast hits using the following criteria: &quot;</span>)</span>
+<span id="cb23-456"><a href="#cb23-456" tabindex="-1"></a>    <span class="fu">message</span>(<span class="st">&quot; 1) the query coverage (&#39;qcovhsp&#39;) of the hit must be at least greater than &quot;</span>, </span>
+<span id="cb23-457"><a href="#cb23-457" tabindex="-1"></a>        qcovhsp)</span>
+<span id="cb23-458"><a href="#cb23-458" tabindex="-1"></a>    <span class="fu">message</span>(<span class="st">&quot; 2) select the blast hit with maximum &#39;alig_length&#39;&quot;</span>)</span>
+<span id="cb23-459"><a href="#cb23-459" tabindex="-1"></a>    <span class="fu">message</span>(<span class="st">&quot; 3) select the blast hit that in addition has the maximum bit_score&quot;</span>)</span>
+<span id="cb23-460"><a href="#cb23-460" tabindex="-1"></a>    <span class="fu">message</span>(<span class="st">&quot;--------&quot;</span>)</span>
+<span id="cb23-461"><a href="#cb23-461" tabindex="-1"></a>    <span class="fu">message</span>(<span class="st">&quot;Number of hits before filtering: &quot;</span>, <span class="fu">nrow</span>(blast_tbl))</span>
+<span id="cb23-462"><a href="#cb23-462" tabindex="-1"></a>    </span>
+<span id="cb23-463"><a href="#cb23-463" tabindex="-1"></a>    blast_tbl <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(blast_tbl, qcovhsp <span class="sc">&gt;=</span> min_qcovhsp)</span>
+<span id="cb23-464"><a href="#cb23-464" tabindex="-1"></a>    </span>
+<span id="cb23-465"><a href="#cb23-465" tabindex="-1"></a>    <span class="co"># filter_best_hitsX &lt;- function(x) {</span></span>
+<span id="cb23-466"><a href="#cb23-466" tabindex="-1"></a>    <span class="co">#     min_val &lt;- min(x$bit_score)</span></span>
+<span id="cb23-467"><a href="#cb23-467" tabindex="-1"></a>    <span class="co">#     bitscore &lt;- alig_length &lt;- NULL</span></span>
+<span id="cb23-468"><a href="#cb23-468" tabindex="-1"></a>    <span class="co">#     </span></span>
+<span id="cb23-469"><a href="#cb23-469" tabindex="-1"></a>    <span class="co">#     # remove filter</span></span>
+<span id="cb23-470"><a href="#cb23-470" tabindex="-1"></a>    <span class="co">#     res = x</span></span>
+<span id="cb23-471"><a href="#cb23-471" tabindex="-1"></a>    <span class="co">#     </span></span>
+<span id="cb23-472"><a href="#cb23-472" tabindex="-1"></a>    <span class="co">#     # res &lt;- dplyr::filter(x, bitscore == min_val)</span></span>
+<span id="cb23-473"><a href="#cb23-473" tabindex="-1"></a>    <span class="co">#     # if (nrow(res) &gt; 1) {</span></span>
+<span id="cb23-474"><a href="#cb23-474" tabindex="-1"></a>    <span class="co">#     #     max_len &lt;- max(res$alig_length)</span></span>
+<span id="cb23-475"><a href="#cb23-475" tabindex="-1"></a>    <span class="co">#     #     res &lt;- dplyr::filter(res, alig_length == max_len)</span></span>
+<span id="cb23-476"><a href="#cb23-476" tabindex="-1"></a>    <span class="co">#     # }</span></span>
+<span id="cb23-477"><a href="#cb23-477" tabindex="-1"></a>    <span class="co">#     # if (nrow(res) &gt; 1) </span></span>
+<span id="cb23-478"><a href="#cb23-478" tabindex="-1"></a>    <span class="co">#     #     res &lt;- dplyr::slice(res, 1)</span></span>
+<span id="cb23-479"><a href="#cb23-479" tabindex="-1"></a>    <span class="co">#     return(res)</span></span>
+<span id="cb23-480"><a href="#cb23-480" tabindex="-1"></a>    <span class="co"># }</span></span>
+<span id="cb23-481"><a href="#cb23-481" tabindex="-1"></a>    </span>
+<span id="cb23-482"><a href="#cb23-482" tabindex="-1"></a>    <span class="co"># best_hit_df &lt;- dplyr::do(dplyr::group_by(blast_tbl, </span></span>
+<span id="cb23-483"><a href="#cb23-483" tabindex="-1"></a>    <span class="co">#                                          species, </span></span>
+<span id="cb23-484"><a href="#cb23-484" tabindex="-1"></a>    <span class="co">#                                          query_id), </span></span>
+<span id="cb23-485"><a href="#cb23-485" tabindex="-1"></a>    <span class="co">#                          filter_best_hitsX(.))</span></span>
+<span id="cb23-486"><a href="#cb23-486" tabindex="-1"></a>    </span>
+<span id="cb23-487"><a href="#cb23-487" tabindex="-1"></a>    </span>
+<span id="cb23-488"><a href="#cb23-488" tabindex="-1"></a>    <span class="co"># remove filter</span></span>
+<span id="cb23-489"><a href="#cb23-489" tabindex="-1"></a>    best_hit_df <span class="ot">=</span> blast_tbl</span>
+<span id="cb23-490"><a href="#cb23-490" tabindex="-1"></a>    </span>
+<span id="cb23-491"><a href="#cb23-491" tabindex="-1"></a>    </span>
+<span id="cb23-492"><a href="#cb23-492" tabindex="-1"></a>    <span class="fu">message</span>(<span class="st">&quot;Number of best hits after filtering: &quot;</span>, <span class="fu">nrow</span>(best_hit_df))</span>
+<span id="cb23-493"><a href="#cb23-493" tabindex="-1"></a>    </span>
+<span id="cb23-494"><a href="#cb23-494" tabindex="-1"></a>    </span>
+<span id="cb23-495"><a href="#cb23-495" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">nrow</span>(best_hit_df) <span class="sc">==</span> <span class="dv">0</span>) </span>
+<span id="cb23-496"><a href="#cb23-496" tabindex="-1"></a>        <span class="fu">stop</span>(<span class="st">&quot;The filter process resultet in 0 best hits. Please provide more liberal filter criteria to retrieve a best hit table.&quot;</span>, </span>
+<span id="cb23-497"><a href="#cb23-497" tabindex="-1"></a>            <span class="at">call. =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb23-498"><a href="#cb23-498" tabindex="-1"></a>    </span>
+<span id="cb23-499"><a href="#cb23-499" tabindex="-1"></a>    <span class="fu">return</span>(best_hit_df)</span>
+<span id="cb23-500"><a href="#cb23-500" tabindex="-1"></a>    </span>
+<span id="cb23-501"><a href="#cb23-501" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="co"># myRBH.o = orthologr::orthologs(query_file = fn1</span></span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a><span class="co">#                              ,</span></span>
+<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a><span class="co">#                              subject_file = fn2</span></span>
+<span id="cb24-4"><a href="#cb24-4" tabindex="-1"></a><span class="co">#                              ,</span></span>
+<span id="cb24-5"><a href="#cb24-5" tabindex="-1"></a><span class="co">#                              seq_type = &quot;protein&quot;</span></span>
+<span id="cb24-6"><a href="#cb24-6" tabindex="-1"></a><span class="co">#                              ,</span></span>
+<span id="cb24-7"><a href="#cb24-7" tabindex="-1"></a><span class="co">#                              format = &quot;fasta&quot;,  </span></span>
+<span id="cb24-8"><a href="#cb24-8" tabindex="-1"></a><span class="co">#                              outgroup_file = NULL,</span></span>
+<span id="cb24-9"><a href="#cb24-9" tabindex="-1"></a><span class="co">#                              eval = &quot;1E-5&quot;,</span></span>
+<span id="cb24-10"><a href="#cb24-10" tabindex="-1"></a><span class="co">#                              ortho_detection = &quot;RBH&quot;,</span></span>
+<span id="cb24-11"><a href="#cb24-11" tabindex="-1"></a><span class="co">#                              # delete_corrupt_cds = FALSE,</span></span>
+<span id="cb24-12"><a href="#cb24-12" tabindex="-1"></a><span class="co">#                              # cdd.path = NULL,</span></span>
+<span id="cb24-13"><a href="#cb24-13" tabindex="-1"></a><span class="co">#                              # path = NULL,</span></span>
+<span id="cb24-14"><a href="#cb24-14" tabindex="-1"></a><span class="co">#                              add_params = NULL,</span></span>
+<span id="cb24-15"><a href="#cb24-15" tabindex="-1"></a><span class="co">#                              comp_cores = 1,</span></span>
+<span id="cb24-16"><a href="#cb24-16" tabindex="-1"></a><span class="co">#                              quiet = FALSE,</span></span>
+<span id="cb24-17"><a href="#cb24-17" tabindex="-1"></a><span class="co">#                              clean_folders = FALSE)</span></span>
+<span id="cb24-18"><a href="#cb24-18" tabindex="-1"></a></span>
+<span id="cb24-19"><a href="#cb24-19" tabindex="-1"></a></span>
+<span id="cb24-20"><a href="#cb24-20" tabindex="-1"></a><span class="fu">cat</span>(crayon<span class="sc">::</span><span class="fu">blue</span>(<span class="st">&quot;debug params&quot;</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## debug params</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a>query_file <span class="ot">=</span> <span class="fu">file.path</span>(<span class="st">&#39;..&#39;</span>, <span class="st">&#39;input&#39;</span>, fn1)</span>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a>subject_files <span class="ot">=</span> <span class="fu">file.path</span>(<span class="st">&#39;..&#39;</span>, <span class="st">&#39;input&#39;</span>, <span class="st">&#39;PLAZA&#39;</span>, fn2)</span>
+<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a>subject_file <span class="ot">=</span> <span class="fu">file.path</span>(<span class="st">&#39;..&#39;</span>, <span class="st">&#39;input&#39;</span>, <span class="st">&#39;PLAZA&#39;</span>, fn2)</span>
+<span id="cb26-4"><a href="#cb26-4" tabindex="-1"></a><span class="co"># query_file = fn1</span></span>
+<span id="cb26-5"><a href="#cb26-5" tabindex="-1"></a><span class="co"># subject_file = fn2</span></span>
+<span id="cb26-6"><a href="#cb26-6" tabindex="-1"></a><span class="co"># subject_files = fn2</span></span>
+<span id="cb26-7"><a href="#cb26-7" tabindex="-1"></a>seq_type <span class="ot">=</span> <span class="st">&quot;protein&quot;</span></span>
+<span id="cb26-8"><a href="#cb26-8" tabindex="-1"></a>blast_algorithm <span class="ot">=</span> <span class="st">&quot;blastp&quot;</span></span>
+<span id="cb26-9"><a href="#cb26-9" tabindex="-1"></a>outgroup_file <span class="ot">=</span> <span class="cn">NULL</span></span>
+<span id="cb26-10"><a href="#cb26-10" tabindex="-1"></a>eval <span class="ot">=</span> <span class="st">&quot;1E-10&quot;</span></span>
+<span id="cb26-11"><a href="#cb26-11" tabindex="-1"></a>format <span class="ot">=</span> <span class="st">&quot;fasta&quot;</span></span>
+<span id="cb26-12"><a href="#cb26-12" tabindex="-1"></a>ortho_detection <span class="ot">=</span> <span class="st">&quot;RBH&quot;</span></span>
+<span id="cb26-13"><a href="#cb26-13" tabindex="-1"></a>delete_corrupt_cds <span class="ot">=</span> <span class="cn">FALSE</span></span>
+<span id="cb26-14"><a href="#cb26-14" tabindex="-1"></a>cdd.path <span class="ot">=</span> <span class="cn">NULL</span></span>
+<span id="cb26-15"><a href="#cb26-15" tabindex="-1"></a>path <span class="ot">=</span> <span class="cn">NULL</span></span>
+<span id="cb26-16"><a href="#cb26-16" tabindex="-1"></a>add_params <span class="ot">=</span> <span class="cn">NULL</span></span>
+<span id="cb26-17"><a href="#cb26-17" tabindex="-1"></a>comp_cores <span class="ot">=</span> <span class="dv">8</span></span>
+<span id="cb26-18"><a href="#cb26-18" tabindex="-1"></a>quiet <span class="ot">=</span> <span class="cn">FALSE</span></span>
+<span id="cb26-19"><a href="#cb26-19" tabindex="-1"></a>clean_folders <span class="ot">=</span> <span class="cn">FALSE</span></span>
+<span id="cb26-20"><a href="#cb26-20" tabindex="-1"></a>max.target.seqs <span class="ot">=</span> <span class="dv">200</span></span>
+<span id="cb26-21"><a href="#cb26-21" tabindex="-1"></a>path <span class="ot">=</span> <span class="cn">NULL</span></span>
+<span id="cb26-22"><a href="#cb26-22" tabindex="-1"></a>save.output <span class="ot">=</span>  tempdir</span>
+<span id="cb26-23"><a href="#cb26-23" tabindex="-1"></a>default_pars <span class="ot">=</span> <span class="st">&quot;-best_hit_score_edge 0.05 -best_hit_overhang 0.25&quot;</span></span>
+<span id="cb26-24"><a href="#cb26-24" tabindex="-1"></a>remote <span class="ot">=</span> <span class="cn">FALSE</span></span>
+<span id="cb26-25"><a href="#cb26-25" tabindex="-1"></a>db <span class="ot">=</span> <span class="cn">NULL</span></span>
+<span id="cb26-26"><a href="#cb26-26" tabindex="-1"></a>blast_params <span class="ot">=</span> <span class="cn">NULL</span> </span>
+<span id="cb26-27"><a href="#cb26-27" tabindex="-1"></a>min_qcovhsp <span class="ot">=</span> <span class="dv">50</span></span>
+<span id="cb26-28"><a href="#cb26-28" tabindex="-1"></a>ortho_detection <span class="ot">=</span> <span class="st">&#39;RBH&#39;</span></span>
+<span id="cb26-29"><a href="#cb26-29" tabindex="-1"></a>                   </span>
+<span id="cb26-30"><a href="#cb26-30" tabindex="-1"></a></span>
+<span id="cb26-31"><a href="#cb26-31" tabindex="-1"></a></span>
+<span id="cb26-32"><a href="#cb26-32" tabindex="-1"></a></span>
+<span id="cb26-33"><a href="#cb26-33" tabindex="-1"></a><span class="fu">cat</span>(crayon<span class="sc">::</span><span class="fu">yellow</span>(<span class="st">&quot;</span><span class="sc">\n\n</span><span class="st">orthologs&quot;</span>), <span class="st">&quot;</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## 
+## orthologs</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a>    </span>
+<span id="cb28-3"><a href="#cb28-3" tabindex="-1"></a><span class="co"># if (seq_type == &quot;cds&quot;) {</span></span>
+<span id="cb28-4"><a href="#cb28-4" tabindex="-1"></a><span class="co">#   f_sep &lt;- .Platform$file.sep</span></span>
+<span id="cb28-5"><a href="#cb28-5" tabindex="-1"></a><span class="co">#   filename_qry &lt;- unlist(strsplit(query_file, </span></span>
+<span id="cb28-6"><a href="#cb28-6" tabindex="-1"></a><span class="co">#                                   f_sep, </span></span>
+<span id="cb28-7"><a href="#cb28-7" tabindex="-1"></a><span class="co">#                                   fixed = FALSE,</span></span>
+<span id="cb28-8"><a href="#cb28-8" tabindex="-1"></a><span class="co">#                                   perl = TRUE, </span></span>
+<span id="cb28-9"><a href="#cb28-9" tabindex="-1"></a><span class="co">#                                   useBytes = FALSE))</span></span>
+<span id="cb28-10"><a href="#cb28-10" tabindex="-1"></a><span class="co">#   filename_qry &lt;- filename_qry[length(filename_qry)]</span></span>
+<span id="cb28-11"><a href="#cb28-11" tabindex="-1"></a><span class="co">#   write.proteome(proteome = cds2aa(read.cds(query_file,</span></span>
+<span id="cb28-12"><a href="#cb28-12" tabindex="-1"></a><span class="co">#                                             format = format, </span></span>
+<span id="cb28-13"><a href="#cb28-13" tabindex="-1"></a><span class="co">#                                             delete_corrupt_cds = delete_corrupt_cds)),</span></span>
+<span id="cb28-14"><a href="#cb28-14" tabindex="-1"></a><span class="co">#                  file.name = file.path(tempdir(), </span></span>
+<span id="cb28-15"><a href="#cb28-15" tabindex="-1"></a><span class="co">#                                        paste0(filename_qry,</span></span>
+<span id="cb28-16"><a href="#cb28-16" tabindex="-1"></a><span class="co">#                                               &quot;_translated.fasta&quot;)))</span></span>
+<span id="cb28-17"><a href="#cb28-17" tabindex="-1"></a><span class="co">#         </span></span>
+<span id="cb28-18"><a href="#cb28-18" tabindex="-1"></a><span class="co"># if (length(subject_files) &gt; 1) {</span></span>
+<span id="cb28-19"><a href="#cb28-19" tabindex="-1"></a><span class="co">#   subj_short.names &lt;- vector(&quot;character&quot;, </span></span>
+<span id="cb28-20"><a href="#cb28-20" tabindex="-1"></a><span class="co">#                              length(subject_files))</span></span>
+<span id="cb28-21"><a href="#cb28-21" tabindex="-1"></a><span class="co">#   for (organism in 1:length(subject_files)) {</span></span>
+<span id="cb28-22"><a href="#cb28-22" tabindex="-1"></a><span class="co">#     short.name &lt;- unlist(strsplit(subject_files[organism],</span></span>
+<span id="cb28-23"><a href="#cb28-23" tabindex="-1"></a><span class="co">#                                   f_sep, </span></span>
+<span id="cb28-24"><a href="#cb28-24" tabindex="-1"></a><span class="co">#                                   fixed = FALSE, </span></span>
+<span id="cb28-25"><a href="#cb28-25" tabindex="-1"></a><span class="co">#                                   perl = TRUE, </span></span>
+<span id="cb28-26"><a href="#cb28-26" tabindex="-1"></a><span class="co">#                                   useBytes = FALSE))</span></span>
+<span id="cb28-27"><a href="#cb28-27" tabindex="-1"></a><span class="co">#     short.name &lt;- short.name[length(short.name)]</span></span>
+<span id="cb28-28"><a href="#cb28-28" tabindex="-1"></a><span class="co">#     subj_short.names[i] &lt;- short.name</span></span>
+<span id="cb28-29"><a href="#cb28-29" tabindex="-1"></a><span class="co">#     write.proteome(proteome = cds2aa(read.cds(subject_files[organism],</span></span>
+<span id="cb28-30"><a href="#cb28-30" tabindex="-1"></a><span class="co">#                                               format = format, </span></span>
+<span id="cb28-31"><a href="#cb28-31" tabindex="-1"></a><span class="co">#                                               delete_corrupt_cds = delete_corrupt_cds),</span></span>
+<span id="cb28-32"><a href="#cb28-32" tabindex="-1"></a><span class="co">#                                      delete_corrupt_cds = delete_corrupt_cds), </span></span>
+<span id="cb28-33"><a href="#cb28-33" tabindex="-1"></a><span class="co">#                    file.name = file.path(tempdir(),</span></span>
+<span id="cb28-34"><a href="#cb28-34" tabindex="-1"></a><span class="co">#                                          paste0(short.name, &quot;_translated.fasta&quot;)))</span></span>
+<span id="cb28-35"><a href="#cb28-35" tabindex="-1"></a><span class="co">#     }</span></span>
+<span id="cb28-36"><a href="#cb28-36" tabindex="-1"></a><span class="co">#             subject_files &lt;- file.path(tempdir(), paste0(short.name,</span></span>
+<span id="cb28-37"><a href="#cb28-37" tabindex="-1"></a><span class="co">#                                                          &quot;_translated.fasta&quot;))</span></span>
+<span id="cb28-38"><a href="#cb28-38" tabindex="-1"></a><span class="co">#         } else {</span></span>
+<span id="cb28-39"><a href="#cb28-39" tabindex="-1"></a><span class="co">#             filename_subj &lt;- unlist(strsplit(subject_files, f_sep,</span></span>
+<span id="cb28-40"><a href="#cb28-40" tabindex="-1"></a><span class="co">#                 fixed = FALSE, perl = TRUE, useBytes = FALSE))</span></span>
+<span id="cb28-41"><a href="#cb28-41" tabindex="-1"></a><span class="co">#             filename_subj &lt;- filename_subj[length(filename_subj)]</span></span>
+<span id="cb28-42"><a href="#cb28-42" tabindex="-1"></a><span class="co">#             write.proteome(proteome = cds2aa(read.cds(subject_files,</span></span>
+<span id="cb28-43"><a href="#cb28-43" tabindex="-1"></a><span class="co">#                 format = format, delete_corrupt_cds = delete_corrupt_cds),</span></span>
+<span id="cb28-44"><a href="#cb28-44" tabindex="-1"></a><span class="co">#                 delete_corrupt_cds = delete_corrupt_cds), file.name = file.path(tempdir(),</span></span>
+<span id="cb28-45"><a href="#cb28-45" tabindex="-1"></a><span class="co">#                 paste0(filename_subj, &quot;_translated.fasta&quot;)))</span></span>
+<span id="cb28-46"><a href="#cb28-46" tabindex="-1"></a><span class="co">#             subject_files &lt;- file.path(tempdir(), paste0(filename_subj,</span></span>
+<span id="cb28-47"><a href="#cb28-47" tabindex="-1"></a><span class="co">#                 &quot;_translated.fasta&quot;))</span></span>
+<span id="cb28-48"><a href="#cb28-48" tabindex="-1"></a><span class="co">#         }</span></span>
+<span id="cb28-49"><a href="#cb28-49" tabindex="-1"></a><span class="co">#         query_file &lt;- file.path(tempdir(), paste0(filename_qry,</span></span>
+<span id="cb28-50"><a href="#cb28-50" tabindex="-1"></a><span class="co">#             &quot;_translated.fasta&quot;))</span></span>
+<span id="cb28-51"><a href="#cb28-51" tabindex="-1"></a><span class="co">#     }</span></span>
+<span id="cb28-52"><a href="#cb28-52" tabindex="-1"></a>    </span>
+<span id="cb28-53"><a href="#cb28-53" tabindex="-1"></a>    </span>
+<span id="cb28-54"><a href="#cb28-54" tabindex="-1"></a></span>
+<span id="cb28-55"><a href="#cb28-55" tabindex="-1"></a>    </span>
+<span id="cb28-56"><a href="#cb28-56" tabindex="-1"></a>    <span class="co"># this uses orthologr::blast_rec</span></span>
+<span id="cb28-57"><a href="#cb28-57" tabindex="-1"></a><span class="cf">if</span> (ortho_detection <span class="sc">==</span> <span class="st">&quot;RBH&quot;</span>) {</span>
+<span id="cb28-58"><a href="#cb28-58" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(subject_files) <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
+<span id="cb28-59"><a href="#cb28-59" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">&quot;The BLAST best reciprocal hit method is only defined for pairwise comparisons.&quot;</span>,</span>
+<span id="cb28-60"><a href="#cb28-60" tabindex="-1"></a>         <span class="at">call. =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb28-61"><a href="#cb28-61" tabindex="-1"></a>  ortho_tbl <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">copy</span>(<span class="fu">blast_rec</span>(<span class="at">query_file =</span> query_file,</span>
+<span id="cb28-62"><a href="#cb28-62" tabindex="-1"></a>                                          <span class="at">subject_file =</span> subject_files, </span>
+<span id="cb28-63"><a href="#cb28-63" tabindex="-1"></a>                                          <span class="at">path =</span> path, </span>
+<span id="cb28-64"><a href="#cb28-64" tabindex="-1"></a>                                          <span class="at">delete_corrupt_cds =</span> delete_corrupt_cds,</span>
+<span id="cb28-65"><a href="#cb28-65" tabindex="-1"></a>                                          <span class="at">comp_cores =</span> comp_cores, </span>
+<span id="cb28-66"><a href="#cb28-66" tabindex="-1"></a>                                          <span class="at">eval =</span> eval, </span>
+<span id="cb28-67"><a href="#cb28-67" tabindex="-1"></a>                                          <span class="at">blast_params =</span> add_params,</span>
+<span id="cb28-68"><a href="#cb28-68" tabindex="-1"></a>                                          <span class="at">seq_type =</span> seq_type, </span>
+<span id="cb28-69"><a href="#cb28-69" tabindex="-1"></a>                                          <span class="at">format =</span> format))</span>
+<span id="cb28-70"><a href="#cb28-70" tabindex="-1"></a>  <span class="cf">if</span> (clean_folders)</span>
+<span id="cb28-71"><a href="#cb28-71" tabindex="-1"></a>    <span class="fu">clean_all_folders</span>(<span class="fu">file.path</span>(<span class="fu">tempdir</span>(), </span>
+<span id="cb28-72"><a href="#cb28-72" tabindex="-1"></a>                                <span class="st">&quot;_blast_db&quot;</span>))</span>
+<span id="cb28-73"><a href="#cb28-73" tabindex="-1"></a>  }</span></code></pre></div>
+<pre><code>## 
+## 
+## blast_rec 
+## 
+## 
+## 
+## BLAST 
+## 
+## 
+## 
+## filter_best_hitsX 
+## 
+## 
+## 
+## filter_best_hitsX 
+## 
+## 
+## 
+## filter_best_hitsX 
+## 
+## 
+## 
+## filter_best_hitsX 
+## 
+## 
+## 
+## filter_best_hitsX 
+## 
+## 
+## 
+## BLAST 
+## 
+## 
+## 
+## filter_best_hitsX 
+## 
+## 
+## 
+## filter_best_hitsX 
+## 
+## 
+## 
+## filter_best_hitsX 
+## 
+## 
+## 
+## filter_best_hitsX 
+## 
+## 
+## 
+## filter_best_hitsX 
+## 
+## 
+## 
+## filter_best_hitsX</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a>myRBH.o <span class="ot">=</span>  ortho_tbl</span>
+<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a><span class="fu">head</span>(myRBH.o)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 21
+## # Groups:   query_id [3]
+##   query_id     subject_id perc_identity num_ident_matches alig_length mismatches
+##   &lt;chr&gt;        &lt;chr&gt;              &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;      &lt;int&gt;
+## 1 Solyc00g160… Solyc00g1…           100                60          60          0
+## 2 Solyc00g160… la                   100                55          55          0
+## 3 Solyc00g160… lala                 100                50          50          0
+## 4 Solyc00g160… Solyc00g1…           100               167         167          0
+## 5 aaa          Solyc00g1…           100                60          60          0
+## 6 aaa          la                   100                55          55          0
+## # ℹ 15 more variables: gap_openings &lt;int&gt;, n_gaps &lt;int&gt;, pos_match &lt;int&gt;,
+## #   ppos &lt;dbl&gt;, q_start &lt;int&gt;, q_end &lt;int&gt;, q_len &lt;int&gt;, qcov &lt;dbl&gt;,
+## #   qcovhsp &lt;dbl&gt;, s_start &lt;int&gt;, s_end &lt;int&gt;, s_len &lt;int&gt;, evalue &lt;dbl&gt;,
+## #   bit_score &lt;dbl&gt;, score_raw &lt;dbl&gt;</code></pre>
+</div>
 </div>
 <div id="write-results" class="section level1" number="4">
 <h1><span class="header-section-number">4</span> Write results</h1>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="fu">setwd</span>(<span class="fu">dirname</span>(rstudioapi<span class="sc">::</span><span class="fu">getActiveDocumentContext</span>()<span class="sc">$</span>path))</span>
-<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a>fpo <span class="ot">=</span> <span class="fu">file.path</span>(<span class="st">&#39;..&#39;</span>, <span class="st">&#39;output&#39;</span>)</span>
-<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a>fno <span class="ot">=</span> <span class="st">&#39;RBHresults.txt&#39;</span></span>
-<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a>data.table<span class="sc">::</span><span class="fu">fwrite</span>(myRBH, </span>
-<span id="cb18-5"><a href="#cb18-5" tabindex="-1"></a>                   <span class="at">file =</span> <span class="fu">file.path</span>(fpo, fno),</span>
-<span id="cb18-6"><a href="#cb18-6" tabindex="-1"></a>                   <span class="at">sep =</span> <span class="st">&#39;</span><span class="sc">\t</span><span class="st">&#39;</span>)</span>
-<span id="cb18-7"><a href="#cb18-7" tabindex="-1"></a>fno <span class="ot">=</span> <span class="st">&#39;RBHresults.xlsx&#39;</span></span>
-<span id="cb18-8"><a href="#cb18-8" tabindex="-1"></a>openxlsx<span class="sc">::</span><span class="fu">write.xlsx</span>(myRBH, <span class="at">file =</span> <span class="fu">file.path</span>(fpo, fno), </span>
-<span id="cb18-9"><a href="#cb18-9" tabindex="-1"></a>                     <span class="at">asTable =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb18-10"><a href="#cb18-10" tabindex="-1"></a>                     <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="fu">setwd</span>(<span class="fu">dirname</span>(rstudioapi<span class="sc">::</span><span class="fu">getActiveDocumentContext</span>()<span class="sc">$</span>path))</span>
+<span id="cb32-2"><a href="#cb32-2" tabindex="-1"></a>fpo <span class="ot">=</span> <span class="fu">file.path</span>(<span class="st">&#39;..&#39;</span>, <span class="st">&#39;output&#39;</span>)</span>
+<span id="cb32-3"><a href="#cb32-3" tabindex="-1"></a>fno <span class="ot">=</span> <span class="st">&#39;RBHresults.txt&#39;</span></span>
+<span id="cb32-4"><a href="#cb32-4" tabindex="-1"></a>data.table<span class="sc">::</span><span class="fu">fwrite</span>(myRBH.o, </span>
+<span id="cb32-5"><a href="#cb32-5" tabindex="-1"></a>                   <span class="at">file =</span> <span class="fu">file.path</span>(fpo, fno),</span>
+<span id="cb32-6"><a href="#cb32-6" tabindex="-1"></a>                   <span class="at">sep =</span> <span class="st">&#39;</span><span class="sc">\t</span><span class="st">&#39;</span>)</span>
+<span id="cb32-7"><a href="#cb32-7" tabindex="-1"></a>fno <span class="ot">=</span> <span class="st">&#39;RBHresults.xlsx&#39;</span></span>
+<span id="cb32-8"><a href="#cb32-8" tabindex="-1"></a>openxlsx<span class="sc">::</span><span class="fu">write.xlsx</span>(myRBH.o, <span class="at">file =</span> <span class="fu">file.path</span>(fpo, fno), </span>
+<span id="cb32-9"><a href="#cb32-9" tabindex="-1"></a>                     <span class="at">asTable =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb32-10"><a href="#cb32-10" tabindex="-1"></a>                     <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </div>
 <div id="session-info" class="section level1" number="5">
 <h1><span class="header-section-number">5</span> Session Info</h1>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
 <pre><code>## R version 4.3.1 (2023-06-16 ucrt)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
 ## Running under: Windows 10 x64 (build 19045)
@@ -1829,7 +2593,7 @@ variable/object</p>
 ## [49] openxlsx_4.2.5.2        bslib_0.5.0             pillar_1.9.0           
 ## [52] glue_1.6.2              Rcpp_1.0.10             tidyselect_1.2.0       
 ## [55] xfun_0.39               tibble_3.2.1            rstudioapi_0.14        
-## [58] knitr_1.43              htmltools_0.5.5         rmarkdown_2.22         
+## [58] knitr_1.43              htmltools_0.5.5         rmarkdown_2.23         
 ## [61] readr_2.1.4             compiler_4.3.1          RCurl_1.98-1.12</code></pre>
 </div>
 
