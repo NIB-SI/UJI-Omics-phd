@@ -130,7 +130,7 @@ Also, ```orthologr::blast_rec``` demands file path not variable/object
 fp = file.path('..', 'input')
 list.files(fp, recursive = TRUE)
 
-fn1 = 'ITAG4.1_proteins.fasta'
+fn1 = 'ITAG4.1_proteins-subset.fasta'
 # fn1 = 'test-ITAG4.1_proteins.fasta'
 # fn1 = 'a.fasta'
 # Sly.proteome = seqinr::read.fasta(file = file.path(fp, fn1),
@@ -141,7 +141,7 @@ fn1 = 'ITAG4.1_proteins.fasta'
 #                              format = 'fasta')
 
 # PLAZA
-fn2 = 'proteome.selected_transcript.ath.fasta'
+fn2 = 'proteome.selected_transcript.ath-subset.fasta'
 # fn2 = 'test-proteome.selected_transcript.ath.fasta'
 # fn2 = 'b.fasta'
 # ARAPORT
@@ -849,12 +849,16 @@ filter_best_hitsX = function (blast_tbl,
 
 cat(crayon::blue("debug params"), "\n")
 
-# query_file = file.path('..', 'input', fn1)
-# subject_files = file.path('..', 'input', 'PLAZA', fn2)
-# subject_file = file.path('..', 'input', 'PLAZA', fn2)
-query_file = fn1
-subject_file = fn2
-subject_files = fn2
+# use with 'knit to HTML' option
+query_file = file.path('..', 'input', fn1)
+subject_files = file.path('..', 'input', 'PLAZA', fn2)
+subject_file = file.path('..', 'input', 'PLAZA', fn2)
+
+# use when running chunk by chunk
+# query_file = fn1
+# subject_file = fn2
+# subject_files = fn2
+
 seq_type = "protein"
 blast_algorithm = "blastp"
 outgroup_file = NULL
