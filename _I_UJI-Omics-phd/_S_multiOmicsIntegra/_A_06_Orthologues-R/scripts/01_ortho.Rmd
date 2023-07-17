@@ -976,6 +976,7 @@ head(myRBH.o)
 
 # Write results
 
+
 ```{r res, echo=TRUE, warning=FALSE, message=FALSE}
 
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
@@ -991,6 +992,9 @@ openxlsx::write.xlsx(myRBH.o, file = file.path(fpo, fno),
 
 
 ```
+
+
+<https://www.metagenomics.wiki/tools/blast/blastn-output-format-6>
 
 
 # Session Info
