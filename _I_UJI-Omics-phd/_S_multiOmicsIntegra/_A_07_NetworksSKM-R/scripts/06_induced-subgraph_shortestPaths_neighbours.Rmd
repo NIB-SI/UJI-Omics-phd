@@ -82,10 +82,12 @@ colnames(CKN) = c('from', 'to', 'reaction')
 
 # which genes/proteins you want
 
+if only sig ones uncomment  ```IDs = pprot[pprot$significant, ]$ID``` and comment ```IDs = pprot$ID```
+
 ```{r}
 
-fpt = file.path('..', '..', '_A_02_counts-Proteomics', 'output')
-fs = 'Proteomics-DE-DEP_v2.txt'
+fpt = file.path('..', '..', '_A_04_EnrichmentProteomics-R', 'output')
+fs = 'phosphoProteomics-DE-DEP.txt'
 
 
 
@@ -99,11 +101,13 @@ prot = read.table(file.path(fpt, fs),
                  fill = TRUE,
                  comment.char = "#")
 
-prot$ID = gsub('s', 'S',prot$ID)
+# prot$ID = gsub('s', 'S',prot$ID)
 
 pprot = prot[, grep('^ID$|^significant$', colnames(prot))]
-# IDs = pprot[pprot$significant, ]$ID
-IDs = pprot$ID
+table(pprot$significant)
+IDs = pprot[pprot$significant, ]$ID
+# IDs = pprot$ID
+IDs = gsub('\\.1$', '', IDs)
 print(IDs)
 
 prot = prot[prot$significant, ]
@@ -130,7 +134,10 @@ translate = read.table(file.path(fp, fn),
 table(translate$SlyID %in% IDs)
 
 
+prot$SlyID = gsub('\\.1$', '', prot$SlyID)
+
 Ath = translate[translate$SlyID %in% IDs, ]$AthID
+
 
 prot = merge(translate, prot, by = 'SlyID', all.x = FALSE, all.y = TRUE)
 
@@ -176,38 +183,107 @@ table(E(g)$reaction)
 ```{r}
 
 ind = match(Ath, V(g)$name)
-ind = ind[!is.na(ind)]
+ind = ind[!is.na(ind)] # get rud if NA
 gg = induced_subgraph(graph = g, vids = ind)
 
 print(gg)
-plot(gg)
+# plot(gg)
 
 
 ```
 
 
-<!-- so this is useless -->
+so this is useless
 
-<!-- ## shortest paths -->
+# Ego graph
+
+ and we dont know why those two are not the same
 
 
-<!-- <https://igraph.org/r/doc/distances.html> -->
+```{r}
 
-<!-- ```{r} -->
 
-<!-- mylist = all_shortest_paths(g, from = ind, to = ind, mode = "all") -->
-<!-- length(mylist$res) -->
-<!-- table(Ath %in% unique(names(unlist(mylist$res)))) -->
-<!-- ind = unique(unlist(mylist$res)) -->
 
-<!-- gg = induced_subgraph(graph = g, vids = ind) -->
+gg = make_ego_graph(
+  g,
+  order = 1,
+  nodes = ind,
+  mode = c("all"),
+  mindist = 0
+)
 
-<!-- print(gg) -->
-<!-- plot(gg) -->
 
-<!-- ``` -->
+gg
 
-<!-- So this is better -->
+for (i in ind) {
+  print(neighbors(g, i))  
+}
+
+
+ggg = do.call(union, gg)
+ggg
+
+
+
+
+```
+
+
+
+```{r}
+
+fp = file.path('..', 'output', 'cytoscape')
+fn = 'prot-DE_ego.txt'
+
+df = as_edgelist(ggg)
+colnames(df) = c('geneID1', 'geneID2')
+
+
+
+write.table(df, 
+            file = file.path(fp, fn), 
+            append = FALSE, 
+            quote = FALSE, 
+            sep = "\t",
+            eol = "\n", 
+            na = "NA", 
+            dec = ".", 
+            row.names = FALSE,
+            col.names = TRUE, 
+            qmethod = "escape",
+            fileEncoding = "UTF-8")
+
+
+
+
+
+
+```
+
+
+
+
+## shortest paths
+
+
+<https://igraph.org/r/doc/distances.html>
+
+```{r}
+
+mylist = all_shortest_paths(g, from = ind, to = ind, mode = "all")
+length(mylist$res)
+table(Ath %in% unique(names(unlist(mylist$res))))
+ind = unique(unlist(mylist$res))
+
+gg = induced_subgraph(graph = g, vids = ind)
+
+print(gg)
+plot(gg, layout=layout_with_fr, vertex.size=4,
+     vertex.label.dist=0.5, vertex.color="red", edge.arrow.size=0.5)
+
+```
+
+So this is better
 
 
 ## write output
@@ -219,7 +295,7 @@ plot(gg)
 ```{r}
 
 fp = file.path('..', 'output', 'cytoscape')
-fn = 'prot-DE_induced-subpaths.txt'
+fn = 'prot-DE_shortest-paths.txt'
 
 df = as_edgelist(gg)
 df = as.data.frame(cbind(df, E(gg)$reaction))
@@ -265,6 +341,9 @@ write.table(prot,
 
 
 ```
+
+
+
 
 
 
