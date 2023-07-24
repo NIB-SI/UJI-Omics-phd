@@ -1,0 +1,749 @@
+---
+title: "05_lionessR"
+author: "zagor"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    fig_caption: yes
+    self_contained: yes
+    fig_width: 9
+    fig_height: 8
+    toc: yes
+    toc_depth: 2
+    number_sections: yes
+    theme: flatly
+    highlight: tango
+  pdf_document:
+    toc: yes
+    toc_depth: '2'
+  word_document:
+    toc: yes
+    toc_depth: '2'
+editor_options:
+  chunk_output_type: console
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(#dev = c('pdf', 'png'),  # this embeds pdf and crates scrolable blocks
+                      dev = c('png'), 
+                      fig.align = 'center', 
+                      fig.height = 8, 
+                      fig.width = 9 ,
+                      warning = FALSE, message = FALSE
+                      )
+# options(knitr.table.format = "html")
+
+```
+
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+
+
+# if (!require("BiocManager", quietly = TRUE))
+#     install.packages("BiocManager")
+# 
+# BiocManager::install("lionessR")
+
+```
+
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+
+rm(list = ls(all = TRUE))
+gc()
+
+set.seed(123456)
+
+```
+
+
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+
+# # generic run
+# 
+# library(lionessR)
+# library(igraph)
+# library(reshape2)
+# library(limma)
+# library(SummarizedExperiment)
+# library(RColorBrewer)
+# 
+# data(OSdata)
+# rowData = DataFrame(row.names = rownames(exp), gene = rownames(exp))
+# colData = DataFrame(row.names = targets$sample, sample = as.character(targets$sample), mets = targets$mets)
+# 
+# se = SummarizedExperiment(assays = list(counts = as.matrix(exp)), 
+#                            colData = colData, rowData = rowData)
+# head(se@assays@data[[1]])
+# range(se@assays@data[[1]])
+# 
+# 
+# # nsel=500
+# nsel = nrow(se@assays@data[[1]]) # Error: cannot allocate vector of size 20.5 Gb
+# nsel = 500
+# cvar = apply(assay(se), 1, sd)
+# dat = se[tail(order(cvar), nsel), ]
+# 
+# head(dat@assays@data[[1]])
+# range(dat@assays@data[[1]])
+# dim(dat@assays@data[[1]])
+# 
+# 
+# netyes = cor(t(assay(dat)[, dat$mets == "yes"]))
+# netno  = cor(t(assay(dat)[, dat$mets == "no"]))
+# netdiff = netyes-netno
+# range(netdiff)
+# (-1) - (-1)
+# (+1) - (+1)
+# -1 - (+1)
+# (+1) - (-1)
+# 
+# hist(netdiff)
+# dim(netdiff)
+# length(netdiff)
+# 
+# 
+# cormat2 = rep(1:nsel, each=nsel)
+# cormat1 = rep(1:nsel,nsel)
+# length(cormat2)
+# length(cormat1)
+# 
+# el = cbind(cormat1, cormat2, c(netdiff))
+# dim(el)
+# 
+# melted = melt(upper.tri(netdiff))
+# melted = melted[which(melted$value),]
+# values = netdiff[which(upper.tri(netdiff))]
+# melted = cbind(melted[,1:2], values)
+# head(melted)
+# dim(melted)
+# genes = row.names(netdiff)
+# melted[,1] = genes[melted[,1]]
+# melted[,2] = genes[melted[,2]]
+# row.names(melted) = paste(melted[,1], melted[,2], sep="_")
+# head(melted)
+# dim(melted)
+# tosub = melted
+# # cutoff 0.05
+# tosel = row.names(tosub[which(abs(tosub[,3]) > 1.0),]) # what would be the optional cut-off?
+# head(tosub)
+# dim(tosub)
+# 
+# netFun = function (x) {
+#     stats::cor(t(x), method = "pearson")
+# }
+# 
+# 
+# lioness = function (x, f = netFun) 
+# {
+#   # x = dat
+#   # f = netFun
+#   
+#     is.se = inherits(x, "SummarizedExperiment")
+#     is.matrix = is.matrix(x)
+#     
+#     if (!is.function(f)) {
+#         stop("please use a function")
+#     }
+#     
+#     if (is.matrix(x)) {
+#         print("take numeric matrix as input, ignore parameter for assay")
+#     }
+#     
+#     if (is.se) {
+#         colData = SummarizedExperiment::colData(x)
+#         x = SummarizedExperiment::assay(x)
+#         head(x)
+#     }
+#     
+#     if (!is.matrix(x)) {
+#         print("please use a numeric matrix as input")
+#     }
+#     
+#     if (is.null(colnames(x))) {
+#         colnames(x) = seq_len(ncol(x))
+#     }
+#     
+#     (nrsamples = ncol(x))
+#     samples = colnames(x)
+#     net = f(x)
+#     agg = c(net)
+#     head(agg)
+#     length(agg)
+#     
+#     lionessOutput = matrix(NA, nrow(net) * ncol(net), nrsamples + 2)
+#     dim(lionessOutput)
+#     
+#     colnames(lionessOutput) = c("reg", "tar", samples)
+#     lionessOutput[, 1] = rep(row.names(net), ncol(net))
+#     lionessOutput[, 2] = rep(colnames(net), each = nrow(net))
+#     
+#     lionessOutput = as.data.frame(lionessOutput, stringsAsFactors = FALSE)
+#     
+#     lionessOutput[, 3:ncol(lionessOutput)] = vapply(lionessOutput[, 3:ncol(lionessOutput)], 
+#                                                      as.numeric, vector("numeric", nrow(lionessOutput)))
+#     
+#     
+#     for (i in seq_len(nrsamples)) {
+#       
+#         ss = c(f(x[, -i])) # leave one sample/replicate out, and calc pearson correlation
+#         #                         no of samples * (cor(all) - cor(all - one)) + cor(all - one)
+#         lionessOutput[, i + 2] = nrsamples * (agg - ss) + ss
+#     }
+#     
+#     
+#     # y = x[1:4, 1:4]
+#     # bla = f(y)
+#     # for (i in 1:4) {
+#     #   cat('####  ####  \n', i, '\n\n')
+#     #   ss = c(f(y[, -i]))
+#     #   print('All')
+#     #   print(bla)
+#     #   print('\nLOO')
+#     #   print(f(y[, -i]))
+#     #   print('\nDiff = n.repl * (all - loo) + loo')
+#     #   print(4 * (bla - ss) + ss)
+#     #   print('\n')
+#     # }
+#     
+#     
+#     edges = paste(lionessOutput[, 1], lionessOutput[, 2], sep = "_")
+#     
+#     nodes = colnames(x)
+#     
+#     rowData = S4Vectors::DataFrame(row.names = edges, reg = lionessOutput[, 
+#         1], tar = lionessOutput[, 2])
+#     
+#     rowData
+#     
+#     if (!is.se) {
+#         colData = S4Vectors::DataFrame(row.names = nodes, sample = nodes)
+#     }
+#     
+#     colData
+#     
+#     se = SummarizedExperiment::SummarizedExperiment(assays = list(lioness = as.matrix(lionessOutput[, 3:ncol(lionessOutput)])), 
+#                                                      colData = colData, rowData = rowData)
+#     
+#     se
+#     head(se@assays@data[[1]])
+#     
+#     return(se)
+# }
+# 
+# 
+# cormat = lioness(dat, netFun)
+# # filter post lioness on abs(cor.diff) > 0.5
+# corsub = assay(cormat[which(row.names(cormat) %in% tosel), ])
+# 
+# a = apply(corsub, 2, range)
+# t(a)
+# 
+# 
+# group = factor(se$mets)
+# design = model.matrix(~0+group)
+# cont.matrix = makeContrasts(yesvsno = (groupyes - groupno), levels = design)  
+# fit = lmFit(corsub, design) # lm on cor
+# fit2 = contrasts.fit(fit, cont.matrix)
+# fit2e = eBayes(fit2)
+# # toptable = topTable(fit2e, number=nrow(corsub), adjust="fdr")
+# toptable = topTable(fit2e, number=nrow(corsub), adjust="BH", p.value=1, lfc=0)
+# dim(toptable)
+# 
+# plot(NULL, 
+#      #xlab="", 
+#      ylab="p.adj", 
+#      #xaxt="n", yaxt="n",
+#      xlim=c(0, nrow(toptable)), ylim=c(0, 1))
+# myp = c("holm", "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr", "none")
+# mycol = brewer.pal(n = length(myp), name = 'Dark2')
+# # display.brewer.pal(n = length(myp), name = 'Dark2')
+# for (k in 1:length(myp)){
+#   p = p.adjust(toptable$P.Value, 
+#          method = myp[k], 
+#          n = length(toptable$P.Value))
+#   lines(1:nrow(toptable), p, 
+#         col = mycol[k],
+#         lwd = 2, lty = 1)
+# }
+# abline(h = 0.05, col="blue")
+# legend('topright',
+#        myp,
+#        col = mycol,
+#        lty = 1, # 1:2,
+#        bty = 'n')
+# 
+# 
+# 
+# par(mar=c(4,4,4,4))
+# hist(toptable$adj.P.Val, breaks = 100)
+# hist(toptable$P.Value, breaks = 100)
+# # toptable = toptable[toptable$adj.P.Val < 0.05, ] # none
+# table(toptable$adj.P.Val < 0.05 )
+# table(toptable$P.Value < 0.05 )
+# toptable = toptable[toptable$adj.P.Val < 0.05, ]
+# 
+# toptable_edges = t(matrix(unlist(c(strsplit(row.names(toptable), "_"))),2))
+# # z = cbind(toptable_edges[1:50,], toptable$logFC[1:50]) # defaults: top 50
+# z = cbind(toptable_edges, toptable$logFC)
+# z = cbind(toptable_edges, toptable$logFC)
+# g = graph.data.frame(z, directed=FALSE)
+# head(z)
+# # contrast on cor, two gorups
+# E(g)$weight = as.numeric(z[,3])
+# E(g)$color[E(g)$weight<0] = "blue"
+# E(g)$color[E(g)$weight>0] = "red"
+# E(g)$weight = 1
+# summary(g)
+# 
+# 
+# # topgeneslist = unique(c(toptable_edges[1:50,]))
+# topgeneslist = unique(c(toptable_edges))
+# fit = lmFit(exp, design)
+# fit2 = contrasts.fit(fit, cont.matrix)
+# fit2e = eBayes(fit2)
+# topDE = topTable(fit2e, number=nrow(exp), adjust="fdr")
+# topDE = topDE[which(row.names(topDE) %in% topgeneslist),]
+# topgenesDE = cbind(row.names(topDE), topDE$t)
+# 
+# 
+# # add t-statistic to network nodes
+# nodeorder = cbind(V(g)$name, 1:length(V(g)))
+# nodes = merge(nodeorder, topgenesDE, by.x=1, by.y=1)
+# nodes = nodes[order(as.numeric(as.character(nodes[,2]))),]
+# nodes[,3] = as.numeric(as.character(nodes[,3]))
+# nodes = nodes[,-2]
+# V(g)$weight = nodes[,2]
+# 
+# # make a color palette
+# mypalette4 = colorRampPalette(c("blue","white","white","red"), space="Lab")(256) 
+# breaks2a = seq(min(V(g)$weight), 0, length.out=128)
+# breaks2b = seq(0.00001, max(V(g)$weight)+0.1,length.out=128)
+# breaks4 = c(breaks2a, breaks2b)
+# 
+# # select bins for colors
+# bincol = rep(NA, length(V(g)))
+# for(i in 1:length(V(g))){
+#     bincol[i] = min(which(breaks4>V(g)$weight[i]))
+# }
+# bincol = mypalette4[bincol]
+# 
+# # add colors to nodes
+# V(g)$color = bincol
+# 
+# 
+# par(mar=c(0,0,0,0))
+# plot(g, vertex.label.cex=0.7, 
+#      vertex.size=10, 
+#      vertex.label.color = "black", 
+#      vertex.label.font=3, 
+#      edge.width=10*(abs(as.numeric(z[,3]))-0.7), 
+#      vertex.color=V(g)$color)
+
+
+
+## no p-val cutoff at all
+# https://netzoo.github.io/netZooR/articles/lioness_limma_CamilaLR.html
+
+```
+
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+
+gc()
+rm(list = ls(all = TRUE))
+gc()
+set.seed(123456)
+
+```
+
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+
+   autocurve.edges = function(graph, start=0.5) {
+      el = apply(get.edgelist(graph, names = FALSE), 1, paste, collapse = ":")
+      ave(rep(NA, length(el)), el, FUN = function(x) {
+        if (length(x) == 1) {
+          return(0)
+        } else {
+          return(seq(-start, start, length = length(x)))
+        }
+      })
+   }
+
+
+
+```
+
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+
+# if (!requireNamespace("BiocManager", quietly = TRUE))
+#     install.packages("BiocManager")
+# 
+# BiocManager::install("S4Vectors")
+
+
+library(lionessR)
+library(igraph)
+# library(reshape2)
+# library(limma)
+# library(SummarizedExperiment)
+library(RColorBrewer)
+
+```
+
+
+# input
+
+Keep cor cut-off high to avoid manicall FDR ?
+
+
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+
+# bad data for lioness since not many DE
+fp = file.path('..', '..', '_A_02_counts-Proteomics', 'output')
+fn = 'Proteomics_normalised_filtered_v2.txt'
+# here adaptatin of column names is neede
+# fp = file.path('..', '..', '_A_03_RNAseq-limma', 'output')
+# fn = 'norm.txt'
+# this one takes forever
+# fn = 'norm_pretty-col-names.txt'
+
+
+pn = data.table::fread(file.path(fp, fn), header = TRUE)
+data.table::setDF(pn)
+table(pn == '-')
+pn[pn == '-'] = NA
+rownames(pn) = pn$pID
+pn = pn[, -1]
+
+colnames(pn)
+
+# make all groups
+myvec1 = unique(gsub('_1|_2|_3', '', colnames(pn)
+          ))
+# or even by time
+myvec2 = gsub('.*_', '', myvec1)
+# make two groups: Nm an T78
+myvec1 = unique(gsub('_.*', '', myvec1))
+
+
+myp = c("holm", "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr", "none")
+mycol = brewer.pal(n = length(myp), name = 'Dark2')
+
+
+
+
+```
+
+chose sth that u like
+
+```{r}
+
+# make a color palette
+nn = 63
+# mypalette4 = colorRampPalette(c("blue4","white", "firebrick4"), space="Lab")(nn)
+# mypalette4 = colorRampPalette(c("blue4", "white", "firebrick4"), space="rgb")(nn)
+mypalette4 = colorRampPalette(c("dodgerblue3", "white", "brown3"), space="rgb")(nn) 
+mypalette4[32] = 'grey45'
+pie(rep(1, length(mypalette4)), col = mypalette4) # , labels = format(breaks4, scientific = TRUE, digits = 3))# , nsmall = 3))
+  
+
+
+```
+
+
+## Across tp, within wounding, within type (Nm/T78)
+
+This is the only one that gives sth decent
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+
+# absolute corr diff cut-off 0-2
+cutOff.net = 1.6 # prevent to many edges because p adjustment will be severe
+cutOff.p = 0.05
+
+
+```
+
+
+
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+
+a = 'Mock'
+b = 'Wounding'
+
+l = myvec2[7]
+j = myvec1[2]
+
+for (l in myvec2){
+  for (j in myvec1){
+
+    print(j)
+    print(l)
+  
+  
+    # dat = pn[, grep(l, colnames(pn))]
+    # dat = dat[, grep(j, colnames(dat))]
+    dat = pn[, grep(j, colnames(pn))]
+    dat = dat[, grep(b, colnames(dat))]
+  
+    
+    mets = rep('no', ncol(dat))
+    # mets[grep(b, colnames(dat))] = 'yes'
+    # mets[intersect(grep(j, colnames(dat)), grep(b, colnames(dat)))] = 'yes'
+    mets[intersect(grep(l, colnames(dat)), grep(b, colnames(dat)))] = 'yes'
+    cbind(colnames(dat), mets)
+    
+    rowData = S4Vectors::DataFrame(row.names = rownames(dat), gene = rownames(dat))
+    colData = S4Vectors::DataFrame(row.names = colnames(dat), sample = colnames(dat), 
+                         mets = mets)
+    
+    se = SummarizedExperiment::SummarizedExperiment(assays = list(counts = as.matrix(dat)), 
+                               colData = colData, rowData = rowData)
+    # head(se@assays@data[[1]])
+    range(se@assays@data[[1]], na.rm = TRUE)
+    
+    
+    
+    nsel = nrow(dat)
+    tmp = dat[, grep(j, colnames(dat))]
+    ind = which((apply(tmp, 1, function(x) any(duplicated(x)))))
+    # cat('Identical values\n')
+    # print(cbind(rownames(tmp)[ind], (tmp[ind, ])))
+    # netyes = cor(t(dat[, grep(b, colnames(dat))]), use = 'pairwise.complete.obs')
+    # netno  = cor(t(dat[, grep(b, colnames(dat), invert = TRUE)]), use = 'pairwise.complete.obs')
+    netyes = cor(t(dat[, grep(l, colnames(dat))]), use = 'pairwise.complete.obs')
+    netno  = cor(t(dat[, grep(l, colnames(dat), invert = TRUE)]), use = 'pairwise.complete.obs')
+    range(netyes, na.rm = TRUE)
+    range(netno, na.rm = TRUE)
+    netdiff = netyes-netno
+    (range(netdiff, na.rm = TRUE))
+    
+  
+    cormat2 = rep(1:nsel, each=nsel)
+    cormat1 = rep(1:nsel,nsel)
+    el = cbind(cormat1, cormat2, c(netdiff))
+    melted = reshape2::melt(upper.tri(netdiff))
+    melted = melted[which(melted$value),]
+    values = netdiff[which(upper.tri(netdiff))]
+    melted = cbind(melted[,1:2], values)
+    genes = row.names(netdiff)
+    melted[,1] = genes[melted[,1]]
+    melted[,2] = genes[melted[,2]]
+    row.names(melted) = paste(melted[,1], melted[,2], sep="_")
+    range(melted$values, na.rm = TRUE)
+    tosub = melted
+    range((tosub[,3]), na.rm = TRUE)
+    hist((tosub[,3]), breaks = 100)
+    tosel = row.names(tosub[which(abs(tosub[,3]) >= cutOff.net),])
+    (length(tosel))
+    
+    
+    
+    if (length(tosel) > 0) {
+    
+      mymat = melted[!is.na(melted$values), ]
+      colnames(mymat) = c('source', 'target', 'cor.dif')
+      
+      
+      fno = paste0('corDiff.LionessR_', gsub('\\^|_', '', j), '-vs-', gsub('\\^', '', l), '.txt')
+    
+      # write.table(mymat, 
+      #             file = file.path('..', 'other', fno), 
+      #             append = FALSE, 
+      #             quote = FALSE, 
+      #             sep = "\t",
+      #             eol = "\n", 
+      #             na = "NA", 
+      #             dec = ".", 
+      #             row.names = FALSE,
+      #             col.names = TRUE, 
+      #             qmethod = "escape",
+      #             fileEncoding = "UTF-8")
+      
+      
+      dat = se
+      cormat = lioness(dat, netFun)
+      range(cormat@assays@data[[1]], na.rm = TRUE)
+      corsub = SummarizedExperiment::assay(cormat[which(row.names(cormat) %in% tosel), ])
+      range(corsub, na.rm = TRUE)
+      
+      
+      # We then run a LIMMA analysis on these edges:
+      
+      group = factor(se$mets)
+      design = model.matrix(~0+group)
+      cont.matrix = limma::makeContrasts(yesvsno = (groupyes - groupno), levels = design)  
+      fit = limma::lmFit(corsub, design)
+      fit2 = limma::contrasts.fit(fit, cont.matrix)
+      fit2e = limma::eBayes(fit2)
+      toptable = limma::topTable(fit2e, number=nrow(corsub), adjust="fdr", p.value=1, lfc=0)
+      toptable = toptable[!is.na(toptable$P.Value), ]
+      (dim(toptable))
+      
+      
+      # how p-vals are corrected, but it takes time to plot
+      # plot(NULL, 
+      #    #xlab="", 
+      #    ylab="p.adj", 
+      #    #xaxt="n", yaxt="n",
+      #    xlim=c(0, nrow(toptable)), ylim=c(0, 1),
+      #    main = paste0(gsub('[\\^_]', '', strsplit(j, '\\|')[[1]][1]),
+      #                      ' DE edge adj.p-val\nabs(cor) dist: ',
+      #                      cutOff.net))
+      # 
+      # for (k in 1:length(myp)){
+      #   p = p.adjust(toptable$P.Value, 
+      #          method = myp[k], 
+      #          n = length(toptable$P.Value))
+      #   lines(1:nrow(toptable), p, 
+      #         col = mycol[k],
+      #         lwd = 2, lty = 1)
+      # }
+      # abline(h = 0.05, col="blue")
+      # legend('topright',
+      #        myp,
+      #        col = mycol,
+      #        lty = 1, # 1:2,
+      #        bty = 'n')
+      
+      
+    
+       print(table(toptable$adj.P.Val < cutOff.p))
+       hist(toptable$adj.P.Val, breaks = 100)
+       
+       
+       
+       toptable = toptable[toptable$adj.P.Val < cutOff.p, ]
+       
+       if (length(toptable$adj.P.Val < cutOff.p)) {
+        
+    
+      
+        # We select the top 50 most differentially co-expressed edges and convert them into an igraph graph.data.frame object for visualization. We color edges red if they have higher coefficients in the short-term metastasis-free survival group, and blue if they have higher coefficients in the long-term metastasis-free survival group:
+          
+        toptable_edges = t(matrix(unlist(c(strsplit(row.names(toptable), "_"))),2))
+        z = cbind(toptable_edges, toptable$logFC, toptable$adj.P.Val)
+        z[,3] = as.numeric(z[,3])
+        z[,4] = as.numeric(z[,4])
+        
+        g = graph.data.frame(z, directed=FALSE)
+        E(g)$weight = 0
+        E(g)$weight = ifelse(as.numeric(z[,4]) < cutOff.p, as.numeric(z[,3]), 0)
+        E(g)$color[E(g)$weight<0] = "blue"
+        E(g)$color[E(g)$weight>0] = "red"
+        E(g)$color[E(g)$weight == 0] = "grey60"
+        E(g)$weight = abs(as.numeric(E(g)$weight))# 1
+        # plot(g)
+        
+        
+        # Next, we perform a LIMMA analysis on gene expression so that we can also color nodes based on their differential expression:
+          
+        topgeneslist = unique(c(toptable_edges))
+        exp = se@assays@data[[1]]
+        exp = exp[rownames(exp) %in% topgeneslist, ]
+        fit = limma::lmFit(exp, design)
+        fit2 = limma::contrasts.fit(fit, cont.matrix)
+        fit2e = limma::eBayes(fit2)
+        topDE = limma::topTable(fit2e, number=nrow(exp), adjust="fdr")
+        topDE = topDE[which(row.names(topDE) %in% topgeneslist),]
+        topgenesDE = cbind(row.names(topDE), topDE$t, topDE$adj.P.Val)
+        
+        
+        
+        
+        # We color nodes based on the t-statistic from the LIMMA analysis:
+        
+        # add t-statistic to network nodes
+        nodeorder = cbind(V(g)$name, 1:length(V(g)))
+        nodes = merge(nodeorder, topgenesDE, by.x=1, by.y=1)
+        nodes = nodes[order(as.numeric(as.character(nodes[,2]))),]
+        nodes[,3] = as.numeric(as.character(nodes[,3]))
+        nodes[,4] = as.numeric(as.character(nodes[,4]))
+        nodes = nodes[,-2]
+        V(g)$weight = ifelse(as.numeric(nodes[,3]) < cutOff.p, nodes[,2], 0)
+        
+        breaks2a = seq(min(V(g)$weight), 0, length.out=ceiling(nn/2))
+        breaks2b = seq(0.00001, max(V(g)$weight)+0.1,length.out=floor(nn/2))
+        breaks4 = c(breaks2a, breaks2b)
+    
+        
+      
+        # select bins for colors
+        bincol = rep(NA, length(V(g)))
+        for(i in 1:length(V(g))){
+            bincol[i] = min(which(breaks4 > V(g)$weight[i]))
+        }
+        bincol = mypalette4[bincol]
+        
+        # add colors to nodes
+        V(g)$color = bincol
+        
+        l1 = layout_on_grid(g, dim = 2)
+        l2 = layout_with_kk(g, coords = l1, dim = 2,
+                            maxiter = 999 * vcount(g),
+                            epsilon = 0, kkconst = vcount(g),
+                            #weights = rep(100, length.out),
+                            minx = NULL, maxx = NULL,
+                            miny = NULL, maxy = NULL,
+                            minz = NULL,maxz = NULL)
+        z = ecount(g)/vcount(g)
+        l2 = l2*2*z   
+        V(g)$x = as.numeric(l2[,1])
+        V(g)$y = as.numeric(l2[,2])
+        
+        par(mar=c(2,2,2,2))
+        # plot(g, vertex.label.cex=0.7,
+        #      vertex.size=10,
+        #      vertex.label.color = "black",
+        #      vertex.label.font=3,
+        #      edge.width=E(g)$weight, # 10*(abs(as.numeric(z[,3]))-0.7),
+        #      vertex.color=V(g)$color,
+        #      main = paste0(gsub('[\\^_]', '', strsplit(j, '\\|')[[1]][1]),
+        #                    ' vs all \n',
+        #                    cutOff.net),
+        #      layout = layout_with_lgl # layout_with_fr # layout_nicely  # layout_with_gem
+        # )
+        
+        
+        plot(0, type = "n",
+               axes = FALSE,
+               xlim = extendrange(V(g)$x),
+               ylim = extendrange(V(g)$y),
+               xlab = '',
+               ylab = '')
+          
+        plot(g, 
+             layout = cbind(V(g)$x, V(g)$y),
+             vertex.label.cex=0.7,
+             vertex.size=10,
+             edge.width = E(g)$weight/max(E(g)$weight), # E(g)$weight,
+             vertex.color=V(g)$color,
+             main = paste(j, b, 'at', l, 
+                           'vs the rest of', j, b, '\nabs(cor) dist: ',
+                           cutOff.net),
+           edge.curved = autocurve.edges(g))
+        
+     }
+    }
+  
+  }
+}
+
+```
+
+
+
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+
+sessionInfo()
+
+```
+

@@ -1,0 +1,322 @@
+---
+title: "03_geneID_to_CKN-Ath"
+author: "zagor"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    fig_caption: yes
+    self_contained: yes
+    fig_width: 16
+    fig_height: 9
+    toc: true
+    toc_float:
+      toc_collapsed: false
+    toc_depth: 5
+    number_sections: yes
+    theme: flatly
+    highlight: tango
+  pdf_document:
+    toc: yes
+    toc_depth: '2'
+  word_document:
+    toc: yes
+    toc_depth: '2'
+editor_options:
+  chunk_output_type: console
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(#dev = c('pdf', 'png'),  # this embeds pdf and crates scrolable blocks
+                      dev = c('png'), 
+                      fig.align = 'center', 
+                      fig.height = 9, 
+                      fig.width = 16 ,
+                      warning = FALSE, message = FALSE
+                      )
+# options(knitr.table.format = "html")
+
+```
+
+
+```{r,  echo=TRUE, warning=FALSE, message=FALSE}
+
+rm(list = ls(all = TRUE))
+gc()
+
+set.seed(123456)
+
+
+`%nin%` = Negate(`%in%`)
+
+library(magrittr)
+
+
+```
+
+
+# p-value cut-off
+
+```{r}
+
+pval.cutoff = 0.05
+
+
+```
+
+# input
+
+## transation table
+
+```{r}
+
+fpt = file.path('..', 'input')
+fnt = 'tomato-arabidopsis-translation_dummy.txt'
+
+
+```
+
+## limma results
+
+```{r}
+
+
+fpp = file.path('..', '..', '_A_02_DEtranscriptomics-R', 'output', 'limma-out')
+fl = list.files(fpp)
+
+
+```
+
+
+## PSS nodes (Ath based)
+
+```{r}
+
+fs = 'old_CKN_nodes.txt'
+
+```
+
+## read transation table
+
+```{r}
+
+
+NGS.ID.to.PIS = read.table(file.path(fpt, fnt),
+                           header = TRUE, 
+                           sep = "\t", 
+                           quote = NULL,
+                           dec = ".", 
+                           stringsAsFactors = FALSE,
+                           na.strings = "NA",
+                           fill = TRUE,
+                           comment.char = "#")
+
+NGS.ID.to.PIS = NGS.ID.to.PIS[!duplicated(NGS.ID.to.PIS), ]
+# tomato
+colnames(NGS.ID.to.PIS)[1] = 'GeneID'
+# arabidopsis is he key
+NGS.ID.to.PIS = data.table::data.table(NGS.ID.to.PIS, key = "AthID") 
+dim(NGS.ID.to.PIS)
+
+```
+
+
+## read IDs that are present in PSS
+
+```{r}
+
+
+sel = read.table(file.path(fpt, fs),
+                 header = TRUE, 
+                 sep = "\t", 
+                 quote = NULL,
+                 dec = ".", 
+                 stringsAsFactors = FALSE,
+                 na.strings = "NA",
+                 fill = TRUE,
+                 comment.char = "#")
+
+table(duplicated(sel$geneID))
+
+# shrink table to run faster
+NGS.ID.to.PIS = NGS.ID.to.PIS[NGS.ID.to.PIS$AthID %in% sel$geneID, ]
+table(duplicated(NGS.ID.to.PIS$AthID))
+
+```
+
+
+## merge limma output and filter by adjusted p-value
+
+take care of column names that u grep
+
+```{r}
+
+organism.NGS.files = NGS.ID.to.PIS
+
+for (i in fl) {
+  
+  tmp = read.table(file = file.path(fpp, i),
+                   header = TRUE, 
+                   sep = "\t", 
+                   quote = NULL,
+                   dec = ".", 
+                   stringsAsFactors = FALSE,
+                   na.strings = "NA",
+                   fill = TRUE,
+                   comment.char = "#")  
+  
+  ind = c(grep("GeneID", colnames(tmp)), grep("adj.P.Val", colnames(tmp)), grep("logFC", colnames(tmp)))
+  tmp = tmp[,ind]
+  ind = which(tmp[,2] < pval.cutoff)
+  tmp = tmp[ind,c(1,3)]
+  colnames(tmp)[2] = i
+  # tmp[, 1] = gsub('s', 'S', tmp[, 1])
+  organism.NGS.files = merge(organism.NGS.files, tmp, by = "GeneID", all.x = TRUE, sort = FALSE)
+}
+
+
+dim(organism.NGS.files)
+
+
+
+
+
+
+```
+
+
+# prioritisation
+
+## selec first column where logFC filtered values start
+
+```{r}
+
+logFC.starts.from.col = 3
+
+```
+
+
+## prioritise - most responsive tomatoID to AthID
+
+```{r}
+
+# check that numerical columns are cumeric
+# lapply(organism.NGS.files, class)
+
+# unique Ath nodes in PSS
+clades = sort(unique(organism.NGS.files$AthID))
+tmp = NULL
+
+for (i in clades) {
+  ind = which(organism.NGS.files$AthID == i)
+  if (length(ind) > 1) { # (length(ind > 1)) for found, not length(ind) > 1 for multiple (1 or more, doesnt matter here)
+    mysubset = organism.NGS.files[ind, ]
+    e = sapply(1:nrow(mysubset), function(x) sum(!is.na(mysubset[x, logFC.starts.from.col:ncol(mysubset)])))
+    f1 = sapply(1:nrow(mysubset), 
+            function(x) ifelse(all(is.na(mysubset[x, logFC.starts.from.col:ncol(mysubset)])), 
+                                0, 
+                                mean(colMeans(abs(mysubset[x, logFC.starts.from.col:ncol(mysubset)]), na.rm = TRUE), na.rm = TRUE)))
+    f2 = sapply(1:nrow(mysubset), 
+            function(x) ifelse(all(is.na(mysubset[x, logFC.starts.from.col:ncol(mysubset)])), 
+                                0, 
+                                max(abs(mysubset[x, logFC.starts.from.col:ncol(mysubset)]), na.rm = TRUE)))
+    g = which(e == max(e))
+    h1 = which(f1[g] == max(f1[g]))
+    h2 = which(f2[g] == max(f2[g]))
+    k2 = ifelse(length(h1) > 1, h2, h1)
+    k = ifelse(length(g) > 1, g[k2], g)
+    
+    tmp = rbind(tmp, mysubset[k,])
+  } else { # no match
+    tmp = rbind(tmp, organism.NGS.files[ind,]) # take first
+  }
+}
+
+nrow(tmp) == length(clades)
+clades.organism.NGS =  tmp
+
+# we can have the same tomato matching different Ath
+table(duplicated(clades.organism.NGS$GeneID))
+# but we should have AtID multiple times
+table(duplicated(clades.organism.NGS$AthID))
+
+
+
+
+```
+
+
+
+```{r}
+
+openxlsx::write.xlsx(clades.organism.NGS, 
+                     file.path("..", "output", "03_CKN_tomato-ath_prioritised.xlsx"), 
+                     asTable = TRUE, overwrite = TRUE)
+
+
+```
+
+
+# write output in limma style
+
+```{r}
+
+fpo = file.path('..', 'output', 'CKN-DiNAR-input')
+dir.create(fpo)
+fpo = file.path('..', 'output', 'CKN-DiNAR-input', 'prioritised')
+dir.create(fpo)
+getGenes = clades.organism.NGS$GeneID
+length(getGenes)
+# remove ones that have only 0 (or NA) per all conditions
+j = !sapply(1:nrow(clades.organism.NGS), 
+            function(x) all(is.na(clades.organism.NGS[x, logFC.starts.from.col:ncol(clades.organism.NGS)])))
+getGenes = getGenes[j]
+length(getGenes)
+
+
+for (i in fl) {
+  
+  tmp = read.table(file = file.path(fpp, i),
+                   header = TRUE, 
+                   sep = "\t", 
+                   quote = NULL,
+                   dec = ".", 
+                   stringsAsFactors = FALSE,
+                   na.strings = "NA",
+                   fill = TRUE,
+                   comment.char = "#")
+  
+  # Solyc vs solyc
+  # tmp$GeneID = gsub('s', 'S', tmp$GeneID)
+  ind = match(getGenes, tmp$GeneID)
+  tmp = tmp[ind, ]
+  table(duplicated(clades.organism.NGS$AthID))
+  temp = merge(tmp, clades.organism.NGS[, 1:2], by = "GeneID", all.x = FALSE, all.y = FALSE,  sort = FALSE)
+  # be sure not to have duplicated IDs
+  temp = temp[!duplicated(temp), ]
+  temp = dplyr::arrange(temp, GeneID, AthID)
+  table(duplicated(temp$AthID))
+  
+  write.table(x = temp, file = file.path(fpo, i), 
+              append = FALSE, 
+              quote = FALSE, 
+              sep = "\t",
+              eol = "\n", 
+              na = "NA", 
+              dec = ".", 
+              row.names = FALSE,
+              col.names = TRUE)
+}
+
+
+```
+
+
+# sessionInfo
+
+```{r}
+
+sessionInfo()
+
+```
+
