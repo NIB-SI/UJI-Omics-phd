@@ -1,0 +1,318 @@
+---
+title: "03_variableSelection"
+author: "zagor"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    fig_caption: yes
+    self_contained: yes
+    fig_width: 12
+    fig_height: 12
+    toc: yes
+    toc_depth: 5
+    number_sections: yes
+    theme: flatly
+    highlight: tango
+  pdf_document:
+    toc: yes
+    toc_depth: '5'
+  word_document:
+    toc: yes
+    toc_depth: '5'
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(#dev = c('pdf', 'png'),  # this embeds pdf and crates scrolable blocks
+                      dev = c('png'), 
+                      fig.align = 'center', 
+                      fig.height = 12, 
+                      fig.width = 12 ,
+                      warning = FALSE, message = FALSE
+                      )
+# options(knitr.table.format = "html")
+
+```
+
+This is a template code for variable selection. Check vignettes to add more useful things.
+
+
+```{r}
+
+rm(list = ls(all = TRUE))
+gc()
+
+
+set.seed(123456)
+library(mlbench)
+library(caret)
+library(pheatmap)
+library(gridGraphics)
+library(grid)
+library(gridExtra)
+library(rpart)
+library(rpart.plot)
+library(randomForest)
+
+
+
+```
+
+
+# Caret info
+
+<https://topepo.github.io/caret/feature-selection-overview.html>
+
+
+
+<https://machinelearningmastery.com/learning-vector-quantization-for-machine-learning/>
+
+Learning Vector Quantization for Machine Learning
+
+A downside of K-Nearest Neighbors is that you need to hang on to your entire training dataset.
+
+The Learning Vector Quantization algorithm (or LVQ for short) is an artificial neural network algorithm that lets you choose how many training instances to hang onto and learns exactly what those instances should look like
+
+The representation for LVQ is a collection of codebook vectors.
+
+LVQ was developed and is best understood as a classification algorithm. It supports both binary (two-class) and multi-class classification problems.
+
+A codebook vector is a list of numbers that have the same input and output attributes as your training data.
+
+Predictions are made using the LVQ codebook vectors in the same way as K-Nearest Neighbors.
+
+Predictions are made for a new instance (x) by searching through all codebook vectors for the K most similar instances and summarizing the output variable for those K instances. For classification this is the mode (or most common) class value.
+
+Typically predictions are made with K=1, and the codebook vector that matches is called the Best Matching Unit (BMU).
+
+To determine which of the K instances in the training dataset are most similar to a new input a distance measure is used. For real-valued input variables, the most popular distance measure is Euclidean distance.
+
+Data Preparation for LVQ:
+
+
+* Classification: LVQ is a classification algorithm that works for both binary (two-class) and multi-class classification algorithms. The technique has been adapted for regression.
+
+* Multiple-Passes: Good technique with LVQ involves performing multiple passes of the training dataset over the codebook vectors (e.g. multiple learning runs). The first with a higher learning rate to settle the pool codebook vectors and the second run with a small learning rate to fine tune the vectors.
+
+* Multiple Best Matches: Extensions of LVQ select multiple best matching units to modify during learning, such as one of the same class and one of a different class which are drawn toward and away from a training sample respectively. Other extensions use a custom learning rate for each codebook vector. These extensions can improve the learning process.
+
+* Normalize Inputs: Traditionally, inputs are normalized (rescaled) to values between 0 and 1. This is to avoid one attribute from dominating the distance measure. If the input data is normalized, then the initial values for the codebook vectors can be selected as random values between 0 and 1.
+
+* Feature Selection: Feature selection that can reduce the dimensionality of the input variables can improve the accuracy of the method. LVQ suffers from the same curse of dimensionality in making predictions as K-Nearest Neighbors.
+
+
+
+
+<https://machinelearningmastery.com/feature-selection-with-the-caret-r-package/>
+
+Feature Selection with the Caret R Package
+
+
+* Remove Redundant Features
+
+Data can contain attributes that are highly correlated with each other. Many methods perform better if highly correlated attributes are removed.
+
+Generally, you want to remove attributes with an absolute correlation of 0.75 or higher.
+
+
+* Rank Features By Importance
+
+The importance of features can be estimated from data by building a model. Some methods like decision trees have a built in mechanism to report on variable importance. For other algorithms, the importance can be estimated using a ROC curve analysis conducted for each attribute.
+
+* Feature Selection
+
+Automatic feature selection methods can be used to build many models with different subsets of a dataset and identify those attributes that are and are not required to build an accurate model.
+
+A popular automatic method for feature selection provided by the caret R package is called Recursive Feature Elimination or RFE.
+
+
+<https://topepo.github.io/caret/available-models.html>
+
+
+
+<https://www.machinelearningplus.com/machine-learning/caret-package/>
+
+In caret, one-hot-encodings can be created using dummyVars(). Just pass in all the features to dummyVars() as the training data and all the factor columns will automatically be converted to one-hot-encodings.
+
+
+<https://remiller1450.github.io/s230f19/caret3.html>
+
+Nominal Outcomes
+
+
+method='multinom' in caret actually fits a neural network. One of the hyper parameters for this algorithm is decay. By default caret uses a random search of length three and chooses the best hyper parameter combination based on mean re-sampled performance. By default when doing classification the measure used to assess model performance is Accuracy which in many cases is not what one is trying to optimize.
+
+<https://topepo.github.io/caret/index.html>
+
+
+# data
+
+## 24
+
+```{r}
+
+
+
+fpi = file.path('..', '..', '_A_01_multiOmics-Dataset', 'input', 'ENZYMOMICS')
+
+
+fn = 'Enzymomics (metaboanalyst) all groups_v2.txt'
+data <- data.table::fread(file.path(fpi, fn), header = TRUE)
+data.table::setDF(data)
+
+n = 7 # where numbers start
+subset = data[data$time == 24, ]
+
+
+
+
+```
+
+## cor
+
+
+
+```{r, cor, echo=FALSE, warning=FALSE}
+
+
+
+subset.rescaled = subset
+subset.rescaled[,n:ncol(subset.rescaled)] = apply(subset[,n:ncol(subset)], 
+                                                  MARGIN = 2, 
+                                                  FUN = function(X) (X - min(X, na.rm = TRUE))/diff(range(X, na.rm = TRUE)))
+
+
+
+correlationMatrix = cor(subset.rescaled[,n:ncol(subset.rescaled)], use = 'pairwise.complete.obs')
+hm3 = pheatmap(correlationMatrix, display_numbers = T, kmeans_k = NA, #9,
+         cluster_cols = TRUE, cluster_rows = TRUE, main = 'rescaled',
+         breaks = seq(-1, 1, 0.1), 
+         color = colorRampPalette(c("deepskyblue4", "cornflowerblue", 
+                                    "white",  "white",  "white", 
+                                    "darkgoldenrod1", "brown3"))(n = 21))
+# find attributes that are highly corrected (ideally >0.75)
+highlyCorrelated <- findCorrelation(correlationMatrix, cutoff=0.70, verbose = TRUE, names = TRUE)
+
+
+```
+
+
+
+## Feature selection using recursive feature elimination
+
+random forest selection function
+
+Cross-Validated (10 fold, repeated 10 times) 
+
+
+
+```{r, rfe, echo=FALSE, warning=FALSE}
+
+subset.rescaledX = subset.rescaled[, n:ncol(subset.rescaled)]
+subset.rescaledX[is.na(subset.rescaledX)] = 0
+y = factor(subset.rescaled$treatment)
+
+# define the control using a random forest selection function
+control <- rfeControl(functions=rfFuncs, method="repeatedcv", repeats=10, verbose = TRUE)
+# run the RFE algorithm
+## Backwards Feature Selection
+### A simple backwards selection, a.k.a. recursive feature elimination (RFE), algorithm
+
+subsets = c(1:3, 4:6, 8, 10, 12, 14) # a numeric vector of integers corresponding to the number of features that should be retained
+results <- rfe(x = subset.rescaledX, 
+               y = y, 
+               sizes=subsets, 
+               rfeControl=control)
+# summarize the results
+print(results)
+# list the chosen features
+predictors(results)
+# plot the results
+plot(results, type=c("g", "o"))
+
+print(results)
+confusionMatrix(results)
+# estimate variable importance
+importance <- varImp(results, scale=FALSE)
+# summarize importance
+print(importance)
+
+```
+
+
+
+```{r, featurePlotRFE, echo=FALSE, warning=FALSE}
+
+ind = match(predictors(results), colnames(subset.rescaled))
+
+print(colnames(subset.rescaled)[ind])
+print(ind)
+
+
+
+hm1 = pheatmap(cor(subset.rescaled[, ind], 
+                   use = 'pairwise.complete.obs'),
+               display_numbers = T, kmeans_k = NA,
+               cluster_cols = TRUE, cluster_rows = TRUE, main = 'features RFE', 
+               breaks = seq(-1, 1, 0.1), 
+               color = colorRampPalette(c("deepskyblue4", "cornflowerblue", 
+                                          "white",   
+                                          "darkgoldenrod1", "brown3"))(n = 21))
+
+
+
+hm2 = pheatmap(cor(subset.rescaled[subset.rescaled$treatment == 'NM', ind], 
+                   use = 'pairwise.complete.obs'),
+               display_numbers = T, kmeans_k = NA,
+               cluster_cols = TRUE, cluster_rows = FALSE, main = 'NM', 
+               breaks = seq(-1, 1, 0.1), 
+               color = colorRampPalette(c("deepskyblue4", "cornflowerblue", 
+                                          "white",   
+                                          "darkgoldenrod1", "brown3"))(n = 21))
+hm3 = pheatmap(cor(subset.rescaled[subset.rescaled$treatment == 'AM', ind], 
+                   use = 'pairwise.complete.obs'),
+               display_numbers = T, kmeans_k = NA,
+               cluster_cols = TRUE, cluster_rows = FALSE, main = 'AM', 
+               breaks = seq(-1, 1, 0.1), 
+               color = colorRampPalette(c("deepskyblue4", "cornflowerblue", 
+                                          "white",   
+                                          "darkgoldenrod1", "brown3"))(n = 21))
+hm4 = pheatmap(cor(subset.rescaled[subset.rescaled$treatment == 'NM_inf', ind], 
+                   use = 'pairwise.complete.obs'),
+               display_numbers = T, kmeans_k = NA,
+               cluster_cols = TRUE, cluster_rows = FALSE, main = 'NM_inf', 
+               breaks = seq(-1, 1, 0.1), 
+               color = colorRampPalette(c("deepskyblue4", "cornflowerblue", 
+                                          "white",   
+                                          "darkgoldenrod1", "brown3"))(n = 21))
+hm5 = pheatmap(cor(subset.rescaled[subset.rescaled$treatment == 'AM_inf', ind], 
+                   use = 'pairwise.complete.obs'),
+               display_numbers = T, kmeans_k = NA,
+               cluster_cols = TRUE, cluster_rows = FALSE, main = 'AM_inf', 
+               breaks = seq(-1, 1, 0.1), 
+               color = colorRampPalette(c("deepskyblue4", "cornflowerblue", 
+                                          "white",   
+                                          "darkgoldenrod1", "brown3"))(n = 21))
+
+
+grid.arrange(grobs = list(hm2[[4]],
+                          hm3[[4]],
+                          hm4[[4]],
+                          hm5[[4]]),
+             ncol = 2)
+
+
+```
+
+
+
+
+
+
+```{r}
+
+sessionInfo()
+
+```
+

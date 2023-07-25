@@ -1,5 +1,5 @@
 ---
-title: "01_log2FC"
+title: "02_log2FC"
 author: "zagor"
 date: "`r Sys.Date()`"
 output:
@@ -121,6 +121,7 @@ my.customised.t.test <- function(data, var.levels, stress.levels,
     rstatix::t_test(value ~ Stress, p.adjust.method = "holm")
   # Remove unnecessary columns and display the outputs
   stat.test %>% dplyr::select(-.y., -statistic, -df)
+  # https://github.com/kassambara/rstatix/issues/56
   stat.test <- stat.test %>% rstatix::add_xy_position(x = "Stress", 
                                                       fun = "max", # "mean_sd"
                                                       step.increase = 0)
@@ -186,7 +187,6 @@ my.customised.t.test <- function(data, var.levels, stress.levels,
                          hide.ns = TRUE, 
                          tip.length = 0.02, 
                          step.increase = 0.05) +
-																	
       theme(axis.text.x = element_text (angle = 45, 
                                         vjust = 1, 
                                         hjust = 1, 
@@ -245,6 +245,7 @@ my.customised.t.test <- function(data, var.levels, stress.levels,
   return(stat.test)
   
 }
+
 
 ####  ####  ####  ####  ####  ####  ####  ####  ####  ####  ####  ####  ####
 
@@ -310,7 +311,7 @@ pie(rep(1, length(my.ggplot.palette)),
 ```
 
 
-# Enzymes
+# Metabolites
 
 ## data
 
@@ -319,10 +320,10 @@ pie(rep(1, length(my.ggplot.palette)),
 
 
 
-fpi = file.path('..', '..', '_A_01_multiOmics-Dataset', 'input', 'ENZYMOMICS')
+fpi = file.path('..', '..', '_A_01_multiOmics-Dataset', 'input', 'METABOLOMICS')
 
 
-fn = 'Enzymomics (metaboanalyst) all groups_v2.txt'
+fn = 'Metabolomics all_identified_v2.txt'
 omics <- data.table::fread(file.path(fpi, fn), header = TRUE)
 data.table::setDF(omics)
 
@@ -364,7 +365,7 @@ data48 = data48[, -grep('time', colnames(data48))]
 stat.test.24 = my.customised.t.test(data = data24,
                                     var.levels = colnames(data24)[-c(1)],
                                     stress.levels = levels(data24$treatment),
-                                    y.lab = "Enzy",
+                                    y.lab = "Metabol",
                                     p.cex.labels = 1,
                                     p.cex = 0.5,
                                     p.palette = my.ggplot.palette,
@@ -373,7 +374,7 @@ stat.test.24 = my.customised.t.test(data = data24,
 stat.test.48 = my.customised.t.test(data = data48,
                                     var.levels = colnames(data24)[-c(1)],
                                     stress.levels = levels(data24$treatment),
-                                    y.lab = "Enzy",
+                                    y.lab = "Metabol",
                                     p.cex.labels = 1,
                                     p.cex = 0.5,
                                     p.palette = my.ggplot.palette,
@@ -393,7 +394,7 @@ ind = (grep('groups', colnames(stat.test)))
 stat.test = stat.test[, -..ind]
 
 fp = file.path('..', 'output')
-fn = 'Enzy_stat.test.txt'
+fn = 'Metabol_stat.test.txt'
 write.table(stat.test,
             file = file.path(fp, fn), 
             append = FALSE, 
@@ -418,7 +419,7 @@ write.table(stat.test,
 
 ```{r}
 
-title = 'Enzy 24'
+title = 'Metabol 24'
 
 log2FC1 = my.logFC(control = data24[grep('NM$', data24$treatment), ],
                   treatment = data24[grep('NM_inf$', data24$treatment), ],
@@ -455,18 +456,18 @@ p = plot_ly(z = log2FC$log2FC,
             zmid = 0, 
             zmin = -m,
             width = 1000, 
-            height = 1000
+            height = 1500
             ) %>%
   layout(title = title, 
          margin = mm)
 print(p)
 saveWidget(p, 
-           file = "../output/Enzy24.html",
+           file = "../output/Metabol24.html",
            selfcontained = TRUE)
 
 
 fp = file.path('..', 'output')
-fn = 'log2FC_Enzy24.txt'
+fn = 'log2FC_Metabol24.txt'
 write.table(log2FC,
             file = file.path(fp, fn), 
             append = FALSE, 
@@ -489,7 +490,7 @@ write.table(log2FC,
 
 ```{r}
 
-title = 'Enzy 48'
+title = 'Metabol 48'
 
 log2FC1 = my.logFC(control = data48[grep('NM$', data48$treatment), ],
                   treatment = data48[grep('NM_inf$', data48$treatment), ],
@@ -526,18 +527,18 @@ p = plot_ly(z = log2FC$log2FC,
             zmid = 0, 
             zmin = -m,
             width = 1000, 
-            height = 1000
+            height = 1500
             ) %>%
   layout(title = title, 
          margin = mm)
 print(p)
 saveWidget(p, 
-           file = "../output/Enzy48.html",
+           file = "../output/Metabol48.html",
            selfcontained = TRUE)
 
 
 fp = file.path('..', 'output')
-fn = 'log2FC_Enzy48.txt'
+fn = 'log2FC_Metabol48.txt'
 write.table(log2FC,
             file = file.path(fp, fn), 
             append = FALSE, 
