@@ -1,0 +1,488 @@
+---
+title: "02_tubers_and_leaves"
+author: "zagor"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    fig_caption: yes
+    self_contained: yes
+    fig_width: 16
+    fig_height: 16
+    toc: yes
+    toc_depth: 5
+    number_sections: yes
+    theme: flatly
+    highlight: tango
+  pdf_document:
+    toc: yes
+    toc_depth: '5'
+  word_document:
+    toc: yes
+    toc_depth: '5'
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(#dev = c('pdf', 'png'),  # this embeds pdf and crates scrolable blocks
+                      dev = c('png'), 
+                      fig.align = 'center', 
+                      fig.height = 16, 
+                      fig.width = 16 ,
+                      warning = FALSE, message = FALSE
+                      )
+# options(knitr.table.format = "html")
+
+```
+
+
+
+```{r, libraries.sources1}
+
+rm(list = ls(all = TRUE))
+
+```
+
+
+```{r}
+
+library(scales)
+library(ggplot2)
+# packageVersion("ggplot2")
+library(magrittr)
+library(crayon)
+
+library(rstatix)
+library(ggpubr)
+
+library(Compositional)
+library(equalCovs)
+
+library(psych)
+
+library(corrplot) 
+
+library(pdist)
+
+library(RColorBrewer)
+
+library(plotly)
+
+library(heatmaply)
+
+library(Hmisc)
+
+library(caret)
+
+library(htmlwidgets)
+
+
+```
+
+
+```{r}
+
+
+####  ####  ####  ####  ####  ####  ####  ####  ####  ####  ####  ####  ####
+
+my.customised.t.test <- function(data, var.levels, stress.levels, 
+                                 plot.violin, plot.box, plot.dot,
+                                 y.lab, 
+                                 p.cex.labels, p.cex, p.palette){
+  
+  mydata = dplyr::as_tibble(data.table::data.table(data))
+  mydata.long <- mydata %>%
+    tidyr::pivot_longer(-Stress, names_to = "variables", values_to = "value")
+  
+  mydata.long$variables = factor(mydata.long$variables, levels = var.levels)
+  mydata.long$Stress = factor(mydata.long$Stress, levels = stress.levels)
+  
+  mydata.long$value = as.numeric(mydata.long$value)
+  
+  mydata.long %>%
+    dplyr::group_by(variables, Stress) %>%
+    dplyr::summarise(
+      n = dplyr::n(),
+      mean = mean(value),
+      sd = sd(value)
+    ) %>%
+    dplyr::ungroup()
+  
+  stat.test <- mydata.long %>%
+    dplyr::group_by(variables) %>%
+    rstatix::t_test(value ~ Stress, p.adjust.method = "holm")
+  # Remove unnecessary columns and display the outputs
+  stat.test %>% dplyr::select(-.y., -statistic, -df)
+  stat.test <- stat.test %>% rstatix::add_xy_position(x = "Stress", 
+                                                      fun = "max", # "mean_sd"
+                                                      step.increase = 0)
+  
+ 
+  stat.test.sig = stat.test[stat.test$p < 0.05, ]
+  # print(stat.test.sig %>% dplyr::arrange(group2, group1))
+  # dim(stat.test.sig)
+   
+  graphs <- mydata.long %>%
+    dplyr::group_by(variables) %>%
+    rstatix::doo(
+      ~ggpubr::ggdotplot(
+        data =., 
+        x = "Stress", 
+        y = "value",
+        fill = "Stress", 
+        palette = p.palette, #"npg", 
+        legend = "none",
+        add = c("jitter", "mean_sd"),
+        position = position_jitter(0.05),
+        ggtheme = ggpubr::theme_pubr()
+      )
+      , result = "plots"
+    )
+  # graphs
+  
+  variables <- levels(graphs$variables)
+  plots <- graphs$plots %>% set_names(variables)
+  
+  dl = droplevels(stat.test.sig$variables)
+
+  
+  if(length(levels(dl)) > 0) {
+    
+    # par(mfrow = c(2,2))
+    
+    # for (i in levels(dl)) {
+  
+    # cat(blue('sig\n\n'))
+    bp <- ggdotplot(
+      # mydata.long[mydata.long$variables %in% i,], 
+      mydata.long[mydata.long$variables %in% levels(dl),], 
+      x = "Stress", 
+      xlab = 'Condition',
+      y = "value", 
+      fill = "Stress", #add = "mean_se",
+      facet.by = c("variables"),
+      combine = TRUE,
+      scales = "free", 
+      palette = p.palette, #"npg", 
+      legend = "none",
+      add = c("jitter", 
+              'mean_sd'),
+      title = paste('Sig diff'), # \n', i),
+      position = position_jitter(0.05)
+    ) 
+    bp = bp +
+      stat_pvalue_manual(# stat.test.sig[stat.test.sig$variables %in% i,],
+                         stat.test.sig[stat.test.sig$variables %in% levels(dl),],
+                         hide.ns = TRUE, 
+                         tip.length = 0.02, 
+                         step.increase = 0.05) +
+      scale_y_continuous(expand = expansion(mult = c(0.05, 0.15))) +
+      theme(axis.text.x = element_text (angle = 45, 
+                                        vjust = 1, 
+                                        hjust = 1, 
+                                        size = 7.5),
+            axis.text.y = element_text (angle = 45, 
+                                        vjust = 1, 
+                                        hjust = 1, 
+                                        size = 7.5))
+    plot(bp)
+    }
+    
+    # par(mfrow = c(1,1))
+    
+  # }
+    
+
+  
+
+  
+  return(stat.test)
+  
+}
+
+
+####  ####  ####  ####  ####  ####  ####  ####  ####  ####  ####  ####  ####
+
+my.logFC <- function(Ctrl.H, H, tp, title, ignore){
+  
+  n = 11
+
+ if(tp == 2){
+    
+    keep1 = setdiff(1:ncol(Ctrl.H), ignore)
+    
+    ignore = grep('Time', colnames(Ctrl.H))
+    keep2 = setdiff(keep1, ignore)
+
+    Ctrl.H.log = log2(Ctrl.H[, keep2])
+    H.log = log2(H[, keep2])
+
+    
+    Ctrl.H.log[!is.finite(as.matrix(Ctrl.H.log))] = NA
+    H.log[!is.finite(as.matrix(H.log))] = NA
+
+    
+    t1 = which(Ctrl.H$Time == 8)
+    t2 = which(Ctrl.H$Time == 14)
+    # https://9to5answer.com/using-apply-function-on-a-matrix-with-na-entries
+    Ctrl.H.log.mean.1 = apply(Ctrl.H.log[t1, ], 2, mean, na.rm=TRUE)
+    Ctrl.H.log.mean.2 = apply(Ctrl.H.log[t2, ], 2, mean, na.rm=TRUE)
+    
+    t1 = which(H$Time == 8)
+    t2 = which(H$Time == 14)
+    H.log.mean.1 = apply(H.log[t1, ], 2, mean, na.rm=TRUE)
+    H.log.mean.2 = apply(H.log[t2, ], 2, mean, na.rm=TRUE)
+    
+
+    
+    H.logFC.1 = H.log.mean.1 - Ctrl.H.log.mean.1
+
+    
+    H.logFC.2 = H.log.mean.2 - Ctrl.H.log.mean.2
+
+    
+    log2FC = rbind(H.logFC.1, H.logFC.2)
+    # rownames(log2FC)
+    # range(log2FC, na.rm = TRUE)
+    
+    
+
+    m = max(abs(min(log2FC, na.rm = TRUE)), abs(max(log2FC, na.rm = TRUE)))
+    par(mfrow = c(2,2))
+    pie(rep(1,n), col = rev(brewer.pal(n, 'RdBu')),
+        labels = round(seq(-m, m, length.out = n), 2))
+    par(mfrow = c(1,1))
+
+    
+    return(log2FC)
+
+    
+    
+  } else {
+    cat(red('ERROR'))
+  }
+  
+}
+
+
+####  ####  ####  ####  ####  ####  ####  ####  ####  ####  ####  ####  ####
+
+
+n = 9
+
+
+my.ggplot.palette = brewer.pal(9, "Set1")[c(3, 1, 5, 8, 2, 4)]
+pie(rep(1, length(my.ggplot.palette)), 
+    col = my.ggplot.palette, 
+    main = 'ggplot palette',
+    labels = c('C', 'H', 'D', 'HD', 'HDW', 'W'))
+
+
+
+```
+
+
+# data
+
+
+
+
+```{r, 021_phenotyping.ggplot, echo=FALSE}
+
+
+
+fpi = file.path('..', 'output')
+
+
+fn = 'used-data_leaves.txt'
+omics <- data.table::fread(file.path(fpi, fn), header = TRUE)
+data.table::setDF(omics)
+
+fn = 'Proteomics-subset-annotation.txt'
+pa <- data.table::fread(file.path(fpi, fn), header = TRUE)
+data.table::setDF(pa)
+
+
+```
+
+
+```{r, 023_phenotyping.time, echo=FALSE}
+
+
+dtX = omics[omics$Time %in% 8:14 & omics$Stress %in% c('C', 'H'), ]
+is.numeric(dtX$Time)
+
+# qPCR
+colnames(omics)[5:18]
+# metabolomics
+colnames(omics)[19:40]
+# hormonomics
+colnames(omics)[41:52]
+# proteomics
+colnames(omics)[53:88]
+# phenomics
+colnames(omics)[89:96]
+
+Ctrl.H = (dtX[(dtX$Stress == 'C') & (dtX$Time %in% c(8,14)), 1:ncol(dtX)])
+H =  (dtX[(dtX$Stress == 'H') & (dtX$Time %in% c(8,14)), 1:ncol(dtX)])
+
+
+# Ctrl.H[Ctrl.H$Time == 8,]$Time = 1
+# H[H$Time == 8,]$Time = 1
+# Ctrl.H[Ctrl.H$Time == 14,]$Time = 2
+# H[H$Time == 14,]$Time = 2
+
+
+```
+
+
+
+## t-tests
+
+```{r, 025_phenotyping.stat, echo=FALSE}
+
+data = rbind(Ctrl.H, H)
+tmp = c(rep('Ctrl.H', nrow(Ctrl.H)),
+        rep('H', nrow(H))
+        )
+data$Stress = tmp
+data$Stress = paste(data$Stress, data$Time, sep = '_')
+
+cat(blue('day 8\n'))
+data.1 = data[data$Time == 8, ]
+data.1.1 = data.1[data.1$Stress %in% c('Ctrl.H_8', 'H_8'), ]
+ignoreP = which(colnames(data.1.1) %in% pa$proteinID)
+ignore = c(grep('SampleID|Time|Replicate', colnames(data.1.1)), ignoreP)
+stat.test.1.1 = my.customised.t.test(data = data.1.1[, -ignore], 
+                                 var.levels = colnames(data.1.1)[-c(grep('SampleID|Time|Replicate|Stress', 
+                                                                         colnames(data.1.1)), ignoreP)], 
+                                 stress.levels = unique(data.1.1$Stress),
+                                 y.lab = "omics level",
+                                 p.cex.labels = 1, 
+                                 p.cex = 0.5,
+                                 p.palette = my.ggplot.palette[c(1, 2)])
+
+
+
+cat(blue('day 14\n'))
+data.2 = data[data$Time == 14, ]
+data.2.1 = data.2[data.2$Stress %in% c('Ctrl.H_14', 'H_14')]
+ignoreP = which(colnames(data.2.1) %in% pa$proteinID)
+ignore = c(grep('SampleID|Time|Replicate', colnames(data.2.1)), ignoreP)
+stat.test.2.1 = my.customised.t.test(data = data.2.1[, -ignore], 
+                                 var.levels = colnames(data.2.1)[-c(grep('SampleID|Time|Replicate|Stress', 
+                                                                         colnames(data.2.1)), ignoreP)], 
+                                 stress.levels = unique(data.2.1$Stress),
+                                 y.lab = "omics level",
+                                 p.cex.labels = 1, 
+                                 p.cex = 0.5,
+                                 p.palette = my.ggplot.palette[c(1, 2)])
+
+
+
+stat.test = rbind(stat.test.1.1,
+                  stat.test.2.1
+                  )
+data.table::setDT(stat.test)
+stat.test.leaves.omics.8.14 = stat.test
+# dim(stat.test.leaves.omics.8.14)
+ind = (grep('groups', colnames(stat.test.leaves.omics.8.14)))
+stat.test.leaves.omics.8.14 = stat.test.leaves.omics.8.14[, -..ind]
+
+fp = file.path('..', 'reports')
+fn = 't.tests_omics_H8-H14.txt'
+write.table(stat.test.leaves.omics.8.14,
+            file = file.path(fp, fn), 
+            append = FALSE, 
+            quote = FALSE, 
+            sep = "\t",
+            eol = "\n", 
+            na = "NA", 
+            dec = ".", 
+            row.names = TRUE,
+            col.names = TRUE, 
+            qmethod = 'escape',
+            fileEncoding = "UTF-8")
+
+
+
+```
+
+
+
+
+## logFC 8/14 Heat
+
+```{r, 027_phenotyping.logFC, echo=FALSE}
+
+ignoreP = which(colnames(Ctrl.H) %in% pa$proteinID)
+ignore = c(grep('SampleID|Replicate|Stress', colnames(Ctrl.H)), ignoreP)
+
+leaf.omics.log2FC = my.logFC(Ctrl.H = Ctrl.H,  
+                                 H = H,  
+                                 tp = 2, title = 'Leaf omics',
+                             ignore = ignore )
+
+mm <- list(
+    l = 0,
+    r = 0,
+    b = 0,
+    t = 40
+)
+m = max(abs(min(leaf.omics.log2FC, na.rm = TRUE)), abs(max(leaf.omics.log2FC, na.rm = TRUE)))
+p = plot_ly(z = leaf.omics.log2FC, 
+            type = "heatmap",
+            y = rownames(leaf.omics.log2FC), 
+            x = colnames(leaf.omics.log2FC),
+            colors = rev(brewer.pal(n, 'RdBu')),
+            zmax = m, 
+            zmid = 0, 
+            zmin = -m,
+            width = 1500, 
+            height = 500
+            ) %>%
+  layout(title = 'Leaf Omics', 
+         margin = mm)
+print(p)
+saveWidget(p, 
+           file = "../reports/Leaf-Omics_H8-14_logFC.html",
+           selfcontained = TRUE)
+
+
+fp = file.path('..', 'reports')
+fn = 'log2FC_leaves-Omics_H8-14.txt'
+write.table(leaf.omics.log2FC,
+            file = file.path(fp, fn), 
+            append = FALSE, 
+            quote = FALSE, 
+            sep = "\t",
+            eol = "\n", 
+            na = "NA", 
+            dec = ".", 
+            row.names = TRUE,
+            col.names = TRUE, 
+            qmethod = 'escape',
+            fileEncoding = "UTF-8")
+
+
+
+```
+
+
+
+```{r, libraries.sources3}
+
+rm()
+gc()
+gc()
+
+```
+
+
+```{r, session_info}
+
+devtools::session_info()
+
+
+```
+

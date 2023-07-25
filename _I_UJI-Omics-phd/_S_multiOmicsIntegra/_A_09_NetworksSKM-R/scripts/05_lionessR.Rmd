@@ -400,13 +400,14 @@ library(RColorBrewer)
 
 Keep cor cut-off high to avoid manicall FDR ?
 
-
+Keep only IDs that were DE at some point
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 
 # bad data for lioness since not many DE
 fp = file.path('..', '..', '_A_02_DEtranscriptomics-R', 'output')
-fn = 'norm.txt'
+# fn = 'norm.txt'
+fn = 'filtered-and-counts.xlsx'
 # here adaptatin of column names is neede
 # fp = file.path('..', '..', '_A_03_RNAseq-limma', 'output')
 # fn = 'norm.txt'
@@ -414,13 +415,40 @@ fn = 'norm.txt'
 # fn = 'norm_pretty-col-names.txt'
 
 
-pn = data.table::fread(file.path(fp, fn), header = TRUE)
-data.table::setDF(pn)
+# pn = data.table::fread(file.path(fp, fn), header = TRUE)
+# data.table::setDF(pn)
+
+pn = openxlsx::read.xlsx(file.path(fp, fn),
+               sheet = 1,
+               startRow = 1,
+               colNames = TRUE,
+               rowNames = FALSE,
+               detectDates = FALSE,
+               skipEmptyRows = TRUE,
+               skipEmptyCols = TRUE,
+               rows = NULL,
+               cols = NULL,
+               check.names = FALSE,
+               sep.names = ".",
+               namedRegion = NULL,
+               na.strings = "NA",
+               fillMergedCells = FALSE
+               )
+
+rownames(pn) = pn$GeneID
+pVals = pn[, grep('adj\\.P\\.Val', colnames(pn))]
+pVals = ifelse(pVals < 0.05, TRUE, FALSE)
+keepIDs = rownames(pVals[which(rowSums(pVals) != 0), ])
+pn = pn[pn$GeneID %in% keepIDs, ]
+rm(pVals)
+
 table(pn == '-')
 pn[pn == '-'] = NA
 # take care how your column with IDs is called like
 rownames(pn) = pn$GeneID
 pn = pn[, -1]
+
+pn = pn[, grep('adj\\.P\\.Val|logFC', colnames(pn), invert = TRUE)]
 
 colnames(pn)
 
@@ -458,14 +486,14 @@ pie(rep(1, length(mypalette4)), col = mypalette4) # , labels = format(breaks4, s
 ```
 
 
-## Across tp, within wounding, within type (Nm/T78)
 
 This is the only one that gives sth decent
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 
 # absolute corr diff cut-off 0-2
-cutOff.net = 1.6 # prevent to many edges because p adjustment will be severe
+# cutOff.net = 1.6 # prevent to many edges because p adjustment will be severe
+cutOff.net = 1.9
 cutOff.p = 0.05
 
 
@@ -480,9 +508,14 @@ a = 'AM'
 b = '_INF'
 
 
+# keep NM and MA together or not
+b = paste(a, b, sep = '.*')
+myvec1 = paste0(myvec1, collapse = '|')
 
 l = myvec2[2]
-j = myvec1[2]
+j = myvec1
+
+
 
 for (l in myvec2){
   for (j in myvec1){
