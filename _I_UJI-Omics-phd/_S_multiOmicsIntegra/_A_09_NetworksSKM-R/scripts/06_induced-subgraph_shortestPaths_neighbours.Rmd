@@ -84,6 +84,10 @@ colnames(CKN) = c('from', 'to', 'reaction')
 
 if only sig ones uncomment  ```IDs = pprot[pprot$significant, ]$ID``` and comment ```IDs = pprot$ID```
 
+
+can use Dulcenombre_proteins_per-gene phospho.txt
+
+
 ```{r}
 
 fpt = file.path('..', '..', '_A_04_EnrichmentProteomics-R', 'output')
