@@ -52,6 +52,8 @@ nodes = read.table(file.path(fpd, fnn),
 
 Ath to Slyc
 
+
+
 ```{r}
 
 colnames(translate)[2] = colnames(nodes)[1]
@@ -64,6 +66,26 @@ edgesX = merge(edges[, 1:3], translate, by = 'geneID2', all.x = TRUE, all.y = FA
 colnames(translate)[2] = colnames(edges)[1]
 colnames(translate)[1] = gsub('2', '1', colnames(translate)[1])
 edgesX = merge(edgesX, translate, by = 'geneID1', all.x = TRUE, all.y = FALSE)
+
+
+
+
+```
+
+
+```{r}
+
+nodesX$SlyID[is.na(nodesX$SlyID)] = nodesX$geneID[is.na(nodesX$SlyID)]
+
+edgesX$SlyID1[is.na(edgesX$SlyID1)] = edgesX$geneID1[is.na(edgesX$SlyID1)]
+edgesX$SlyID2[is.na(edgesX$SlyID2)] = edgesX$geneID2[is.na(edgesX$SlyID2)]
+
+edgesX = edgesX[, c(5,4, 3)]
+colnames(edgesX) = colnames(edges)[1:3]
+# 
+nodesX = nodesX[, c(5,2:4)]
+colnames(nodes) = colnames(nodes)[1:4]
+
 
 
 ```
@@ -86,7 +108,7 @@ write.table(nodesX,
             qmethod = c("escape"),
             fileEncoding = "UTF-8")
 fn = 'PSS-Sly_edges.txt'
-write.table(nodesX, 
+write.table(edgesX, 
             file = file.path(fpo, fn), 
             append = FALSE, 
             quote = FALSE, 
