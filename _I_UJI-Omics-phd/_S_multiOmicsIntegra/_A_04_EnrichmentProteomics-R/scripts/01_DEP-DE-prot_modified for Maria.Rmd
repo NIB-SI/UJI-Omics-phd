@@ -113,7 +113,7 @@ see ```../input/forComparisons.txt``` file
 
 # setwd("C:/Users/maria/Downloads/Fosfoproteome")
 
-fp = file.path('.', 'input')
+fp = file.path('..', 'input')
 fn = 'forComparisons.txt'
 
 forComparisons = data.table::fread(file.path(fp, fn), header = TRUE)
@@ -1012,7 +1012,7 @@ colnames(data_results)
 # data_results = merge(data_results, sn, by = 'pID', all.x = TRUE, all.y = FALSE)
 
   
-fpo = file.path('.', 'output')
+fpo = file.path('..', 'output')
 fn = 'phosphoProteomics-DE-DEP.txt'
 
 write.table(data_results,
@@ -1039,7 +1039,7 @@ write.table(data_norm@assays@data[[1]],
             eol = "\n",
             na = "-",
             dec = ".",
-            row.names = FALSE,
+            row.names = TRUE,
             col.names = TRUE,
             qmethod = c("escape"),
             fileEncoding = "UTF-8")
