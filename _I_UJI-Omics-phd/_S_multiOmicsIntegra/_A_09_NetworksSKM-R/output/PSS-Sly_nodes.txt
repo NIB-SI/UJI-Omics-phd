@@ -1,0 +1,1181 @@
+geneID	shortDescription	shortName	MapManBin	SlyID
+&beta;-Carotene		&beta;-Carotene		NA
+&beta;-Cryptoxanthin		&beta;-Cryptoxanthin		NA
+&gamma;-Carotene		&gamma;-Carotene		NA
+12-OH-JA-Ile		12-OH-JA-Ile		NA
+12,13-EOT		12,13-EOT		NA
+13-HPOT		13-HPOT		NA
+3H3PP-CoA		3H3PP-CoA		NA
+3O3PP-CoA		3O3PP-CoA		NA
+5-phosphomevalonate		5-phosphomevalonate		NA
+6K2		6K2		NA
+9-cis-&beta;-carotene		9-cis-&beta;-carotene		NA
+9-cis-10&prime;-apo-&beta;-carotenal		9-cis-10&prime;-apo-&beta;-carotenal		NA
+9-cis-Violaxanthin		9-cis-Violaxanthin		NA
+ABA		ABA		NA
+Abscisic aldehyde		Abscisic aldehyde		NA
+ACC		ACC		NA
+ALA		ALA		NA
+all-trans-Neurosporene		all-trans-Neurosporene		NA
+all-trans-Phytofluene		all-trans-Phytofluene		NA
+all-trans-zeta-Carotene		all-trans-zeta-Carotene		NA
+Antheraxanthin		Antheraxanthin		NA
+Anthocyanin-accumulation		Anthocyanin-accumulation		NA
+AT1G01260	jasmonate associated MYC2 like	JAM	Hormone - Jasmonate (JA)	Solyc01g096050.4
+AT1G01360	regulatory components of ABA receptor family protein	PYL	Signalling - Perception and resistance genes	Solyc08g082180.3
+AT1G01360	regulatory components of ABA receptor family protein	PYL	Signalling - Perception and resistance genes	Solyc01g095700.3
+AT1G01480	1-aminocyclopropane-1-carboxylic acid (ACC) synthase	ACS	Hormone - Ethylene (ET)	Solyc01g095080.3
+AT1G01740	BR-signaling kinase	BSK	Hormone - Brassinosteroids (BS)	NA
+AT1G02400	gibberellin 2-oxidase 1,2,3,4,6	C19-GA2ox	Hormone - Gibberellin (GA)	Solyc01g058030.2
+AT1G02400	gibberellin 2-oxidase 1,2,3,4,6	C19-GA2ox	Hormone - Gibberellin (GA)	Solyc01g079200.5
+AT1G02400	gibberellin 2-oxidase 1,2,3,4,6	C19-GA2ox	Hormone - Gibberellin (GA)	Solyc05g053340.5
+AT1G02450	NIM1-interacting	NIMIN	Hormone - Salicylic acid (SA)	NA
+AT1G02500	S-adenosylmethionine (SAM) synthetase	SAMS	Hormone - Ethylene (ET)	Solyc01g101060.4
+AT1G02500	S-adenosylmethionine (SAM) synthetase	SAMS	Hormone - Ethylene (ET)	Solyc12g099000.3
+AT1G02500	S-adenosylmethionine (SAM) synthetase	SAMS	Hormone - Ethylene (ET)	Solyc09g008280.2
+AT1G02920	glutathione S-transferase	GST	Signalling - Reactive oxygen species (ROS)	Solyc06g009040.4
+AT1G02930	glutathione S-transferase	GST	Signalling - Reactive oxygen species (ROS)	Solyc06g009040.4
+AT1G02980	cullin	CUL	Degradation - Ubiquitination	NA
+AT1G03055	beta-carotene isomerase D27-like protein	D27	Hormone - Strigolactones (SL)	Solyc09g065750.3
+AT1G03430	histidine-containing phosphotransfer protein	AHP	Hormone - Cytokinins (CK)	NA
+AT1G03445	Serine/threonine protein phosphatase family protein	BSU1	Hormone - Brassinosteroids (BS)	NA
+AT1G03970	G-box binding factor 4	GBF4	Signalling - MAP kinases (MAPKs)	Solyc04g071510.3
+AT1G04100	indole-3-acetic acid inducible	AUX/IAA	Hormone - Auxins (AUX)	NA
+AT1G04180	flavin-binding monooxygenase family protein	YUC	Hormone - Auxins (AUX)	Solyc06g083700.4
+AT1G04180	flavin-binding monooxygenase family protein	YUC	Hormone - Auxins (AUX)	Solyc09g064160.3
+AT1G04180	flavin-binding monooxygenase family protein	YUC	Hormone - Auxins (AUX)	Solyc06g008050.4
+AT1G04240	indole-3-acetic acid inducible	AUX/IAA	Hormone - Auxins (AUX)	Solyc09g083280.3
+AT1G04250	indole-3-acetic acid inducible	AUX/IAA	Hormone - Auxins (AUX)	NA
+AT1G04310	ethylene receptor	ETR	Hormone - Ethylene (ET)	NA
+AT1G04370	ERF/EDF family, RAV/TEM related	ERF/EDF	Hormone - Ethylene (ET)	NA
+AT1G04550	indole-3-acetic acid inducible	AUX/IAA	Hormone - Auxins (AUX)	NA
+AT1G04580	aldehyde oxidase	AAO	Hormone - Salicylic acid (SA)	Solyc01g009230.4
+AT1G04580	aldehyde oxidase	AAO	Hormone - Salicylic acid (SA)	Solyc11g071600.2
+AT1G04580	aldehyde oxidase	AAO	Hormone - Salicylic acid (SA)	Solyc01g088170.4
+AT1G04710	acetyl-CoA acyltransferase	KAT	Hormone - Jasmonate (JA)	NA
+AT1G05010	1-aminocyclopropane-1-carboxylic acid (ACC) oxidase	ACO	Hormone - Ethylene (ET)	Solyc02g036350.3
+AT1G05010	1-aminocyclopropane-1-carboxylic acid (ACC) oxidase	ACO	Hormone - Ethylene (ET)	Solyc12g005940.2
+AT1G05010	1-aminocyclopropane-1-carboxylic acid (ACC) oxidase	ACO	Hormone - Ethylene (ET)	Solyc02g081190.5
+AT1G05010	1-aminocyclopropane-1-carboxylic acid (ACC) oxidase	ACO	Hormone - Ethylene (ET)	Solyc07g049530.3
+AT1G05010	1-aminocyclopropane-1-carboxylic acid (ACC) oxidase	ACO	Hormone - Ethylene (ET)	Solyc07g049550.3
+AT1G05160	ent-kaurenoic acid oxidase 1,2	KAO1,2	Hormone - Gibberellin (GA)	Solyc01g080900.5
+AT1G06160	ERF family, ORA59 related	ERF/ORA59	Hormone - Ethylene (ET)	NA
+AT1G06290	acyl-CoA oxidase	ACX	Hormone - Jasmonate (JA)	Solyc10g008110.4
+AT1G06390	S phase kinase-associated protein	ASK	Degradation - Ubiquitination	Solyc07g055200.4
+AT1G06390	S phase kinase-associated protein	ASK	Degradation - Ubiquitination	Solyc03g006070.3
+AT1G06390	S phase kinase-associated protein	ASK	Degradation - Ubiquitination	Solyc02g072300.4
+AT1G06680	photosystem II subunit P-1	PSBP1		Solyc07g044860.3
+AT1G07400		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc07g045610.1
+AT1G07400		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc06g076520.1
+AT1G07400		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc06g076540.1
+AT1G07400		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc06g076570.4
+AT1G07400		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc06g076560.2
+AT1G07530	scarecrow-like 14; GRAS family transcription factor	SCL14	Regulation - Transcription & Translation	Solyc04g011640.4
+AT1G07530	scarecrow-like 14; GRAS family transcription factor	SCL14	Regulation - Transcription & Translation	Solyc06g076280.3
+AT1G07530	scarecrow-like 14; GRAS family transcription factor	SCL14	Regulation - Transcription & Translation	Solyc06g082530.3
+AT1G07890	ascorbate peroxidase 1,2,3,4,5,6	APX	Signalling - Reactive oxygen species (ROS)	Solyc09g007270.3
+AT1G07890	ascorbate peroxidase 1,2,3,4,5,6	APX	Signalling - Reactive oxygen species (ROS)	Solyc06g005160.4
+AT1G07890	ascorbate peroxidase 1,2,3,4,5,6	APX	Signalling - Reactive oxygen species (ROS)	Solyc06g005150.3
+AT1G08250	arogenate dehydratase 1,2,3,4,5,6	ADT	Hormone - Salicylic acid (SA)	Solyc06g074530.1
+AT1G08250	arogenate dehydratase 1,2,3,4,5,6	ADT	Hormone - Salicylic acid (SA)	Solyc11g066890.1
+AT1G08320	bZIP transcription factor family protein	bZIP21	Hormone - Salicylic acid (SA)	Solyc06g074320.3
+AT1G08320	bZIP transcription factor family protein	bZIP21	Hormone - Salicylic acid (SA)	Solyc11g068370.3
+AT1G08450	calreticulin 1,2,3	CRT	Signalling - Calcium	Solyc05g056230.5
+AT1G08550	non-photochemical quenching 1	VDE1	Hormone - Abscisic acid (ABA)	Solyc04g050930.3
+AT1G08830	superoxide dismutase	SOD	Signalling - Reactive oxygen species (ROS)	Solyc01g067740.3
+AT1G08980	amidase 1	AMI1	Hormone - Auxins (AUX)	Solyc10g086170.1
+AT1G09080		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc01g099660.4
+AT1G09090	NADPH oxidase	RBOH	Signalling - Reactive oxygen species (ROS)	Solyc01g099620.3
+AT1G09130	ATP-dependent caseinolytic (Clp) protease/crotonase family protein	CLPR3		Solyc01g099690.3
+AT1G09210	calreticulin 1,2,3	CRT	Signalling - Calcium	Solyc01g100380.4
+AT1G09415	NIM1-interacting	NIMIN	Hormone - Salicylic acid (SA)	NA
+AT1G09530	BHLH transcription factor, phytochrome interacting factor 3	PIF3,4	Signalling - Senescence	NA
+AT1G10350	DNAJ heat shock family protein	CPIP	Signalling - Heat-shock proteins (HSPs)	Solyc05g006820.4
+AT1G10350	DNAJ heat shock family protein	CPIP	Signalling - Heat-shock proteins (HSPs)	Solyc04g005820.4
+AT1G10470	type-A Arabidopsis Response Regulators	ARR-A	Hormone - Cytokinins (CK)	Solyc05g006420.3
+AT1G10940	Protein kinase superfamily protein, SNF1-RELATED PROTEIN KINASE 2.8	SNRK2	Hormone - Abscisic acid (ABA)	Solyc01g103940.3
+AT1G11790	arogenate dehydratase 1,2,3,4,5,6	ADT	Hormone - Salicylic acid (SA)	Solyc02g080620.3
+AT1G11960	Calcium channel	OSCA1.3	Stress - Drought	Solyc07g048110.4
+AT1G12010	1-aminocyclopropane-1-carboxylic acid (ACC) oxidase	ACO	Hormone - Ethylene (ET)	Solyc12g005940.2
+AT1G12010	1-aminocyclopropane-1-carboxylic acid (ACC) oxidase	ACO	Hormone - Ethylene (ET)	Solyc07g049550.3
+AT1G12520	superoxide dismutase	SOD	Signalling - Reactive oxygen species (ROS)	Solyc08g079830.5
+AT1G13060	20S proteasome beta subunit E	PBE1	Degradation - Ubiquitination	Solyc05g056160.3
+AT1G13260	ERF/EDF family, RAV/TEM related	ERF/EDF	Hormone - Ethylene (ET)	Solyc05g009790.1
+AT1G13280	allene oxide cyclase 1,2,3,4	AOC	Hormone - Jasmonate (JA)	NA
+AT1G13440	glyceraldehyde-3-phosphate dehydrogenase C2	GAPC2		Solyc05g005820.5
+AT1G13440	glyceraldehyde-3-phosphate dehydrogenase C2	GAPC2		Solyc06g071920.5
+AT1G13440	glyceraldehyde-3-phosphate dehydrogenase C2	GAPC2		Solyc05g014470.3
+AT1G13440	glyceraldehyde-3-phosphate dehydrogenase C2	GAPC2		Solyc03g111010.5
+AT1G14790	RNA-dependent RNA polymerases	RDR1,6	Regulation - Silencing	Solyc05g007510.4
+AT1G14920	GRAS transcription factor family protein	DELLA	Hormone - Gibberellin (GA)	Solyc11g011260.1
+AT1G15050	indole-3-acetic acid inducible	AUX/IAA	Hormone - Auxins (AUX)	NA
+AT1G15550	gibberellin 3-oxidase 1,2,3,4	GA3ox	Hormone - Gibberellin (GA)	Solyc06g066820.4
+AT1G15550	gibberellin 3-oxidase 1,2,3,4	GA3ox	Hormone - Gibberellin (GA)	Solyc03g119910.5
+AT1G15580	indole-3-acetic acid inducible	AUX/IAA	Hormone - Auxins (AUX)	NA
+AT1G15710	arogenate dehydrogenase	TYRAAT1,2	Primary metabolism - Amino-acids	Solyc09g011870.3
+AT1G15710	arogenate dehydrogenase	TYRAAT1,2	Primary metabolism - Amino-acids	Solyc07g007590.1
+AT1G16030		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc03g117630.1
+AT1G16030		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc07g005820.3
+AT1G16510	SAUR-like auxin-responsive protein family	SAUR41	Hormone - Auxins (AUX)	NA
+AT1G17170	glutathione S-transferase	GST	Signalling - Reactive oxygen species (ROS)	NA
+AT1G17380	jasmonate-zim-domain protein	JAZ	Hormone - Jasmonate (JA)	NA
+AT1G17420	lipoxygenase	LOX	Hormone - Jasmonate (JA)	Solyc03g122340.3
+AT1G17750	PEP receptor	PEPR	Hormone - Peptides	NA
+AT1G18075	microRNA 159AB	miR159AB	Regulation - Silencing	NA
+AT1G18870	isochorismate synthase	ICS	Hormone - Salicylic acid (SA)	NA
+AT1G19050	type-A Arabidopsis Response Regulators	ARR-A	Hormone - Cytokinins (CK)	NA
+AT1G19180	jasmonate-zim-domain protein	JAZ	Hormone - Jasmonate (JA)	NA
+AT1G19230	NADPH oxidase	RBOH	Signalling - Reactive oxygen species (ROS)	Solyc05g025680.3
+AT1G19350	Brassinosteroid signaling positive regulator (BZR1) family protein	BZR2	Hormone - Brassinosteroids (BS)	Solyc12g089040.3
+AT1G19640	jasmonate O-methyltransferase	JMT	Hormone - Jasmonate (JA)	Solyc04g080660.4
+AT1G19670	chlorophyllase 1	CLH	Hormone - Jasmonate (JA)	NA
+AT1G19850	auxin response transcription factor	ARF	Hormone - Auxins (AUX)	Solyc04g081240.2
+AT1G20510	OPC-8:0 CoA ligase1	OPCL1	Hormone - Jasmonate (JA)	Solyc12g094520.2
+AT1G20620	catalase	CAT	Signalling - Reactive oxygen species (ROS)	NA
+AT1G20630	catalase	CAT	Signalling - Reactive oxygen species (ROS)	Solyc04g082460.4
+AT1G20630	catalase	CAT	Signalling - Reactive oxygen species (ROS)	Solyc02g082760.3
+AT1G21250	cell wall-associated kinase 1	WAK1	Signalling - Perception and resistance genes	Solyc09g015230.1
+AT1G21270	cell wall-associated kinase 1	WAK1	Signalling - Perception and resistance genes	NA
+AT1G22400	trans-Zeatin glycosyltransferases	UGT	Hormone - Cytokinins (CK)	Solyc12g057060.2
+AT1G22400	trans-Zeatin glycosyltransferases	UGT	Hormone - Cytokinins (CK)	Solyc04g074390.3
+AT1G22400	trans-Zeatin glycosyltransferases	UGT	Hormone - Cytokinins (CK)	Solyc12g057080.2
+AT1G22400	trans-Zeatin glycosyltransferases	UGT	Hormone - Cytokinins (CK)	Solyc04g074380.4
+AT1G22400	trans-Zeatin glycosyltransferases	UGT	Hormone - Cytokinins (CK)	Solyc04g074350.3
+AT1G23160	auxin-responsive GH3 family protein	GH3.7	Hormone - Auxins (AUX)	NA
+AT1G25410	ATP/ADP isopentenyltransferases	IPT1,3,4,5,6,7,8	Hormone - Cytokinins (CK)	NA
+AT1G25560	ERF/EDF family, RAV/TEM related	ERF/EDF	Hormone - Ethylene (ET)	Solyc05g009790.1
+AT1G27320	histidine kinase 2,3,4	AHK2,3,4	Hormone - Cytokinins (CK)	Solyc05g015610.3
+AT1G27450	adenosine phosphoribosyltransferase 1,2,3,4,5	APT	Hormone - Cytokinins (CK)	Solyc04g077970.5
+AT1G28370	ethylene response factor 11	ERF11	Regulation - Transcription & Translation	NA
+AT1G28480	glutaredoxin	GRX480	Signalling - Reactive oxygen species (ROS)	Solyc10g008930.1
+AT1G28480	glutaredoxin	GRX480	Signalling - Reactive oxygen species (ROS)	Solyc07g053550.3
+AT1G30040	gibberellin 2-oxidase 1,2,3,4,6	C19-GA2ox	Hormone - Gibberellin (GA)	Solyc10g007570.4
+AT1G30040	gibberellin 2-oxidase 1,2,3,4,6	C19-GA2ox	Hormone - Gibberellin (GA)	Solyc02g070430.4
+AT1G30040	gibberellin 2-oxidase 1,2,3,4,6	C19-GA2ox	Hormone - Gibberellin (GA)	Solyc07g061720.3
+AT1G30040	gibberellin 2-oxidase 1,2,3,4,6	C19-GA2ox	Hormone - Gibberellin (GA)	Solyc07g061730.3
+AT1G30040	gibberellin 2-oxidase 1,2,3,4,6	C19-GA2ox	Hormone - Gibberellin (GA)	Solyc07g056670.3
+AT1G30040	gibberellin 2-oxidase 1,2,3,4,6	C19-GA2ox	Hormone - Gibberellin (GA)	Solyc08g016660.2
+AT1G30100	nine-cis-epoxycarotenoid dioxygenase 2,3,4,5,6,9	NCED	Hormone - Abscisic acid (ABA)	Solyc08g016720.1
+AT1G30135	jasmonate-zim-domain protein	JAZ	Hormone - Jasmonate (JA)	NA
+AT1G30380	photosystem I subunit K	PSAK	Primary metabolism - Photosynthesis	Solyc08g006930.3
+AT1G31800	beta-carotene hydroxylase	BETA-OHASE	Hormone - Abscisic acid (ABA)	Solyc04g051190.3
+AT1G32350		AOX	Primary metabolism - Respiration	Solyc08g075550.4
+AT1G32640	basic helix-loop-helix (bHLH) DNA-binding superfamily protein	MYC2	Hormone - Jasmonate (JA)	Solyc08g076930.1
+AT1G34065	S-adenosylmethionine carrier 1,2	SAMC	Hormone - Salicylic acid (SA)	NA
+AT1G35670	calmodulin-domain protein kinase	CDPK	Signalling - Calcium	Solyc05g056570.3
+AT1G35670	calmodulin-domain protein kinase	CDPK	Signalling - Calcium	Solyc04g049160.3
+AT1G35670	calmodulin-domain protein kinase	CDPK	Signalling - Calcium	Solyc06g065380.4
+AT1G35670	calmodulin-domain protein kinase	CDPK	Signalling - Calcium	Solyc11g018610.2
+AT1G43140	cullin	CUL	Degradation - Ubiquitination	NA
+AT1G44090	gibberellin 20-oxidase	GA20ox	Hormone - Gibberellin (GA)	NA
+AT1G45145	thioredoxin	TRX-H	Hormone - Salicylic acid (SA)	NA
+AT1G45249		AREB/ABF	Hormone - Abscisic acid (ABA)	Solyc04g078840.3
+AT1G47710	Serine protease inhibitor (SERPIN) family protein	SERPIN1		Solyc04g079440.3
+AT1G47990	gibberellin 2-oxidase 1,2,3,4,6	C19-GA2ox	Hormone - Gibberellin (GA)	NA
+AT1G48410	argonaute, stabilizer of iron transporter SufD / Polynucleotidyl transferase	AGO1	Regulation - Silencing	Solyc03g098280.4
+AT1G48500	jasmonate-zim-domain protein	JAZ	Hormone - Jasmonate (JA)	NA
+AT1G49190	type-B Arabidopsis Response Regulators	ARR-B	Hormone - Cytokinins (CK)	NA
+AT1G49720		AREB/ABF	Hormone - Abscisic acid (ABA)	NA
+AT1G49760	poly(A) binding protein 8	PAB8		Solyc01g107870.3
+AT1G50010	tubulin alpha-2 chain	TUBA2		Solyc04g077020.3
+AT1G50010	tubulin alpha-2 chain	TUBA2		Solyc08g006890.3
+AT1G50010	tubulin alpha-2 chain	TUBA2		Solyc02g087880.3
+AT1G50010	tubulin alpha-2 chain	TUBA2		Solyc02g091870.3
+AT1G50010	tubulin alpha-2 chain	TUBA2		Solyc12g088180.1
+AT1G50030	Target Of Rapamycin	TOR	Primary metabolism - Photosynthesis	Solyc01g106770.4
+AT1G50990	BR-signaling kinase	BSK	Hormone - Brassinosteroids (BS)	NA
+AT1G51660	Mitogen-Activated Protein (MAP) kinase kinase 4, 5	MPK4,5	Hormone - Ethylene (ET)	Solyc03g123800.3
+AT1G51680		4CL	Hormone - Salicylic acid (SA)	Solyc07g008360.2
+AT1G51680		4CL	Hormone - Salicylic acid (SA)	Solyc06g068650.4
+AT1G51680		4CL	Hormone - Salicylic acid (SA)	Solyc03g117870.3
+AT1G51760	IAA-alanine resistance protein	IAR	Hormone - Auxins (AUX)	Solyc03g121270.3
+AT1G51760	IAA-alanine resistance protein	IAR	Hormone - Auxins (AUX)	Solyc12g008690.3
+AT1G51950	indole-3-acetic acid inducible	AUX/IAA	Hormone - Auxins (AUX)	NA
+AT1G52340	NAD(P)-binding Rossmann-fold superfamily protein	ABA2	Hormone - Abscisic acid (ABA)	Solyc04g071940.3
+AT1G52560		HSP26.5-MII	Signalling - Heat-shock proteins (HSPs)	NA
+AT1G52830	indole-3-acetic acid inducible	AUX/IAA	Hormone - Auxins (AUX)	NA
+AT1G52890	NAC domain containing protein 19	NAC019	Regulation - Transcription & Translation	Solyc12g013620.2
+AT1G53470		MSL	Stress - Waterlogging	NA
+AT1G53540		HSP	Signalling - Heat-shock proteins (HSPs)	NA
+AT1G54040	enzyme regulator (epithiospecifier protein)	ESP	Signalling - Perception and resistance genes	NA
+AT1G54050		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc03g123540.3
+AT1G54490	exoribonuclease 4	EIN5	Hormone - Ethylene (ET)	Solyc04g049010.3
+AT1G55020	lipoxygenase	LOX	Hormone - Jasmonate (JA)	Solyc08g029000.3
+AT1G55020	lipoxygenase	LOX	Hormone - Jasmonate (JA)	Solyc01g099160.5
+AT1G55020	lipoxygenase	LOX	Hormone - Jasmonate (JA)	Solyc08g014000.3
+AT1G56340	calreticulin 1,2,3	CRT	Signalling - Calcium	Solyc01g100380.4
+AT1G56410		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc11g066100.2
+AT1G58100	TCP family transcription factor	TCP8,14,15	Hormone - Salicylic acid (SA)	NA
+AT1G58200		MSL	Stress - Waterlogging	Solyc04g076300.4
+AT1G59860		HSP	Signalling - Heat-shock proteins (HSPs)	NA
+AT1G59940	type-A Arabidopsis Response Regulators	ARR-A	Hormone - Cytokinins (CK)	Solyc05g006420.3
+AT1G60980	gibberellin 20-oxidase	GA20ox	Hormone - Gibberellin (GA)	Solyc06g035530.3
+AT1G60980	gibberellin 20-oxidase	GA20ox	Hormone - Gibberellin (GA)	Solyc03g006880.3
+AT1G60980	gibberellin 20-oxidase	GA20ox	Hormone - Gibberellin (GA)	Solyc01g093980.3
+AT1G62380	1-aminocyclopropane-1-carboxylic acid (ACC) oxidase	ACO	Hormone - Ethylene (ET)	Solyc12g005940.2
+AT1G62380	1-aminocyclopropane-1-carboxylic acid (ACC) oxidase	ACO	Hormone - Ethylene (ET)	Solyc07g049530.3
+AT1G62380	1-aminocyclopropane-1-carboxylic acid (ACC) oxidase	ACO	Hormone - Ethylene (ET)	Solyc07g049550.3
+AT1G62940		4CL	Hormone - Salicylic acid (SA)	Solyc02g088710.4
+AT1G63440	copper-exporting ATPase	HMA	Hormone - Ethylene (ET)	Solyc08g080870.3
+AT1G63440	copper-exporting ATPase	HMA	Hormone - Ethylene (ET)	Solyc08g080890.3
+AT1G63460		GPX	Signalling - Reactive oxygen species (ROS)	Solyc12g056240.2
+AT1G63500	BR-signaling kinase	BSK	Hormone - Brassinosteroids (BS)	Solyc12g099830.2
+AT1G63500	BR-signaling kinase	BSK	Hormone - Brassinosteroids (BS)	Solyc11g064890.2
+AT1G64060	NADPH oxidase	RBOH	Signalling - Reactive oxygen species (ROS)	Solyc08g081690.3
+AT1G64280	nonexpresser of PR genes	NPR1	Hormone - Salicylic acid (SA)	Solyc07g040690.3
+AT1G65060		4CL	Hormone - Salicylic acid (SA)	Solyc03g097030.3
+AT1G65880	benzoyloxyglucosinolate 1	BZO1	Secondary metabolism - Terpenoids	Solyc02g081370.2
+AT1G66340	ethylene receptor	ETR	Hormone - Ethylene (ET)	Solyc12g011330.5
+AT1G66350	GRAS transcription factor family protein	DELLA	Hormone - Gibberellin (GA)	Solyc11g011260.1
+AT1G66370	MYB domain containing transcription factor	MYB113	Secondary metabolism - Anthocyanins	Solyc10g086270.2
+AT1G66370	MYB domain containing transcription factor	MYB113	Secondary metabolism - Anthocyanins	Solyc10g086260.3
+AT1G66370	MYB domain containing transcription factor	MYB113	Secondary metabolism - Anthocyanins	Solyc10g086250.2
+AT1G66410	calmodulin related	CML	Signalling - Calcium	Solyc11g072240.2
+AT1G66410	calmodulin related	CML	Signalling - Calcium	Solyc12g099990.2
+AT1G66410	calmodulin related	CML	Signalling - Calcium	Solyc10g081170.2
+AT1G66410	calmodulin related	CML	Signalling - Calcium	Solyc10g077010.2
+AT1G66410	calmodulin related	CML	Signalling - Calcium	Solyc03g098050.3
+AT1G67090	ribulose-bisphosphate carboxylase	RBC	Primary metabolism - Photosynthesis	Solyc03g034220.3
+AT1G67090	ribulose-bisphosphate carboxylase	RBC	Primary metabolism - Photosynthesis	Solyc02g085940.5
+AT1G67090	ribulose-bisphosphate carboxylase	RBC	Primary metabolism - Photosynthesis	Solyc02g063150.3
+AT1G67090	ribulose-bisphosphate carboxylase	RBC	Primary metabolism - Photosynthesis	Solyc02g085950.5
+AT1G67110	cytochrome P450, family 735, subfamily A, polypeptide 1,2	CYP735A1,A2	Hormone - Cytokinins (CK)	Solyc02g085880.3
+AT1G67110	cytochrome P450, family 735, subfamily A, polypeptide 1,2	CYP735A1,A2	Hormone - Cytokinins (CK)	Solyc02g094860.3
+AT1G67560	lipoxygenase	LOX	Hormone - Jasmonate (JA)	Solyc05g014790.3
+AT1G67710	type-B Arabidopsis Response Regulators	ARR-B	Hormone - Cytokinins (CK)	NA
+AT1G68100	IAA-alanine resistance protein	IAR	Hormone - Auxins (AUX)	Solyc04g008340.2
+AT1G68460	ATP/ADP isopentenyltransferases	IPT1,3,4,5,6,7,8	Hormone - Cytokinins (CK)	Solyc04g007240.1
+AT1G68840		AT1G68840		Solyc05g009790.1
+AT1G69220	Protein kinase superfamily protein	SIK1	Signalling - Growth	Solyc05g012130.5
+AT1G69310	WRKY family transcription factor 57	WRKY57	Regulation - Transcription & Translation	NA
+AT1G69370	chorismate mutase 1,2,3	CM	Hormone - Salicylic acid (SA)	NA
+AT1G69440	Argonaute family protein	AGO7		Solyc01g010970.3
+AT1G69690	TCP family transcription factor	TCP8,14,15	Hormone - Salicylic acid (SA)	NA
+AT1G70480	OPDA exporting chloroplast membrane protein	JASSY	Hormone - Jasmonate (JA)	Solyc01g008010.3
+AT1G70560	tryptophan aminotransferase of Arabidopsis 1	TAA1	Hormone - Auxins (AUX)	Solyc05g031600.3
+AT1G70700	jasmonate-zim-domain protein	JAZ	Hormone - Jasmonate (JA)	NA
+AT1G71500	Rieske (2Fe-2S) domain-containing protein	PSB33		Solyc11g042640.2
+AT1G72260	thionin	PR13	Hormone - Jasmonate (JA)	NA
+AT1G72450	jasmonate-zim-domain protein	JAZ	Hormone - Jasmonate (JA)	NA
+AT1G72520	lipoxygenase	LOX	Hormone - Jasmonate (JA)	Solyc03g122340.3
+AT1G73080	PEP receptor	PEPR	Hormone - Peptides	Solyc03g123860.4
+AT1G73330	drought-repressed 4	DR4	Hormone - Abscisic acid (ABA)	NA
+AT1G73687	microRNA 159AB	miR159AB	Regulation - Silencing	NA
+AT1G73805	Calmodulin binding protein-like protein	SARD1	Hormone - Salicylic acid (SA)	NA
+AT1G74710	isochorismate synthase	ICS	Hormone - Salicylic acid (SA)	Solyc06g071030.3
+AT1G74890	type-A Arabidopsis Response Regulators	ARR-A	Hormone - Cytokinins (CK)	NA
+AT1G74950	jasmonate-zim-domain protein	JAZ	Hormone - Jasmonate (JA)	NA
+AT1G75040	pathogenesis-related protein 5; thaumatin-like protein	PR5	Hormone - Salicylic acid (SA)	NA
+AT1G75450	cytokinin oxidase/dehydrogenase	CKX	Hormone - Cytokinins (CK)	Solyc04g080820.2
+AT1G75950	S phase kinase-associated protein	ASK	Degradation - Ubiquitination	Solyc11g042930.2
+AT1G76680	12-oxophytodienoic acid reductase	OPR	Hormone - Jasmonate (JA)	Solyc10g086220.2
+AT1G76680	12-oxophytodienoic acid reductase	OPR	Hormone - Jasmonate (JA)	Solyc11g032130.3
+AT1G76690	12-oxophytodienoic acid reductase	OPR	Hormone - Jasmonate (JA)	Solyc11g032130.3
+AT1G76690	12-oxophytodienoic acid reductase	OPR	Hormone - Jasmonate (JA)	Solyc10g086220.2
+AT1G77330	1-aminocyclopropane-1-carboxylic acid (ACC) oxidase	ACO	Hormone - Ethylene (ET)	Solyc06g060070.3
+AT1G77450	NAC domain containing protein 32	NAC032	Regulation - Transcription & Translation	NA
+AT1G78290	Protein kinase superfamily protein, SNF1-RELATED PROTEIN KINASE 2.8	SNRK2	Hormone - Abscisic acid (ABA)	Solyc04g074500.3
+AT1G78290	Protein kinase superfamily protein, SNF1-RELATED PROTEIN KINASE 2.8	SNRK2	Hormone - Abscisic acid (ABA)	Solyc11g010130.4
+AT1G78390	nine-cis-epoxycarotenoid dioxygenase 2,3,4,5,6,9	NCED	Hormone - Abscisic acid (ABA)	Solyc07g056570.1
+AT1G78440	gibberellin 2-oxidase 1,2,3,4,6	C19-GA2ox	Hormone - Gibberellin (GA)	Solyc07g056670.3
+AT1G78440	gibberellin 2-oxidase 1,2,3,4,6	C19-GA2ox	Hormone - Gibberellin (GA)	Solyc07g061720.3
+AT1G78440	gibberellin 2-oxidase 1,2,3,4,6	C19-GA2ox	Hormone - Gibberellin (GA)	Solyc07g061730.3
+AT1G78440	gibberellin 2-oxidase 1,2,3,4,6	C19-GA2ox	Hormone - Gibberellin (GA)	Solyc02g070430.4
+AT1G78440	gibberellin 2-oxidase 1,2,3,4,6	C19-GA2ox	Hormone - Gibberellin (GA)	Solyc10g007570.4
+AT1G78610		MSL	Stress - Waterlogging	Solyc12g094420.2
+AT1G78610		MSL	Stress - Waterlogging	Solyc10g055710.2
+AT1G79040	photosystem II subunit R	PSBR		Solyc07g066310.3
+AT1G79460	ent-kaurene synthase	KS	Hormone - Gibberellin (GA)	Solyc03g124068.2
+AT1G80050	adenosine phosphoribosyltransferase 1,2,3,4,5	APT	Hormone - Cytokinins (CK)	NA
+AT1G80100	histidine-containing phosphotransfer protein	AHP	Hormone - Cytokinins (CK)	Solyc03g116720.4
+AT1G80330	gibberellin 3-oxidase 1,2,3,4	GA3ox	Hormone - Gibberellin (GA)	Solyc06g066820.4
+AT1G80340	gibberellin 3-oxidase 1,2,3,4	GA3ox	Hormone - Gibberellin (GA)	Solyc03g119910.5
+AT1G80390	indole-3-acetic acid inducible	AUX/IAA	Hormone - Auxins (AUX)	NA
+AT1G80680	importin-alpha isoform (IMPA/MOS)	MOS	Hormone - Salicylic acid (SA)	Solyc03g117120.4
+AT2G01200	indole-3-acetic acid inducible	AUX/IAA	Hormone - Auxins (AUX)	NA
+AT2G01570	GRAS transcription factor family protein	DELLA	Hormone - Gibberellin (GA)	NA
+AT2G01760	type-B Arabidopsis Response Regulators	ARR-B	Hormone - Cytokinins (CK)	NA
+AT2G01830	histidine kinase 2,3,4	AHK2,3,4	Hormone - Cytokinins (CK)	Solyc04g008110.3
+AT2G02810	UDP-galactose transporter 1	UTR1	Regulation - Transport	NA
+AT2G02930	glutathione S-transferase	GST	Signalling - Reactive oxygen species (ROS)	Solyc06g009040.4
+AT2G04030	heat shock protein 90	HSP90	Signalling - Heat-shock proteins (HSPs)	Solyc05g010670.3
+AT2G05840	20S proteasome alpha subunit A	PAA2	Degradation - Ubiquitination	Solyc12g009140.3
+AT2G06050	12-oxophytodienoic acid reductase	OPR	Hormone - Jasmonate (JA)	Solyc07g007870.3
+AT2G14580	pathogenesis-related protein 1	PR1	Hormone - Salicylic acid (SA)	Solyc01g106620.2
+AT2G14610	pathogenesis-related protein 1	PR1	Hormone - Salicylic acid (SA)	Solyc09g007010.1
+AT2G17000		MSL	Stress - Waterlogging	Solyc10g055710.2
+AT2G17010		MSL	Stress - Waterlogging	Solyc04g082040.3
+AT2G17010		MSL	Stress - Waterlogging	Solyc12g094420.2
+AT2G17090	BR-signaling kinase	BSK	Hormone - Brassinosteroids (BS)	NA
+AT2G17290	calmodulin-domain protein kinase	CDPK	Signalling - Calcium	Solyc01g112250.4
+AT2G19310		HSP	Signalling - Heat-shock proteins (HSPs)	NA
+AT2G19500	cytokinin oxidase/dehydrogenase	CKX	Hormone - Cytokinins (CK)	NA
+AT2G19590	1-aminocyclopropane-1-carboxylic acid (ACC) oxidase	ACO	Hormone - Ethylene (ET)	Solyc07g026650.3
+AT2G20340	Pyridoxal phosphate (PLP)-dependent transferases superfamily protein	ELI5	Primary metabolism - Amino-acids	Solyc09g064430.4
+AT2G20610	Tyrosine transaminase family protein	SUR1	Hormone - Auxins (AUX)	Solyc10g008200.4
+AT2G22000	Precursos of elicitor peptide	PEP	Hormone - Peptides	NA
+AT2G22040	Transducin/WD40 repeat-like superfamily protein	LST8	Primary metabolism - Photosynthesis	NA
+AT2G22250	Phosphatidic Acid	PA	Stress - Biotic	Solyc04g054710.3
+AT2G22300	calmodulin-binding transcription activator 3	CAMTA3	Signalling - Calcium	NA
+AT2G22670	indole-3-acetic acid inducible	AUX/IAA	Hormone - Auxins (AUX)	Solyc04g076850.3
+AT2G22810	1-aminocyclopropane-1-carboxylic acid (ACC) synthase	ACS	Hormone - Ethylene (ET)	Solyc02g160210.1
+AT2G23260	UDP-glucosyl transferase 84B1	UGT84B1	Hormone - Auxins (AUX)	NA
+AT2G23350	poly(A) binding protein 4	PAB4		Solyc12g088720.2
+AT2G23560	methyl esterase 1,2,4,7,9	MES	Hormone - Salicylic acid (SA)	NA
+AT2G23580	methyl esterase 1,2,4,7,9	MES	Hormone - Salicylic acid (SA)	Solyc02g065280.3
+AT2G23600	methyl esterase 1,2,4,7,9	MES	Hormone - Salicylic acid (SA)	NA
+AT2G23620	methyl esterase 1,2,4,7,9	MES	Hormone - Salicylic acid (SA)	Solyc02g065240.3
+AT2G23620	methyl esterase 1,2,4,7,9	MES	Hormone - Salicylic acid (SA)	Solyc02g065280.3
+AT2G23620	methyl esterase 1,2,4,7,9	MES	Hormone - Salicylic acid (SA)	Solyc02g065250.2
+AT2G23620	methyl esterase 1,2,4,7,9	MES	Hormone - Salicylic acid (SA)	Solyc03g070380.3
+AT2G24570	WRKY family transcription factor 17	WRKY17	Regulation - Transcription & Translation	NA
+AT2G24680	transcriptional factor B3 family protein	REM12	Regulation - Transcription & Translation	NA
+AT2G24860	EDS1 INTERACTING J PROTEIN 1	EIJP1	Signalling - Heat-shock proteins (HSPs)	Solyc08g006620.3
+AT2G25080		GPX	Signalling - Reactive oxygen species (ROS)	Solyc08g006720.4
+AT2G25180	type-B Arabidopsis Response Regulators	ARR-B	Hormone - Cytokinins (CK)	NA
+AT2G25490	EIN3-binding F box protein 1,2	EBF	Hormone - Ethylene (ET)	Solyc12g009560.2
+AT2G25490	EIN3-binding F box protein 1,2	EBF	Hormone - Ethylene (ET)	Solyc07g008250.3
+AT2G26020	plant defensin 1.2a,b,c	PDF1.2	Hormone - Ethylene (ET)	NA
+AT2G26070	protein REVERSION-TO-ETHYLENE SENSITIVITY-like protein (DUF778)	RTE1	Hormone - Ethylene (ET)	Solyc08g065320.3
+AT2G26150		HSF	Signalling - Heat-shock proteins (HSPs)	NA
+AT2G26170	cytochrome P450, family 711, subfamily A, polypeptide 1; more axillary branches 1	MAX1	Hormone - Strigolactones (SL)	NA
+AT2G27050	EIN3 and EIN3-like transcription factors	EIN3(like)	Hormone - Ethylene (ET)	NA
+AT2G27070	type-B Arabidopsis Response Regulators	ARR-B	Hormone - Cytokinins (CK)	NA
+AT2G27150	aldehyde oxidase	AAO	Hormone - Salicylic acid (SA)	Solyc01g088170.4
+AT2G27150	aldehyde oxidase	AAO	Hormone - Salicylic acid (SA)	Solyc11g071600.2
+AT2G27150	aldehyde oxidase	AAO	Hormone - Salicylic acid (SA)	Solyc01g009230.4
+AT2G27690	cytochrome P450, family 94, subfamily C, polypeptide 1,3	CYP94	Hormone - Jasmonate (JA)	Solyc09g009703.1
+AT2G27690	cytochrome P450, family 94, subfamily C, polypeptide 1,3	CYP94	Hormone - Jasmonate (JA)	Solyc10g083400.1
+AT2G27690	cytochrome P450, family 94, subfamily C, polypeptide 1,3	CYP94	Hormone - Jasmonate (JA)	Solyc09g009707.1
+AT2G27690	cytochrome P450, family 94, subfamily C, polypeptide 1,3	CYP94	Hormone - Jasmonate (JA)	Solyc06g074420.1
+AT2G27760	tRNA isopentenyltransferases	IPT2,9	Hormone - Cytokinins (CK)	Solyc11g066960.3
+AT2G27820	arogenate dehydratase 1,2,3,4,5,6	ADT	Hormone - Salicylic acid (SA)	Solyc11g066890.1
+AT2G27820	arogenate dehydratase 1,2,3,4,5,6	ADT	Hormone - Salicylic acid (SA)	Solyc06g074530.1
+AT2G28190	superoxide dismutase	SOD	Signalling - Reactive oxygen species (ROS)	Solyc11g066390.2
+AT2G28305	cytokinin riboside 5'-monophosphate phosphoribohydrolase	LOG	Hormone - Cytokinins (CK)	Solyc06g075090.4
+AT2G28305	cytokinin riboside 5'-monophosphate phosphoribohydrolase	LOG	Hormone - Cytokinins (CK)	Solyc11g069570.2
+AT2G28305	cytokinin riboside 5'-monophosphate phosphoribohydrolase	LOG	Hormone - Cytokinins (CK)	Solyc10g084150.2
+AT2G29500		HSP	Signalling - Heat-shock proteins (HSPs)	NA
+AT2G30490	cinnamate-4-hydroxylase	CYP73A5	Hormone - Salicylic acid (SA)	Solyc06g150137.1
+AT2G30720	thioesterase/thiol ester dehydrase-isomerase superfamily protein	ACH	Hormone - Jasmonate (JA)	Solyc12g019490.2
+AT2G30860	glutathione S-transferase PHI 9	GSTF9		NA
+AT2G31570		GPX	Signalling - Reactive oxygen species (ROS)	Solyc06g073460.4
+AT2G32060	Ribosomal protein L7Ae/L30e/S12e/Gadd45 family protein	RPS12C		Solyc01g103800.3
+AT2G32060	Ribosomal protein L7Ae/L30e/S12e/Gadd45 family protein	RPS12C		Solyc12g042650.2
+AT2G32440	ent-kaurenoic acid oxidase 1,2	KAO1,2	Hormone - Gibberellin (GA)	Solyc01g080900.5
+AT2G33150	acetyl-CoA acyltransferase	KAT	Hormone - Jasmonate (JA)	Solyc09g091470.3
+AT2G33310	indole-3-acetic acid inducible	AUX/IAA	Hormone - Auxins (AUX)	Solyc09g090910.3
+AT2G33860	auxin response transcription factor	ARF	Hormone - Auxins (AUX)	Solyc02g077560.3
+AT2G34430	light-harvesting chlorophyll-protein complex II subunit B1	LHB1B1		Solyc02g071030.2
+AT2G34430	light-harvesting chlorophyll-protein complex II subunit B1	LHB1B1		Solyc03g005770.4
+AT2G34430	light-harvesting chlorophyll-protein complex II subunit B1	LHB1B1		Solyc02g071000.1
+AT2G34430	light-harvesting chlorophyll-protein complex II subunit B1	LHB1B1		Solyc02g070990.1
+AT2G34430	light-harvesting chlorophyll-protein complex II subunit B1	LHB1B1		Solyc02g070970.1
+AT2G34430	light-harvesting chlorophyll-protein complex II subunit B1	LHB1B1		Solyc02g071010.1
+AT2G34430	light-harvesting chlorophyll-protein complex II subunit B1	LHB1B1		Solyc02g070980.1
+AT2G34430	light-harvesting chlorophyll-protein complex II subunit B1	LHB1B1		Solyc02g070950.1
+AT2G34430	light-harvesting chlorophyll-protein complex II subunit B1	LHB1B1		Solyc02g070940.1
+AT2G34430	light-harvesting chlorophyll-protein complex II subunit B1	LHB1B1		Solyc03g005780.3
+AT2G34430	light-harvesting chlorophyll-protein complex II subunit B1	LHB1B1		Solyc03g005760.1
+AT2G34555	gibberellin 2-oxidase 1,2,3,4,6	C19-GA2ox	Hormone - Gibberellin (GA)	Solyc02g070430.4
+AT2G34600	jasmonate-zim-domain protein	JAZ	Hormone - Jasmonate (JA)	NA
+AT2G35690	acyl-CoA oxidase	ACX	Hormone - Jasmonate (JA)	Solyc08g078400.3
+AT2G35990	cytokinin riboside 5'-monophosphate phosphoribohydrolase	LOG	Hormone - Cytokinins (CK)	NA
+AT2G36750	trans-Zeatin glycosyltransferases	UGT	Hormone - Cytokinins (CK)	Solyc10g085870.1
+AT2G36750	trans-Zeatin glycosyltransferases	UGT	Hormone - Cytokinins (CK)	Solyc10g085880.1
+AT2G36750	trans-Zeatin glycosyltransferases	UGT	Hormone - Cytokinins (CK)	Solyc12g042600.2
+AT2G36800	trans-Zeatin glycosyltransferases	UGT	Hormone - Cytokinins (CK)	Solyc12g042600.2
+AT2G36800	trans-Zeatin glycosyltransferases	UGT	Hormone - Cytokinins (CK)	Solyc10g085870.1
+AT2G36800	trans-Zeatin glycosyltransferases	UGT	Hormone - Cytokinins (CK)	Solyc10g085880.1
+AT2G36880	S-adenosylmethionine (SAM) synthetase	SAMS	Hormone - Ethylene (ET)	Solyc12g099000.3
+AT2G36880	S-adenosylmethionine (SAM) synthetase	SAMS	Hormone - Ethylene (ET)	Solyc01g101060.4
+AT2G36880	S-adenosylmethionine (SAM) synthetase	SAMS	Hormone - Ethylene (ET)	Solyc10g083970.1
+AT2G36880	S-adenosylmethionine (SAM) synthetase	SAMS	Hormone - Ethylene (ET)	Solyc09g008280.2
+AT2G37040	phenylalanine ammonia-lyase 1,2,3,4	PAL	Hormone - Salicylic acid (SA)	Solyc10g086180.2
+AT2G37040	phenylalanine ammonia-lyase 1,2,3,4	PAL	Hormone - Salicylic acid (SA)	Solyc03g042560.3
+AT2G37040	phenylalanine ammonia-lyase 1,2,3,4	PAL	Hormone - Salicylic acid (SA)	Solyc09g007900.5
+AT2G37040	phenylalanine ammonia-lyase 1,2,3,4	PAL	Hormone - Salicylic acid (SA)	Solyc10g011925.2
+AT2G37040	phenylalanine ammonia-lyase 1,2,3,4	PAL	Hormone - Salicylic acid (SA)	Solyc00g500353.1
+AT2G37040	phenylalanine ammonia-lyase 1,2,3,4	PAL	Hormone - Salicylic acid (SA)	Solyc09g007920.4
+AT2G37210	cytokinin riboside 5'-monophosphate phosphoribohydrolase	LOG	Hormone - Cytokinins (CK)	Solyc09g007830.3
+AT2G37210	cytokinin riboside 5'-monophosphate phosphoribohydrolase	LOG	Hormone - Cytokinins (CK)	Solyc10g084150.2
+AT2G38325	microRNA 390	MIR390	Regulation - Silencing	NA
+AT2G38470	WRKY family transcription factor 33	WRKY33	Regulation - Transcription & Translation	NA
+AT2G39350	ABC-2 type transporter family protein	JAT2	Hormone - Jasmonate (JA)	Solyc05g054890.4
+AT2G39660	botrytis-induced kinase1	BIK1	Signalling - Perception and resistance genes	Solyc09g010850.4
+AT2G39730	rubisco activase	RCA		Solyc10g086580.2
+AT2G39730	rubisco activase	RCA		Solyc09g011080.3
+AT2G39800	delta1-pyrroline-5-carboxylate synthase 1	P5CS1	Primary metabolism - Amino-acids	Solyc08g043170.5
+AT2G39800	delta1-pyrroline-5-carboxylate synthase 1	P5CS1	Primary metabolism - Amino-acids	Solyc06g019170.3
+AT2G39940	Coronatine insensitive 1	COI1	Hormone - Jasmonate (JA)	NA
+AT2G40330	regulatory components of ABA receptor family protein	PYL	Signalling - Perception and resistance genes	Solyc09g015380.1
+AT2G40670	type-A Arabidopsis Response Regulators	ARR-A	Hormone - Cytokinins (CK)	Solyc06g048600.3
+AT2G40940	ethylene receptor	ETR	Hormone - Ethylene (ET)	Solyc09g075440.4
+AT2G41310	type-A Arabidopsis Response Regulators	ARR-A	Hormone - Cytokinins (CK)	Solyc10g079600.2
+AT2G41310	type-A Arabidopsis Response Regulators	ARR-A	Hormone - Cytokinins (CK)	Solyc10g079700.2
+AT2G41310	type-A Arabidopsis Response Regulators	ARR-A	Hormone - Cytokinins (CK)	Solyc02g071220.3
+AT2G41510	cytokinin oxidase/dehydrogenase	CKX	Hormone - Cytokinins (CK)	Solyc04g016430.3
+AT2G42620	E3 ubiquitin ligase SCF complex F-box subunit; more axillary branches 2	MAX2	Signalling - Perception and resistance genes	Solyc12g010900.1
+AT2G43350		GPX	Signalling - Reactive oxygen species (ROS)	NA
+AT2G43590	Chitinase family protein	PR-3 like		NA
+AT2G43790	mitogen-activated protein (MAP) kinase 3,6	MPK3,6	Signalling - MAP kinases (MAPKs)	Solyc12g019460.2
+AT2G43790	mitogen-activated protein (MAP) kinase 3,6	MPK3,6	Signalling - MAP kinases (MAPKs)	Solyc08g014420.4
+AT2G43820	UDP-glucosyltransferase	SAGT	Hormone - Salicylic acid (SA)	Solyc08g062220.3
+AT2G43840	UDP-glucosyltransferase	SAGT	Hormone - Salicylic acid (SA)	Solyc08g062220.3
+AT2G44810		DAD1	Hormone - Jasmonate (JA)	Solyc10g038170.1
+AT2G44840	ERF/EDF family, RAV/TEM related	ERF/EDF	Hormone - Ethylene (ET)	NA
+AT2G44990	Carotenoid cleavage dioxygenase	CCD	Hormone - Strigolactones (SL)	NA
+AT2G45660		SOC1		Solyc03g006830.3
+AT2G46020	transcription regulatory protein SNF2	BRAHMA	Stress - Heat	Solyc01g094800.4
+AT2G46370	Auxin-responsive GH3 family protein	JAR	Hormone - Jasmonate (JA)	Solyc00g500214.1
+AT2G46370	Auxin-responsive GH3 family protein	JAR	Hormone - Jasmonate (JA)	Solyc01g095580.3
+AT2G46370	Auxin-responsive GH3 family protein	JAR	Hormone - Jasmonate (JA)	Solyc05g050280.3
+AT2G46370	Auxin-responsive GH3 family protein	JAR	Hormone - Jasmonate (JA)	Solyc00g500216.2
+AT2G46370	Auxin-responsive GH3 family protein	JAR	Hormone - Jasmonate (JA)	Solyc10g011660.3
+AT2G46370	Auxin-responsive GH3 family protein	JAR	Hormone - Jasmonate (JA)	Solyc10g009600.1
+AT2G46400	WRKY family transcription factor 46	WRKY46	Regulation - Transcription & Translation	NA
+AT2G46510	jasmonate associated MYC2 like	JAM	Hormone - Jasmonate (JA)	NA
+AT2G46990	indole-3-acetic acid inducible	AUX/IAA	Hormone - Auxins (AUX)	NA
+AT2G47730	glutathione S-transferase	GST	Signalling - Reactive oxygen species (ROS)	Solyc06g009020.2
+AT2G47750	Auxin-responsive GH3 family protein	GH3	Hormone - Salicylic acid (SA)	NA
+AT2G48150		GPX	Signalling - Reactive oxygen species (ROS)	Solyc09g064850.3
+AT3G01830	calmodulin related	CML	Signalling - Calcium	NA
+AT3G02090	Insulinase (Peptidase family M16) protein	MPPBETA		Solyc02g088700.4
+AT3G02090	Insulinase (Peptidase family M16) protein	MPPBETA		Solyc05g012480.4
+AT3G02780	isopentenyl pyrophosphate:dimethylallyl pyrophosphate isomerase 2	IPP2		Solyc05g055760.3
+AT3G02780	isopentenyl pyrophosphate:dimethylallyl pyrophosphate isomerase 2	IPP2		Solyc04g056390.3
+AT3G02875	Peptidase M20/M25/M40 family protein	ILR1	Hormone - Auxins (AUX)	Solyc01g005490.3
+AT3G03300	Dicer-like proteins	DCL2,4	Regulation - Silencing	Solyc11g008520.3
+AT3G03300	Dicer-like proteins	DCL2,4	Regulation - Silencing	Solyc06g048960.5
+AT3G03300	Dicer-like proteins	DCL2,4	Regulation - Silencing	Solyc11g008540.3
+AT3G03450	GRAS transcription factor family protein	DELLA	Hormone - Gibberellin (GA)	Solyc11g011260.1
+AT3G03780	Methionine Synthase	MS	Hormone - Ethylene (ET)	Solyc10g081510.2
+AT3G03780	Methionine Synthase	MS	Hormone - Ethylene (ET)	Solyc01g009180.4
+AT3G03990	alpha/beta-Hydrolases superfamily protein	D14	Hormone - Strigolactones (SL)	NA
+AT3G04580	ethylene receptor	ETR	Hormone - Ethylene (ET)	Solyc11g006180.2
+AT3G04580	ethylene receptor	ETR	Hormone - Ethylene (ET)	Solyc05g055070.4
+AT3G04720	pathogenesis-related 4	PR4	Hormone - Ethylene (ET)	Solyc01g097240.3
+AT3G04720	pathogenesis-related 4	PR4	Hormone - Ethylene (ET)	Solyc01g097280.3
+AT3G04730	indole-3-acetic acid inducible	AUX/IAA	Hormone - Auxins (AUX)	Solyc01g097290.4
+AT3G04870	zeta-carotene desaturase	ZDS1	Secondary metabolism - Terpenoids	Solyc01g097810.3
+AT3G05120	gibberellin (GA) receptor	GID	Hormone - Gibberellin (GA)	Solyc01g098390.3
+AT3G06860	enoyl-CoA hydratase/3-hydroxyacyl-CoA dehydrogenase	MFP	Hormone - Jasmonate (JA)	Solyc12g099440.3
+AT3G07630	arogenate dehydratase 1,2,3,4,5,6	ADT	Hormone - Salicylic acid (SA)	Solyc11g072520.3
+AT3G07770	heat shock protein 90	HSP90	Signalling - Heat-shock proteins (HSPs)	Solyc07g047790.3
+AT3G07780	oberon 1	OBE1	Signalling - Perception and resistance genes	NA
+AT3G08850	regulatory-associated protein of TOR 2 (RAPTOR2)	RAPTOR2	Primary metabolism - Photosynthesis	Solyc09g014780.3
+AT3G08910	DNAJ heat shock family protein	CPIP	Signalling - Heat-shock proteins (HSPs)	Solyc09g005350.3
+AT3G09240	BR-signaling kinase	BSK	Hormone - Brassinosteroids (BS)	NA
+AT3G09440		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc04g011440.4
+AT3G09440		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc06g076020.3
+AT3G09440		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc11g066060.4
+AT3G09440		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc11g066100.2
+AT3G09440		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc09g010630.3
+AT3G09440		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc10g086410.3
+AT3G09640	ascorbate peroxidase 1,2,3,4,5,6	APX	Signalling - Reactive oxygen species (ROS)	Solyc09g007270.3
+AT3G09820	adenosine kinase 1,2	ADK	Hormone - Cytokinins (CK)	Solyc09g007940.3
+AT3G09820	adenosine kinase 1,2	ADK	Hormone - Cytokinins (CK)	Solyc10g086190.3
+AT3G10050	threonine ammonia-lyase	OMR1	Hormone - Jasmonate (JA)	Solyc10g083760.3
+AT3G10230	lycopene cyclase	LCY1	Secondary metabolism - Terpenoids	Solyc10g079480.1
+AT3G10230	lycopene cyclase	LCY1	Secondary metabolism - Terpenoids	Solyc04g040190.1
+AT3G10340	phenylalanine ammonia-lyase 1,2,3,4	PAL	Hormone - Salicylic acid (SA)	Solyc10g086180.2
+AT3G10340	phenylalanine ammonia-lyase 1,2,3,4	PAL	Hormone - Salicylic acid (SA)	Solyc09g007890.1
+AT3G10340	phenylalanine ammonia-lyase 1,2,3,4	PAL	Hormone - Salicylic acid (SA)	Solyc10g011925.2
+AT3G10340	phenylalanine ammonia-lyase 1,2,3,4	PAL	Hormone - Salicylic acid (SA)	Solyc03g042560.3
+AT3G10340	phenylalanine ammonia-lyase 1,2,3,4	PAL	Hormone - Salicylic acid (SA)	Solyc05g056170.3
+AT3G10660	calmodulin-domain protein kinase	CDPK	Signalling - Calcium	Solyc04g009800.3
+AT3G10660	calmodulin-domain protein kinase	CDPK	Signalling - Calcium	Solyc01g006840.3
+AT3G11410	protein phosphatase 2C	PP2C	Stress - Waterlogging	Solyc03g096670.3
+AT3G11440	MYB transcription factors 33,44,65	MYB33,44,65	Secondary metabolism - Anthocyanins	NA
+AT3G11630	Thioredoxin superfamily protein	BAS1		Solyc10g082030.2
+AT3G12250	TGACG sequence-specific binding protein	TGA2,5,6	Hormone - Salicylic acid (SA)	Solyc11g064950.3
+AT3G12250	TGACG sequence-specific binding protein	TGA2,5,6	Hormone - Salicylic acid (SA)	Solyc10g080770.3
+AT3G12500	basic chitinase	PR3	Hormone - Ethylene (ET)	Solyc02g061770.5
+AT3G12500	basic chitinase	PR3	Hormone - Ethylene (ET)	Solyc10g055780.1
+AT3G12500	basic chitinase	PR3	Hormone - Ethylene (ET)	Solyc10g055810.2
+AT3G12500	basic chitinase	PR3	Hormone - Ethylene (ET)	Solyc10g055820.3
+AT3G12500	basic chitinase	PR3	Hormone - Ethylene (ET)	Solyc10g055800.2
+AT3G12500	basic chitinase	PR3	Hormone - Ethylene (ET)	Solyc10g074460.4
+AT3G12580		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc04g011440.4
+AT3G12580		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc11g066060.4
+AT3G12580		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc11g066100.2
+AT3G12580		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc09g010630.3
+AT3G12580		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc06g076020.3
+AT3G12580		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc10g086410.3
+AT3G14440	nine-cis-epoxycarotenoid dioxygenase 2,3,4,5,6,9	NCED	Hormone - Abscisic acid (ABA)	Solyc08g016720.1
+AT3G14440	nine-cis-epoxycarotenoid dioxygenase 2,3,4,5,6,9	NCED	Hormone - Abscisic acid (ABA)	Solyc07g056570.1
+AT3G14810		MSL	Stress - Waterlogging	NA
+AT3G15290	enoyl-CoA hydratase/3-hydroxyacyl-CoA dehydrogenase	MFP	Hormone - Jasmonate (JA)	Solyc07g063010.3
+AT3G15500	ATAF-like NAC-domain transcription factor	NAC055	Regulation - Transcription & Translation	Solyc07g063410.3
+AT3G15540	indole-3-acetic acid inducible	AUX/IAA	Hormone - Auxins (AUX)	Solyc03g120380.3
+AT3G15730	phospholipase D alpha 1	PLDALPHA1		Solyc06g068090.3
+AT3G15730	phospholipase D alpha 1	PLDALPHA1		Solyc08g066800.4
+AT3G15730	phospholipase D alpha 1	PLDALPHA1		Solyc03g116620.3
+AT3G16360	histidine-containing phosphotransfer protein	AHP	Hormone - Cytokinins (CK)	Solyc08g066350.2
+AT3G16360	histidine-containing phosphotransfer protein	AHP	Hormone - Cytokinins (CK)	Solyc11g070150.2
+AT3G16470	jacalin-related lectin 35	JR1	Hormone - Jasmonate (JA)	NA
+AT3G16500	indole-3-acetic acid inducible	AUX/IAA	Hormone - Auxins (AUX)	NA
+AT3G16857	type-B Arabidopsis Response Regulators	ARR-B	Hormone - Cytokinins (CK)	Solyc05g054390.4
+AT3G17020	Adenine nucleotide alpha hydrolases-like superfamily protein	AT3G17020		Solyc01g059930.3
+AT3G17185	trans-acting siRNA3	TAS3	Regulation - Silencing	NA
+AT3G17390	S-adenosylmethionine (SAM) synthetase	SAMS	Hormone - Ethylene (ET)	Solyc10g083970.1
+AT3G17390	S-adenosylmethionine (SAM) synthetase	SAMS	Hormone - Ethylene (ET)	Solyc09g008280.2
+AT3G17390	S-adenosylmethionine (SAM) synthetase	SAMS	Hormone - Ethylene (ET)	Solyc12g099000.3
+AT3G17390	S-adenosylmethionine (SAM) synthetase	SAMS	Hormone - Ethylene (ET)	Solyc01g101060.4
+AT3G17600	indole-3-acetic acid inducible	AUX/IAA	Hormone - Auxins (AUX)	NA
+AT3G17860	jasmonate-zim-domain protein	JAZ	Hormone - Jasmonate (JA)	NA
+AT3G17880	tetracopeptide domain-containing thioredoxin	TDX	Signalling - Reactive oxygen species (ROS)	Solyc03g118550.3
+AT3G18140	Transducin/WD40 repeat-like superfamily protein	LST8	Primary metabolism - Photosynthesis	Solyc03g059310.3
+AT3G18690	mitogen-activated protein (MAP) kinase substrate 1	MKS1	Signalling - MAP kinases (MAPKs)	NA
+AT3G18910	EIN2-targeting F-box protein	ETP	Hormone - Ethylene (ET)	NA
+AT3G18980	EIN2-targeting F-box protein	ETP	Hormone - Ethylene (ET)	NA
+AT3G19160	ATP/ADP isopentenyltransferases	IPT1,3,4,5,6,7,8	Hormone - Cytokinins (CK)	NA
+AT3G19290		AREB/ABF	Hormone - Abscisic acid (ABA)	NA
+AT3G20600	non race-specific disease resistance 1	NDR1	Signalling - Perception and resistance genes	NA
+AT3G20770	EIN3 and EIN3-like transcription factors	EIN3(like)	Hormone - Ethylene (ET)	Solyc06g073720.3
+AT3G20770	EIN3 and EIN3-like transcription factors	EIN3(like)	Hormone - Ethylene (ET)	Solyc01g009170.4
+AT3G20770	EIN3 and EIN3-like transcription factors	EIN3(like)	Hormone - Ethylene (ET)	Solyc06g073730.2
+AT3G21220	Mitogen-Activated Protein (MAP) kinase kinase 4, 5	MPK4,5	Hormone - Ethylene (ET)	NA
+AT3G21230		4CL	Hormone - Salicylic acid (SA)	NA
+AT3G21240		4CL	Hormone - Salicylic acid (SA)	Solyc06g068650.4
+AT3G21240		4CL	Hormone - Salicylic acid (SA)	Solyc07g008360.2
+AT3G21240		4CL	Hormone - Salicylic acid (SA)	Solyc03g117870.3
+AT3G21510	histidine-containing phosphotransfer protein	AHP	Hormone - Cytokinins (CK)	Solyc01g098400.3
+AT3G21510	histidine-containing phosphotransfer protein	AHP	Hormone - Cytokinins (CK)	Solyc01g080540.3
+AT3G22370		AOX	Primary metabolism - Respiration	Solyc08g005550.4
+AT3G22370		AOX	Primary metabolism - Respiration	Solyc01g105220.3
+AT3G22400	lipoxygenase	LOX	Hormone - Jasmonate (JA)	Solyc09g075860.3
+AT3G22400	lipoxygenase	LOX	Hormone - Jasmonate (JA)	Solyc08g029000.3
+AT3G22400	lipoxygenase	LOX	Hormone - Jasmonate (JA)	Solyc01g099160.5
+AT3G22400	lipoxygenase	LOX	Hormone - Jasmonate (JA)	Solyc08g014000.3
+AT3G22830		HSFA6b	Signalling - Heat-shock proteins (HSPs)	Solyc09g065660.4
+AT3G23030	indole-3-acetic acid inducible	AUX/IAA	Hormone - Auxins (AUX)	NA
+AT3G23050	indole-3-acetic acid inducible	AUX/IAA	Hormone - Auxins (AUX)	Solyc09g083290.3
+AT3G23050	indole-3-acetic acid inducible	AUX/IAA	Hormone - Auxins (AUX)	Solyc06g053830.3
+AT3G23150	ethylene receptor	ETR	Hormone - Ethylene (ET)	Solyc06g053710.3
+AT3G23220	ERF/EDF family, RAV/TEM related	ERF/EDF	Hormone - Ethylene (ET)	NA
+AT3G23230	ERF/EDF family, RAV/TEM related	ERF/EDF	Hormone - Ethylene (ET)	Solyc09g066350.1
+AT3G23230	ERF/EDF family, RAV/TEM related	ERF/EDF	Hormone - Ethylene (ET)	Solyc03g005510.2
+AT3G23240	ERF/EDF family, RAV/TEM related	ERF/EDF	Hormone - Ethylene (ET)	Solyc09g066360.1
+AT3G23240	ERF/EDF family, RAV/TEM related	ERF/EDF	Hormone - Ethylene (ET)	Solyc09g089930.3
+AT3G23240	ERF/EDF family, RAV/TEM related	ERF/EDF	Hormone - Ethylene (ET)	Solyc02g077370.1
+AT3G23240	ERF/EDF family, RAV/TEM related	ERF/EDF	Hormone - Ethylene (ET)	Solyc03g005520.1
+AT3G23630	ATP/ADP isopentenyltransferases	IPT1,3,4,5,6,7,8	Hormone - Cytokinins (CK)	NA
+AT3G23810	S-adenosyl-l-homocysteine (SAH) hydrolase 2	SAHH	Hormone - Jasmonate (JA)	Solyc12g098500.2
+AT3G23810	S-adenosyl-l-homocysteine (SAH) hydrolase 2	SAHH	Hormone - Jasmonate (JA)	Solyc09g092380.3
+AT3G24220	nine-cis-epoxycarotenoid dioxygenase 2,3,4,5,6,9	NCED	Hormone - Abscisic acid (ABA)	Solyc05g053530.1
+AT3G25070	RPM1 interacting protein 4	RIN4	Signalling - Perception and resistance genes	NA
+AT3G25730	ERF/EDF family, RAV/TEM related	ERF/EDF	Hormone - Ethylene (ET)	Solyc05g009790.1
+AT3G25760	allene oxide cyclase 1,2,3,4	AOC	Hormone - Jasmonate (JA)	Solyc02g085730.3
+AT3G25770	allene oxide cyclase 1,2,3,4	AOC	Hormone - Jasmonate (JA)	Solyc02g085730.3
+AT3G25780	allene oxide cyclase 1,2,3,4	AOC	Hormone - Jasmonate (JA)	Solyc02g085730.3
+AT3G25882	NIM1-interacting	NIMIN	Hormone - Salicylic acid (SA)	NA
+AT3G26520	tonoplast intrinsic protein 2	TIP1-2		Solyc06g074820.3
+AT3G29200	chorismate mutase 1,2,3	CM	Hormone - Salicylic acid (SA)	NA
+AT3G29350	histidine-containing phosphotransfer protein	AHP	Hormone - Cytokinins (CK)	NA
+AT3G42830	RING-box	RBX	Degradation - Ubiquitination	NA
+AT3G43440	jasmonate-zim-domain protein	JAZ	Hormone - Jasmonate (JA)	NA
+AT3G44310	nitrilase 1	NIT1	Hormone - Auxins (AUX)	NA
+AT3G44720	arogenate dehydratase 1,2,3,4,5,6	ADT	Hormone - Salicylic acid (SA)	NA
+AT3G45140	lipoxygenase	LOX	Hormone - Jasmonate (JA)	Solyc01g006555.2
+AT3G45140	lipoxygenase	LOX	Hormone - Jasmonate (JA)	Solyc01g006540.4
+AT3G45640	mitogen-activated protein (MAP) kinase 3,6	MPK3,6	Signalling - MAP kinases (MAPKs)	Solyc06g005170.3
+AT3G45810	NADPH oxidase	RBOH	Signalling - Reactive oxygen species (ROS)	Solyc06g075570.2
+AT3G46230		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc09g015020.1
+AT3G47620	TCP family transcription factor	TCP8,14,15	Hormone - Salicylic acid (SA)	NA
+AT3G48090	enhanced disease susceptibility, alpha/beta-Hydrolases superfamily protein	EDS1	Hormone - Salicylic acid (SA)	NA
+AT3G48100	type-A Arabidopsis Response Regulators	ARR-A	Hormone - Cytokinins (CK)	Solyc03g113720.3
+AT3G48520	cytochrome P450, family 94, subfamily C, polypeptide 1,3	CYP94	Hormone - Jasmonate (JA)	Solyc03g111280.1
+AT3G48520	cytochrome P450, family 94, subfamily C, polypeptide 1,3	CYP94	Hormone - Jasmonate (JA)	Solyc03g111300.1
+AT3G49500	RNA-dependent RNA polymerases	RDR1,6	Regulation - Silencing	Solyc04g014870.3
+AT3G49590	Protein kinase superfamily protein	ATG13A	Degradation - Autophagy	Solyc03g096790.3
+AT3G49700	1-aminocyclopropane-1-carboxylic acid (ACC) synthase	ACS	Hormone - Ethylene (ET)	Solyc03g043890.3
+AT3G49700	1-aminocyclopropane-1-carboxylic acid (ACC) synthase	ACS	Hormone - Ethylene (ET)	Solyc02g160210.1
+AT3G49700	1-aminocyclopropane-1-carboxylic acid (ACC) synthase	ACS	Hormone - Ethylene (ET)	Solyc02g091990.3
+AT3G49700	1-aminocyclopropane-1-carboxylic acid (ACC) synthase	ACS	Hormone - Ethylene (ET)	Solyc02g063544.2
+AT3G50070	CYCLIN D3;3	CYCD3-3	Hormone - Brassinosteroids (BS)	NA
+AT3G50440	methylesterase	MES10		Solyc03g044740.5
+AT3G52430	phytoalexin deficient, InterPro Lipase, class 3	PAD4	Hormone - Salicylic acid (SA)	NA
+AT3G52930	Aldolase superfamily protein	FBA8		Solyc10g083570.3
+AT3G52930	Aldolase superfamily protein	FBA8		Solyc09g009260.3
+AT3G53260	phenylalanine ammonia-lyase 1,2,3,4	PAL	Hormone - Salicylic acid (SA)	Solyc10g011925.2
+AT3G53260	phenylalanine ammonia-lyase 1,2,3,4	PAL	Hormone - Salicylic acid (SA)	Solyc09g007900.5
+AT3G53260	phenylalanine ammonia-lyase 1,2,3,4	PAL	Hormone - Salicylic acid (SA)	Solyc05g056170.3
+AT3G53260	phenylalanine ammonia-lyase 1,2,3,4	PAL	Hormone - Salicylic acid (SA)	Solyc03g042560.3
+AT3G53260	phenylalanine ammonia-lyase 1,2,3,4	PAL	Hormone - Salicylic acid (SA)	Solyc09g007920.4
+AT3G53260	phenylalanine ammonia-lyase 1,2,3,4	PAL	Hormone - Salicylic acid (SA)	Solyc00g500353.1
+AT3G53260	phenylalanine ammonia-lyase 1,2,3,4	PAL	Hormone - Salicylic acid (SA)	Solyc10g086180.2
+AT3G53260	phenylalanine ammonia-lyase 1,2,3,4	PAL	Hormone - Salicylic acid (SA)	Solyc09g007890.1
+AT3G53450	cytokinin riboside 5'-monophosphate phosphoribohydrolase	LOG	Hormone - Cytokinins (CK)	Solyc10g084150.2
+AT3G53450	cytokinin riboside 5'-monophosphate phosphoribohydrolase	LOG	Hormone - Cytokinins (CK)	Solyc09g007830.3
+AT3G54030	BR-signaling kinase	BSK	Hormone - Brassinosteroids (BS)	Solyc09g011750.3
+AT3G56350	superoxide dismutase	SOD	Signalling - Reactive oxygen species (ROS)	NA
+AT3G56380	type-A Arabidopsis Response Regulators	ARR-A	Hormone - Cytokinins (CK)	Solyc06g048600.3
+AT3G56400	WRKY family transcription factor 70	WRKY70	Regulation - Transcription & Translation	NA
+AT3G57040	type-A Arabidopsis Response Regulators	ARR-A	Hormone - Cytokinins (CK)	Solyc10g079700.2
+AT3G57040	type-A Arabidopsis Response Regulators	ARR-A	Hormone - Cytokinins (CK)	Solyc10g079600.2
+AT3G57040	type-A Arabidopsis Response Regulators	ARR-A	Hormone - Cytokinins (CK)	Solyc02g071220.3
+AT3G57260	pathogenesis-related protein 2; beta 1,3-glucanase	PR2	Hormone - Salicylic acid (SA)	NA
+AT3G60140	Glycosyl hydrolase superfamily protein	BGLU30	Hormone - Salicylic acid (SA)	Solyc01g074040.2
+AT3G61510	1-aminocyclopropane-1-carboxylic acid (ACC) synthase	ACS	Hormone - Ethylene (ET)	Solyc05g050010.3
+AT3G61510	1-aminocyclopropane-1-carboxylic acid (ACC) synthase	ACS	Hormone - Ethylene (ET)	Solyc01g095080.3
+AT3G61960	Protein kinase superfamily protein	ATG1A	Degradation - Autophagy	NA
+AT3G62100	indole-3-acetic acid inducible	AUX/IAA	Hormone - Auxins (AUX)	NA
+AT3G62670	type-B Arabidopsis Response Regulators	ARR-B	Hormone - Cytokinins (CK)	NA
+AT3G62980	F-box/RNI-like superfamily protein	TIR1	Hormone - Auxins (AUX)	Solyc09g074520.3
+AT3G63010	gibberellin (GA) receptor	GID	Hormone - Gibberellin (GA)	Solyc09g074270.3
+AT3G63010	gibberellin (GA) receptor	GID	Hormone - Gibberellin (GA)	Solyc06g008870.2
+AT3G63080		GPX	Signalling - Reactive oxygen species (ROS)	Solyc09g064850.3
+AT3G63110	ATP/ADP isopentenyltransferases	IPT1,3,4,5,6,7,8	Hormone - Cytokinins (CK)	Solyc09g064910.1
+AT3G63110	ATP/ADP isopentenyltransferases	IPT1,3,4,5,6,7,8	Hormone - Cytokinins (CK)	Solyc01g080150.3
+AT3G63130	RAN GTPase activating protein	RANGAP	Signalling - Perception and resistance genes	Solyc09g065190.3
+AT3G63440	cytokinin oxidase/dehydrogenase	CKX	Hormone - Cytokinins (CK)	Solyc01g088160.5
+AT4G00290		MSL	Stress - Waterlogging	Solyc10g012050.3
+AT4G00290		MSL	Stress - Waterlogging	Solyc10g012060.3
+AT4G00660	RNAhelicase-like 8 (DEAD/DEAH box helicase)	RH8	Regulation - Silencing	Solyc05g048850.4
+AT4G00660	RNAhelicase-like 8 (DEAD/DEAH box helicase)	RH8	Regulation - Silencing	Solyc10g017530.3
+AT4G00710	BR-signaling kinase	BSK	Hormone - Brassinosteroids (BS)	Solyc11g064890.2
+AT4G00710	BR-signaling kinase	BSK	Hormone - Brassinosteroids (BS)	Solyc12g099830.2
+AT4G01370	mitogen-activated protein (MAP) kinase 4	MPK4	Signalling - MAP kinases (MAPKs)	Solyc05g049970.3
+AT4G01370	mitogen-activated protein (MAP) kinase 4	MPK4	Signalling - MAP kinases (MAPKs)	Solyc01g094960.3
+AT4G01850	S-adenosylmethionine (SAM) synthetase	SAMS	Hormone - Ethylene (ET)	Solyc12g099000.3
+AT4G01850	S-adenosylmethionine (SAM) synthetase	SAMS	Hormone - Ethylene (ET)	Solyc01g101060.4
+AT4G01850	S-adenosylmethionine (SAM) synthetase	SAMS	Hormone - Ethylene (ET)	Solyc09g008280.2
+AT4G01850	S-adenosylmethionine (SAM) synthetase	SAMS	Hormone - Ethylene (ET)	Solyc10g083970.1
+AT4G02150	importin-alpha isoform (IMPA/MOS)	MOS	Hormone - Salicylic acid (SA)	NA
+AT4G02520	glutathione S-transferase	GST	Signalling - Reactive oxygen species (ROS)	Solyc06g009020.2
+AT4G02520	glutathione S-transferase	GST	Signalling - Reactive oxygen species (ROS)	Solyc06g009040.4
+AT4G02570	cullin	CUL	Degradation - Ubiquitination	Solyc01g067100.4
+AT4G02570	cullin	CUL	Degradation - Ubiquitination	Solyc09g074680.3
+AT4G02570	cullin	CUL	Degradation - Ubiquitination	Solyc06g084520.3
+AT4G02780	ent-copalyl diphosphate synthase	CPS	Hormone - Gibberellin (GA)	Solyc06g084240.2
+AT4G03400	Auxin-responsive GH3 family protein	JAR	Hormone - Jasmonate (JA)	Solyc07g054580.3
+AT4G03400	Auxin-responsive GH3 family protein	JAR	Hormone - Jasmonate (JA)	Solyc10g008520.3
+AT4G04340		OSCA1	Stress - Drought	Solyc02g081030.4
+AT4G04340		OSCA1	Stress - Drought	Solyc07g048110.4
+AT4G04340		OSCA1	Stress - Drought	Solyc02g036260.5
+AT4G04640	ATPase%2C F1 complex%2C gamma subunit protein	ATPC1		Solyc02g080540.1
+AT4G05160		4CL	Hormone - Salicylic acid (SA)	Solyc11g069050.2
+AT4G08040	1-aminocyclopropane-1-carboxylic acid (ACC) synthase	ACS	Hormone - Ethylene (ET)	NA
+AT4G08500	MAP kinase kinase kinase MAPKKK8/MEKK1	MAPKKK8	Signalling - MAP kinases (MAPKs)	NA
+AT4G09010	ascorbate peroxidase 1,2,3,4,5,6	APX	Signalling - Reactive oxygen species (ROS)	Solyc04g074640.5
+AT4G09570	calmodulin-domain protein kinase	CDPK	Signalling - Calcium	Solyc05g056570.3
+AT4G09570	calmodulin-domain protein kinase	CDPK	Signalling - Calcium	Solyc06g065380.4
+AT4G09570	calmodulin-domain protein kinase	CDPK	Signalling - Calcium	Solyc04g049160.3
+AT4G09570	calmodulin-domain protein kinase	CDPK	Signalling - Calcium	Solyc11g018610.2
+AT4G10250		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc11g020330.1
+AT4G10250		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc03g113930.3
+AT4G10250		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc01g102960.3
+AT4G11230	NADPH oxidase	RBOH	Signalling - Reactive oxygen species (ROS)	NA
+AT4G11260	SGT1 protein binding; suppressor of the g2 allelle of SKP1	SGT1	Signalling - Perception and resistance genes	Solyc06g036420.4
+AT4G11260	SGT1 protein binding; suppressor of the g2 allelle of SKP1	SGT1	Signalling - Perception and resistance genes	Solyc03g007670.4
+AT4G11280	1-aminocyclopropane-1-carboxylic acid (ACC) synthase	ACS	Hormone - Ethylene (ET)	Solyc08g081535.1
+AT4G11280	1-aminocyclopropane-1-carboxylic acid (ACC) synthase	ACS	Hormone - Ethylene (ET)	Solyc05g050010.3
+AT4G11280	1-aminocyclopropane-1-carboxylic acid (ACC) synthase	ACS	Hormone - Ethylene (ET)	Solyc01g095080.3
+AT4G11280	1-aminocyclopropane-1-carboxylic acid (ACC) synthase	ACS	Hormone - Ethylene (ET)	Solyc08g008110.3
+AT4G11600		GPX	Signalling - Reactive oxygen species (ROS)	Solyc12g056230.2
+AT4G11600		GPX	Signalling - Reactive oxygen species (ROS)	Solyc08g080940.3
+AT4G12440	adenosine phosphoribosyltransferase 1,2,3,4,5	APT	Hormone - Cytokinins (CK)	Solyc08g079020.3
+AT4G12570	ubiquitin protein ligase, HECT E3 class	UPL5	Degradation - Ubiquitination	Solyc05g054080.3
+AT4G13260	flavin-binding monooxygenase family protein	YUC	Hormone - Auxins (AUX)	Solyc08g068160.2
+AT4G14210	phytoene desaturase 3	PDS	Secondary metabolism - Terpenoids	Solyc03g123760.3
+AT4G14550	indole-3-acetic acid inducible	AUX/IAA	Hormone - Auxins (AUX)	Solyc09g083290.3
+AT4G14550	indole-3-acetic acid inducible	AUX/IAA	Hormone - Auxins (AUX)	Solyc06g053830.3
+AT4G14560	indole-3-acetic acid inducible	AUX/IAA	Hormone - Auxins (AUX)	NA
+AT4G15560	1-deoxy-D-xylulose-5-phosphate synthase	DXPS2	Secondary metabolism - Terpenoids	Solyc01g067890.4
+AT4G16110	type-B Arabidopsis Response Regulators	ARR-B	Hormone - Cytokinins (CK)	NA
+AT4G16430	jasmonate associated MYC2 like	JAM	Hormone - Jasmonate (JA)	Solyc06g083980.3
+AT4G16760	acyl-CoA oxidase	ACX	Hormone - Jasmonate (JA)	Solyc08g078400.3
+AT4G17490	ERF family, ORA59 related	ERF/ORA59	Hormone - Ethylene (ET)	NA
+AT4G17500	ERF/EDF family, RAV/TEM related	ERF/EDF	Hormone - Ethylene (ET)	Solyc05g052050.1
+AT4G17500	ERF/EDF family, RAV/TEM related	ERF/EDF	Hormone - Ethylene (ET)	Solyc03g093610.1
+AT4G18040	eukaryotic translation initiation factor 4E	EIF4E1	Regulation - Transcription & Translation	Solyc02g021550.3
+AT4G18040	eukaryotic translation initiation factor 4E	EIF4E1	Regulation - Transcription & Translation	Solyc03g005870.5
+AT4G18170	WRKY family transcription factor 28	WRKY28	Regulation - Transcription & Translation	Solyc02g071130.5
+AT4G18350	nine-cis-epoxycarotenoid dioxygenase 2,3,4,5,6,9	NCED	Hormone - Abscisic acid (ABA)	Solyc08g016720.1
+AT4G18350	nine-cis-epoxycarotenoid dioxygenase 2,3,4,5,6,9	NCED	Hormone - Abscisic acid (ABA)	Solyc07g056570.1
+AT4G19010		4CL	Hormone - Salicylic acid (SA)	Solyc08g076300.3
+AT4G19170	nine-cis-epoxycarotenoid dioxygenase 2,3,4,5,6,9	NCED	Hormone - Abscisic acid (ABA)	Solyc08g075480.4
+AT4G19170	nine-cis-epoxycarotenoid dioxygenase 2,3,4,5,6,9	NCED	Hormone - Abscisic acid (ABA)	Solyc08g075490.5
+AT4G19395	microRNA 168A	miR168	Regulation - Silencing	NA
+AT4G19660	NPR1-like protein 4	NPR4	Hormone - Salicylic acid (SA)	NA
+AT4G20380	LSD1 zinc finger family protein	LSD1	Regulation - Transcription & Translation	Solyc02g069720.3
+AT4G20780	calmodulin related	CML	Signalling - Calcium	Solyc10g074740.2
+AT4G20910	HUA ENHANCER 1	HEN1	Regulation - Silencing	NA
+AT4G21690	gibberellin 3-oxidase 1,2,3,4	GA3ox	Hormone - Gibberellin (GA)	NA
+AT4G22570	adenosine phosphoribosyltransferase 1,2,3,4,5	APT	Hormone - Cytokinins (CK)	Solyc08g079020.3
+AT4G22570	adenosine phosphoribosyltransferase 1,2,3,4,5	APT	Hormone - Cytokinins (CK)	Solyc04g077970.5
+AT4G23570	SGT1 protein binding; suppressor of the g2 allelle of SKP1	SGT1	Signalling - Perception and resistance genes	Solyc06g036420.4
+AT4G23570	SGT1 protein binding; suppressor of the g2 allelle of SKP1	SGT1	Signalling - Perception and resistance genes	Solyc03g007670.4
+AT4G23810	WRKY family transcription factor 53	WRKY53	Regulation - Transcription & Translation	NA
+AT4G24190	heat shock protein 90	HSP90	Signalling - Heat-shock proteins (HSPs)	Solyc04g081570.3
+AT4G24210	gibberellin (GA) receptor	GID	Hormone - Gibberellin (GA)	Solyc04g078390.3
+AT4G24280		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc01g103450.3
+AT4G24280		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc11g020040.2
+AT4G24650	ATP/ADP isopentenyltransferases	IPT1,3,4,5,6,7,8	Hormone - Cytokinins (CK)	NA
+AT4G25090	NADPH oxidase	RBOH	Signalling - Reactive oxygen species (ROS)	Solyc03g117980.3
+AT4G25420	gibberellin 20-oxidase	GA20ox	Hormone - Gibberellin (GA)	Solyc11g072310.2
+AT4G25420	gibberellin 20-oxidase	GA20ox	Hormone - Gibberellin (GA)	Solyc06g035530.3
+AT4G25420	gibberellin 20-oxidase	GA20ox	Hormone - Gibberellin (GA)	Solyc09g009105.1
+AT4G25420	gibberellin 20-oxidase	GA20ox	Hormone - Gibberellin (GA)	Solyc03g006880.3
+AT4G25420	gibberellin 20-oxidase	GA20ox	Hormone - Gibberellin (GA)	Solyc06g050110.2
+AT4G25700	beta-carotene hydroxylase	BETA-OHASE	Hormone - Abscisic acid (ABA)	NA
+AT4G26070	mitogen-activated protein (MAP) kinase/ ERK kinase 1	MKK1	Signalling - MAP kinases (MAPKs)	NA
+AT4G26200	1-aminocyclopropane-1-carboxylic acid (ACC) synthase	ACS	Hormone - Ethylene (ET)	Solyc07g026900.1
+AT4G26200	1-aminocyclopropane-1-carboxylic acid (ACC) synthase	ACS	Hormone - Ethylene (ET)	Solyc12g008740.1
+AT4G26420	gibberellic acid (GA) methyltransferase 1,2	GAMT1,2	Hormone - Gibberellin (GA)	NA
+AT4G27260	Auxin-responsive GH3 family protein	GH3	Hormone - Salicylic acid (SA)	Solyc07g063850.3
+AT4G27260	Auxin-responsive GH3 family protein	GH3	Hormone - Salicylic acid (SA)	Solyc12g005310.2
+AT4G27410		NAC072	Regulation - Transcription & Translation	Solyc07g063410.3
+AT4G27440	protochlorophyllide oxidoreductase B	PORB		Solyc10g006900.3
+AT4G27440	protochlorophyllide oxidoreductase B	PORB		Solyc12g013710.2
+AT4G27450	aluminum induced protein with YGL and LRDR motifs	HUP54		Solyc12g013700.2
+AT4G28640	indole-3-acetic acid inducible	AUX/IAA	Hormone - Auxins (AUX)	NA
+AT4G28720	flavin-binding monooxygenase family protein	YUC	Hormone - Auxins (AUX)	Solyc09g064160.3
+AT4G28720	flavin-binding monooxygenase family protein	YUC	Hormone - Auxins (AUX)	Solyc06g008050.4
+AT4G28720	flavin-binding monooxygenase family protein	YUC	Hormone - Auxins (AUX)	Solyc06g083700.4
+AT4G29010	enoyl-CoA hydratase/3-hydroxyacyl-CoA dehydrogenase	MFP	Hormone - Jasmonate (JA)	Solyc12g007170.4
+AT4G29010	enoyl-CoA hydratase/3-hydroxyacyl-CoA dehydrogenase	MFP	Hormone - Jasmonate (JA)	Solyc07g019670.4
+AT4G29080	indole-3-acetic acid inducible	AUX/IAA	Hormone - Auxins (AUX)	NA
+AT4G29740	cytokinin oxidase/dehydrogenase	CKX	Hormone - Cytokinins (CK)	NA
+AT4G30270	senescence 4 / meristem 5; similar to endo xyloglucan transferase in sequence	SEN4	Hormone - Brassinosteroids (BS)	Solyc07g009380.5
+AT4G30270	senescence 4 / meristem 5; similar to endo xyloglucan transferase in sequence	SEN4	Hormone - Brassinosteroids (BS)	Solyc03g093130.3
+AT4G30270	senescence 4 / meristem 5; similar to endo xyloglucan transferase in sequence	SEN4	Hormone - Brassinosteroids (BS)	Solyc03g093110.3
+AT4G30270	senescence 4 / meristem 5; similar to endo xyloglucan transferase in sequence	SEN4	Hormone - Brassinosteroids (BS)	Solyc07g006860.3
+AT4G31120	Calcium Underaccumulation 1	CAU1	Hormone - Abscisic acid (ABA)	Solyc08g005970.3
+AT4G31500	cytochrome P450, family 83, subfamily B, polypeptide 1	CYP83B1	Hormone - Auxins (AUX)	NA
+AT4G31550	WRKY family transcription factor 11	WRKY11	Regulation - Transcription & Translation	Solyc08g006320.5
+AT4G31800	WRKY family transcription factor 6,18	WRKY6,18	Regulation - Transcription & Translation	NA
+AT4G31870		GPX	Signalling - Reactive oxygen species (ROS)	Solyc08g006720.4
+AT4G31920	type-B Arabidopsis Response Regulators	ARR-B	Hormone - Cytokinins (CK)	NA
+AT4G32280	indole-3-acetic acid inducible	AUX/IAA	Hormone - Auxins (AUX)	NA
+AT4G32320	ascorbate peroxidase 1,2,3,4,5,6	APX	Signalling - Reactive oxygen species (ROS)	Solyc08g059760.3
+AT4G32810	Carotenoid cleavage dioxygenase	CCD	Hormone - Strigolactones (SL)	Solyc08g066650.3
+AT4G33430	BRI1-associated receptor kinase; somatic embryogenesis receptor-like kinase 3	BAK1	Hormone - Brassinosteroids (BS)	Solyc01g104970.3
+AT4G33430	BRI1-associated receptor kinase; somatic embryogenesis receptor-like kinase 3	BAK1	Hormone - Brassinosteroids (BS)	Solyc10g047140.2
+AT4G33950	Protein kinase superfamily protein, SNF1-RELATED PROTEIN KINASE 2.8	SNRK2	Hormone - Abscisic acid (ABA)	Solyc01g108280.3
+AT4G34000		AREB/ABF	Hormone - Abscisic acid (ABA)	NA
+AT4G34110	poly(A) binding protein 2	PAB2		Solyc01g107870.3
+AT4G34110	poly(A) binding protein 2	PAB2		Solyc12g088720.2
+AT4G34350	4-hydroxy-3-methylbut-2-enyl diphosphate reductase	ISPH	Hormone - Cytokinins (CK)	Solyc01g109300.3
+AT4G35000	ascorbate peroxidase 1,2,3,4,5,6	APX	Signalling - Reactive oxygen species (ROS)	Solyc01g111510.3
+AT4G35090	catalase	CAT	Signalling - Reactive oxygen species (ROS)	Solyc04g082460.4
+AT4G35090	catalase	CAT	Signalling - Reactive oxygen species (ROS)	Solyc02g082760.3
+AT4G35190	cytokinin riboside 5'-monophosphate phosphoribohydrolase	LOG	Hormone - Cytokinins (CK)	NA
+AT4G35230	BR-signaling kinase	BSK	Hormone - Brassinosteroids (BS)	NA
+AT4G35310	calmodulin-domain protein kinase	CDPK	Signalling - Calcium	Solyc01g112250.4
+AT4G35970	ascorbate peroxidase 1,2,3,4,5,6	APX	Signalling - Reactive oxygen species (ROS)	NA
+AT4G37150	methyl esterase 1,2,4,7,9	MES	Hormone - Salicylic acid (SA)	NA
+AT4G37410	cytochrome P450, family 81, subfamily F, polypeptide 4	CYP81F4	Secondary metabolism - Alkaloids	NA
+AT4G37770	1-aminocyclopropane-1-carboxylic acid (ACC) synthase	ACS	Hormone - Ethylene (ET)	Solyc03g043890.3
+AT4G37770	1-aminocyclopropane-1-carboxylic acid (ACC) synthase	ACS	Hormone - Ethylene (ET)	Solyc02g063544.2
+AT4G37770	1-aminocyclopropane-1-carboxylic acid (ACC) synthase	ACS	Hormone - Ethylene (ET)	Solyc02g063543.1
+AT4G37770	1-aminocyclopropane-1-carboxylic acid (ACC) synthase	ACS	Hormone - Ethylene (ET)	Solyc02g160210.1
+AT4G37770	1-aminocyclopropane-1-carboxylic acid (ACC) synthase	ACS	Hormone - Ethylene (ET)	Solyc02g091990.3
+AT4G37770	1-aminocyclopropane-1-carboxylic acid (ACC) synthase	ACS	Hormone - Ethylene (ET)	Solyc02g063540.4
+AT4G37910		HSP	Signalling - Heat-shock proteins (HSPs)	NA
+AT4G39030	MATE efflux family protein	EDS5	Hormone - Salicylic acid (SA)	NA
+AT4G39400	Leucine-rich receptor-like protein kinase family protein	BRI1	Hormone - Brassinosteroids (BS)	Solyc04g051510.1
+AT4G39460	S-adenosylmethionine carrier 1,2	SAMC	Hormone - Salicylic acid (SA)	Solyc12g056660.4
+AT4G39850	ATP-binding cassette D1	CTS	Hormone - Jasmonate (JA)	Solyc04g055120.3
+AT4G39950	cytochrome P450, family 79, subfamily B, polypeptide 2	CYP79B2	Hormone - Auxins (AUX)	Solyc08g083450.2
+AT5G01060	BR-signaling kinase	BSK	Hormone - Brassinosteroids (BS)	NA
+AT5G01770	regulatory-associated protein of TOR 2 (RAPTOR2)	RAPTOR2	Primary metabolism - Photosynthesis	NA
+AT5G02490		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc11g066060.4
+AT5G02490		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc11g066100.2
+AT5G02490		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc06g076020.3
+AT5G02490		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc10g086410.3
+AT5G02490		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc04g011440.4
+AT5G02490		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc09g010630.3
+AT5G02500		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc06g076020.3
+AT5G02500		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc11g066100.2
+AT5G02500		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc09g010630.3
+AT5G02500		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc10g086410.3
+AT5G02500		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc11g066060.4
+AT5G02500		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc04g011440.4
+AT5G03280	EIN2 transporter, NRAMP metal ion transporter family protein	EIN2	Hormone - Ethylene (ET)	NA
+AT5G03300	adenosine kinase 1,2	ADK	Hormone - Cytokinins (CK)	Solyc10g086190.3
+AT5G03300	adenosine kinase 1,2	ADK	Hormone - Cytokinins (CK)	Solyc09g007940.3
+AT5G03730	Protein kinase superfamily protein	CTR	Hormone - Ethylene (ET)	Solyc10g083610.2
+AT5G03730	Protein kinase superfamily protein	CTR	Hormone - Ethylene (ET)	Solyc09g009090.3
+AT5G04230	phenylalanine ammonia-lyase 1,2,3,4	PAL	Hormone - Salicylic acid (SA)	NA
+AT5G04870	calmodulin-domain protein kinase	CDPK	Signalling - Calcium	Solyc11g006370.2
+AT5G04870	calmodulin-domain protein kinase	CDPK	Signalling - Calcium	Solyc10g081740.3
+AT5G04870	calmodulin-domain protein kinase	CDPK	Signalling - Calcium	Solyc04g009800.3
+AT5G05680	importin-alpha isoform (IMPA/MOS)	MOS	Hormone - Salicylic acid (SA)	Solyc11g020190.1
+AT5G05860	trans-Zeatin glycosyltransferases	UGT	Hormone - Cytokinins (CK)	NA
+AT5G05870	trans-Zeatin glycosyltransferases	UGT	Hormone - Cytokinins (CK)	NA
+AT5G06100	MYB transcription factors 33,44,65	MYB33,44,65	Secondary metabolism - Anthocyanins	NA
+AT5G06300	cytokinin riboside 5'-monophosphate phosphoribohydrolase	LOG	Hormone - Cytokinins (CK)	Solyc10g082020.2
+AT5G06300	cytokinin riboside 5'-monophosphate phosphoribohydrolase	LOG	Hormone - Cytokinins (CK)	Solyc06g075090.4
+AT5G06300	cytokinin riboside 5'-monophosphate phosphoribohydrolase	LOG	Hormone - Cytokinins (CK)	Solyc04g081290.3
+AT5G06950	TGACG sequence-specific binding protein	TGA2,5,6	Hormone - Salicylic acid (SA)	Solyc11g064950.3
+AT5G06950	TGACG sequence-specific binding protein	TGA2,5,6	Hormone - Salicylic acid (SA)	Solyc10g080770.3
+AT5G06960	TGACG sequence-specific binding protein	TGA2,5,6	Hormone - Salicylic acid (SA)	NA
+AT5G07200	gibberellin 20-oxidase	GA20ox	Hormone - Gibberellin (GA)	Solyc06g050110.2
+AT5G07200	gibberellin 20-oxidase	GA20ox	Hormone - Gibberellin (GA)	Solyc03g006880.3
+AT5G07200	gibberellin 20-oxidase	GA20ox	Hormone - Gibberellin (GA)	Solyc11g072310.2
+AT5G07210	type-B Arabidopsis Response Regulators	ARR-B	Hormone - Cytokinins (CK)	NA
+AT5G07390	NADPH oxidase	RBOH	Signalling - Reactive oxygen species (ROS)	NA
+AT5G09590		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc01g106210.3
+AT5G09590		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc01g106260.3
+AT5G09976	Precursos of elicitor peptide	PEP	Hormone - Peptides	NA
+AT5G09978	Precursos of elicitor peptide	PEP	Hormone - Peptides	NA
+AT5G09980	Precursos of elicitor peptide	PEP	Hormone - Peptides	NA
+AT5G09990	Precursos of elicitor peptide	PEP	Hormone - Peptides	NA
+AT5G10450	G-box regulating factor 6	GRF6		Solyc04g076060.3
+AT5G10450	G-box regulating factor 6	GRF6		Solyc11g010470.2
+AT5G10490		MSL	Stress - Waterlogging	Solyc11g010610.2
+AT5G10490		MSL	Stress - Waterlogging	Solyc04g076300.4
+AT5G10870	chorismate mutase 1,2,3	CM	Hormone - Salicylic acid (SA)	NA
+AT5G11160	adenosine phosphoribosyltransferase 1,2,3,4,5	APT	Hormone - Cytokinins (CK)	NA
+AT5G11850	Protein kinase superfamily protein	MKD1	Signalling - MAP kinases (MAPKs)	NA
+AT5G11950	cytokinin riboside 5'-monophosphate phosphoribohydrolase	LOG	Hormone - Cytokinins (CK)	Solyc08g062820.3
+AT5G12020		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc08g062340.3
+AT5G12030		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc08g062340.3
+AT5G12080		MSL	Stress - Waterlogging	Solyc08g061980.4
+AT5G13220	jasmonate-zim-domain protein	JAZ	Hormone - Jasmonate (JA)	NA
+AT5G13320	Auxin-responsive GH3 family protein	PBS3	Hormone - Salicylic acid (SA)	NA
+AT5G14930	Senescence Associated Genes	SAGs	Hormone - Salicylic acid (SA)	NA
+AT5G15840	B-box type zinc finger protein with CCT domain-containing protein	CO	Primary metabolism - Photosynthesis	NA
+AT5G16390	chloroplastic acetylcoenzyme A carboxylase 1	BCCP1		NA
+AT5G17490	GRAS transcription factor family protein	DELLA	Hormone - Gibberellin (GA)	NA
+AT5G17920	Methionine Synthase	MS	Hormone - Ethylene (ET)	Solyc01g009180.4
+AT5G17920	Methionine Synthase	MS	Hormone - Ethylene (ET)	Solyc10g081510.2
+AT5G18100	superoxide dismutase	SOD	Signalling - Reactive oxygen species (ROS)	Solyc03g062890.3
+AT5G19040	ATP/ADP isopentenyltransferases	IPT1,3,4,5,6,7,8	Hormone - Cytokinins (CK)	Solyc09g064910.1
+AT5G19040	ATP/ADP isopentenyltransferases	IPT1,3,4,5,6,7,8	Hormone - Cytokinins (CK)	Solyc01g080150.3
+AT5G19520		MSL	Stress - Waterlogging	NA
+AT5G20040	tRNA isopentenyltransferases	IPT2,9	Hormone - Cytokinins (CK)	Solyc12g014190.2
+AT5G20320	Dicer-like proteins	DCL2,4	Regulation - Silencing	Solyc07g005030.4
+AT5G20570	RING-box	RBX	Degradation - Ubiquitination	Solyc06g062940.5
+AT5G20570	RING-box	RBX	Degradation - Ubiquitination	Solyc12g009120.2
+AT5G20630	germin 3	GER3		Solyc03g123410.1
+AT5G20900	jasmonate-zim-domain protein	JAZ	Hormone - Jasmonate (JA)	NA
+AT5G20960	aldehyde oxidase	AAO	Hormone - Salicylic acid (SA)	Solyc11g071600.2
+AT5G20960	aldehyde oxidase	AAO	Hormone - Salicylic acid (SA)	Solyc01g088170.4
+AT5G20960	aldehyde oxidase	AAO	Hormone - Salicylic acid (SA)	Solyc01g009230.4
+AT5G21482	cytokinin oxidase/dehydrogenase	CKX	Hormone - Cytokinins (CK)	Solyc08g061920.4
+AT5G21960	ethylene response factor 16	ERF016	Hormone - Ethylene (ET)	Solyc06g054630.3
+AT5G22630	arogenate dehydratase 1,2,3,4,5,6	ADT	Hormone - Salicylic acid (SA)	NA
+AT5G24020	division-related factor MinD	MIND1	Secondary metabolism - Terpenoids	Solyc03g007980.1
+AT5G24110	WRKY family transcription factor 30	WRKY30	Regulation - Transcription & Translation	NA
+AT5G24770	vegetative storage protein	VSP	Hormone - Jasmonate (JA)	NA
+AT5G24780	vegetative storage protein	VSP	Hormone - Jasmonate (JA)	NA
+AT5G25350	EIN3-binding F box protein 1,2	EBF	Hormone - Ethylene (ET)	NA
+AT5G25890	indole-3-acetic acid inducible	AUX/IAA	Hormone - Auxins (AUX)	NA
+AT5G25900	ent-kaurene oxidase	KO	Hormone - Gibberellin (GA)	Solyc04g083160.2
+AT5G26140	cytokinin riboside 5'-monophosphate phosphoribohydrolase	LOG	Hormone - Cytokinins (CK)	NA
+AT5G26920	CAM-binding protein 60-like G; calmodulin binding	CBP60G	Signalling - Calcium	NA
+AT5G27320	gibberellin (GA) receptor	GID	Hormone - Gibberellin (GA)	Solyc01g098390.3
+AT5G27450	mevalonate kinase	MVK	Secondary metabolism - Terpenoids	Solyc01g098840.3
+AT5G28540		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc08g082820.4
+AT5G28540		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc03g082920.4
+AT5G34930	arogenate dehydrogenase	TYRAAT1,2	Primary metabolism - Amino-acids	Solyc07g007590.1
+AT5G35360	acetyl Co-enzyme a carboxylase biotin carboxylase subunit	CAC2		Solyc01g008330.5
+AT5G35750	histidine kinase 2,3,4	AHK2,3,4	Hormone - Cytokinins (CK)	Solyc07g047770.4
+AT5G37670		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc04g014480.3
+AT5G38430	ribulose-bisphosphate carboxylase	RBC	Primary metabolism - Photosynthesis	Solyc02g085950.5
+AT5G38430	ribulose-bisphosphate carboxylase	RBC	Primary metabolism - Photosynthesis	Solyc03g034220.3
+AT5G38430	ribulose-bisphosphate carboxylase	RBC	Primary metabolism - Photosynthesis	Solyc02g085940.5
+AT5G38430	ribulose-bisphosphate carboxylase	RBC	Primary metabolism - Photosynthesis	Solyc02g063150.3
+AT5G38450	cytochrome P450, family 735, subfamily A, polypeptide 1,2	CYP735A1,A2	Hormone - Cytokinins (CK)	Solyc02g094860.3
+AT5G39340	histidine-containing phosphotransfer protein	AHP	Hormone - Cytokinins (CK)	NA
+AT5G40580	20S proteasome beta subunit B	PBB2	Degradation - Ubiquitination	Solyc05g013820.4
+AT5G40580	20S proteasome beta subunit B	PBB2	Degradation - Ubiquitination	Solyc04g024420.3
+AT5G41260	BR-signaling kinase	BSK	Hormone - Brassinosteroids (BS)	Solyc12g099830.2
+AT5G41260	BR-signaling kinase	BSK	Hormone - Brassinosteroids (BS)	Solyc11g064890.2
+AT5G42020		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc03g082920.4
+AT5G42020		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc08g082820.4
+AT5G42190	S phase kinase-associated protein	ASK	Degradation - Ubiquitination	Solyc10g055580.2
+AT5G42190	S phase kinase-associated protein	ASK	Degradation - Ubiquitination	Solyc11g042930.2
+AT5G42340	Plant U-Box 15	PUB15		Solyc12g094610.3
+AT5G42340	Plant U-Box 15	PUB15		Solyc04g082440.5
+AT5G42650	hydroperoxide dehydratase	AOS	Hormone - Jasmonate (JA)	Solyc04g079730.1
+AT5G42650	hydroperoxide dehydratase	AOS	Hormone - Jasmonate (JA)	Solyc11g069800.1
+AT5G42980	thioredoxin	TRX-H	Hormone - Salicylic acid (SA)	NA
+AT5G43410	ERF/EDF family, RAV/TEM related	ERF/EDF	Hormone - Ethylene (ET)	NA
+AT5G43700	indole-3-acetic acid inducible	AUX/IAA	Hormone - Auxins (AUX)	Solyc09g083280.3
+AT5G43940	GroES-like zinc-binding dehydrogenase family protein	GSNO	Hormone - Salicylic acid (SA)	Solyc09g064370.4
+AT5G44420	plant defensin 1.2a,b,c	PDF1.2	Hormone - Ethylene (ET)	NA
+AT5G44430	plant defensin 1.2a,b,c	PDF1.2	Hormone - Ethylene (ET)	NA
+AT5G44790	copper-exporting ATPase	HMA	Hormone - Ethylene (ET)	Solyc02g068490.4
+AT5G45110	NPR1-like protein 3	NPR3	Hormone - Salicylic acid (SA)	Solyc02g069310.3
+AT5G45890	Senescence Associated Genes	SAGs	Hormone - Salicylic acid (SA)	Solyc02g076910.3
+AT5G46330	Leucine-rich receptor-like protein kinase family protein; PRR protein flagellin sensing 2	FLS2	Signalling - Perception and resistance genes	Solyc02g070890.3
+AT5G46330	Leucine-rich receptor-like protein kinase family protein; PRR protein flagellin sensing 2	FLS2	Signalling - Perception and resistance genes	Solyc02g070910.3
+AT5G46350	WRKY family transcription factor 8	WRKY8	Regulation - Transcription & Translation	NA
+AT5G46570	BR-signaling kinase	BSK	Hormone - Brassinosteroids (BS)	Solyc01g080880.4
+AT5G47220	ERF/EDF family, RAV/TEM related	ERF/EDF	Hormone - Ethylene (ET)	Solyc05g052050.1
+AT5G47230	ERF family, ORA59 related	ERF/ORA59	Hormone - Ethylene (ET)	Solyc03g093550.1
+AT5G47910	NADPH oxidase	RBOH	Signalling - Reactive oxygen species (ROS)	Solyc03g117980.3
+AT5G48160	potyvirus VPg interacting protein (DUF1423)	OBE2		Solyc05g054180.3
+AT5G48160	potyvirus VPg interacting protein (DUF1423)	OBE2		Solyc07g047780.3
+AT5G48370	thioesterase/thiol ester dehydrase-isomerase superfamily protein	ACH	Hormone - Jasmonate (JA)	Solyc09g042750.3
+AT5G48570	FKBP-type peptidyl-prolyl cis-trans isomerase family protein	FKBP65	Signalling - Heat-shock proteins (HSPs)	Solyc09g057660.3
+AT5G48570	FKBP-type peptidyl-prolyl cis-trans isomerase family protein	FKBP65	Signalling - Heat-shock proteins (HSPs)	Solyc06g083190.4
+AT5G48570	FKBP-type peptidyl-prolyl cis-trans isomerase family protein	FKBP65	Signalling - Heat-shock proteins (HSPs)	Solyc09g092690.3
+AT5G48880	acetyl-CoA acyltransferase	KAT	Hormone - Jasmonate (JA)	NA
+AT5G48950	Thioesterase superfamily protein	DHNAT2	Hormone - Salicylic acid (SA)	Solyc03g006458.1
+AT5G48950	Thioesterase superfamily protein	DHNAT2	Hormone - Salicylic acid (SA)	Solyc03g006440.4
+AT5G48950	Thioesterase superfamily protein	DHNAT2	Hormone - Salicylic acid (SA)	Solyc03g006450.3
+AT5G49520	WRKY family transcription factor 48	WRKY48	Regulation - Transcription & Translation	NA
+AT5G49615	trans-acting siRNA3	TAS3	Regulation - Silencing	NA
+AT5G49910		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc11g020040.2
+AT5G49910		HSP	Signalling - Heat-shock proteins (HSPs)	Solyc01g103450.3
+AT5G51060	NADPH oxidase	RBOH	Signalling - Reactive oxygen species (ROS)	Solyc03g117980.3
+AT5G51190	ERF family, ORA59 related	ERF/ORA59	Hormone - Ethylene (ET)	Solyc03g093550.1
+AT5G51700	resistance signalling protein, cysteine and histidine-rich domain-containing protein	RAR1	Signalling - Perception and resistance genes	Solyc11g072290.3
+AT5G51810	gibberellin 20-oxidase	GA20ox	Hormone - Gibberellin (GA)	Solyc06g035530.3
+AT5G51810	gibberellin 20-oxidase	GA20ox	Hormone - Gibberellin (GA)	Solyc11g072310.2
+AT5G51810	gibberellin 20-oxidase	GA20ox	Hormone - Gibberellin (GA)	Solyc03g006880.3
+AT5G51810	gibberellin 20-oxidase	GA20ox	Hormone - Gibberellin (GA)	Solyc09g009105.1
+AT5G51810	gibberellin 20-oxidase	GA20ox	Hormone - Gibberellin (GA)	Solyc06g050110.2
+AT5G52300	Responsive to Desiccation 29	RD29	Stress - Drought	NA
+AT5G52310	Responsive to Desiccation 29	RD29	Stress - Drought	NA
+AT5G52570	beta-carotene hydroxylase	BETA-OHASE	Hormone - Abscisic acid (ABA)	Solyc06g036260.3
+AT5G52570	beta-carotene hydroxylase	BETA-OHASE	Hormone - Abscisic acid (ABA)	Solyc03g007960.3
+AT5G52640	heat shock protein 90	HSP90	Signalling - Heat-shock proteins (HSPs)	Solyc03g007890.3
+AT5G52640	heat shock protein 90	HSP90	Signalling - Heat-shock proteins (HSPs)	Solyc06g036290.3
+AT5G54190	protochlorophyllide oxidoreductase A	PORA		Solyc10g006900.3
+AT5G54190	protochlorophyllide oxidoreductase A	PORA		Solyc12g013710.2
+AT5G54500	flavodoxin-like quinone reductase 1	FQR1		Solyc02g079750.4
+AT5G54500	flavodoxin-like quinone reductase 1	FQR1		Solyc10g006650.3
+AT5G55250	IAA carboxylmethyltransferase 1	IAMT1	Hormone - Auxins (AUX)	Solyc07g064990.3
+AT5G55250	IAA carboxylmethyltransferase 1	IAMT1	Hormone - Auxins (AUX)	Solyc12g014500.3
+AT5G56000	heat shock protein 90	HSP90	Signalling - Heat-shock proteins (HSPs)	Solyc07g065840.2
+AT5G56000	heat shock protein 90	HSP90	Signalling - Heat-shock proteins (HSPs)	Solyc12g015880.2
+AT5G56010	heat shock protein 90	HSP90	Signalling - Heat-shock proteins (HSPs)	Solyc07g065840.2
+AT5G56010	heat shock protein 90	HSP90	Signalling - Heat-shock proteins (HSPs)	Solyc12g015880.2
+AT5G56030	heat shock protein 90	HSP90	Signalling - Heat-shock proteins (HSPs)	Solyc12g015880.2
+AT5G56030	heat shock protein 90	HSP90	Signalling - Heat-shock proteins (HSPs)	Solyc07g065840.2
+AT5G56300	gibberellic acid (GA) methyltransferase 1,2	GAMT1,2	Hormone - Gibberellin (GA)	NA
+AT5G56970	cytokinin oxidase/dehydrogenase	CKX	Hormone - Cytokinins (CK)	Solyc12g008900.2
+AT5G57420	indole-3-acetic acid inducible	AUX/IAA	Hormone - Auxins (AUX)	NA
+AT5G57560	xyloglucan endotransglucosylase	XTH	Hormone - Brassinosteroids (BS)	Solyc03g093110.3
+AT5G57560	xyloglucan endotransglucosylase	XTH	Hormone - Brassinosteroids (BS)	Solyc03g093120.5.1
+AT5G57560	xyloglucan endotransglucosylase	XTH	Hormone - Brassinosteroids (BS)	Solyc05g046290.3
+AT5G57560	xyloglucan endotransglucosylase	XTH	Hormone - Brassinosteroids (BS)	Solyc07g006860.3
+AT5G57560	xyloglucan endotransglucosylase	XTH	Hormone - Brassinosteroids (BS)	Solyc03g093130.3
+AT5G57560	xyloglucan endotransglucosylase	XTH	Hormone - Brassinosteroids (BS)	Solyc03g093080.3
+AT5G57860	Ubiquitin-like superfamily protein	MTI20.11		Solyc05g056060.5
+AT5G58080	type-B Arabidopsis Response Regulators	ARR-B	Hormone - Cytokinins (CK)	NA
+AT5G58465	microRNA 390	MIR390	Regulation - Silencing	NA
+AT5G59010	BR-signaling kinase	BSK	Hormone - Brassinosteroids (BS)	Solyc10g085000.2
+AT5G59010	BR-signaling kinase	BSK	Hormone - Brassinosteroids (BS)	Solyc09g011750.3
+AT5G59720		HSP	Signalling - Heat-shock proteins (HSPs)	NA
+AT5G60010	NADPH oxidase	RBOH	Signalling - Reactive oxygen species (ROS)	Solyc11g072800.3
+AT5G60300	Concanavalin A-like lectin protein kinase family protein	LECRK19	Signalling - Perception and resistance genes	NA
+AT5G60450	auxin response transcription factor	ARF	Hormone - Auxins (AUX)	Solyc11g069190.2
+AT5G60790	ABC transporter family protein	ABCF1		Solyc06g074940.5
+AT5G60790	ABC transporter family protein	ABCF1		Solyc11g069090.2
+AT5G61160	anthocyanin 5-aromatic acyltransferase 1	ACT		NA
+AT5G61270		PIF7	Signalling - Growth	NA
+AT5G61600	ERF/EDF family, RAV/TEM related	ERF/EDF	Hormone - Ethylene (ET)	NA
+AT5G62000	auxin response transcription factor	ARF	Hormone - Auxins (AUX)	Solyc12g042070.3
+AT5G62920	type-A Arabidopsis Response Regulators	ARR-A	Hormone - Cytokinins (CK)	Solyc03g113720.3
+AT5G63380		4CL	Hormone - Salicylic acid (SA)	Solyc03g111170.3
+AT5G63610	cyclin-dependent kinase E-1	CDK	Regulation - Transcription & Translation	Solyc12g027870.1
+AT5G64890	Precursos of elicitor peptide	PEP	Hormone - Peptides	NA
+AT5G64900	Precursos of elicitor peptide	PEP	Hormone - Peptides	NA
+AT5G64905	Precursos of elicitor peptide	PEP	Hormone - Peptides	NA
+AT5G65110	acyl-CoA oxidase	ACX	Hormone - Jasmonate (JA)	Solyc04g054890.3
+AT5G65670	indole-3-acetic acid inducible	AUX/IAA	Hormone - Auxins (AUX)	Solyc04g076850.3
+AT5G65800	1-aminocyclopropane-1-carboxylic acid (ACC) synthase	ACS	Hormone - Ethylene (ET)	Solyc02g091990.3
+AT5G65800	1-aminocyclopropane-1-carboxylic acid (ACC) synthase	ACS	Hormone - Ethylene (ET)	Solyc03g043890.3
+AT5G65800	1-aminocyclopropane-1-carboxylic acid (ACC) synthase	ACS	Hormone - Ethylene (ET)	Solyc02g063544.2
+AT5G65800	1-aminocyclopropane-1-carboxylic acid (ACC) synthase	ACS	Hormone - Ethylene (ET)	Solyc02g160210.1
+AT5G65940	beta-hydroxyisobutyryl-CoA hydrolase 1	CHY1	Hormone - Salicylic acid (SA)	Solyc01g080930.4
+AT5G67030	zeaxanthin epoxidase	ZEP	Hormone - Abscisic acid (ABA)	Solyc02g090890.4
+AT5G67160	HXXXD-type acyl-transferase family protein	EPS1	Hormone - Salicylic acid (SA)	NA
+AT5G67300	MYB transcription factors 33,44,65	MYB33,44,65	Secondary metabolism - Anthocyanins	Solyc02g092930.1
+AT5G67385	SR1/CAMPTA3 interacting protein	SR1IP1	Degradation - Ubiquitination	Solyc02g092560.3
+AT5G67480	BTB and TAZ domain protein 4	BT4	Regulation - Transcription & Translation	Solyc02g092460.3
+AT5G67500	voltage dependent anion channel 2	VDAC2		Solyc02g092440.3
+AT5G67500	voltage dependent anion channel 2	VDAC2		Solyc03g044010.4
+ATCG00480	ATP synthase subunit beta	ATPB	Secondary metabolism - Terpenoids	Solyc00g500064.1
+ATCG00490	ribulose-bisphosphate carboxylase	RBC	Primary metabolism - Photosynthesis	Solyc00g500063.1
+ATCG00670	plastid-encoded CLP P	clpP1		Solyc00g500023.1
+ATCG00680	photosystem II reaction center protein B	psbB		Solyc00g500071.1
+ATCG00680	photosystem II reaction center protein B	psbB		Solyc00g500024.1
+BA		BA		NA
+BA-CoA		BA-CoA		NA
+BA2H[unknown]		BA2H[unknown]		NA
+BAK1|BRI1		BAK1|BRI1		NA
+BAK1|FLS2|flg22		BAK1|FLS2|flg22		NA
+BD		BD		NA
+BIK1|PEPR1|PEP1		BIK1|PEPR1|PEP1		NA
+Brassinolide		Brassinolide		NA
+CA		CA		NA
+CA-CoA		CA-CoA		NA
+Ca2+		Ca2+		NA
+CDK|NPR1		CDK|NPR1		NA
+CDK|TGA2,5,6		CDK|TGA2,5,6		NA
+CDK|WRKY18		CDK|WRKY18		NA
+CDK|WRKY6		CDK|WRKY6		NA
+Chor		Chor		NA
+CI		CI		NA
+CL		CL		NA
+CLA		CLA		NA
+CML|Ca2+		CML|Ca2+		NA
+CML|HC-Pro		CML|HC-Pro		NA
+CO|OBE1		CO|OBE1		NA
+CO2-deficiency		CO2-deficiency		NA
+COI1|JA-Ile|SCF		COI1|JA-Ile|SCF		NA
+CP		CP		NA
+CRT|ETR		CRT|ETR		NA
+CTR|ETR		CTR|ETR		NA
+Cu2+		Cu2+		NA
+cZ		cZ		NA
+cZ-glucosides		cZ-glucosides		NA
+cZ-riboside		cZ-riboside		NA
+cZ-ribotide		cZ-ribotide		NA
+D14|MAX2|SCF		D14|MAX2|SCF		NA
+D53[OS11G0104300]		D53[OS11G0104300]		NA
+DELLA|GA|GID1		DELLA|GA|GID1		NA
+DMAPP		DMAPP		NA
+DOPAL		DOPAL		NA
+Drought		Drought		NA
+DZ		DZ		NA
+DZ-glucosides		DZ-glucosides		NA
+DZ-riboside		DZ-riboside		NA
+DZ-ribotide		DZ-ribotide		NA
+e-		e-		NA
+eATP		eATP		NA
+EBF|SCF		EBF|SCF		NA
+EDS1|MPK3|PAD4		EDS1|MPK3|PAD4		NA
+EDS1|PAD4		EDS1|PAD4		NA
+EDS1|PAD4|SAG		EDS1|PAD4|SAG		NA
+EIN3(like)|JAZ		EIN3(like)|JAZ		NA
+ent-Copalyl-PP		ent-Copalyl-PP		NA
+ent-Kaurene		ent-Kaurene		NA
+ent-Kaurenoic acid		ent-Kaurenoic acid		NA
+ET		ET		NA
+ET|ETR		ET|ETR		NA
+ETP|SCF		ETP|SCF		NA
+flg22		flg22		NA
+GA		GA		NA
+GA-methylester		GA-methylester		NA
+GA|GID1		GA|GID1		NA
+GA12		GA12		NA
+GA20		GA20		NA
+GA34		GA34		NA
+GA8		GA8		NA
+GA9		GA9		NA
+Geranylgeranyl-PP		Geranylgeranyl-PP		NA
+GID|SCF		GID|SCF		NA
+Glu		Glu		NA
+GPAphid2[unknown]		GPAphid2[unknown]		NA
+GPAphid2|RANGAP		GPAphid2|RANGAP		NA
+Growth		Growth		NA
+GST|SA		GST|SA		NA
+HC-Pro		HC-Pro		NA
+Heat		Heat		NA
+HMBDP		HMBDP		NA
+HSP90|RAR1|SGT1		HSP90|RAR1|SGT1		NA
+IAA		IAA		NA
+IAA-Ala		IAA-Ala		NA
+IAA-Asp		IAA-Asp		NA
+IAA-Glu		IAA-Glu		NA
+IAA-Leu		IAA-Leu		NA
+iaaM[unknown]		iaaM[unknown]		NA
+IAM		IAM		NA
+IAN		IAN		NA
+IAOx		IAOx		NA
+IAOx N-oxide		IAOx N-oxide		NA
+Ile		Ile		NA
+iP		iP		NA
+iP-glucosides		iP-glucosides		NA
+iP-riboside		iP-riboside		NA
+iP-ribotide		iP-ribotide		NA
+IPA		IPA		NA
+IsoChor		IsoChor		NA
+IsoChor-9-Glu		IsoChor-9-Glu		NA
+JA		JA		NA
+JA-CoA		JA-CoA		NA
+JA-Ile		JA-Ile		NA
+L-arogenate		L-arogenate		NA
+L-Dopa		L-Dopa		NA
+L-homo-cys		L-homo-cys		NA
+L-Met		L-Met		NA
+Lycopene		Lycopene		NA
+MDA		MDA		NA
+me-vsiRNA		me-vsiRNA		NA
+MeIAA		MeIAA		NA
+MeJA		MeJA		NA
+MeSA		MeSA		NA
+MKS1|WRKY33		MKS1|WRKY33		NA
+MVA		MVA		NA
+N-pyruvoyl-L-Glu		N-pyruvoyl-L-Glu		NA
+NAC019|TCP8		NAC019|TCP8		NA
+NDR1|RIN4		NDR1|RIN4		NA
+NIa-Pro		NIa-Pro		NA
+NIb		NIb		NA
+NPR1|NPR1		NPR1|NPR1		NA
+NPR1|TGA2,5,6		NPR1|TGA2,5,6		NA
+NPR1|WRKY18		NPR1|WRKY18		NA
+O2		O2		NA
+O2-deficiency		O2-deficiency		NA
+OBE1|WRKY11		OBE1|WRKY11		NA
+OBE1|WRKY17		OBE1|WRKY17		NA
+OG		OG		NA
+OPC4-CoA		OPC4-CoA		NA
+OPC6-CoA		OPC6-CoA		NA
+OPC8		OPC8		NA
+OPC8-CoA		OPC8-CoA		NA
+OPDA		OPDA		NA
+p-Coumaric acid		p-Coumaric acid		NA
+P1		P1		NA
+P3		P3		NA
+PA		PA		NA
+PAA		PAA		NA
+PEPR1|PEP1		PEPR1|PEP1		NA
+Phe		Phe		NA
+Phenolics production		Phenolics production		NA
+phospholipids		phospholipids		NA
+Phytoene		Phytoene		NA
+potyvirus		potyvirus		NA
+prenyl-tRNA		prenyl-tRNA		NA
+Prep		Prep		NA
+R-gene[unknown]		R-gene[unknown]		NA
+R-gene|potyvirus		R-gene|potyvirus		NA
+RANGAP|Rx		RANGAP|Rx		NA
+ribosome		ribosome		NA
+RISC - miR390		RISC - miR390		NA
+RISC - vsiRNA		RISC - vsiRNA		NA
+ROS		ROS		NA
+Rx[unknown]		Rx[unknown]		NA
+S-alkyl-thiohydroximate		S-alkyl-thiohydroximate		NA
+SA		SA		NA
+SA-Asp		SA-Asp		NA
+SAG		SAG		NA
+SAH		SAH		NA
+SAMe		SAMe		NA
+SARD1|TCP8		SARD1|TCP8		NA
+SCF		SCF		NA
+SCL14|TGA2,5,6		SCL14|TGA2,5,6		NA
+SL		SL		NA
+Stomatal closure		Stomatal closure		NA
+TCP8|WRKY28		TCP8|WRKY28		NA
+Thermotolerance		Thermotolerance		NA
+Thiohydroximate		Thiohydroximate		NA
+Thr		Thr		NA
+TORC1		TORC1		NA
+Trichome-initiation		Trichome-initiation		NA
+trichous-bacteria		trichous-bacteria		NA
+tRNA-adenine		tRNA-adenine		NA
+Trp		Trp		NA
+Tyr		Tyr		NA
+tZ		tZ		NA
+tZ-glucoside		tZ-glucoside		NA
+tZ-riboside		tZ-riboside		NA
+tZ-ribotide		tZ-ribotide		NA
+Violaxanthin		Violaxanthin		NA
+viral dsRNA		viral dsRNA		NA
+VPg		VPg		NA
+vsiRNA		vsiRNA		NA
+Waterlogging		Waterlogging		NA
+WD/bHLH/MYB		WD/bHLH/MYB		NA
+WRKY30|WRKY53		WRKY30|WRKY53		NA
+Xanthoxin		Xanthoxin		NA
+Zeaxanthin		Zeaxanthin		NA

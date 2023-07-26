@@ -1,0 +1,105 @@
+---
+title: "07_PSS-Ath-to-Solyc"
+author: "zagor"
+date: "`r Sys.Date()`"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+
+```{r}
+
+
+fp = file.path('..', 'input')
+fn = 'tomato-arabidopsis-translation_dummy.txt'
+
+translate = read.table(file.path(fp, fn),
+                 header = TRUE, 
+                 sep = "\t", 
+                 quote = NULL,
+                 dec = ".", 
+                 stringsAsFactors = FALSE,
+                 na.strings = "NA",
+                 fill = TRUE,
+                 comment.char = "#")
+
+fpd = file.path('..', 'output', 'PSS-DiNAR-input')
+fne = 'DiNAR_edges.txt'
+fnn = 'DiNAR_nodes.txt'
+
+edges = read.table(file.path(fpd, fne),
+                 header = TRUE, 
+                 sep = "\t", 
+                 quote = NULL,
+                 dec = ".", 
+                 stringsAsFactors = FALSE,
+                 na.strings = "NA",
+                 fill = TRUE,
+                 comment.char = "#")
+nodes = read.table(file.path(fpd, fnn),
+                 header = TRUE, 
+                 sep = "\t", 
+                 quote = NULL,
+                 dec = ".", 
+                 stringsAsFactors = FALSE,
+                 na.strings = "NA",
+                 fill = TRUE,
+                 comment.char = "#")
+
+
+```
+
+Ath to Slyc
+
+```{r}
+
+colnames(translate)[2] = colnames(nodes)[1]
+nodesX = merge(nodes[, 1:4], translate, by = 'geneID', all.x = TRUE, all.y = FALSE)
+
+colnames(translate)[2] = colnames(edges)[2]
+colnames(translate)[1] = paste0(colnames(translate)[1], '2')
+edgesX = merge(edges[, 1:3], translate, by = 'geneID2', all.x = TRUE, all.y = FALSE)
+
+colnames(translate)[2] = colnames(edges)[1]
+colnames(translate)[1] = gsub('2', '1', colnames(translate)[1])
+edgesX = merge(edgesX, translate, by = 'geneID1', all.x = TRUE, all.y = FALSE)
+
+
+```
+
+
+```{r}
+
+fpo = file.path('..', 'output')
+fn = 'PSS-Sly_nodes.txt'
+write.table(nodesX, 
+            file = file.path(fpo, fn), 
+            append = FALSE, 
+            quote = FALSE, 
+            sep = "\t",
+            eol = "\n", 
+            na = "NA", 
+            dec = ".", 
+            row.names = FALSE,
+            col.names = TRUE, 
+            qmethod = c("escape"),
+            fileEncoding = "UTF-8")
+fn = 'PSS-Sly_edges.txt'
+write.table(nodesX, 
+            file = file.path(fpo, fn), 
+            append = FALSE, 
+            quote = FALSE, 
+            sep = "\t",
+            eol = "\n", 
+            na = "NA", 
+            dec = ".", 
+            row.names = FALSE,
+            col.names = TRUE, 
+            qmethod = c("escape"),
+            fileEncoding = "UTF-8")
+
+
+```
+
+
