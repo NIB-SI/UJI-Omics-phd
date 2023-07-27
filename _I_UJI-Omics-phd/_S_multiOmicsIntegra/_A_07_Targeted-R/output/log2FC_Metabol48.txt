@@ -1,0 +1,261 @@
+log2FC	comparisons	ID
+7,2'-dihydroxy-3',4'-dimethoxyisoflavane-7-O-glucoside	-2.5252582772063	NM_inf - NM	7,2'-dihydroxy-3',4'-dimethoxyisoflavane-7-O-glucoside
+Eriocitrin	-2.21739742718369	NM_inf - NM	Eriocitrin
+Farrerol	0.35834104425429	NM_inf - NM	Farrerol
+Homonplantaginin	-1.66820677732928	NM_inf - NM	Homonplantaginin
+Isorhamnetin 3-O-neohesperidin	-0.51384812897903	NM_inf - NM	Isorhamnetin 3-O-neohesperidin
+Luteolin	0.393156610832509	NM_inf - NM	Luteolin
+Narirutin	-1.15875299990244	NM_inf - NM	Narirutin
+Neohesperidin	-2.16495644062511	NM_inf - NM	Neohesperidin
+Plantagoside	-1.10862606210483	NM_inf - NM	Plantagoside
+Quercetin-3-O-sophoroside	0.424813627653521	NM_inf - NM	Quercetin-3-O-sophoroside
+Quercitrin	-0.165139567213435	NM_inf - NM	Quercitrin
+Spinosin	-0.98278670120974	NM_inf - NM	Spinosin
+3-Dehidroshikimate	1.51162162222211	NM_inf - NM	3-Dehidroshikimate
+4-Coumaryl alcohol	-1.48167139812758	NM_inf - NM	4-Coumaryl alcohol
+Avicularin	0.00180234584051675	NM_inf - NM	Avicularin
+Bavachin	0.363098419398796	NM_inf - NM	Bavachin
+Guaijaverin	0.895066982683469	NM_inf - NM	Guaijaverin
+Isoquercitrin	0.111878288828567	NM_inf - NM	Isoquercitrin
+Kaempferitrin	-0.121580569026497	NM_inf - NM	Kaempferitrin
+Shikimic acid	1.88640133080557	NM_inf - NM	Shikimic acid
+Tomatine	1.2994254098405	NM_inf - NM	Tomatine
+2'-Deoxyguanosine 5'-monophosphate	-1.01076078574349	NM_inf - NM	2'-Deoxyguanosine 5'-monophosphate
+(+)-Syringaresinol O-beta-D-glucoside (Acanthoside B); Siberian Ginseng Extrac	-2.58521178215075	NM_inf - NM	(+)-Syringaresinol O-beta-D-glucoside (Acanthoside B); Siberian Ginseng Extrac
+5-Demethylnobiletin	-0.413673875364763	NM_inf - NM	5-Demethylnobiletin
+5-methoxyflavone	0.947211360362516	NM_inf - NM	5-methoxyflavone
+Flavone	1.26628057368283	NM_inf - NM	Flavone
+Indole-3-carbinol	-1.86969507752923	NM_inf - NM	Indole-3-carbinol
+Kaempferol	-0.0208632976730136	NM_inf - NM	Kaempferol
+L-Homocysteine	2.74186122031367	NM_inf - NM	L-Homocysteine
+Liquiritigenin	-0.810959726691939	NM_inf - NM	Liquiritigenin
+Nobiletin	-0.385624128207251	NM_inf - NM	Nobiletin
+Phenylalanine	-1.36396678039057	NM_inf - NM	Phenylalanine
+Rutin	-0.670153767324559	NM_inf - NM	Rutin
+Tangeretin	-1.92357844901775	NM_inf - NM	Tangeretin
+Tetrahydropiperine	1.02485235003221	NM_inf - NM	Tetrahydropiperine
+Vitexicarpin	-1.90833030250076	NM_inf - NM	Vitexicarpin
+6-Benzylaminopurine	0.190029898949668	NM_inf - NM	6-Benzylaminopurine
+6-Hydroxypurine	-1.95311129787998	NM_inf - NM	6-Hydroxypurine
+Apigenin 7-glucoside	-1.99964743818112	NM_inf - NM	Apigenin 7-glucoside
+Arginine	0.203706160539877	NM_inf - NM	Arginine
+Coumarine	2.09515073091563	NM_inf - NM	Coumarine
+N-(3-indoleylacetyl)-L-alanine	-1.36858043367503	NM_inf - NM	N-(3-indoleylacetyl)-L-alanine
+Solasodine	-3.72973428056772	NM_inf - NM	Solasodine
+Threonine	-1.42612964459922	NM_inf - NM	Threonine
+Trigonelline	-1.62295357857478	NM_inf - NM	Trigonelline
+Tyrosine	0.406330606164898	NM_inf - NM	Tyrosine
+7;8-Dimethyl-10-ribitylisoalloxazine; Lactoflavin; Riboflavin; Vitamin B2	-2.63876298849289	NM_inf - NM	7;8-Dimethyl-10-ribitylisoalloxazine; Lactoflavin; Riboflavin; Vitamin B2
+4-Imidazoleacetate; Imidazole-4-acetate; Imidazoleacetic acid	0.2004998656321	NM_inf - NM	4-Imidazoleacetate; Imidazole-4-acetate; Imidazoleacetic acid
+1-Methylnicotinamide; N(1)-Methylnicotinamide	-1.95311129787998	NM_inf - NM	1-Methylnicotinamide; N(1)-Methylnicotinamide
+/ 2-Phenylacetamide	-2.11209268359386	NM_inf - NM	/ 2-Phenylacetamide
+Corticosterone	-1.41007272781754	NM_inf - NM	Corticosterone
+Hydrocortisone	0.237738930994345	NM_inf - NM	Hydrocortisone
+7,2'-dihydroxy-3',4'-dimethoxyisoflavane-7-O-glucoside1	-0.186040767495227	AM_inf - AM	7,2'-dihydroxy-3',4'-dimethoxyisoflavane-7-O-glucoside
+Eriocitrin1	-0.467165677524237	AM_inf - AM	Eriocitrin
+Farrerol1	0.0399727472755451	AM_inf - AM	Farrerol
+Homonplantaginin1	-0.0762585190806853	AM_inf - AM	Homonplantaginin
+Isorhamnetin 3-O-neohesperidin1	0.0133168978994167	AM_inf - AM	Isorhamnetin 3-O-neohesperidin
+Luteolin1	0.0627725863836197	AM_inf - AM	Luteolin
+Narirutin1	-0.487698993563161	AM_inf - AM	Narirutin
+Neohesperidin1	0.124585123729492	AM_inf - AM	Neohesperidin
+Plantagoside1	-0.0923450314812069	AM_inf - AM	Plantagoside
+Quercetin-3-O-sophoroside1	-0.268131384834167	AM_inf - AM	Quercetin-3-O-sophoroside
+Quercitrin1	-0.0474729816443116	AM_inf - AM	Quercitrin
+Spinosin1	-0.309644700226077	AM_inf - AM	Spinosin
+3-Dehidroshikimate1	-0.210654816781538	AM_inf - AM	3-Dehidroshikimate
+4-Coumaryl alcohol1	-0.174998563566152	AM_inf - AM	4-Coumaryl alcohol
+Avicularin1	0.00734098261676763	AM_inf - AM	Avicularin
+Bavachin1	-0.240610951744047	AM_inf - AM	Bavachin
+Guaijaverin1	-2.62794621403806	AM_inf - AM	Guaijaverin
+Isoquercitrin1	-0.63125816304213	AM_inf - AM	Isoquercitrin
+Kaempferitrin1	-0.0363224723660345	AM_inf - AM	Kaempferitrin
+Shikimic acid1	2.38121553249918	AM_inf - AM	Shikimic acid
+Tomatine1	2.10686648675284	AM_inf - AM	Tomatine
+2'-Deoxyguanosine 5'-monophosphate1	1.98318109434989	AM_inf - AM	2'-Deoxyguanosine 5'-monophosphate
+(+)-Syringaresinol O-beta-D-glucoside (Acanthoside B); Siberian Ginseng Extrac1	-0.0477153256238658	AM_inf - AM	(+)-Syringaresinol O-beta-D-glucoside (Acanthoside B); Siberian Ginseng Extrac
+5-Demethylnobiletin1	0.714747582897031	AM_inf - AM	5-Demethylnobiletin
+5-methoxyflavone1	-0.901597533692337	AM_inf - AM	5-methoxyflavone
+Flavone1	-0.201837013427781	AM_inf - AM	Flavone
+Indole-3-carbinol1	-0.88486844757983	AM_inf - AM	Indole-3-carbinol
+Kaempferol1	0.197029357675484	AM_inf - AM	Kaempferol
+L-Homocysteine1	-1.69260543395871	AM_inf - AM	L-Homocysteine
+Liquiritigenin1	-1.99204625375247	AM_inf - AM	Liquiritigenin
+Nobiletin1	1.01644694558193	AM_inf - AM	Nobiletin
+Phenylalanine1	1.23934506256812	AM_inf - AM	Phenylalanine
+Rutin1	0.844777376768027	AM_inf - AM	Rutin
+Tangeretin1	-0.517192459480533	AM_inf - AM	Tangeretin
+Tetrahydropiperine1	0.815843383061628	AM_inf - AM	Tetrahydropiperine
+Vitexicarpin1	0.851848884324026	AM_inf - AM	Vitexicarpin
+6-Benzylaminopurine1	1.10706582528365	AM_inf - AM	6-Benzylaminopurine
+6-Hydroxypurine1	0.0758478781437191	AM_inf - AM	6-Hydroxypurine
+Apigenin 7-glucoside1	0.104445755402875	AM_inf - AM	Apigenin 7-glucoside
+Arginine1	0.830617806726197	AM_inf - AM	Arginine
+Coumarine1	3.79829731210304	AM_inf - AM	Coumarine
+N-(3-indoleylacetyl)-L-alanine1	0.0132945659253725	AM_inf - AM	N-(3-indoleylacetyl)-L-alanine
+Solasodine1	-1.43310872574575	AM_inf - AM	Solasodine
+Threonine1	0.12854122520133	AM_inf - AM	Threonine
+Trigonelline1	-0.049963578359332	AM_inf - AM	Trigonelline
+Tyrosine1	1.61403702793494	AM_inf - AM	Tyrosine
+7;8-Dimethyl-10-ribitylisoalloxazine; Lactoflavin; Riboflavin; Vitamin B21	-0.709524685860798	AM_inf - AM	7;8-Dimethyl-10-ribitylisoalloxazine; Lactoflavin; Riboflavin; Vitamin B2
+4-Imidazoleacetate; Imidazole-4-acetate; Imidazoleacetic acid1	-0.865909795043187	AM_inf - AM	4-Imidazoleacetate; Imidazole-4-acetate; Imidazoleacetic acid
+1-Methylnicotinamide; N(1)-Methylnicotinamide1	0.0758478781437191	AM_inf - AM	1-Methylnicotinamide; N(1)-Methylnicotinamide
+/ 2-Phenylacetamide1	0.104979957822817	AM_inf - AM	/ 2-Phenylacetamide
+Corticosterone1	-0.158114384240015	AM_inf - AM	Corticosterone
+Hydrocortisone1	1.67728994929784	AM_inf - AM	Hydrocortisone
+7,2'-dihydroxy-3',4'-dimethoxyisoflavane-7-O-glucoside2	0.526041464435659	AM - NM	7,2'-dihydroxy-3',4'-dimethoxyisoflavane-7-O-glucoside
+Eriocitrin2	-0.116160275970506	AM - NM	Eriocitrin
+Farrerol2	0.623844873569995	AM - NM	Farrerol
+Homonplantaginin2	0.467167941283648	AM - NM	Homonplantaginin
+Isorhamnetin 3-O-neohesperidin2	-0.00487224835721456	AM - NM	Isorhamnetin 3-O-neohesperidin
+Luteolin2	-0.480166844398315	AM - NM	Luteolin
+Narirutin2	-0.0625277609496528	AM - NM	Narirutin
+Neohesperidin2	-0.701111930102327	AM - NM	Neohesperidin
+Plantagoside2	0.786173576260312	AM - NM	Plantagoside
+Quercetin-3-O-sophoroside2	0.661074475164511	AM - NM	Quercetin-3-O-sophoroside
+Quercitrin2	-0.16879662062915	AM - NM	Quercitrin
+Spinosin2	0.248399222105018	AM - NM	Spinosin
+3-Dehidroshikimate2	-0.281921186350116	AM - NM	3-Dehidroshikimate
+4-Coumaryl alcohol2	0.481446766255891	AM - NM	4-Coumaryl alcohol
+Avicularin2	-0.254581699811165	AM - NM	Avicularin
+Bavachin2	0.778531468984701	AM - NM	Bavachin
+Guaijaverin2	-0.397258199850484	AM - NM	Guaijaverin
+Isoquercitrin2	0.870675502839894	AM - NM	Isoquercitrin
+Kaempferitrin2	0.0759866350734804	AM - NM	Kaempferitrin
+Shikimic acid2	-0.631271608850728	AM - NM	Shikimic acid
+Tomatine2	0.0649810542735239	AM - NM	Tomatine
+2'-Deoxyguanosine 5'-monophosphate2	-1.75006776390841	AM - NM	2'-Deoxyguanosine 5'-monophosphate
+(+)-Syringaresinol O-beta-D-glucoside (Acanthoside B); Siberian Ginseng Extrac2	0.722153469557259	AM - NM	(+)-Syringaresinol O-beta-D-glucoside (Acanthoside B); Siberian Ginseng Extrac
+5-Demethylnobiletin2	-0.469351170850901	AM - NM	5-Demethylnobiletin
+5-methoxyflavone2	0.674185995639281	AM - NM	5-methoxyflavone
+Flavone2	0.930285410274729	AM - NM	Flavone
+Indole-3-carbinol2	-0.365771280170533	AM - NM	Indole-3-carbinol
+Kaempferol2	-0.861435572501909	AM - NM	Kaempferol
+L-Homocysteine2	1.41523871769821	AM - NM	L-Homocysteine
+Liquiritigenin2	0.159091489511828	AM - NM	Liquiritigenin
+Nobiletin2	0.191163341580472	AM - NM	Nobiletin
+Phenylalanine2	-1.01721735795493	AM - NM	Phenylalanine
+Rutin2	-0.64127525532529	AM - NM	Rutin
+Tangeretin2	-0.369204642833513	AM - NM	Tangeretin
+Tetrahydropiperine2	-0.132355481747208	AM - NM	Tetrahydropiperine
+Vitexicarpin2	0.400001027581638	AM - NM	Vitexicarpin
+6-Benzylaminopurine2	-1.1348090836183	AM - NM	6-Benzylaminopurine
+6-Hydroxypurine2	0.555518922437177	AM - NM	6-Hydroxypurine
+Apigenin 7-glucoside2	-2.05712470527171	AM - NM	Apigenin 7-glucoside
+Arginine2	0.329133848082108	AM - NM	Arginine
+Coumarine2	0.832369968750394	AM - NM	Coumarine
+N-(3-indoleylacetyl)-L-alanine2	-0.346744703185353	AM - NM	N-(3-indoleylacetyl)-L-alanine
+Solasodine2	-1.63703888263248	AM - NM	Solasodine
+Threonine2	0.931521888042516	AM - NM	Threonine
+Trigonelline2	0.17566719401011	AM - NM	Trigonelline
+Tyrosine2	0.543975779739924	AM - NM	Tyrosine
+7;8-Dimethyl-10-ribitylisoalloxazine; Lactoflavin; Riboflavin; Vitamin B22	0.540759050253079	AM - NM	7;8-Dimethyl-10-ribitylisoalloxazine; Lactoflavin; Riboflavin; Vitamin B2
+4-Imidazoleacetate; Imidazole-4-acetate; Imidazoleacetic acid2	0.540619797539099	AM - NM	4-Imidazoleacetate; Imidazole-4-acetate; Imidazoleacetic acid
+1-Methylnicotinamide; N(1)-Methylnicotinamide2	0.555518922437177	AM - NM	1-Methylnicotinamide; N(1)-Methylnicotinamide
+/ 2-Phenylacetamide2	0.311884868701249	AM - NM	/ 2-Phenylacetamide
+Corticosterone2	1.19884175658306	AM - NM	Corticosterone
+Hydrocortisone2	1.78272681861835	AM - NM	Hydrocortisone
+7,2'-dihydroxy-3',4'-dimethoxyisoflavane-7-O-glucoside3	2.86525897414673	AM_inf - NM_inf	7,2'-dihydroxy-3',4'-dimethoxyisoflavane-7-O-glucoside
+Eriocitrin3	1.63407147368895	AM_inf - NM_inf	Eriocitrin
+Farrerol3	0.30547657659125	AM_inf - NM_inf	Farrerol
+Homonplantaginin3	2.05911619953224	AM_inf - NM_inf	Homonplantaginin
+Isorhamnetin 3-O-neohesperidin3	0.522292778521232	AM_inf - NM_inf	Isorhamnetin 3-O-neohesperidin
+Luteolin3	-0.810550868847205	AM_inf - NM_inf	Luteolin
+Narirutin3	0.608526245389626	AM_inf - NM_inf	Narirutin
+Neohesperidin3	1.58842963425227	AM_inf - NM_inf	Neohesperidin
+Plantagoside3	1.80245460688393	AM_inf - NM_inf	Plantagoside
+Quercetin-3-O-sophoroside3	-0.0318705373231758	AM_inf - NM_inf	Quercetin-3-O-sophoroside
+Quercitrin3	-0.0511300350600266	AM_inf - NM_inf	Quercitrin
+Spinosin3	0.921541223088681	AM_inf - NM_inf	Spinosin
+3-Dehidroshikimate3	-2.00419762535377	AM_inf - NM_inf	3-Dehidroshikimate
+4-Coumaryl alcohol3	1.78811960081732	AM_inf - NM_inf	4-Coumaryl alcohol
+Avicularin3	-0.249043063034915	AM_inf - NM_inf	Avicularin
+Bavachin3	0.174822097841858	AM_inf - NM_inf	Bavachin
+Guaijaverin3	-3.92027139657201	AM_inf - NM_inf	Guaijaverin
+Isoquercitrin3	0.127539050969197	AM_inf - NM_inf	Isoquercitrin
+Kaempferitrin3	0.161244731733943	AM_inf - NM_inf	Kaempferitrin
+Shikimic acid3	-0.136457407157113	AM_inf - NM_inf	Shikimic acid
+Tomatine3	0.872422131185868	AM_inf - NM_inf	Tomatine
+2'-Deoxyguanosine 5'-monophosphate3	1.24387411618497	AM_inf - NM_inf	2'-Deoxyguanosine 5'-monophosphate
+(+)-Syringaresinol O-beta-D-glucoside (Acanthoside B); Siberian Ginseng Extrac3	3.25964992608414	AM_inf - NM_inf	(+)-Syringaresinol O-beta-D-glucoside (Acanthoside B); Siberian Ginseng Extrac
+5-Demethylnobiletin3	0.659070287410893	AM_inf - NM_inf	5-Demethylnobiletin
+5-methoxyflavone3	-1.17462289841557	AM_inf - NM_inf	5-methoxyflavone
+Flavone3	-0.537832176835881	AM_inf - NM_inf	Flavone
+Indole-3-carbinol3	0.619055349778865	AM_inf - NM_inf	Indole-3-carbinol
+Kaempferol3	-0.643542917153411	AM_inf - NM_inf	Kaempferol
+L-Homocysteine3	-3.01922793657418	AM_inf - NM_inf	L-Homocysteine
+Liquiritigenin3	-1.0219950375487	AM_inf - NM_inf	Liquiritigenin
+Nobiletin3	1.59323441536965	AM_inf - NM_inf	Nobiletin
+Phenylalanine3	1.58609448500375	AM_inf - NM_inf	Phenylalanine
+Rutin3	0.873655888767296	AM_inf - NM_inf	Rutin
+Tangeretin3	1.03718134670371	AM_inf - NM_inf	Tangeretin
+Tetrahydropiperine3	-0.341364448717787	AM_inf - NM_inf	Tetrahydropiperine
+Vitexicarpin3	3.16018021440642	AM_inf - NM_inf	Vitexicarpin
+6-Benzylaminopurine3	-0.217773157284313	AM_inf - NM_inf	6-Benzylaminopurine
+6-Hydroxypurine3	2.58447809846088	AM_inf - NM_inf	6-Hydroxypurine
+Apigenin 7-glucoside3	0.0469684883122916	AM_inf - NM_inf	Apigenin 7-glucoside
+Arginine3	0.956045494268428	AM_inf - NM_inf	Arginine
+Coumarine3	2.5355165499378	AM_inf - NM_inf	Coumarine
+N-(3-indoleylacetyl)-L-alanine3	1.03513029641505	AM_inf - NM_inf	N-(3-indoleylacetyl)-L-alanine
+Solasodine3	0.65958667218948	AM_inf - NM_inf	Solasodine
+Threonine3	2.48619275784306	AM_inf - NM_inf	Threonine
+Trigonelline3	1.74865719422556	AM_inf - NM_inf	Trigonelline
+Tyrosine3	1.75168220150997	AM_inf - NM_inf	Tyrosine
+7;8-Dimethyl-10-ribitylisoalloxazine; Lactoflavin; Riboflavin; Vitamin B23	2.46999735288517	AM_inf - NM_inf	7;8-Dimethyl-10-ribitylisoalloxazine; Lactoflavin; Riboflavin; Vitamin B2
+4-Imidazoleacetate; Imidazole-4-acetate; Imidazoleacetic acid3	-0.525789863136188	AM_inf - NM_inf	4-Imidazoleacetate; Imidazole-4-acetate; Imidazoleacetic acid
+1-Methylnicotinamide; N(1)-Methylnicotinamide3	2.58447809846088	AM_inf - NM_inf	1-Methylnicotinamide; N(1)-Methylnicotinamide
+/ 2-Phenylacetamide3	2.52895751011793	AM_inf - NM_inf	/ 2-Phenylacetamide
+Corticosterone3	2.45080010016058	AM_inf - NM_inf	Corticosterone
+Hydrocortisone3	3.22227783692184	AM_inf - NM_inf	Hydrocortisone
+7,2'-dihydroxy-3',4'-dimethoxyisoflavane-7-O-glucoside4	0.340000696940432	AM_inf - NM	7,2'-dihydroxy-3',4'-dimethoxyisoflavane-7-O-glucoside
+Eriocitrin4	-0.583325953494743	AM_inf - NM	Eriocitrin
+Farrerol4	0.66381762084554	AM_inf - NM	Farrerol
+Homonplantaginin4	0.390909422202963	AM_inf - NM	Homonplantaginin
+Isorhamnetin 3-O-neohesperidin4	0.00844464954220214	AM_inf - NM	Isorhamnetin 3-O-neohesperidin
+Luteolin4	-0.417394258014696	AM_inf - NM	Luteolin
+Narirutin4	-0.550226754512813	AM_inf - NM	Narirutin
+Neohesperidin4	-0.576526806372835	AM_inf - NM	Neohesperidin
+Plantagoside4	0.693828544779105	AM_inf - NM	Plantagoside
+Quercetin-3-O-sophoroside4	0.392943090330345	AM_inf - NM	Quercetin-3-O-sophoroside
+Quercitrin4	-0.216269602273462	AM_inf - NM	Quercitrin
+Spinosin4	-0.0612454781210587	AM_inf - NM	Spinosin
+3-Dehidroshikimate4	-0.492576003131655	AM_inf - NM	3-Dehidroshikimate
+4-Coumaryl alcohol4	0.306448202689738	AM_inf - NM	4-Coumaryl alcohol
+Avicularin4	-0.247240717194398	AM_inf - NM	Avicularin
+Bavachin4	0.537920517240654	AM_inf - NM	Bavachin
+Guaijaverin4	-3.02520441388854	AM_inf - NM	Guaijaverin
+Isoquercitrin4	0.239417339797765	AM_inf - NM	Isoquercitrin
+Kaempferitrin4	0.0396641627074459	AM_inf - NM	Kaempferitrin
+Shikimic acid4	1.74994392364846	AM_inf - NM	Shikimic acid
+Tomatine4	2.17184754102636	AM_inf - NM	Tomatine
+2'-Deoxyguanosine 5'-monophosphate4	0.23311333044148	AM_inf - NM	2'-Deoxyguanosine 5'-monophosphate
+(+)-Syringaresinol O-beta-D-glucoside (Acanthoside B); Siberian Ginseng Extrac4	0.674438143933394	AM_inf - NM	(+)-Syringaresinol O-beta-D-glucoside (Acanthoside B); Siberian Ginseng Extrac
+5-Demethylnobiletin4	0.24539641204613	AM_inf - NM	5-Demethylnobiletin
+5-methoxyflavone4	-0.227411538053056	AM_inf - NM	5-methoxyflavone
+Flavone4	0.728448396846948	AM_inf - NM	Flavone
+Indole-3-carbinol4	-1.25063972775036	AM_inf - NM	Indole-3-carbinol
+Kaempferol4	-0.664406214826425	AM_inf - NM	Kaempferol
+L-Homocysteine4	-0.277366716260506	AM_inf - NM	L-Homocysteine
+Liquiritigenin4	-1.83295476424064	AM_inf - NM	Liquiritigenin
+Nobiletin4	1.2076102871624	AM_inf - NM	Nobiletin
+Phenylalanine4	0.222127704613186	AM_inf - NM	Phenylalanine
+Rutin4	0.203502121442737	AM_inf - NM	Rutin
+Tangeretin4	-0.886397102314046	AM_inf - NM	Tangeretin
+Tetrahydropiperine4	0.68348790131442	AM_inf - NM	Tetrahydropiperine
+Vitexicarpin4	1.25184991190566	AM_inf - NM	Vitexicarpin
+6-Benzylaminopurine4	-0.0277432583346453	AM_inf - NM	6-Benzylaminopurine
+6-Hydroxypurine4	0.631366800580896	AM_inf - NM	6-Hydroxypurine
+Apigenin 7-glucoside4	-1.95267894986883	AM_inf - NM	Apigenin 7-glucoside
+Arginine4	1.15975165480831	AM_inf - NM	Arginine
+Coumarine4	4.63066728085343	AM_inf - NM	Coumarine
+N-(3-indoleylacetyl)-L-alanine4	-0.33345013725998	AM_inf - NM	N-(3-indoleylacetyl)-L-alanine
+Solasodine4	-3.07014760837824	AM_inf - NM	Solasodine
+Threonine4	1.06006311324385	AM_inf - NM	Threonine
+Trigonelline4	0.125703615650778	AM_inf - NM	Trigonelline
+Tyrosine4	2.15801280767487	AM_inf - NM	Tyrosine
+7;8-Dimethyl-10-ribitylisoalloxazine; Lactoflavin; Riboflavin; Vitamin B24	-0.168765635607718	AM_inf - NM	7;8-Dimethyl-10-ribitylisoalloxazine; Lactoflavin; Riboflavin; Vitamin B2
+4-Imidazoleacetate; Imidazole-4-acetate; Imidazoleacetic acid4	-0.325289997504088	AM_inf - NM	4-Imidazoleacetate; Imidazole-4-acetate; Imidazoleacetic acid
+1-Methylnicotinamide; N(1)-Methylnicotinamide4	0.631366800580896	AM_inf - NM	1-Methylnicotinamide; N(1)-Methylnicotinamide
+/ 2-Phenylacetamide4	0.416864826524066	AM_inf - NM	/ 2-Phenylacetamide
+Corticosterone4	1.04072737234304	AM_inf - NM	Corticosterone
+Hydrocortisone4	3.46001676791618	AM_inf - NM	Hydrocortisone

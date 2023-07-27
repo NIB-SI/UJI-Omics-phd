@@ -1,0 +1,565 @@
+---
+title: "02_log2FC"
+author: "zagor"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    fig_caption: yes
+    self_contained: yes
+    fig_width: 9
+    fig_height: 8
+    toc: yes
+    toc_depth: 5
+    number_sections: yes
+    theme: flatly
+    highlight: tango
+  pdf_document:
+    toc: yes
+    toc_depth: '5'
+  word_document:
+    toc: yes
+    toc_depth: '5'
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(#dev = c('pdf', 'png'),  # this embeds pdf and crates scrolable blocks
+                      dev = c('png'), 
+                      fig.align = 'center', 
+                      fig.height = 8, 
+                      fig.width = 9 ,
+                      warning = FALSE, message = FALSE
+                      )
+# options(knitr.table.format = "html")
+
+```
+
+
+
+```{r, libraries.sources1}
+
+rm(list = ls(all = TRUE))
+
+```
+
+# libraries
+
+
+```{r}
+
+library(scales)
+library(ggplot2)
+# packageVersion("ggplot2")
+library(magrittr)
+library(crayon)
+
+library(rstatix)
+library(ggpubr)
+
+library(Compositional)
+library(equalCovs)
+
+library(psych)
+
+library(corrplot) 
+
+library(pdist)
+
+library(RColorBrewer)
+
+library(plotly)
+
+library(heatmaply)
+
+library(Hmisc)
+
+library(caret)
+
+library(htmlwidgets)
+
+
+```
+
+# f-ctions
+
+## Welch's t-test with fdr correction
+
+## log2FC
+
+```{r}
+
+
+####  ####  ####  ####  ####  ####  ####  ####  ####  ####  ####  ####  ####
+
+my.customised.t.test <- function(data, var.levels, stress.levels, 
+                                 plot.violin, plot.box, plot.dot,
+                                 y.lab, 
+                                 p.cex.labels, p.cex, p.palette,
+                                 mytitle){
+  
+  mydata = dplyr::as_tibble(data.table::data.table(data))
+  mydata.long <- mydata %>%
+    tidyr::pivot_longer(-treatment, names_to = "variables", values_to = "value")
+  
+  mydata.long$variables = factor(mydata.long$variables, levels = var.levels)
+  mydata.long$Stress = factor(mydata.long$treatment, levels = stress.levels)
+  
+  mydata.long$value = log(as.numeric(mydata.long$value), 10)
+  
+  mydata.long %>%
+    dplyr::group_by(variables, Stress) %>%
+    dplyr::summarise(
+      n = dplyr::n(),
+      mean = mean(value, na.rm = TRUE),
+      sd = sd(value, na.rm = TRUE)
+    ) %>%
+    dplyr::ungroup()
+  
+  stat.test <- mydata.long %>%
+    dplyr::group_by(variables) %>%
+    rstatix::t_test(value ~ Stress, p.adjust.method = "fdr")
+  # Remove unnecessary columns and display the outputs
+  stat.test %>% dplyr::select(-.y., -statistic, -df)
+  # https://github.com/kassambara/rstatix/issues/56
+  stat.test <- stat.test %>% rstatix::add_xy_position(x = "Stress", 
+                                                      fun = "max", # "mean_sd"
+                                                      step.increase = 0)
+  
+ 
+  stat.test.sig = stat.test[stat.test$p.adj < 0.05, ]
+  # print(stat.test.sig %>% dplyr::arrange(group2, group1))
+  # dim(stat.test.sig)
+   
+  graphs <- mydata.long %>%
+    dplyr::group_by(variables) %>%
+    rstatix::doo(
+      ~ggpubr::ggdotplot(
+        data =., 
+        x = "Stress", 
+        y = "value",
+        fill = "Stress", 
+        palette = p.palette, #"npg", 
+        legend = "none",
+        add = c("jitter", "mean_sd"),
+        position = position_jitter(0.05),
+        ggtheme = ggpubr::theme_pubr(),
+        ylab = 'log10'
+      )
+      , result = "plots"
+    )
+  # graphs
+  
+  variables <- levels(graphs$variables)
+  plots <- graphs$plots %>% set_names(variables)
+  
+  dl = droplevels(stat.test.sig$variables)
+
+  
+  if(length(levels(dl)) > 0) {
+    
+    # par(mfrow = c(2,2))
+    
+    # for (i in levels(dl)) {
+  
+    # cat(blue('sig\n\n'))
+    bp <- ggdotplot(
+      # mydata.long[mydata.long$variables %in% i,], 
+      mydata.long[mydata.long$variables %in% levels(dl),], 
+      x = "Stress", 
+      xlab = 'Condition',
+      y = "value", 
+      fill = "Stress", #add = "mean_se",
+      facet.by = c("variables"),
+      combine = TRUE,
+      scales = "free", 
+      palette = p.palette, #"npg", 
+      legend = "none",
+      add = c("jitter", 
+              'mean_sd'),
+      title = mytitle, # \n', i),
+      position = position_jitter(0.05),
+      ylab = 'log10'
+    ) 
+    bp = bp +
+      stat_pvalue_manual(# stat.test.sig[stat.test.sig$variables %in% i,],
+                         stat.test.sig[stat.test.sig$variables %in% levels(dl),],
+                         hide.ns = TRUE, 
+                         tip.length = 0.02, 
+                         step.increase = 0.05) +
+      theme(axis.text.x = element_text (angle = 45, 
+                                        vjust = 1, 
+                                        hjust = 1, 
+                                        size = 7.5),
+            axis.text.y = element_text (angle = 45, 
+                                        vjust = 1, 
+                                        hjust = 1, 
+                                        size = 7.5))
+    plot(bp)
+    
+    
+    # par(mfrow = c(1,1))
+    
+  # }
+    
+
+  for (v in levels(dl)) {
+     bp <- ggdotplot(
+      # mydata.long[mydata.long$variables %in% i,], 
+      mydata.long[mydata.long$variables == v,], 
+      x = "Stress", 
+      xlab = 'Condition',
+      y = "value", 
+      fill = "Stress", #add = "mean_se",
+      combine = TRUE,
+      scales = "free", 
+      palette = p.palette, #"npg", 
+      legend = "none",
+      add = c("jitter", 
+              'mean_sd'),
+      title = paste(v, mytitle), # \n', i),
+      position = position_jitter(0.05),
+      ylab = 'log10'
+    ) 
+    bp = bp +
+      stat_pvalue_manual(# stat.test.sig[stat.test.sig$variables %in% i,],
+                         stat.test.sig[stat.test.sig$variables == v,],
+                         hide.ns = TRUE, 
+                         tip.length = 0.02, 
+                         step.increase = 0.05) +
+      theme(axis.text.x = element_text (angle = 45, 
+                                        vjust = 1, 
+                                        hjust = 1, 
+                                        size = 7.5),
+            axis.text.y = element_text (angle = 45, 
+                                        vjust = 1, 
+                                        hjust = 1, 
+                                        size = 7.5))
+    plot(bp)
+  } 
+}
+
+  
+
+  
+  return(stat.test)
+  
+}
+
+
+####  ####  ####  ####  ####  ####  ####  ####  ####  ####  ####  ####  ####
+
+my.logFC <- function(control, treatment, title){
+  
+  n = 11
+  
+
+  comparisons = paste(treatment$treatment, '-', control$treatment)
+
+    control.log = log2(control[, -1])
+    treatment.log = log2(treatment[, -1])
+
+    
+    control.log[!is.finite(as.matrix(control.log))] = NA
+    treatment.log[!is.finite(as.matrix(treatment.log))] = NA
+
+    
+    # https://9to5answer.com/using-apply-function-on-a-matrix-with-na-entries
+    control.log.mean = apply(control.log, 2, mean, na.rm=TRUE)
+
+    treatment.log.mean = apply(treatment.log, 2, mean, na.rm=TRUE)
+
+
+    
+    log2FC = as.data.frame(treatment.log.mean - control.log.mean)
+    rownames(log2FC)
+    log2FC$comparison = unique(comparisons)
+    log2FC$ID = rownames(log2FC)
+    colnames(log2FC) = c('log2FC', 'comparisons', 'ID')
+
+
+    
+
+    m = max(abs(min(log2FC$log2FC, na.rm = TRUE)), abs(max(log2FC$log2FC, na.rm = TRUE)))
+    par(mfrow = c(2,2))
+    pie(rep(1,n), col = rev(brewer.pal(n, 'RdBu')),
+        labels = round(seq(-m, m, length.out = n), 2),
+        main = paste(unique(comparisons), title, sep = '\n'))
+    par(mfrow = c(1,1))
+
+    
+    return(log2FC)
+
+  
+}
+
+
+####  ####  ####  ####  ####  ####  ####  ####  ####  ####  ####  ####  ####
+
+
+n = 9
+
+
+my.ggplot.palette = brewer.pal(9, "Set1")[c(3, 1, 2, 4)]
+pie(rep(1, length(my.ggplot.palette)), 
+    col = my.ggplot.palette, 
+    main = 'ggplot palette',
+    labels = c('NM', 'AM', 'NM_inf', 'AM_inf'))
+
+
+
+```
+
+
+# Metabolites
+
+## data
+
+
+```{r}
+
+
+
+fpi = file.path('..', '..', '_A_01_multiOmics-Dataset', 'input', 'METABOLOMICS')
+
+
+fn = 'Metabolomics all_identified_v2.txt'
+omics <- data.table::fread(file.path(fpi, fn), header = TRUE)
+data.table::setDF(omics)
+
+
+
+```
+
+
+```{r}
+
+
+is.numeric(omics$time)
+
+table(omics$group1)
+table(omics$group2)
+table(omics$treatment)
+omics$treatment = factor(omics$treatment, levels = c('NM', 'AM', 'NM_inf', 'AM_inf'))
+
+
+dtX = omics[, -grep('Sample|label|group1|group2', colnames(omics))]
+
+apply(dtX[, 3:ncol(dtX)], 2, mode)
+
+
+data24 = dtX[dtX$time == 24, ]
+data48 = dtX[dtX$time == 48, ]
+
+data24 = data24[, -grep('time', colnames(data24))]
+data48 = data48[, -grep('time', colnames(data48))]
+
+```
+
+
+
+## t-tests
+
+```{r}
+
+stat.test.24 = my.customised.t.test(data = data24,
+                                    var.levels = colnames(data24)[-c(1)],
+                                    stress.levels = levels(data24$treatment),
+                                    y.lab = "Metabol",
+                                    p.cex.labels = 1,
+                                    p.cex = 0.5,
+                                    p.palette = my.ggplot.palette,
+                                    mytitle = '24')
+
+stat.test.48 = my.customised.t.test(data = data48,
+                                    var.levels = colnames(data24)[-c(1)],
+                                    stress.levels = levels(data24$treatment),
+                                    y.lab = "Metabol",
+                                    p.cex.labels = 1,
+                                    p.cex = 0.5,
+                                    p.palette = my.ggplot.palette,
+                                    mytitle = '48')  
+
+
+
+stat.test.24$time = 24
+stat.test.48$time = 48
+
+
+stat.test = rbind(stat.test.24,
+                  stat.test.48
+                  )
+data.table::setDT(stat.test)
+ind = (grep('groups', colnames(stat.test)))
+stat.test = stat.test[, -..ind]
+
+fp = file.path('..', 'output')
+fn = 'Metabol_stat.test_fdr.txt'
+write.table(stat.test,
+            file = file.path(fp, fn), 
+            append = FALSE, 
+            quote = FALSE, 
+            sep = "\t",
+            eol = "\n", 
+            na = "NA", 
+            dec = ".", 
+            row.names = TRUE,
+            col.names = TRUE, 
+            qmethod = 'escape',
+            fileEncoding = "UTF-8")
+
+
+
+```
+
+
+
+
+## logFC 24
+
+```{r}
+
+title = 'Metabol 24'
+
+log2FC1 = my.logFC(control = data24[grep('NM$', data24$treatment), ],
+                  treatment = data24[grep('NM_inf$', data24$treatment), ],
+                  title = title )
+log2FC2 = my.logFC(control = data24[grep('AM$', data24$treatment), ],
+                  treatment = data24[grep('AM_inf$', data24$treatment), ],
+                  title = title )
+log2FC3 = my.logFC(control = data24[grep('NM$', data24$treatment), ],
+                  treatment = data24[grep('AM$', data24$treatment), ],
+                  title = title )
+log2FC4 = my.logFC(control = data24[grep('NM_inf$', data24$treatment), ],
+                  treatment = data24[grep('AM_inf$', data24$treatment), ],
+                  title = title )
+log2FC5 = my.logFC(control = data24[grep('NM$', data24$treatment), ],
+                  treatment = data24[grep('AM_inf$', data24$treatment), ],
+                  title = title )
+
+log2FC = rbind(log2FC1, log2FC2, log2FC3, log2FC4, log2FC5)
+
+
+mm <- list(
+    l = 40,
+    r = 0,
+    b = 0,
+    t = 40
+)
+m = max(abs(min(log2FC$log2FC, na.rm = TRUE)), abs(max(log2FC$log2FC, na.rm = TRUE)))
+p = plot_ly(z = log2FC$log2FC, 
+            type = "heatmap",
+            y = log2FC$ID, 
+            x = log2FC$comparisons,
+            colors = rev(brewer.pal(n, 'RdBu')),
+            zmax = m, 
+            zmid = 0, 
+            zmin = -m,
+            width = 1000, 
+            height = 1500
+            ) %>%
+  layout(title = title, 
+         margin = mm)
+print(p)
+saveWidget(p, 
+           file = "../output/Metabol24.html",
+           selfcontained = TRUE)
+
+
+fp = file.path('..', 'output')
+fn = 'log2FC_Metabol24.txt'
+write.table(log2FC,
+            file = file.path(fp, fn), 
+            append = FALSE, 
+            quote = FALSE, 
+            sep = "\t",
+            eol = "\n", 
+            na = "NA", 
+            dec = ".", 
+            row.names = TRUE,
+            col.names = TRUE, 
+            qmethod = 'escape',
+            fileEncoding = "UTF-8")
+
+
+
+```
+
+
+## logFC 48
+
+```{r}
+
+title = 'Metabol 48'
+
+log2FC1 = my.logFC(control = data48[grep('NM$', data48$treatment), ],
+                  treatment = data48[grep('NM_inf$', data48$treatment), ],
+                  title = title )
+log2FC2 = my.logFC(control = data48[grep('AM$', data48$treatment), ],
+                  treatment = data48[grep('AM_inf$', data48$treatment), ],
+                  title = title )
+log2FC3 = my.logFC(control = data48[grep('NM$', data48$treatment), ],
+                  treatment = data48[grep('AM$', data48$treatment), ],
+                  title = title )
+log2FC4 = my.logFC(control = data48[grep('NM_inf$', data48$treatment), ],
+                  treatment = data48[grep('AM_inf$', data48$treatment), ],
+                  title = title )
+log2FC5 = my.logFC(control = data48[grep('NM$', data48$treatment), ],
+                  treatment = data48[grep('AM_inf$', data48$treatment), ],
+                  title = title )
+
+log2FC = rbind(log2FC1, log2FC2, log2FC3, log2FC4, log2FC5)
+
+
+mm <- list(
+    l = 40,
+    r = 0,
+    b = 0,
+    t = 40
+)
+m = max(abs(min(log2FC$log2FC, na.rm = TRUE)), abs(max(log2FC$log2FC, na.rm = TRUE)))
+p = plot_ly(z = log2FC$log2FC, 
+            type = "heatmap",
+            y = log2FC$ID, 
+            x = log2FC$comparisons,
+            colors = rev(brewer.pal(n, 'RdBu')),
+            zmax = m, 
+            zmid = 0, 
+            zmin = -m,
+            width = 1000, 
+            height = 1500
+            ) %>%
+  layout(title = title, 
+         margin = mm)
+print(p)
+saveWidget(p, 
+           file = "../output/Metabol48.html",
+           selfcontained = TRUE)
+
+
+fp = file.path('..', 'output')
+fn = 'log2FC_Metabol48.txt'
+write.table(log2FC,
+            file = file.path(fp, fn), 
+            append = FALSE, 
+            quote = FALSE, 
+            sep = "\t",
+            eol = "\n", 
+            na = "NA", 
+            dec = ".", 
+            row.names = TRUE,
+            col.names = TRUE, 
+            qmethod = 'escape',
+            fileEncoding = "UTF-8")
+
+```
+
+
+
+```{r, session_info}
+
+devtools::session_info()
+
+
+```
+
