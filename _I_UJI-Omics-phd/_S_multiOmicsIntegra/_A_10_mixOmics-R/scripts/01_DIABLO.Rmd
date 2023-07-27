@@ -34,6 +34,7 @@ set.seed(123456)
 <!-- options(width=70) -->
 <!-- ``` -->
 
+
 <!-- ## Additional functions -->
 
 <!-- ### Panel functions -->
@@ -3199,6 +3200,7 @@ plotArrow(final.diablo.model, ind.names = FALSE, legend = TRUE,
 
 ```
 
+
 # Variable plots
 
 ```{r}
@@ -3229,6 +3231,8 @@ circosPlot(final.diablo.model, cutoff = cutoff, line = TRUE,
            color.blocks= cols,
            color.cor = c(3,2), size.labels = 1
            , xpd=TRUE)
+
+
 
 
 ```
@@ -3302,6 +3306,16 @@ dev.off()
 
 ```
 
+
+```{r}
+#heatmaps
+cimDiablo(final.diablo.model)
+```
+```{r}
+#cutoff for correlations
+network(final.diablo.model, blocks = c(1,2,3),
+        color.node = c('darkorchid', 'brown1', 'lightgreen'), cutoff = 0.4)
+```
 ```{r}
 
 # par(mfrow=c(2,2))
