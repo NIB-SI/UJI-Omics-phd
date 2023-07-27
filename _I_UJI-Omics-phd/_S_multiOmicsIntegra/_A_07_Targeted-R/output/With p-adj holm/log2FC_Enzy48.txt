@@ -1,0 +1,121 @@
+log2FC	comparisons	ID
+B02_AGPase	-0.0136357037835833	NM_inf - NM	B02_AGPase
+A21_Alanine aminotransferase	-0.0454107320829475	NM_inf - NM	A21_Alanine aminotransferase
+A22_Aspartate aminotransferase	0.437984509701744	NM_inf - NM	A22_Aspartate aminotransferase
+A24_Citrate synthase	2.27043780011443	NM_inf - NM	A24_Citrate synthase
+A15_G6P DH	0.164074026395502	NM_inf - NM	A15_G6P DH
+C03G_Glucokinase	1.70258959745633	NM_inf - NM	C03G_Glucokinase
+D02_Glutamate DH (NAD)	0.296899948985118	NM_inf - NM	D02_Glutamate DH (NAD)
+A07_Malate DH (NAD)	1.15183701344728	NM_inf - NM	A07_Malate DH (NAD)
+A04i_Malate DH initial (NADP)	0.684252440481261	NM_inf - NM	A04i_Malate DH initial (NADP)
+A04t_Malate DH total (NADP)	0.477154032668524	NM_inf - NM	A04t_Malate DH total (NADP)
+A13_PEP Carboxylase	1.33000654420255	NM_inf - NM	A13_PEP Carboxylase
+B03_Phosphofructokinase (PPi)	0.490075686125055	NM_inf - NM	B03_Phosphofructokinase (PPi)
+A02t_Phosphoglucose Isomerase (total)	0.771350946383983	NM_inf - NM	A02t_Phosphoglucose Isomerase (total)
+A23_Pyruvate kinase	-0.00921911574762468	NM_inf - NM	A23_Pyruvate kinase
+B16_FBP-Aldolase	0.514421959931466	NM_inf - NM	B16_FBP-Aldolase
+C01_Fructose-1,6-bisphosphatase (cyt)	0.48718941628834	NM_inf - NM	C01_Fructose-1,6-bisphosphatase (cyt)
+B08NAD_GAPDH (NAD)	0.296244282744345	NM_inf - NM	B08NAD_GAPDH (NAD)
+B08NADP_GAPDH (NADP)	1.15259166608247	NM_inf - NM	B08NADP_GAPDH (NADP)
+A16_NADP-Isocitrate DH	0.516381369717147	NM_inf - NM	A16_NADP-Isocitrate DH
+A06_Phosphoglucomutase	0.369727280715853	NM_inf - NM	A06_Phosphoglucomutase
+A14_Phosphoglycerokinase_direct	-0.230842948024529	NM_inf - NM	A14_Phosphoglycerokinase_direct
+C03F_Fructokinase	0.498221142988335	NM_inf - NM	C03F_Fructokinase
+A10_Neutral Invertase	0.877266337873358	NM_inf - NM	A10_Neutral Invertase
+B11max_Rubisco (maximal)	-0.878903675627081	NM_inf - NM	B11max_Rubisco (maximal)
+B02_AGPase1	0.384045638488532	AM_inf - AM	B02_AGPase
+A21_Alanine aminotransferase1	0.806319430050607	AM_inf - AM	A21_Alanine aminotransferase
+A22_Aspartate aminotransferase1	-0.15906302762607	AM_inf - AM	A22_Aspartate aminotransferase
+A24_Citrate synthase1	1.87009106056892	AM_inf - AM	A24_Citrate synthase
+A15_G6P DH1	0.495979654276248	AM_inf - AM	A15_G6P DH
+C03G_Glucokinase1	1.38579373827182	AM_inf - AM	C03G_Glucokinase
+D02_Glutamate DH (NAD)1	0.240417415731681	AM_inf - AM	D02_Glutamate DH (NAD)
+A07_Malate DH (NAD)1	-0.108756076375742	AM_inf - AM	A07_Malate DH (NAD)
+A04i_Malate DH initial (NADP)1	0.566843839851202	AM_inf - AM	A04i_Malate DH initial (NADP)
+A04t_Malate DH total (NADP)1	-0.0879296317801455	AM_inf - AM	A04t_Malate DH total (NADP)
+A13_PEP Carboxylase1	-0.376045741301925	AM_inf - AM	A13_PEP Carboxylase
+B03_Phosphofructokinase (PPi)1	0.341849907951463	AM_inf - AM	B03_Phosphofructokinase (PPi)
+A02t_Phosphoglucose Isomerase (total)1	-0.182074020509033	AM_inf - AM	A02t_Phosphoglucose Isomerase (total)
+A23_Pyruvate kinase1	-0.104958479389069	AM_inf - AM	A23_Pyruvate kinase
+B16_FBP-Aldolase1	0.372907099171759	AM_inf - AM	B16_FBP-Aldolase
+C01_Fructose-1,6-bisphosphatase (cyt)1	0.285402326065304	AM_inf - AM	C01_Fructose-1,6-bisphosphatase (cyt)
+B08NAD_GAPDH (NAD)1	0.543901988237396	AM_inf - AM	B08NAD_GAPDH (NAD)
+B08NADP_GAPDH (NADP)1	0.594742043034465	AM_inf - AM	B08NADP_GAPDH (NADP)
+A16_NADP-Isocitrate DH1	0.0624238160408286	AM_inf - AM	A16_NADP-Isocitrate DH
+A06_Phosphoglucomutase1	0.128048332377473	AM_inf - AM	A06_Phosphoglucomutase
+A14_Phosphoglycerokinase_direct1	-0.813545851689698	AM_inf - AM	A14_Phosphoglycerokinase_direct
+C03F_Fructokinase1	0.425981380537859	AM_inf - AM	C03F_Fructokinase
+A10_Neutral Invertase1	0.726174948669239	AM_inf - AM	A10_Neutral Invertase
+B11max_Rubisco (maximal)1	0.399132046655504	AM_inf - AM	B11max_Rubisco (maximal)
+B02_AGPase2	-1.16884296746102	AM - NM	B02_AGPase
+A21_Alanine aminotransferase2	-1.5389760347973	AM - NM	A21_Alanine aminotransferase
+A22_Aspartate aminotransferase2	-0.238675219454363	AM - NM	A22_Aspartate aminotransferase
+A24_Citrate synthase2	0.162331991316154	AM - NM	A24_Citrate synthase
+A15_G6P DH2	-0.463611505025271	AM - NM	A15_G6P DH
+C03G_Glucokinase2	-0.363276872351348	AM - NM	C03G_Glucokinase
+D02_Glutamate DH (NAD)2	-0.164623607469879	AM - NM	D02_Glutamate DH (NAD)
+A07_Malate DH (NAD)2	0.643238531464393	AM - NM	A07_Malate DH (NAD)
+A04i_Malate DH initial (NADP)2	-0.209844134203804	AM - NM	A04i_Malate DH initial (NADP)
+A04t_Malate DH total (NADP)2	0.236707336149061	AM - NM	A04t_Malate DH total (NADP)
+A13_PEP Carboxylase2	0.627386953986003	AM - NM	A13_PEP Carboxylase
+B03_Phosphofructokinase (PPi)2	0.134399877822084	AM - NM	B03_Phosphofructokinase (PPi)
+A02t_Phosphoglucose Isomerase (total)2	0.581205523849977	AM - NM	A02t_Phosphoglucose Isomerase (total)
+A23_Pyruvate kinase2	-0.0663668133120048	AM - NM	A23_Pyruvate kinase
+B16_FBP-Aldolase2	0.30311065675781	AM - NM	B16_FBP-Aldolase
+C01_Fructose-1,6-bisphosphatase (cyt)2	-0.232514385891069	AM - NM	C01_Fructose-1,6-bisphosphatase (cyt)
+B08NAD_GAPDH (NAD)2	-0.226753740366151	AM - NM	B08NAD_GAPDH (NAD)
+B08NADP_GAPDH (NADP)2	-0.0356685002252206	AM - NM	B08NADP_GAPDH (NADP)
+A16_NADP-Isocitrate DH2	-0.0527462168966064	AM - NM	A16_NADP-Isocitrate DH
+A06_Phosphoglucomutase2	-0.0946275056210339	AM - NM	A06_Phosphoglucomutase
+A14_Phosphoglycerokinase_direct2	0.365653476269522	AM - NM	A14_Phosphoglycerokinase_direct
+C03F_Fructokinase2	0.0219938901076375	AM - NM	C03F_Fructokinase
+A10_Neutral Invertase2	-0.23930571155908	AM - NM	A10_Neutral Invertase
+B11max_Rubisco (maximal)2	-0.579107484608544	AM - NM	B11max_Rubisco (maximal)
+B02_AGPase3	-0.77116162518891	AM_inf - NM_inf	B02_AGPase
+A21_Alanine aminotransferase3	-0.687245872663745	AM_inf - NM_inf	A21_Alanine aminotransferase
+A22_Aspartate aminotransferase3	-0.835722756782177	AM_inf - NM_inf	A22_Aspartate aminotransferase
+A24_Citrate synthase3	-0.23801474822935	AM_inf - NM_inf	A24_Citrate synthase
+A15_G6P DH3	-0.131705877144525	AM_inf - NM_inf	A15_G6P DH
+C03G_Glucokinase3	-0.680072731535859	AM_inf - NM_inf	C03G_Glucokinase
+D02_Glutamate DH (NAD)3	-0.221106140723316	AM_inf - NM_inf	D02_Glutamate DH (NAD)
+A07_Malate DH (NAD)3	-0.61735455835863	AM_inf - NM_inf	A07_Malate DH (NAD)
+A04i_Malate DH initial (NADP)3	-0.327252734833863	AM_inf - NM_inf	A04i_Malate DH initial (NADP)
+A04t_Malate DH total (NADP)3	-0.328376328299608	AM_inf - NM_inf	A04t_Malate DH total (NADP)
+A13_PEP Carboxylase3	-1.07866533151847	AM_inf - NM_inf	A13_PEP Carboxylase
+B03_Phosphofructokinase (PPi)3	-0.0138259003515078	AM_inf - NM_inf	B03_Phosphofructokinase (PPi)
+A02t_Phosphoglucose Isomerase (total)3	-0.372219443043038	AM_inf - NM_inf	A02t_Phosphoglucose Isomerase (total)
+A23_Pyruvate kinase3	-0.162106176953449	AM_inf - NM_inf	A23_Pyruvate kinase
+B16_FBP-Aldolase3	0.161595795998103	AM_inf - NM_inf	B16_FBP-Aldolase
+C01_Fructose-1,6-bisphosphatase (cyt)3	-0.434301476114104	AM_inf - NM_inf	C01_Fructose-1,6-bisphosphatase (cyt)
+B08NAD_GAPDH (NAD)3	0.0209039651268998	AM_inf - NM_inf	B08NAD_GAPDH (NAD)
+B08NADP_GAPDH (NADP)3	-0.593518123273222	AM_inf - NM_inf	B08NADP_GAPDH (NADP)
+A16_NADP-Isocitrate DH3	-0.506703770572924	AM_inf - NM_inf	A16_NADP-Isocitrate DH
+A06_Phosphoglucomutase3	-0.336306453959414	AM_inf - NM_inf	A06_Phosphoglucomutase
+A14_Phosphoglycerokinase_direct3	-0.217049427395646	AM_inf - NM_inf	A14_Phosphoglycerokinase_direct
+C03F_Fructokinase3	-0.0502458723428383	AM_inf - NM_inf	C03F_Fructokinase
+A10_Neutral Invertase3	-0.390397100763199	AM_inf - NM_inf	A10_Neutral Invertase
+B11max_Rubisco (maximal)3	0.698928237674041	AM_inf - NM_inf	B11max_Rubisco (maximal)
+B02_AGPase4	-0.784797328972493	AM_inf - NM	B02_AGPase
+A21_Alanine aminotransferase4	-0.732656604746692	AM_inf - NM	A21_Alanine aminotransferase
+A22_Aspartate aminotransferase4	-0.397738247080433	AM_inf - NM	A22_Aspartate aminotransferase
+A24_Citrate synthase4	2.03242305188508	AM_inf - NM	A24_Citrate synthase
+A15_G6P DH4	0.0323681492509769	AM_inf - NM	A15_G6P DH
+C03G_Glucokinase4	1.02251686592047	AM_inf - NM	C03G_Glucokinase
+D02_Glutamate DH (NAD)4	0.0757938082618015	AM_inf - NM	D02_Glutamate DH (NAD)
+A07_Malate DH (NAD)4	0.534482455088651	AM_inf - NM	A07_Malate DH (NAD)
+A04i_Malate DH initial (NADP)4	0.356999705647398	AM_inf - NM	A04i_Malate DH initial (NADP)
+A04t_Malate DH total (NADP)4	0.148777704368916	AM_inf - NM	A04t_Malate DH total (NADP)
+A13_PEP Carboxylase4	0.251341212684077	AM_inf - NM	A13_PEP Carboxylase
+B03_Phosphofructokinase (PPi)4	0.476249785773547	AM_inf - NM	B03_Phosphofructokinase (PPi)
+A02t_Phosphoglucose Isomerase (total)4	0.399131503340945	AM_inf - NM	A02t_Phosphoglucose Isomerase (total)
+A23_Pyruvate kinase4	-0.171325292701074	AM_inf - NM	A23_Pyruvate kinase
+B16_FBP-Aldolase4	0.676017755929569	AM_inf - NM	B16_FBP-Aldolase
+C01_Fructose-1,6-bisphosphatase (cyt)4	0.0528879401742355	AM_inf - NM	C01_Fructose-1,6-bisphosphatase (cyt)
+B08NAD_GAPDH (NAD)4	0.317148247871245	AM_inf - NM	B08NAD_GAPDH (NAD)
+B08NADP_GAPDH (NADP)4	0.559073542809244	AM_inf - NM	B08NADP_GAPDH (NADP)
+A16_NADP-Isocitrate DH4	0.00967759914422217	AM_inf - NM	A16_NADP-Isocitrate DH
+A06_Phosphoglucomutase4	0.0334208267564389	AM_inf - NM	A06_Phosphoglucomutase
+A14_Phosphoglycerokinase_direct4	-0.447892375420175	AM_inf - NM	A14_Phosphoglycerokinase_direct
+C03F_Fructokinase4	0.447975270645497	AM_inf - NM	C03F_Fructokinase
+A10_Neutral Invertase4	0.48686923711016	AM_inf - NM	A10_Neutral Invertase
+B11max_Rubisco (maximal)4	-0.17997543795304	AM_inf - NM	B11max_Rubisco (maximal)
