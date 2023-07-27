@@ -100,26 +100,89 @@ pls3 <- spls(data[["Met"]], data[["Pph"]],
              keepX = list.keepX, keepY = list.keepY)
 
 # plot features of first PLS
-plotVar(pls1, cutoff = 0.5, title = "(a) miRNA vs mRNA", 
-        legend = c("miRNA", "mRNA"), 
+plotVar(pls1, cutoff = 0.5, title = "(a) enzymomics vs metabolomics", 
+        legend = c("enzymomics", "metabolomics"), 
         var.names = FALSE, style = 'graphics', 
         pch = c(16, 17), cex = c(2,2), 
         col = c('darkorchid', 'lightgreen'))
 
 # plot features of second PLS
-plotVar(pls2, cutoff = 0.5, title = "(b) miRNA vs proteomics", 
-        legend = c("miRNA", "proteomics"), 
+plotVar(pls2, cutoff = 0.5, title = "(b) enzymomics vs phosphoproteomics", 
+        legend = c("enzymomics", "phosphoproteomics"), 
         var.names = FALSE, style = 'graphics', 
         pch = c(16, 17), cex = c(2,2), 
-        col = c('darkorchid', 'lightgreen'))
+        col = c('darkorchid', 'blue'))
 
 # plot features of third PLS
-plotVar(pls3, cutoff = 0.5, title = "(c) mRNA vs proteomics", 
-        legend = c("mRNA", "proteomics"), 
+plotVar(pls3, cutoff = 0.5, title = "(c) metabolomics vs phosphoproteomics", 
+        legend = c("metabolomics", "phosphoproteomics"), 
         var.names = FALSE, style = 'graphics', 
         pch = c(16, 17), cex = c(2,2), 
-        col = c('darkorchid', 'lightgreen'))
+        col = c('lightgreen', 'blue'))
 
 
 ```
+```{r}
 
+pls1 <- spls(data[["Enz"]], data[["Met"]], ncomp = 1, keepX = 24, keepY = 24)
+pls2 <- spls(data[["Enz"]], data[["Pph"]], ncomp = 1, keepX = 24, keepY = 24)
+pls3 <- spls(data[["Met"]], data[["Pph"]], ncomp = 1, keepX = 24, keepY = 24)
+
+
+```
+```{r}
+
+cor(pls1$variates$X, pls1$variates$Y) # calculate correlation of miRNA and mRNA
+cor(pls2$variates$X, pls2$variates$Y) # calculate correlation of miRNA and proteins
+cor(pls3$variates$X, pls3$variates$Y) # calculate correlation of mRNA and proteins
+
+```
+
+```{r}
+
+design = matrix(0.1, ncol = length(data), nrow = length(data), # for square matrix filled with 0.1s
+                dimnames = list(names(data), names(data)))
+diag(design) = 0 # set diagonal to 0s
+
+design
+
+```
+
+```{r}
+
+basic.diablo.model = block.splsda(X = data, Y = Y, ncomp = 5, design = design) # form basic DIABLO model
+
+```
+```{r}
+## ---- fig.cap = "FIGURE 2: Choosing the number of components in `block.plsda` using `perf()` with 10 × 10-fold CV function in the `breast.TCGA` study. Classification error rates (overall and balanced, see Section 7.3) are represented on the y-axis with respect to the number of components on the x-axis for each prediction distance presented in PLS-DA"----
+
+perf.diablo = perf(basic.diablo.model, validation = 'Mfold', folds = 10, nrepeat = 10) # run component number tuning with repeated CV
+
+plot(perf.diablo) # plot output of tuning
+
+```
+```{r}
+ncomp = perf.diablo$choice.ncomp$WeightedVote["Overall.BER", "centroids.dist"] # set the optimal ncomp value
+perf.diablo$choice.ncomp$WeightedVote # show the optimal choice for ncomp for each dist metric
+```
+
+```{r}
+
+ test.keepX = list (Met = c(5:9, seq(10, 18, 2), seq(20,30,5)),
+                    Enz = c(5:9, seq(10, 18, 2), seq(20,30,5)),
+                    Pph = c(5:9, seq(10, 18, 2), seq(20,30,5)))
+ 
+ t1 = proc.time()
+ tune.MIR = tune.block.splsda(X = data, Y = Y, ncomp = ncomp,
+                               test.keepX = test.keepX, design = design,
+                              validation = 'Mfold', folds = 10, nrepeat = 1,
+                              cpus = 2, dist = "centroids.dist")
+ t2 = proc.time()
+ running_time = t2 - t1; running_time
+
+list.keepX = tune.MIR$choice.keepX
+list.keepX
+
+save(tune.MIR,list.keepX, file = 'output/result-MIR-diablo_design0.1.RData')
+
+```
