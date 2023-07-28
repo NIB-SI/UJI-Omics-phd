@@ -1,0 +1,38 @@
+Solyc01g111980.3.1	Lysine histidine transporter-like 8 (AHRD V3.3 *** A0A2G2XYM3_CAPAN) LHT8
+Solyc02g065470.1.1	Pathogenesis-related protein.1			PR1
+Solyc02g082930.3.1	acidic extracellular 27 kD chitinase			CHI17
+Solyc02g082950.3.1	Protein trichome birefringence-like 34 (AHRD V3.3 *** A0A2G3D7E9_CAPCH)	TBL34
+Solyc03g093240.5.1	NO-associated protein 1, chloroplastic/mitochondrial (AHRD V3.11 *** tr|A0A1J3HN92|A0A1J3HN92_NOCCA)	NOA1
+Solyc03g114580.4.1	Uridine kinase (AHRD V3.3 *** A0A200QPY2_9MAGN)	URK
+Solyc03g117280.4.1	envelope glycoprotein B (AHRD V3.3 *** AT1G80540.1)	gB
+Solyc03g160470.1.1	DUF3511 domain-containing protein (AHRD V3.11 *** tr|A0A1Q3CXE7|A0A1Q3CXE7_CEPFO)	DUF3511
+Solyc04g005350.3.1	Glycine-rich RNA-binding protein 3, mitochondrial (AHRD V3.3 *** A0A2I0XDS6_9ASPA)	GR-RBP3
+Solyc04g007250.1.1	transmembrane protein (AHRD V3.3 *** AT1G25400.2)	TP
+Solyc04g063280.3.1	ENTH/VHS, Target of Myb protein.1	TOM1																																				
+Solyc04g072000.5.1	Chitinase (AHRD V3.11 *** tr|A0A2U1LR12|A0A2U1LR12_ARTAN)	Chitinase																																				
+Solyc04g077440.4.1	Squalene epoxidase (AHRD V3.3 *** Q8GSM8_MEDTR)	SQLE
+Solyc05g007680.1.1	Arabinanase/levansucrase/invertase (AHRD V3.3 *** AT1G26761.1)	A0A4S9G124_AURPU	
+Solyc05g010280.3.1	LAG1-like longevity assurance protein (AHRD V3.3 *** A0A2U1L161_ARTAN)		LAG1-LP																																			
+Solyc05g018300.3.1	Protein phosphatase 2C and cyclic nucleotide-binding/kinase domain-containing protein (AHRD V3.3 *** A0A2G2WSK6_CAPBA) 	PP2C-CNBKDP
+Solyc05g055600.4.1	Vacuolar protein-sorting-associated protein 33-like protein (AHRD V3.3 *** A0A1J6K8K8_NICAT)	VPS33A
+Solyc06g008130.4.1	SET-domain containing protein lysine methyltransferase family protein (AHRD V3.3 *-* F4K7E3_ARATH)	PKMTs
+Solyc07g047800.3.1	NAD(P)-binding Rossmann-fold superfamily protein (AHRD V3.3 *** Q9SG99_ARATH),Pfam:PF13561	NAD(P)-bRFSP
+Solyc07g052150.4.1	Sesquiterpene synthase (AHRD V3.3 *** A0A2G3AYX6_CAPCH)	STPSs
+Solyc08g029000.3.1	Lipoxygenase (AHRD V3.3 *** K4CJW3_SOLLC)	LOX
+Solyc08g062220.3.1	Glycosyltransferase (AHRD V3.3 *** A0A218W5V3_PUNGR)	GTs
+Solyc08g067210.3.1	Dentin sialophosphoprotein-like protein (AHRD V3.3 *-* AT5G02520.2)	DCL3
+Solyc08g068710.1.1	Tyramine n-hydroxycinnamoyl transferase (AHRD V3.3 *** Q5D8C0_CAPAN)	THT
+Solyc08g075860.3.1	zinc finger B-box protein (AHRD V3.3 *** AT5G45410.5)	zf-B_box
+Solyc08g079700.3.1	Zinc finger A20 and A.1	zf-A20/1
+Solyc08g080640.2.1	NP24 protein precursor	NP24pp
+Solyc08g081190.3.1	plasma membrane intrinsic protein 1.5	PIP1.5
+Solyc09g010550.4.1	dentin sialophosphoprotein-like protein (AHRD V3.3 *-* AT5G02520.2)	DSlP
+Solyc09g011410.4.1	Copper ion transmembrane transporter (AHRD V3.3 *-* A0A2U1LAH1_ARTAN)	Ctr
+Solyc10g007410.4.1	Gamma-glutamyl hydrolase (AHRD V3.3 *** B2Z9Y5_SOLLC)	GGH 
+Solyc10g079850.2.1	AP-5 complex subunit beta-like protein (AHRD V3.3 *** Q9LT22_ARATH)	AP5B	
+Solyc11g013110.2.1	2-oxoglutarate (2OG) and Fe(II)-dependent oxygenase superfamily protein (AHRD V3.3 *** AT1G49390.1)	2OGoxy
+Solyc11g069800.1.1	Allene oxide synthase, chloroplastic (AHRD V3.3 *** A0A2G2YI94_CAPAN)	AOS
+Solyc12g005720.1.1	Cysteine-rich receptor-like protein kinase (AHRD V3.3 *** A0A2K3JS14_TRIPR)	CRKs
+Solyc01g081190.4.1	Calcium-binding EF hand family protein (AHRD V3.3 *** A0A2U1PWG2_ARTAN) CaBP-EF
+Solyc01g103940.3.1      Protein kinase (AHRD V3.3 *** O65765_CRAPL)                          PK
+	
