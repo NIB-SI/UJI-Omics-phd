@@ -1,0 +1,53 @@
+geneDesc	AM24-NM24	AMinf24-AM24	NMinf24-NM24	AMinf24-NM24	AMinf24-NMinf24	AM48-NM48	AMinf48-AM48	NMinf48-NM48	AMinf48-NM48	AMinf48-NMinf48		
+DHDMIF-o-glu	-2.372788745	1.799341962		0.19045734						2.865258974		
+Eriocitrin	-1.799549584	1.290714986	-0.926512197				-0.467165678	-2.217397427	-0.583325953	1.634071474		
+Farrerol												
+Homoplantaginin	-1.477005211	1.340043764						-1.668206777		2.0591162		
+Isorhamnetin 3-O-neohesperidin	-1.415418726		-0.542175529	-0.444334462				-0.513848129		0.522292779		
+Luteolin	0.600284586	-0.501269761				-0.480166844		0.393156611	-0.417394258	-0.810550869		
+Narirutin	-1.60805319							-1.158753				
+Neohesperidin												
+Plantagoside	-1.376237414	1.475687758						-1.108626062				
+Quercetin-3-O-sophoroside	2.517825618	-2.077994128										
+Quercitrin	-0.373798848											
+Spinosin	-1.637343266	1.3873488	-0.489490216			0.248399222	-0.3096447	-0.982786701		0.921541223		
+3-Dehidroshikimate												
+4-Coumaryl alcohol		1.247998183						-1.481671398		1.788119601		
+Avicularin						-0.2545817			-0.247240717	-0.249043063		
+Bavachin												
+Guaijaverin							-2.627946214		-3.025204414	-3.920271397		
+Isoquercitrin	-0.561773662	0.553989462				0.870675503	-0.631258163	0.111878289	0.23941734			
+Kaempferitrin												
+Shikimic acid												
+Tomatine										0.872422131		
+2'-Deoxyguanosine 5'-monophosphate	-1.75006776	1.98318112	-1.010760787		1.243874147	-1.750067764	1.983181094	-1.010760786		1.243874116		
+Acanthoside B	-2.499981644	2.00578277								3.259649926		
+5-Demethylnobiletin												
+5-methoxyflavone												
+Flavone										-0.537832177		
+I3C												
+Kaempferol												
+L-Homocysteine										-3.019227937		
+Liquiritigenin												
+Nobiletin												
+Phe								-1.36396678		1.586094485		
+Rutin		1.157812629										
+Tangeretin	-1.744710306	1.538743322										
+Tetrahydropiperine 								1.02485235				
+Vitexicarpin												
+6-Benzylaminopurine												
+6-Hydroxypurine	-1.507303075	1.581321491				0.555518922		-1.953111298	0.631366801	2.584478098		
+Apigenin 7-glucoside								-1.999647438				
+Arginine												
+Coumarine							3.798297312		4.630667281	2.53551655		
+IAA-L-Ala								-1.368580434		1.035130296		
+Solasodine		0.436402652										
+Thr	-1.535111517	1.670221944						-1.426129645		2.486192758		
+Trigonelline	-1.010676437							-1.622953579		1.748657194		
+Tyr									2.158012808	1.751682202		
+Riboflavin	-2.742145089	2.726627436						-2.638762988		2.469997353		
+4-Imidazoleacetate	-2.125910785											
+1-Methylnicotinamide	-1.507303059	1.581321473				0.555518922		-1.953111298	0.631366801	2.584478098		
+2-Phenylacetamide	-1.043273573	1.386015136		0.623032024				-2.112092684		2.52895751		
+Corticosterone												
+Hydrocortisone							1.677289949		3.460016768	3.222277837		
