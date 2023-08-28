@@ -1,0 +1,347 @@
+---
+title: "DEG_analysis_RNAseq_Tomato"
+author: "Pedro"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    fig_caption: yes
+    self_contained: yes
+    fig_width: 9
+    fig_height: 8
+    toc: yes
+    toc_depth: 5
+    number_sections: yes
+    theme: flatly
+    highlight: tango
+  pdf_document:
+    toc: yes
+    toc_depth: '5'
+  word_document:
+    toc: yes
+    toc_depth: '5'
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE, echo=FALSE, warning=FALSE}
+knitr::opts_chunk$set(#dev = c('pdf', 'png'),  # this embeds pdf and crates scrolable blocks
+                      dev = c('png'), 
+                      fig.align = 'center', 
+                      fig.height = 8, 
+                      fig.width = 9 ,
+                      warning = FALSE, message = FALSE
+                      )
+
+# options(knitr.table.format = "html")
+
+```
+
+#Load the libraries
+
+```{r}
+# MIR in tomato against B.cinerea. RNA seq, four treatments, 2 timepoints, 3 biological replicates
+
+
+# Loading the packages into the working environment:
+library("limma")
+library("edgeR")
+library("stringr")
+library("readxl")
+library("RColorBrewer")
+library("ggplot2")
+```
+
+#Data loading
+
+##Raw data load
+```{r}
+# Specifying the working directory:
+setwd("C:/Users/maria/OneDrive/Escritorio/PROTEOMICS/input")
+
+fp <- file.path("..", "output") #the file for your outputs
+
+### Importing the reads:
+datos_hoja <- as.data.frame(read_xlsx("All_proteins_for_obtaining_GSEA.xlsx"))
+rownames(datos_hoja) <- datos_hoja[,1]
+datos_hoja <- datos_hoja[,-1]
+
+# Checking column/rownames and the dimensions of the imported table - this should correspond to your sample count
+colnames(datos_hoja)
+rownames(datos_hoja)
+dim(datos_hoja)
+
+
+##Name groups and sort
+
+```{r}
+# Importing phenodata
+phenodata <- read.csv2("Analytes.csv", sep = ",") #This is a file describing 
+ind = match(phenodata$SampleName, colnames(datos_hoja))
+phenodata$SampleName == colnames(datos_hoja)[ind]
+datos_hoja = datos_hoja[,ind]
+
+# Define sample groups for later comparisons
+group <- factor(phenodata$Group, levels = unique(phenodata$Group))
+levels(group)
+
+
+# Specify library sizes for each sample:
+reads.raw <- DGEList(counts = datos_hoja, group = group)
+```
+
+#Exporting normalized counts for GSEA
+```{r}
+#  Export normalized counts for GSEA: keeping all genes
+reads.norm <- calcNormFactors(reads.raw, method = "TMM")
+write.table(cpm(reads.norm, normalized.lib.sizes = TRUE, log = F, prior.count = 2),  
+            file="normalized_counts_forGSEA.txt",
+            sep="\t",
+            quote=FALSE, row.names=TRUE)
+#log is FALSE because you want to normalize but not transform your data
+
+#cleaning stuff
+rm(reads.norm)
+gc()
+```
+
+#Filter low expressed reads
+
+```{r}
+# Filter low expressed reads
+keep.exprs <- filterByExpr(reads.raw,
+                           group = group,
+                           min.count = 30,
+                           min.total.count = 60) #Minimun counts per sample and per row,                                                   respectively
+table(keep.exprs)
+reads.norm <- reads.raw[keep.exprs, keep.lib.sizes=TRUE]
+reads.norm <- calcNormFactors(reads.norm)
+reads.norm$samples ## check if it makes sense per your experiment
+```
+
+#Plots to checck the data
+
+```{r}
+## Plot QC plots using different functions
+repl_number <- 3
+
+display.brewer.all(colorblindFriendly = T)
+#col = c(rep("gray", repl_number), rep("blue", repl_number), rep("yellow", repl_number), rep("red", repl_number))
+col = brewer.pal(10, "Paired")
+
+```
+
+##Box plot before and after normalization
+
+```{r}
+opar <- par()
+par(mar=c(7,5,2,1), mfrow=c(1,2), cex = 0.5)
+  boxplot(log(reads.raw$counts+1,10), las=2, ylab="log10(counts)", 
+          col=col, main = "raw counts", cex.axis = 0.5)
+  boxplot(log(reads.norm$counts+1,10), las=2, ylab="log10(counts)", 
+          col=col, main = "TMM-normalized counts",
+          cex.axis = 0.5, cex = 0.25)
+par(opar)
+```
+
+##Density diagram before and after
+
+```{r}
+par(mfrow=c(1,2), cex = 0.5)
+  nsamples <- ncol(reads.raw$counts)
+  lcpm <- log(as.matrix(reads.raw$counts),10)
+  plot(density(lcpm), col=col[1], lwd=2, ylim=c(0,0.4), las=2, main="", xlab="") #Genes that have similar counts
+  title(main="Before filtering low expressed genes", xlab="Log-cpm")
+  abline(v=0, lty=3)
+    for (i in 2:nsamples){
+      den <- density(lcpm[,i])
+      lines(den$x, den$y, col=col[i], lwd=2)
+    }
+
+  lcpm <- log(as.matrix(reads.norm$counts),10)
+  plot(density(lcpm), col=col[1], lwd=2, ylim=c(0,1), las=2, main="", xlab="")
+  title(main="After filtering low expressed genes", xlab="Log-cpm")
+  abline(v=0, lty=3)
+    for (i in 2:nsamples){
+      den <- density(lcpm[,i])
+      lines(den$x, den$y, col=col[i], lwd=2)
+  }
+  legend("topright", colnames(lcpm), text.col=col, bty="n")
+par(opar)
+```
+
+##MDS analysis
+
+```{r}
+####asd####
+
+col.group <- rep(rep(col, each = 3), 4) 
+levels(col.group) <- brewer.pal(nlevels(col.group), "Paired")
+col.group <- as.character(col.group)
+
+lcpm <- log(as.matrix(reads.norm$counts),10)
+
+plotMDS(lcpm, top = 1000, labels = group, col = as.numeric(reads.norm$samples$group), 
+        pch = as.numeric(reads.norm$samples$group), cex = 0.5)
+legend("topright", legend = reads.norm$samples$group,
+       text.col=as.numeric(reads.norm$samples$group), bty="n", cex = 0.5, ncol = 4)
+```
+
+#Calculation for statistics
+
+##Create design matrix
+```{r}
+# Calculation of statistics
+
+########################
+## limma-voom protocol
+# Create design matrix
+design <- model.matrix(~0+group)
+colnames(design)
+colnames(design) <- levels(group)
+rownames(design) <- phenodata$SampleName
+design
+```
+
+##Voom graph
+
+```{r}
+# Transform RNA-Seq Data Ready for Linear Modelling
+par(mfrow=c(1,1), cex = 0.5)
+v <- voom(counts = reads.norm, design = design, plot = TRUE)
+par(opar)
+```
+
+##Designing contrasts
+
+```{r}
+# Fit linear model for each gene given a series of samples, define contrasts and fit the data given a linear model.
+fit <- lmFit(v, design)
+contrastMatrix <- makeContrasts("mycorrhized_24h-control_24h",
+                                "infected_24h-control_24h",
+                                "myco_infected_24h-control_24h",
+                                "myco_infected_24h-mycorrhized_24h",
+                                "myco_infected_24h-infected_24h",
+                                "mycorrhized_48h-control_48h",
+                                "infected_48h-control_48h",
+                                "myco_infected_48h-control_48h",
+                                "myco_infected_48h-mycorrhized_48h",
+                                "myco_infected_48h-infected_48h",      
+                                levels=design)
+
+fit2 <- contrasts.fit(fit, contrastMatrix)
+fit2 <- eBayes(fit2)
+#https://support.bioconductor.org/p/9142476/ contrast of contrast?
+```
+
+## Combine different contrasts into one table
+
+```{r}
+## Combine different contrasts into one table
+colnames(fit2$coefficients) # to get the positions of comparisons from fit2
+
+results <- rownames(reads.norm$counts)
+
+cnt = 1
+
+mydf = NULL
+
+for (colname in colnames(fit2$coefficients) ) {
+  topTn <- topTable(fit2, coef= colname, number=Inf, sort.by="none")#[, c(1,5)]
+  # colnames(topTn) <- c(paste(colname, colnames(topTn)[1],sep=" "),
+  #                      paste(colname, colnames(topTn)[2],sep=" "))
+  # results <- cbind(results, topTn)
+  tmp = cbind(rownames(topTn), topTn)
+  colnames(tmp)[1] = 'geneID'
+  
+  write.table(tmp, 
+              file = paste0(sprintf("%03d",cnt),"_", colname, ".txt"), 
+              append = FALSE, 
+              quote = FALSE, 
+              sep = "\t",
+              eol = "\n", 
+              na = "NA",
+              dec = ".",
+              row.names = FALSE,
+              col.names = TRUE, 
+              qmethod = c("escape"),
+              fileEncoding = "UTF-8")
+  if (cnt ==1)  {
+    mydf = tmp[, grep('^geneID$|^logFC$|^adj.P.Val$', colnames(tmp))]
+    colnames(mydf)[(ncol(mydf)-1):ncol(mydf)] = paste(colname, 
+                                                      colnames(mydf)[(ncol(mydf)-1):ncol(mydf)],
+                                                      sep = ' ||| ')
+  } else {
+    
+    mydf = merge(mydf, tmp[, grep('^geneID$|^logFC$|^adj.P.Val$', colnames(tmp))],
+                 by = c('geneID'),
+                 all.x = TRUE, all.y = TRUE)
+    colnames(mydf)[(ncol(mydf)-1):ncol(mydf)] = paste(colname, 
+                                                      colnames(mydf)[(ncol(mydf)-1):ncol(mydf)],
+                                                      sep = ' ||| ')
+  }
+  
+  
+  cnt = cnt + 1
+  
+}
+
+dim(mydf)
+ind1 = grep('logFC', colnames(mydf))
+ind2 = setdiff(grep('logFC', colnames(mydf), invert = TRUE), 1)
+mydf = mydf[, c(1, ind1, ind2)]
+# colnames(results)[1] <- "GeneID"
+write.table(mydf, 
+            file = paste0('000_merged.results', ".txt"), 
+            append = FALSE, 
+            quote = FALSE, 
+            sep = "\t",
+            eol = "\n", 
+            na = "NA",
+            dec = ".",
+            row.names = FALSE,
+            col.names = TRUE, 
+            qmethod = c("escape"),
+            fileEncoding = "UTF-8")
+
+
+```
+
+# output results table with logFC and adj.p.value and normalized counts
+
+```{r}
+# output results table with logFC and adj.p.value and normalized counts
+
+output.results.norm <- merge(x=mydf, y=cpm(reads.norm$counts), by.x="geneID", by.y="row.names", all.x = TRUE, all.y= FALSE, sort= FALSE)
+head(output.results.norm)
+# head(output.results.norm)
+
+# write.table(output.results.norm[-1], file="results_comparisons-with-norm-counts.txt", sep="\t", quote=TRUE, row.names=FALSE)
+write.table(mydf, 
+            file = paste0('000_merged.results.with.normalised.data', ".txt"), 
+            append = FALSE, 
+            quote = FALSE, 
+            sep = "\t",
+            eol = "\n", 
+            na = "NA",
+            dec = ".",
+            row.names = FALSE,
+            col.names = TRUE, 
+            qmethod = c("escape"),
+            fileEncoding = "UTF-8")
+
+
+
+
+
+
+```
+
+
+# session info
+
+```{r}
+
+sessionInfo()
+
+```
+
