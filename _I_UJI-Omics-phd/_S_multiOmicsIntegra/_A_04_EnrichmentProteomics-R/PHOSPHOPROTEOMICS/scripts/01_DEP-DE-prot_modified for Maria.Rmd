@@ -1,0 +1,1096 @@
+---
+title: "01_DEP-subs-prot"
+author: "Pedro, zagor"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    fig_caption: yes
+    self_contained: yes
+    fig_width: 12
+    fig_height: 9
+    toc: yes
+    toc_depth: 2
+    toc_float: true
+    number_sections: yes
+    theme: flatly
+    highlight: tango
+  pdf_document:
+    toc: yes
+    toc_depth: '2'
+  word_document:
+    toc: yes
+    toc_depth: '2'
+editor_options:
+  chunk_output_type: console
+---
+
+
+```{r setup, include=FALSE, echo=FALSE, warning=FALSE}
+knitr::opts_chunk$set(#dev = c('pdf', 'png'),  # this embeds pdf and crates scrolable blocks
+                      dev = c('png'), 
+                      fig.align = 'center', 
+                      fig.height = 8, 
+                      fig.width = 9 ,
+                      warning = FALSE, message = FALSE
+                      )
+# options(knitr.table.format = "html")
+
+```
+
+
+
+# Libraries
+
+```{r,  echo=TRUE, warning=FALSE, message=FALSE}
+
+rm(list = ls(all = TRUE))
+gc()
+
+set.seed(123456)
+
+
+`%nin%` = Negate(`%in%`)
+
+library(RColorBrewer)
+
+
+#  if (!require("BiocManager", quietly = TRUE))
+#      install.packages("BiocManager")
+#  
+# BiocManager::install("DEP")
+# BiocManager::install("fgsea")
+# BiocManager::install("GEOquery")
+# BiocManager::install("limma", force = TRUE)
+# BiocManager::install("BiocGenerics")
+# 
+# install.packages("ggplot2")
+
+library(ggplot2)
+library(DEP)
+library(magrittr)
+library(fgsea)
+library(data.table)
+library(ggplot2)
+library(stats)
+# library(GEOquery)
+library(limma)
+library(BiocGenerics)
+
+
+```
+
+# Palletes
+
+<https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html#the-color-scales>
+
+<https://renenyffenegger.ch/notes/development/languages/R/packages/RColorBrewer/index>
+
+<https://r-charts.com/color-palettes/#google_vignette>
+
+```{r}
+
+palette1 = paletteer::paletteer_c("ggthemes::Blue", 1)
+palette2 = paletteer::paletteer_c("ggthemes::Orange", 1)
+palette3 = paletteer::paletteer_c("ggthemes::Red", 1)
+palette4 = paletteer::paletteer_c("ggthemes::Green", 1)
+palette_groups = c(palette1, palette2, palette3, palette4)
+
+pie(rep(1, length(palette_groups)), col = palette_groups)
+
+palette_all = c(rep(palette1, 4), rep(palette2, 3), rep(palette3, 4), rep(palette4, 4))
+pie(rep(1, length(palette_all)), col = palette_all)
+
+```
+
+
+# contrasts
+
+see ```../input/forComparisons.txt``` file
+
+
+
+```{r,  echo=TRUE, warning=FALSE, message=FALSE}
+
+# setwd("C:/Users/maria/Downloads/Fosfoproteome")
+
+fp = file.path('..', 'input')
+fn = 'forComparisons.txt'
+
+forComparisons = data.table::fread(file.path(fp, fn), header = TRUE)
+data.table::setDF(forComparisons)
+
+selection = cbind(c(forComparisons$stress, forComparisons$mock), 
+                  c(forComparisons$timeS, forComparisons$timeC))
+selection = as.data.frame(selection[!duplicated(selection), ])
+colnames(selection) = c('Treatment', 'SamplingTime')
+# add leading zero to sort better
+# selection$SamplingTime = sprintf('%05d', as.numeric(selection$SamplingTime))
+selection$TreatmentxSamplingTime = paste(selection$Treatment, selection$SamplingTime, sep = '_')
+
+
+selection = selection[order(selection$SamplingTime, selection$Treatment), ]
+# print(selection)
+
+# forComparisons$timeS = sprintf('%05d', as.numeric(forComparisons$timeS))
+# forComparisons$timeC = sprintf('%05d', as.numeric(forComparisons$timeC))
+
+
+```
+
+
+
+# input
+
+## data
+
+
+```{r,  echo=TRUE, warning=FALSE, message=FALSE}
+
+fn = 'AllProteins_PhosphoLYCES_new_.xlsx'
+
+ignore = 1:3
+
+Prot = openxlsx::read.xlsx(xlsxFile = file.path(fp, fn),
+                           sheet = 1,
+                           startRow = 1,
+                           colNames = TRUE,
+                           rowNames = FALSE,
+                           detectDates = FALSE,
+                           skipEmptyRows = TRUE,
+                           skipEmptyCols = TRUE,
+                           rows = NULL,
+                           cols = NULL,
+                           check.names = FALSE,
+                           sep.names = ".",
+                           namedRegion = NULL,
+                           na.strings = "NA",
+                           fillMergedCells = FALSE
+                           )
+rownames(Prot) = Prot[, 1]
+Prot = Prot[, -ignore]
+Prot = t(Prot)
+
+# ### Importing the reads:
+# 
+# fn = 'Prot_abundances_ITAG41_forR.csv'
+# 
+# Prot <- as.data.frame(read.csv2(file.path(fp, fn))) #load your archive
+# rownames(Prot) <- Prot[,1] #selection as rownames your genesID column
+# Prot <- Prot[,-1] #deletion geneID column as is already rowname
+
+```
+
+
+
+
+## phenodata
+
+```{r,  echo=TRUE, warning=FALSE, message=FALSE}
+
+
+fn = 'Phenodata Phosphoprotemoics.txt'
+
+pheno = data.table::fread(file.path(fp, fn), header = TRUE)
+data.table::setDF(pheno)
+
+
+
+all(colnames(Prot) == pheno$SampleName)
+# add leading zero to sort better
+# pheno$Min = sprintf('%05d', pheno$Min)
+pheno$Min = pheno$Time
+
+
+```
+
+
+
+
+set 0 to NA
+
+- notice that sometimes samples are names as ```_1h_``` and sometimes as ```_1_h```; same goer for min
+
+```{r,  echo=TRUE, warning=FALSE, message=FALSE}
+
+# colnames(Prot) = paste(pheno$Condition, pheno$Min, sep = '_')
+# all(colnames(Prot) %in% selection$TreatmentxSamplingTime)
+
+
+table(is.na(Prot))
+table(Prot == 0)
+Prot[Prot == 0] = NA
+table(Prot == 0)
+table(is.na(Prot))
+typeof(Prot)
+
+
+myProteomics = as.matrix(Prot)
+
+cn = colnames(myProteomics)
+rn = rownames(myProteomics)
+typeof(myProteomics)
+range(myProteomics, na.rm = TRUE)
+
+
+myProteomics0 = myProteomics
+myProteomics0[is.na(myProteomics0)] = 0
+
+
+
+```
+
+
+# log transformation
+
+## Density plots
+
+
+```{r,  echo=TRUE, warning=FALSE, message=FALSE}
+
+
+
+plot(density(myProteomics0),  main = 'with zeroes "raw"')
+plot(density(log(myProteomics0, 10)), main = 'NA as 0; log10')
+plot(density(log(myProteomics0, 2)), main = 'NA as 0; log2')
+
+
+
+df = data.frame(cbind(rn, myProteomics))
+typeof(df)
+colnames(df)[1] = 'pID'
+P.l = tidyr::gather(df, group, value, colnames(df)[2]:colnames(df)[ncol(df)], factor_key = FALSE)
+
+
+P.l$group = as.factor(gsub('_1$|_2$|_3$|_4$', '', P.l$group))
+P.l$log10 = log(as.numeric(P.l$value), 10)
+P.l$log2 = log(as.numeric(P.l$value), 2)
+
+#Again the library bc I always have problems with ggplot
+# library(ggplot2)
+
+# for(i in unique(pheno$Condition)) {
+#   
+#   subset = P.l[grep(i, P.l$group), ]
+#   subset$group = droplevels(subset$group)
+#   
+#   g = ggplot(data = subset, aes(x = log10, group = group, fill = group)) +
+#     geom_density(adjust=1.5, alpha=.4) +
+#     ggtitle(i)
+#   
+#   plot(g)
+#   
+# }
+
+  g = ggplot(data = P.l, aes(x = log10, group = group, fill = group)) +
+    geom_density(adjust=1.5, alpha=.4) +
+    scale_color_manual(values=palette_groups) + 
+    ggtitle('24h')
+  
+  plot(g)
+# 
+# for(i in unique(pheno$Condition)) {
+#   
+#   subset = P.l[grep(i, P.l$group), ]
+#   subset$group = droplevels(subset$group)
+#   
+#   g = ggplot(data = subset, aes(x = log2, group = group, fill = group)) +
+#     geom_density(adjust=1.5, alpha=.4) +
+#     ggtitle(i)
+#   
+#   plot(g)
+#   
+# }
+
+
+  g = ggplot(data = P.l, aes(x = log2, group = group, fill = group)) +
+    geom_density(adjust=1.5, alpha=.4) +
+        scale_color_manual(values=palette_groups) + 
+    ggtitle('24h')
+  
+  plot(g)
+  
+#
+# }
+
+
+```
+
+
+
+
+# Differential Enrichment analysis of Proteomics data
+
+DEP <https://bioconductor.org/packages/release/bioc/vignettes/DEP/inst/doc/DEP.html>
+
+
+
+- log2/log10 values
+
+- no additional normalisation
+
+- no imputation (when needed see <https://bioconductor.org/packages/release/bioc/vignettes/DEP/inst/doc/MissingValues.html#data-imputation-of-missing-data>)
+
+- Protein-wise linear models combined with empirical Bayes statistics are used for the differential enrichment analysis (or differential expression analysis)
+
+- The test_diff function introduced here uses limma and automatically generates the contrasts to be tested
+
+- For the contrasts generation, the control sample has to be specified. Additionally, the types of contrasts to be produced need to be indicated, allowing the generation of all possible comparisons (“all”) or the generation of contrasts of every sample versus control (“control”). Alternatively, the user can manually specify the contrasts to be tested (type = “manual”), which need to be specified in the argument test.
+
+## Create objects
+
+```{r,  echo=TRUE, warning=FALSE, message=FALSE}
+
+
+# BiocManager::install("BiocStyle")
+# 
+# suppressPackageStartupMessages({
+# library("BiocStyle")
+# library("DEP")
+# library("dplyr")
+# })
+# library("dplyr")
+# library("BiocStyle")
+# library("dplyr")
+# library("magrittr")
+# library("ggplot2")
+
+# table(is.na(myProteomics))
+# table(myProteomics == 0)
+
+
+LFQ_columns = 1:ncol(myProteomics)
+data_unique = myProteomics
+experimental_design = as.data.frame(colnames(myProteomics))
+colnames(experimental_design) = 'label'
+# tmp = (strsplit(colnames(myProteomics), '_h|_min|h|min'))
+# tmp = as.data.frame(do.call(rbind, tmp))  
+# tmp = tmp[, 1]
+# experimental_design$condition = tmp
+experimental_design$condition = paste(pheno$Condition, pheno$Time,  sep = '_')
+rep = 4
+
+#experimental_design$replicate = rep(1:rep, times = ncol(myProteomics)/rep) #PROBLEMMMS HERE BC IN ONE OF THE TREATMENTS I ONLY HAVE 4 REPLICATES
+ex_d = rep(1:rep, times = rep)
+#Bc I have only 3 replicates in mycorrhiza. You add the fourth and then you eliminate it (position 8)
+experimental_design$replicate = ex_d[-8]
+
+tail(experimental_design)
+
+df = as.data.frame(myProteomics)
+df$Protein.IDs = rownames(myProteomics)
+df$Protein.names = rownames(myProteomics)
+data_unique = DEP::make_unique(proteins = df, ids = "Protein.IDs", names = "Protein.names")
+
+```
+
+
+## Data.frame to SummarizedExperiment object conversion using an experimental design
+
+
+
+make_se {DEP} - creates a SummarizedExperiment object based on two data.frames: the protein table and experimental design.
+
+Looks like that automatic transformation is log2
+
+
+
+```{r,  echo=TRUE, warning=FALSE, message=FALSE}
+
+
+
+# Are there any duplicated names?
+data_unique$name %>% duplicated() %>% any()
+
+
+# Generate a SummarizedExperiment object using an experimental design
+data_se = make_se(data_unique, LFQ_columns, experimental_design)
+data_se
+
+dim(as.data.frame(data_se@assays@data@listData))
+dim(myProteomics)
+# check log transformation
+table(as.data.frame(data_se@assays@data@listData) == log(myProteomics, 2))
+
+```
+
+
+## Plot protein overlap between samples
+
+
+
+```{r,  echo=TRUE, warning=FALSE, message=FALSE}
+
+
+plot_frequencyX = function (se, plot = TRUE)
+{
+    assertthat::assert_that(inherits(se, "SummarizedExperiment"),
+        is.logical(plot), length(plot) == 1)
+
+    df = SummarizedExperiment::assay(se) %>% data.frame() %>% tibble::rownames_to_column() %>%
+        tidyr::gather(ID, bin, -rowname) %>% dplyr::mutate(bin = ifelse(is.na(bin),
+        0, 1))
+
+    table(df$ID, df$bin)
+
+    stat = df %>% dplyr::group_by(rowname) %>% dplyr::summarize(sum = sum(bin))
+
+    table = table(stat$sum) %>% data.frame()
+
+    p = ggplot(table, aes(x = Var1, y = Freq, fill = Var1)) +
+        geom_col() + scale_colour_viridis_d(begin = 0, end = 1) +
+        labs(title = "Protein identifications overlap",
+            x = "Identified in number of samples", y = "Number of proteins") +
+        theme_DEP2() + theme(legend.position = "right") + theme(axis.text.x = element_text(size = 14))
+
+    if (plot) {
+        return(p)
+    }
+    else {
+        df = as.data.frame(table)
+        colnames(df) = c("samples", "proteins")
+        return(df)
+    }
+}
+
+plot_frequency(data_se) + theme(axis.text.x = element_text(size = 10))
+
+```
+
+
+## Filter on missing values
+
+
+
+```{r,  echo=TRUE, warning=FALSE, message=FALSE}
+
+
+
+# filter_missval filters a proteomics dataset based on missing values. The dataset is filtered for proteins that have a maximum of 'thr' missing values in at least one condition.
+data_filt = filter_missval(data_se, thr = 0)
+
+data_filt
+
+
+
+```
+
+
+### Plot protein numbers
+
+
+
+```{r,  echo=TRUE, warning=FALSE, message=FALSE}
+
+
+## ----plot_data, fig.width = 4, fig.height = 4---------------------------------
+# Plot a barplot of the number of identified proteins per samples
+plot_numbers(data_filt) + theme(axis.text.x = element_text(size = 5)) + theme(legend.text = element_text(size = 5)) + scale_fill_manual(values=palette_groups)
+
+
+```
+
+
+### Plot protein coverage
+
+ 
+
+
+```{r,  echo=TRUE, warning=FALSE, message=FALSE}
+## ----plot_data2, fig.width = 3, fig.height = 4--------------------------------
+# Plot a barplot of the protein identification overlap between samples
+# plot_coverage(data_filt)
+## ----plot_data2, fig.width = 3, fig.height = 4--------------------------------
+# Plot a barplot of the protein identification overlap between samples
+plot_coverage(data_filt) + scale_fill_manual(values=palette_all)
+
+
+```
+
+
+### Plot a heatmap of proteins with missing values
+
+ 
+
+
+```{r,  echo=TRUE, warning=FALSE, message=FALSE}
+
+
+plot_missval = function (se) 
+{
+    assertthat::assert_that(inherits(se, "SummarizedExperiment"))
+    se_assay <- SummarizedExperiment::assay(se)
+    
+    if (!any(is.na(se_assay))) {
+        stop("No missing values in '", deparse(substitute(se)), 
+            "'", call. = FALSE)
+    }
+    
+    df <- se_assay %>% data.frame(.)
+    missval <- df[apply(df, 1, function(x) any(is.na(x))), ]
+    missval <- ifelse(is.na(missval), 0, 1)
+    
+    ht2 = ComplexHeatmap::Heatmap(missval, 
+                  col = c("red", "green"), 
+        column_names_side = "top", 
+        show_row_names = FALSE, 
+        show_column_names = TRUE, 
+        name = "Missing values pattern", 
+        column_names_gp = grid::gpar(fontsize = 5), 
+        heatmap_legend_param = list(at = c(0, 1), labels = c("Missing value", "Valid value")))
+    
+    ComplexHeatmap::draw(ht2, heatmap_legend_side = "top")
+}
+
+
+plot_missval(data_filt)
+
+plot_detect(data_filt)
+
+```
+
+
+## Visualize normalization
+
+```{r,  echo=TRUE, warning=FALSE, message=FALSE}
+
+
+## ----normalize----------------------------------------------------------------
+# Normalize the data
+# data_norm = normalize_vsn(data_filt)
+# # as.data.frame(preprocessCore::normalize.quantiles(as.matrix(df)))
+# meanSdPlot(data_norm)
+# range(data_norm@assays@data[[1]])
+# range(data_filt@assays@data[[1]])
+## ----plot_norm, fig.width = 4, fig.height = 5---------------------------------
+# Visualize normalization by boxplots for all samples before and after normalization
+# plot_normalization(data_filt, data_norm)
+
+
+plot_normalization(data_filt) + theme(axis.text.y = element_text(size = 2)) + theme(legend.text = element_text(size = 5)) + scale_fill_manual(values=palette_groups) + geom_boxplot(outlier.size = 0.01)
+
+data_normalize.quantiles = data_filt
+data_normalize.quantiles@assays@data[[1]] = as.data.frame(preprocessCore::normalize.quantiles(as.matrix(data_normalize.quantiles@assays@data[[1]])))
+plot_normalization(data_normalize.quantiles) + theme(axis.text.y = element_text(size = 2)) + theme(legend.text = element_text(size = 5)) +  scale_fill_manual(values = palette_groups) + geom_boxplot(outlier.size = 0.01)
+
+data_normalize_vsn = normalize_vsn(data_filt)
+plot_normalization(data_se, data_filt, data_normalize_vsn) + theme(axis.text.y = element_text(size = 2)) + theme(legend.text = element_text(size = 5)) + scale_fill_manual(values=palette_groups) + geom_boxplot(outlier.size = 0.01)
+
+# data_norm@assays@data[[1]] = as.data.frame(preprocessCore::normalize.quantiles(as.matrix(data_unique[, LFQ_columns])))
+# plot_normalization(data_filt, data_norm)
+# plot_normalization(data_norm)
+
+
+# data_norm = data_filt
+# DATA ALREADY FILTERED, NORMALISED, preprocessed for sure
+data_norm = data_filt
+
+
+```
+
+
+### Plot the density of expression values for multiple arrays on the same plot
+
+ 
+
+
+```{r,  echo=TRUE, warning=FALSE, message=FALSE}
+
+
+limma::plotDensities(data_filt@assays@data[[1]], main = 'just filtered, log2"', 
+                     group = experimental_design$condition, legend = FALSE)
+limma::plotDensities(data_normalize.quantiles@assays@data[[1]], main = 'Quantile, not used', 
+                     group = experimental_design$condition, legend = FALSE)
+limma::plotDensities(data_norm@assays@data[[1]], main = 'variance stabilizing transformation', 
+                     group = experimental_design$condition, legend = FALSE)
+
+# all (log(myProteomics, 2) == data_filt@assays@data[[1]])
+table(data_filt@assays@data[[1]] != data_norm@assays@data[[1]])
+
+```
+
+
+## Contrasts
+
+ 
+
+
+```{r,  echo=TRUE, warning=FALSE, message=FALSE}
+
+
+
+
+
+# Test manually defined comparisons
+# data_diff_manual = test_diff(data_norm, 
+#                              type = "manual", 
+#                              test = c("Nm_Wounding_30_vs_Nm_Mock_30"))
+# read from table
+mytest = unique(paste0(paste(forComparisons[, 1], forComparisons[, 2], sep = '_'),
+'_vs_', 
+paste(forComparisons[, 3], forComparisons[, 4], sep = '_')))
+# data_diff_manual = test_diff(data_norm,
+#                              type = "manual",
+#                              test = mytest[1])
+
+
+
+data_diff_manual = test_diff(data_norm,
+                              type = "manual", 
+                              test = mytest)
+
+
+
+
+
+
+## ----add_reject---------------------------------------------------------------
+# Denote significant proteins based on user defined cutoffs
+
+dep = add_rejections(data_diff_manual, alpha = 0.05)# lfc = log2(1.5))
+
+rs = rowSums(data_norm@assays@data[[1]])
+table(is.na(rs))
+m = sum(!is.na(rs))
+
+plot_pca(dep, x = 1, y = 2, point_size = 6, indicate = "condition", label = TRUE, n = m) + scale_color_manual(values=palette_groups) # n = nrow(dep)
+pp = plot_pca(dep, x = 1, y = 2, point_size = 6, indicate = "condition", label = TRUE, n = m, plot = FALSE)
+plot(pp$PC1, pp$PC2)
+
+# par(mar=c(5.1, 4.1, 4.1, 10.1), xpd=TRUE)
+# 
+# for (i in unique(forComparisons$timeS)) {
+#   
+#   ind = grep(i, pp$condition)
+#   subset = pp[ind, ]
+#   
+#   plot(subset$PC1,
+#        subset$PC2,
+#        col = rep(c("#02401B", "#7294D4", "#972D15", "#FDD262"), each = 3),
+#        pch = 19,
+#        main = paste("PCA Scatterplot:", i, 'min'),
+#        xlab="PC1",
+#        ylab="PC2") 
+# 
+#   legend(
+#     "right",
+#          inset=c(-0.75, -0.5),
+#          legend = unique(subset$condition),
+#          col = c("#02401B", "#7294D4", "#972D15", "#FDD262"),
+#          pch = 19,
+#          cex = 0.95,
+#          )
+# 
+# }
+
+
+
+
+
+
+```
+
+
+## Plot Gower's distance matrix
+
+ Gower’s distance is computed as the average of partial dissimilarities across individuals.
+
+
+```{r,  echo=TRUE, warning=FALSE, message=FALSE}
+
+
+
+plot_dist(dep, significant = TRUE, pal = "Spectral", font_size = 8)
+
+
+
+```
+
+
+## Plot a heatmap of all significant proteins 
+
+with the data centered per protein
+
+
+```{r,  echo=TRUE, warning=FALSE, message=FALSE}
+
+
+plot_heatmapX = function (dep, 
+                          type = c("contrast", "centered"), 
+                          kmeans = FALSE, 
+                          k = 6, 
+                          col_limit = 6, 
+                          indicate = NULL, 
+                          clustering_distance = c("euclidean", 
+                                                  "maximum", 
+                                                  "manhattan", 
+                                                  "canberra", 
+                                                  "binary", 
+                                                  "minkowski", 
+                                                  "pearson", 
+                                                  "spearman", 
+                                                  "kendall", 
+                                                  "gower"), 
+                          row_font_size = 6, 
+                          col_font_size = 10,
+                          plot = TRUE, 
+                          column_split,
+                          ...) 
+{
+    if (is.integer(k)) 
+        k <- as.numeric(k)
+    if (is.integer(col_limit)) 
+        col_limit <- as.numeric(col_limit)
+    if (is.integer(row_font_size)) 
+        row_font_size <- as.numeric(row_font_size)
+    if (is.integer(col_font_size)) 
+        col_font_size <- as.numeric(col_font_size)
+    
+    assertthat::assert_that(inherits(dep, "SummarizedExperiment"), 
+        is.character(type), is.logical(kmeans), is.numeric(k), 
+        length(k) == 1, is.numeric(col_limit), length(col_limit) == 
+            1, is.numeric(row_font_size), length(row_font_size) == 
+            1, is.numeric(col_font_size), length(col_font_size) == 
+            1, is.logical(plot), length(plot) == 1)
+    
+    type <- match.arg(type)
+    clustering_distance <- match.arg(clustering_distance)
+    
+    row_data <- SummarizedExperiment::rowData(dep, use.names = FALSE)
+    col_data <- SummarizedExperiment::colData(dep) %>% as.data.frame()
+    
+    if (any(!c("label", "condition", "replicate") %in% 
+        colnames(col_data))) {
+        stop(paste0("'label', 'condition' and/or 'replicate' columns are not present in '", 
+            deparse(substitute(dep)), "'"), call. = FALSE)
+    }
+    
+    if (length(grep("_diff", colnames(row_data))) < 1) {
+        stop(paste0("'[contrast]_diff' columns are not present in '", 
+            deparse(substitute(dep)), "'.\nRun test_diff() to obtain the required columns."), 
+            call. = FALSE)
+    }
+    
+    if (!"significant" %in% colnames(row_data)) {
+        stop(paste0("'significant' column is not present in '", 
+            deparse(substitute(dep)), "'.\nRun add_rejections() to obtain the required column."), 
+            call. = FALSE)
+    }
+    
+    if (!is.null(indicate) & type == "contrast") {
+        warning("Heatmap annotation only applicable for type = 'centered'", 
+            call. = FALSE)
+    }
+    
+    if (!is.null(indicate) & type == "centered") {
+        ha1 <- get_annotation(dep, indicate)
+    } else {
+        ha1 <- NULL
+    }
+    
+    # filtering sig proteins
+    filtered <- dep[row_data$significant, ]
+    
+    if (any(is.na(SummarizedExperiment::assay(filtered)))) {
+        warning("Missing values in '", deparse(substitute(dep)), 
+            "'. ", "Using clustering_distance = 'gower'", 
+            call. = FALSE)
+        clustering_distance <- "gower"
+        obs_NA <- TRUE
+    } else {
+        obs_NA <- FALSE
+    }
+    
+    if (type == "centered") {
+        rowData(filtered)$mean <- rowMeans(SummarizedExperiment::assay(filtered), na.rm = TRUE)
+        df <- assay(filtered) - rowData(filtered, use.names = FALSE)$mean
+    }
+    
+    if (type == "contrast") {
+        df <- SummarizedExperiment::rowData(filtered, use.names = FALSE) %>% data.frame() %>% 
+            tibble::column_to_rownames(var = "name") %>% dplyr::select(ends_with("_diff"))
+        colnames(df) <- gsub("_diff", "", colnames(df)) %>% 
+            gsub("_vs_", " vs ", .)
+        df <- as.matrix(df)
+    }
+    
+    if (kmeans & obs_NA) {
+        warning("Cannot perform kmeans clustering with missing values", 
+            call. = FALSE)
+        kmeans <- FALSE
+    }
+    
+    if (kmeans & !obs_NA) {
+        set.seed(1)
+        df_kmeans <- kmeans(df, k)
+        if (type == "centered") {
+            order <- data.frame(df) %>% cbind(., cluster = df_kmeans$cluster) %>% 
+                mutate(row = apply(.[, seq_len(ncol(.) - 1)], 
+                  1, function(x) max(x))) %>% group_by(cluster) %>% 
+                summarize(index = sum(row)/n()) %>% arrange(desc(index)) %>% 
+                pull(cluster) %>% match(seq_len(k), .)
+            df_kmeans$cluster <- order[df_kmeans$cluster]
+        }
+        if (type == "contrast") {
+            order <- data.frame(df) %>% cbind(df, cluster = df_kmeans$cluster) %>% 
+                gather(condition, diff, -cluster) %>% group_by(cluster) %>% 
+                summarize(row = mean(diff)) %>% arrange(desc(row)) %>% 
+                pull(cluster) %>% match(seq_len(k), .)
+            df_kmeans$cluster <- order[df_kmeans$cluster]
+        }
+    }
+    
+    if (ncol(df) == 1) {
+        col_clust = FALSE
+    } else {
+        col_clust = TRUE
+    }
+    
+    if (nrow(df) == 1) {
+        row_clust = FALSE
+    } else {
+        row_clust = FALSE # 2023-04-25
+    }
+    
+    if (clustering_distance == "gower") {
+        clustering_distance <- function(x) {
+            dist <- cluster::daisy(x, metric = "gower")
+            dist[is.na(dist)] <- max(dist, na.rm = TRUE)
+            return(dist)
+        }
+    }
+
+    myorder = gsub('_vs_', ' vs ', mytest)
+    ind = match(myorder, colnames(df))
+    df = df[, myorder]
+    # colnames(df) = gsub('_S', '', colnames(df))
+    
+    legend <- ifelse(type == "contrast", "log2 Fold change", 
+        "log2 Centered intensity")
+    ht1 = ComplexHeatmap::Heatmap(df, col = circlize::colorRamp2(seq(-col_limit, 
+        col_limit, (col_limit/5)), rev(RColorBrewer::brewer.pal(11, 
+        "RdBu"))), split = if (kmeans) {
+        df_kmeans$cluster
+    } else {
+        NULL
+    }, cluster_rows = col_clust, cluster_columns = row_clust, 
+        row_names_side = "left", column_names_side = "top", 
+        clustering_distance_rows = clustering_distance, clustering_distance_columns = clustering_distance, 
+        heatmap_legend_param = list(color_bar = "continuous", 
+            legend_direction = "horizontal", legend_width = unit(5, 
+                "cm"), title_position = "lefttop"), 
+        name = legend, row_names_gp = grid::gpar(fontsize = row_font_size), 
+        column_names_gp = grid::gpar(fontsize = col_font_size), top_annotation = ha1, 
+    # https://github.com/jokergoo/ComplexHeatmap/issues/370
+    column_split = column_split, column_title = NULL, # 2023-04-25
+        ...)
+    
+    if (plot) {
+        ComplexHeatmap::draw(ht1, heatmap_legend_side = "top")
+    } else {
+        colnames(df) <- gsub(" ", "_", colnames(df))
+        df <- df[, unlist(column_order(ht1))]
+        if (kmeans) {
+            df <- cbind(df, k = df_kmeans$cluster)
+        }
+        return <- df[unlist(row_order(ht1)), ]
+        data.frame(protein = row.names(return), return) %>% mutate(order = row_number())
+    }
+    
+}
+
+range(dep@assays@data[[1]], na.rm = TRUE)
+dim(dep@assays@data[[1]])
+
+plot_heatmap(dep = dep, 
+             type = 'contrast', 
+             col_limit = 3.0, 
+             row_font_size = 3,
+             clustering_distance = 'gower',
+             col_font_size = 8)
+
+# this plots only DE proteins
+# see row_data <- SummarizedExperiment::rowData(dep, use.names = FALSE) in fiunction above
+plot_heatmapX(dep = dep, 
+              type = 'contrast', 
+              col_limit = 3.0, 
+              row_font_size = 4,
+              clustering_distance = 'gower',
+              col_font_size = 7,
+              column_split = c(1, 2, 3, 4, 5))
+
+```
+
+
+## Volcano plots per contrast/comparison
+
+
+```{r,  echo=TRUE, warning=FALSE, message=FALSE}
+
+
+
+plots = list()
+cnt = 1
+for (i in  mytest) {
+  contrast = NULL
+  assign('contrast', value = i)
+  p = plot_volcano(dep, contrast = contrast, label_size = 2, add_names = TRUE) 
+  plots[[cnt]] = p
+  cnt = cnt + 1
+}
+
+print(plots)
+
+
+```
+
+
+# Plot frequency of significant conditions per protein and the overlap in proteins between conditions
+
+
+```{r,  echo=TRUE, warning=FALSE, message=FALSE}
+
+
+# Plot frequency of significant conditions per protein and the overlap in proteins between conditions
+
+plot_cond(dep) 
+
+
+```
+
+
+## Get results
+
+
+
+
+
+```{r,  echo=TRUE, warning=FALSE, message=FALSE}
+
+## ----results_table------------------------------------------------------------
+# Generate a results table
+data_results = get_results(dep)
+
+# Number of significant proteins
+data_results %>% dplyr::filter(significant) %>% nrow()
+
+## ----results_table2-----------------------------------------------------------
+# Column names of the results table
+colnames(data_results)
+
+# ## ----get_df-------------------------------------------------------------------
+# # Generate a wide data.frame
+# df_wide = get_df_wide(dep)
+# # Generate a long data.frame
+# df_long = get_df_long(dep)
+
+# dt = pathwaysDF[, list(variables = paste(bin, collapse = " | ")), by = pID]
+# data.table::setDF(dt)
+# colnames(dt)[2] = 'BIN'
+# colnames(dt)[1] = 'pID'
+# 
+# colnames(data_results)[2] = 'pID'
+# 
+# table(dt$pID %in% data_results$pID)
+# table(data_results$pID %in% dt$pID)
+# table(Prot$pID %in% data_results$pID)
+# table(data_results$pID %in% Prot$pID)
+# 
+# data_results = merge(dt, data_results, by = 'pID', all.x = FALSE, all.y = TRUE)
+# data_results = merge(data_results, Prot, by = 'pID', all.x = TRUE, all.y = TRUE)
+  
+
+
+# fpi = file.path('..', 'output')
+# fn = 'Prot.GMM_Ath.shortName.txt'
+# sn = data.table::fread(file.path(fpi, fn), header = TRUE)
+# data.table::setDF(sn)
+# colnames(sn)[2] = 'pID'
+# 
+# table(sn$pID %in% data_results$pID)
+# table(data_results$pID %in% sn$pID)
+# 
+# data_results = merge(data_results, sn, by = 'pID', all.x = TRUE, all.y = FALSE)
+
+  
+fpo = file.path('..', 'output')
+fn = 'phosphoProteomics-DE-DEP.txt'
+
+write.table(data_results,
+            file = file.path(fpo, fn),
+            append = FALSE,
+            quote = FALSE,
+            sep = "\t",
+            eol = "\n",
+            na = "-",
+            dec = ".",
+            row.names = FALSE,
+            col.names = TRUE,
+            qmethod = c("escape"),
+            fileEncoding = "UTF-8")
+
+
+fn = 'phosphoProteomics_filtered.txt'
+
+write.table(data_norm@assays@data[[1]],
+            file = file.path(fpo, fn),
+            append = FALSE,
+            quote = FALSE,
+            sep = "\t",
+            eol = "\n",
+            na = "-",
+            dec = ".",
+            row.names = TRUE,
+            col.names = TRUE,
+            qmethod = c("escape"),
+            fileEncoding = "UTF-8")
+
+
+
+```
+
+
+# Gene set co-regulation
+
+<https://github.com/ctlab/fgsea>
+
+GESECA: multilevel Monte-Carlo variant for performing gene sets co-regulation analysis
+
+GESECA takes as an input:
+
+* E - gene expression matrix, where rows and columns correspond to genes and samples respectively
+    
+* P - list of gene sets
+
+By default, GESECA method performs centering for rows of the matrix E. So, after that, the gene values are assumed to have zero mean
+
+For each gene set p in P the gene set score : sum(colSums(E[p, ])**2) / length(p)
+
+This score was inspired by the variance of principal components from the principal component analysis (PCA). Therefore, the given score can be viewed in terms of explained variance by the gene set p. Geometrically, this can be considered as an embedding of samples into a one-dimensional space, given by a unit vector in which nonzero positions correspond to genes from gene set p.
+
+In the case of row-centered matrix E the variance of highly correlated genes is summed up to a higher score. While the genes that are not correlated cancel each other and the total gene set variance is low.
+
+Read more at <https://bioconductor.org/packages/release/bioc/vignettes/fgsea/inst/doc/geseca-tutorial.html>
+
+
+The value of center determines how column centering is performed. If center is a numeric-alike vector with length equal to the number of columns of x, then each column of x has the corresponding value from center subtracted from it. If center is TRUE then centering is done by subtracting the column means (omitting NAs) of x from their corresponding columns, and if center is FALSE, no centering is done.
+
+The value of scale determines how column scaling is performed (after centering). If scale is a numeric-alike vector with length equal to the number of columns of x, then each column of x is divided by the corresponding value from scale. If scale is TRUE then scaling is done by dividing the (centered) columns of x by their standard deviations if center is TRUE, and the root mean square otherwise. If scale is FALSE, no scaling is done.
+
+The root-mean-square for a (possibly centered) column is defined as sqrt(sum(x^2)/(n-1)), where x is a vector of the non-missing values and n is the number of non-missing values. In the case center = TRUE, this is the same as the standard deviation, but in general it is not. (To scale by the standard deviations without centering, use scale(x, center = FALSE, scale = apply(x, 2, sd, na.rm = TRUE)).)
+
+
+
+
+
+
+# Session Info
+
+```{r}
+
+sessionInfo()
+
+
+```
+
+
+
