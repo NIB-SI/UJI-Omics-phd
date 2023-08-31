@@ -1,0 +1,25 @@
+	AMinf24-NM24	AMinf24-AM24	AMinf24-NMinf24	AM24-NM24	NMinf24-NM24	AMinf48-NM48	AMinf48-AM48	AMinf48-NMinf48	AM48-NM48	NMinf48-NM48
+B02_AGPase	0	0	0	0	0	0	0	0	-1.168842967	0
+A21_Alanine aminotransferase	0	0	0	0	0	-0.732656605	0.80631943	0	-1.538976035	0
+A22_Aspartate aminotransferase	0	0	0	0	0	0	0	0	0	0
+A24_Citrate synthase	0	0	0	0	0	2.032423052	1.870091061	0	0	2.2704378
+A15_G6P DH	0	0	0	0	0	0	0	0	0	0
+C03G_Glucokinase	0	0	0	0	0	1.022516866	1.385793738	0	0	1.702589597
+D02_Glutamate DH (NAD)	0	0	0	0	0	0	0	0	0	0
+A07_Malate DH (NAD)	0	0	0	0	0	0	0	0	0	0
+A04i_Malate DH initial (NADP)	0	0	0	0	0	0	0	0	0	0
+A04t_Malate DH total (NADP)	-0.644423365	-0.700823532	0	0	0	0	0	0	0	0
+A13_PEP Carboxylase	0	0	0	0	0	0	0	0	0	0
+B03_Phosphofructokinase (PPi)	0	0	0	0	0	0	0	0	0	0
+A02t_Phosphoglucose Isomerase (total)	0	0	0	0	0	0	0	0	0	0.771350946
+A23_Pyruvate kinase	0	0	0	0	0	0	0	0	0	0
+B16_FBP-Aldolase	0	0	0	0	0	0	0	0	0	0
+"C01_Fructose-1,6-bisphosphatase (cyt)"	0	0	0	0	0	0	0	0	0	0
+B08NAD_GAPDH (NAD)	0	0	-0.614561175	0	0.587252327	0	0	0	0	0
+B08NADP_GAPDH (NADP)	0	0	0	0	0	0	0	0	0	0
+A16_NADP-Isocitrate DH	0	0	0	0	0	0	0	0	0	0.51638137
+A06_Phosphoglucomutase	0	0	0	0	0	0	0	0	0	0
+A14_Phosphoglycerokinase_direct	0	0	0	0	0	0	0	0	0	0
+C03F_Fructokinase	0	0	0	0	-0.87872865	0	0	0	0	0
+A10_Neutral Invertase	0	0	0	0	0	0	0.726174949	0	0	0.877266338
+B11max_Rubisco (maximal)	0	0	0	-0.658281832	0	0	0	0	0	0

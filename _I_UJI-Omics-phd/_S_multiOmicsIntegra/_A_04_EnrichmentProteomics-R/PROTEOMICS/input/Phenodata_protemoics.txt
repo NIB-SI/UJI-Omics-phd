@@ -1,0 +1,13 @@
+SampleName	Time	Condition	Min	Replicate
+control_24_1	24	control	1440	1
+control_24_2	24	control	1440	2
+control_24_3	24	control	1440	3
+myco_24_1	24	myco	1440	1
+myco_24_2	24	myco	1440	2
+myco_24_3	24	myco	1440	3
+NMINF_24_1	24	NMINF	1440	1
+NMINF_24_2	24	NMINF	1440	2
+NMINF_24_3	24	NMINF	1440	3
+AMINF_24_1	24	AMINF	1440	1
+AMINF_24_2	24	AMINF	1440	2
+AMINF_24_3	24	AMINF	1440	3

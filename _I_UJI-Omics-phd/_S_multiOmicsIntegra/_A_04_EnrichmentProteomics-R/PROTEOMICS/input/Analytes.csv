@@ -1,0 +1,13 @@
+﻿SampleName,Group
+control_24_1,control_24h
+control_24_2,control_24h
+control_24_3,control_24h
+myco_24_1,myco_24
+myco_24_2,myco_24
+myco_24_3,myco_24
+NMINF_24_1,infected_24h
+NMINF_24_2,infected_24h
+NMINF_24_3,infected_24h
+AMINF_24_1,myco_infected_24h
+AMINF_24_2,myco_infected_24h
+AMINF_24_3,myco_infected_24h
