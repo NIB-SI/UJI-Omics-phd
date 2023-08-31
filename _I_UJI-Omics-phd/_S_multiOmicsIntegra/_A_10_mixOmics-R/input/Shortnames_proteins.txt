@@ -1,0 +1,62 @@
+			
+	Solyc01g020440.3.1	RFC3	
+	Solyc01g059965.1.1	GLUA	
+	Solyc01g068480.4.1	P-loop containing nucleoside triphosphate hydrolases superfamily protein (AHRD V3.3 *** A0A2U1P5L6_ARTAN)	RIN1?
+	Solyc01g091350.4.1	KU80	ATP-dependent DNA helicase 2 subunit KU80 (AHRD V3.3 *** A0A2G3AH96_CAPAN)
+	Solyc01g099760.4.1	PSMC	26S proteasome regulatory subunit (AHRD V3.11 *** tr|A8IIP7|A8IIP7_CHLRE)
+	Solyc01g107700.4.1	KFase	Kynurenine formamidase (AHRD V3.3 *** A0A1J3JDK4_NOCCA)
+	Solyc02g014530.4.1	GDPDL6-l	glycerophosphodiester phosphodiesterase GDPDL6-like (AHRD V3.3 *** A0A2I4H2H1_9ROSI)
+	Solyc02g071685.2.1	GDSL	GDSL esterase/lipase At1g29670-like (AHRD V3.11 *-* tr|A0A1S3YHL2|A0A1S3YHL2_TOBAC)
+	Solyc02g072270.3.1	Znf_RING/FYVE/PHD	RING/FYVE/PHD zinc finger superfamily protein (AHRD V3.3 *** B6SN54_MAIZE)
+	Solyc02g079250.4.1	IMPase	Inositol monophosphatase family protein (3',5'-bisphosphate nucleotidase) (AHRD V3.3 *** A0A166NZV4_9PEZI)
+	Solyc02g080570.3.1	SS	Soluble starch synthase (AHRD V3.3 *** C7F7H9_SOLTU)
+	Solyc02g082550.3.1	PK	Protein kinase - like protein (AHRD V3.3 *** O81783_ARATH)
+	Solyc02g085340.1.1	GRAS	Transcription factor GRAS (AHRD V3.3 *** A0A200Q206_9MAGN)
+	Solyc02g086330.5.1	HEATRL	HEAT repeat-containing protein-like (AHRD V3.11 *** tr|Q5QMW8|Q5QMW8_ORYSJ)
+	Solyc02g089640.3.1	CSLC04 	Cellulose-synthase-like C4 (AHRD V3.3 *** A0A2U1LSH2_ARTAN)
+	Solyc02g091580.5.1	OP-A	Oligopeptidase A (AHRD V3.11 *** tr|A0A2U1NZK4|A0A2U1NZK4_ARTAN)
+	Solyc02g093290.3.1	NAPRT	Nicotinate phosphoribosyltransferase (AHRD V3.3 *** A0A2G3D572_CAPCH)
+	Solyc02g093680.3.1	SDH	succinate dehydrogenase
+	Solyc03g006300.3.1	RLK	Receptor-like protein kinase (AHRD V3.3 *** A0A2R6QLC9_ACTCH)
+	Solyc03g006570.3.1	CHR28	SNF2 domain-containing protein / helicase domain-containing protein / zinc finger protein-like protein (AHRD V3.3 *** B3H7J3_ARATH)
+	Solyc03g007220.3.1	RPK1	Membrane receptor-like protein.1
+	Solyc03g095810.3.1	TBL32	Protein trichome birefringence-like 32 (AHRD V3.3 *** A0A2G3C6N9_CAPCH)
+	Solyc03g096600.1.1	unk	Unknown protein
+	Solyc03g111650.4.1	PPR	Pentatricopeptide repeat-containing protein, chloroplastic (AHRD V3.3 *** A0A2G3CCT7_CAPCH)
+	Solyc03g118940.5.1	GT	Glycosyltransferase (AHRD V3.11 *** tr|Q5QPZ0|Q5QPZ0_MAIZE)
+	Solyc03g120430.3.1	GLYK	D-glycerate 3-kinase (AHRD V3.3 *** A0A2K3PBX9_TRIPR)
+	Solyc03g123610.4.1	ALT2	Alanine aminotransferase 2 (AHRD V3.3 *** A0A2G3D1D6_CAPCH)
+	Solyc04g024710.5.1	CP	Cysteine proteinases superfamily protein (AHRD V3.11 *-* tr|A0A2U1NKP1|A0A2U1NKP1_ARTAN)
+	Solyc04g056270.4.1	ER66	ER66
+	Solyc04g076830.4.1	PGAM	Phosphoglycerate mutase-like protein (AHRD V3.3 *** Q8LGT8_SOYBN)
+	Solyc05g009140.3.1	MBL	Metallo-beta-lactamase superfamily protein (AHRD V3.3 *** A0A2K3NNB2_TRIPR)
+	Solyc05g009850.4.1	GCFC2	GC-rich sequence DNA-binding factor (AHRD V3.3 *** A0A200R9S4_9MAGN)
+	Solyc05g013160.4.1	RBCMT_PEA	ribulose-1,5 bisphosphate carboxylase/oxygenase large subunit N-methyltransferase, chloroplastic (AHRD V3.3 *** A0A1S3YNP9_TOBAC)
+	Solyc06g009210.5.1	RPL19	Ribosomal protein L19 (AHRD V3.11 *** tr|A0A2G2WGH9|A0A2G2WGH9_CAPBA)
+	Solyc06g034130.2.1	LEA	Late embryogenesis abundant protein-related / LEA protein-like protein (AHRD V3.3 *** A0A178VGJ3_ARATH)
+	Solyc06g053810.3.1	P-loop NTPase	p-loop containing nucleoside triphosphate hydrolases superfamily protein (AHRD V3.3 *** Q0WUY1_ARATH)
+	Solyc06g060640.1.1	DIR1-like	Bifunctional inhibitor/lipid-transfer protein/seed storage 2S albumin superfamily protein (AHRD V3.3 *** A0A2U1PU47_ARTAN)
+	Solyc06g071960.4.1	NDPK	Nucleoside diphosphate kinase (AHRD V3.3 *** A0A2G2WM92_CAPBA)
+	Solyc07g040950.3.1	Lgl1	Lactoylglutathione lyase / glyoxalase I family protein (AHRD V3.3 *** A0A1Y1IMJ5_KLENI)
+	Solyc07g042030.2.1	PPR	Pentatricopeptide repeat-containing protein (AHRD V3.3 *-* A0A2U1MA82_ARTAN)
+	Solyc07g062610.4.1	DJ-1-like	Protein DJ-1-like protein B (AHRD V3.3 *** A0A2G2Z591_CAPAN)
+	Solyc08g006140.4.1	PK	Protein kinase domain (AHRD V3.11 *** tr|A0A200QZ79|A0A200QZ79_9MAGN)
+	Solyc08g006420.3.1	Nup	nucleoporin (AHRD V3.3 *** AT4G31570.3)
+	Solyc08g061220.3.1	TGPA	Tomato G protein alpha-subunit
+	Solyc08g066120.5.1	PNPT	Polyribonucleotide nucleotidyltransferase (AHRD V3.11 *** tr|A0A2U1LJN3|A0A2U1LJN3_ARTAN)
+	Solyc08g079900.3.1	SBT1.7	Subtilisin-like protease (AHRD V3.3 *** Q9LWA4_SOLLC)
+	Solyc08g082280.4.1	ACSL2	Long chain acyl-CoA synthetase 2 (AHRD V3.3 *** A0A2G3DB06_CAPCH)
+	Solyc09g011860.5.1	O-FucT	GDP-fucose protein O-fucosyltransferase protein (AHRD V3.11 *** tr|A0A2R6R8C5|A0A2R6R8C5_ACTCH)
+	Solyc09g064990.1.1	RLKs	Receptor-like protein kinase (AHRD V3.3 *-* A0A2R6P698_ACTCH)
+	Solyc10g005650.3.1	PTS1	Peroxisomal targeting signal.1
+	Solyc10g018190.2.1	2OG-FeII	2-oxoglutarate (2OG) and Fe(II)-dependent oxygenase superfamily protein (AHRD V3.3 *** A0A2U1NR61_ARTAN)
+	Solyc10g047320.2.1	DR	Disease resistance protein (AHRD V3.3 *** A0A2U1N8H9_ARTAN)
+	Solyc10g078360.3.1	NADP-bR	NAD(P)-binding Rossmann-fold superfamily protein (AHRD V3.3 *** Q94AL3_ARATH)
+	Solyc10g081820.3.1	DPH3	DPH3
+	Solyc10g162420.1.1	PCGF3	polycomb group RING finger protein 3-like (AHRD V3.11 *-* XP_019067014.2)
+	Solyc11g006350.1.1	ATCase	aspatate carbamoyltransferase
+	Solyc11g007200.3.1	HIPPs	Heavy metal-associated isoprenylated plant protein 26 (AHRD V3.3 *** A0A2I0X9F5_9ASPA)
+	Solyc11g068780.1.1	OFP30	ovate family protein 30
+	Solyc11g071350.1.1	ALMT	Aluminum-activated malate transporter (AHRD V3.3 *** A0A200Q9N0_9MAGN)
+	Solyc11g073010.1.1	Exo70	Exocyst subunit Exo70 family protein (AHRD V3.3 *** A0A2G2VNA4_CAPBA)
+	Solyc12g015910.1.1	SufE-like-1	SufE-like protein chloroplastic-like (AHRD V3.3 *** A0A2K3NJS0_TRIPR)

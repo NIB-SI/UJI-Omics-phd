@@ -1,0 +1,13 @@
+treatment	FLU-like
+NM_24	369
+NM_24	466
+NM_24	331
+NM_inf_24	446
+NM_inf_24	376
+NM_inf_24	318
+AM_24	576
+AM_24	654
+AM_24	558
+AM_inf_24	241
+AM_inf_24	305
+AM_inf_24	230
