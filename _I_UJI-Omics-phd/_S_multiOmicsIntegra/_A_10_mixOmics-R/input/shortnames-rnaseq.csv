@@ -1,0 +1,64 @@
+Solyc01g096420.3.1,NADPH quinone oxidoreductase (AHRD V3.3 *** A0A2K3LWY2_TRIPR),NADPH2:QO
+Solyc01g103650.3.1,Alpha/beta-Hydrolases superfamily protein (AHRD V3.3 *** Q9XID7_ARATH),ABH
+Solyc07g045350.4.1,Acetyl-CoA C-acetyltransferase (AHRD V3.3 *** D9U856_BACMN),Acetyl-CoA-AT
+Solyc02g090970.1.1,MAP kinase kinase kinase 21,MAPKK1
+Solyc03g044180.1.1,transmembrane protein (AHRD V3.3 -** AT4G37290.1),TM
+Solyc03g078490.5.1,,GTF
+Solyc03g098740.1.1,Biotic cell death-associated protein (AHRD V3.3 *** Q850R9_NICGU),BCDAP
+Solyc04g040130.1.1,Fatty acid desaturase (AHRD V3.3 *** E7CCD0_CAMMC),Fads
+Solyc04g040180.3.1,S-adenosyl-L-methionine-dependent methyltransferases superfamily protein (AHRD V3.3 *** A0A1Y1ICE6_KLENI),SAM-DMT
+Solyc05g053600.3.1,Pleiotropic drug resistance protein (AHRD V3.3 *** C8CA13_CUCSA),PDR
+Solyc07g008560.3.1,Purple acid phosphatase (AHRD V3.3 *** A0A2G2WCI9_CAPBA),PAP
+Solyc07g049530.3.1,1-aminocyclopropane-1-carboxylate oxidase 1,ACO1
+Solyc07g049550.3.1,1-aminocyclopropane-1-carboxylate oxidase 2 (AHRD V3.3 *** Q7Y257_BETPN),ACO2
+Solyc08g029000.3.1,Lipoxygenase (AHRD V3.3 *** K4CJW3_SOLLC),LOX
+Solyc08g067630.3.1,histone deacetylase-like protein (AHRD V3.3 *** AT2G25625.2),HDA-like
+Solyc08g080640.2.1,NP24 protein precursor,NP24-pre
+Solyc08g080670.1.1,Pathogenesis-related 5-like protein,PR5-like
+Solyc09g011630.3.1,Glutation-S-transferase,GST
+Solyc10g076510.2.1,Pyruvate decarboxylase (AHRD V3.3 *** Q8H9C6_SOLTU),PDC
+Solyc10g083690.3.1,Cytochrome P450 (AHRD V3.3 *** Q8H0I8_PETHY),CYP450
+Solyc10g084400.2.1,Glutathione S-transferase (AHRD V3.3 *** Q76KW1_PEA),GSTa
+Solyc10g084960.2.1,Glutathione S-transferase (AHRD V3.3 *** C0LF68_CAPAN),GSTb
+Solyc11g007980.2.1,Cytochrome,Cytochrome
+Solyc11g044840.2.1,LL-diaminopimelate aminotransferase (AHRD V3.3 *** A0A2P5FUP3_TREOI),DapL
+Solyc12g005720.1.1,Cysteine-rich receptor-like protein kinase (AHRD V3.3 *** A0A2K3JS14_TRIPR),CRLK
+Solyc12g042480.3.1,Cytochrome (AHRD V3.3 *** A0A2G2Y725_CAPAN),CYP736A12
+Solyc12g045020.2.1,Cytochrome (AHRD V3.3 *** A0A2G2Y725_CAPAN),CYP736A12
+Solyc12g049030.1.1,Fatty acid desaturase (AHRD V3.3 *** A0A200QRI1_9MAGN),FAD
+Solyc09g010530.3.1,Cation/H(+) antiporter 20 (AHRD V3.3 *** A0A1U8E5Q9_CAPAN),CHX20
+Solyc01g097240.3.1,Pathogenesis-related protein 4 (AHRD V3.3 *** I6VW44_CAPAN),PR4
+Solyc08g007460.3.1,Bifunctional inhibitor/lipid-transfer protein/seed storage 2S albumin superfamily protein (AHRD V3.3 *** A0A2U1L4X0_ARTAN),DIR1
+Solyc02g078650.4.1,"Polyphenol oxidase, chloroplastic (AHRD V3.3 *** A0A2G3D678_CAPCH)",PPO
+Solyc08g036660.5.1,Jasmonate ZIM domain protein f (AHRD V3.11 *** tr|I3WTA4|I3WTA4_NICAT),JAZ
+Solyc03g020010.1.1,Lemir (AHRD V3.3 *** O48625_SOLLC),Lemir
+Solyc03g020050.3.1,VIROID-INDUCIBLE PROTEINASE INHIBITOR II,CEVI57
+Solyc03g044180.1.1,transmembrane protein (AHRD V3.3 -** AT4G37290.1),TP
+Solyc03g096190.2.1,"Receptor-kinase, putative (AHRD V3.3 *** B9SUC9_RICCO)",RK
+Solyc09g008760.1.1,VQ motif-containing protein 29 (AHRD V3.3 *** A0A2G3BIN0_CAPCH),VQ29
+Solyc03g119370.2.1,R2R3MYB transcription factor 62,MYB62
+Solyc09g066350.1.1,Ethylene-responsive transcription factor (AHRD V3.3 *** A0A2G2X630_CAPBA),ERF9-4
+Solyc12g045035.1.1,Fatty acid desaturase (AHRD V3.3 *** A0A200QRI1_9MAGN),FDS
+Solyc04g064880.4.1,Pathogen-related protein (AHRD V3.3 *** A0A1U8GE43_CAPAN),ERF
+Solyc04g077300.3.1,G-type lectin S-receptor-like serine/threonine-protein kinase (AHRD V3.3 *** A0A2G3CPG9_CAPCH),GsSRK
+Solyc04g079260.3.1,Patatin (AHRD V3.3 *** A0A2G2ZRS1_CAPAN),Palatin
+Solyc05g008220.5.1,Plastid movement impaired protein (AHRD V3.11 *** tr|A0A072VEV4|A0A072VEV4_MEDTR),PMI1
+Solyc06g068900.4.1,"Nudix hydrolase 17, mitochondrial (AHRD V3.3 *** A0A2G2WL44_CAPBA)",NUDIX17
+Solyc06g069650.4.1,LRR receptor-like kinase family protein (AHRD V3.3 *** A0A072USD7_MEDTR),LRR-RLK
+Solyc06g073760.3.1,Glycosyl hydrolase family protein (AHRD V3.3 *** A0A1P8BG25_ARATH),GH
+Solyc07g005150.3.1,receptor-like protein 12 (AHRD V3.3 *** A0A1S3ZS92_TOBAC),RLP12
+Solyc07g054720.2.1,Proteinase inhibitor type-2 (AHRD V3.3 *-* A0A2G3A0T9_CAPAN),PI-II
+Solyc07g056510.3.1,Glutathione S-transferase-like protein (AHRD V3.3 *** A0A2K3N2T5_TRIPR),GST
+Solyc08g074682.1.1,Polyphenol oxidase (AHRD V3.3 *** Q41427_SOLTU),PPOb
+Solyc09g011870.3.1,Arogenate dehydrogenase 2 (AHRD V3.3 *** F1BPV6_SOLPN),ADH
+Solyc09g089910.1.1,Ethylene-responsive transcription factor (AHRD V3.3 *** A0A1U8GJ51_CAPAN),ERF
+Solyc09g091000.5.1,Pathogenesis-related protein STH-2 (AHRD V3.11 *** sp|P17642|PRS2_SOLTU),PR-STH2
+Solyc09g091670.3.1,Pleiotropic drug resistance protein (AHRD V3.3 *** C8CA13_CUCSA),PDRb
+Solyc10g076240.3.1,Peroxidase (AHRD V3.3 *** K4D1W6_SOLLC),PO
+Solyc10g076510.2.1,Pyruvate decarboxylase (AHRD V3.3 *** Q8H9C6_SOLTU),PDC
+Solyc11g044840.2.1,LL-diaminopimelate aminotransferase (AHRD V3.3 *** A0A2P5FUP3_TREOI),ALD1
+Solyc11g073075.1.1,Zinc finger protein (AHRD V3.3 *** A0A200PZ96_9MAGN),ZNF
+Solyc03g119910.5.1,2-oxoglutarate (2OG) and Fe(II)-dependent oxygenase superfamily protein (AHRD V3.11 *** tr|A0A2U1MX13|A0A2U1MX13_ARTAN),2OG-FeII
+Solyc03g121300.2.1,jacalin-related lectin 19 (AHRD V3.3 *** A0A2G2XW42_CAPAN),JRL
+Solyc05g007210.2.1,Transcription factor PRE4 (AHRD V3.3 *** A0A2G2VLX3_CAPBA),PRE4
+Solyc12g094440.2.1,High mobility group B protein 9 (AHRD V3.3 *** A0A2G2YA23_CAPAN),HMGB
