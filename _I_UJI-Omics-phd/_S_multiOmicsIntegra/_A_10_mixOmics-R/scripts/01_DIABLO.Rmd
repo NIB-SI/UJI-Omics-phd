@@ -1634,7 +1634,7 @@ dev.off()
 
 ```{r, 09_Clustered-Image-Maps}
 #heatmaps
-cimDiablo(final.diablo.model)
+cimDiablo(final.diablo.model, margins = c(13, 13), size.legend=0.8)
 
 ```
 
