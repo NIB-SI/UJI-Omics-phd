@@ -1623,8 +1623,8 @@ traceback()
 ```{r, Clustered-Image-Maps}
 
 cimfn <- "cim.png"
-png(cimfn, res = 600, width = 8000, height = 4000)
-cimDiablo(final.diablo.model, size.legend=0.7)
+png(cimfn, res = 600, width = 8000, height = 8000)
+cimDiablo(final.diablo.model, size.legend=0.7, margins = c(15, 15))
 dev.off()
 
 
