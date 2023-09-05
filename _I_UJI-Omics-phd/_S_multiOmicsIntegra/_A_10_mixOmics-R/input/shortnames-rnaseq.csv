@@ -15,16 +15,16 @@ Solyc08g029000.3.1,Lipoxygenase (AHRD V3.3 *** K4CJW3_SOLLC),LOX
 Solyc08g067630.3.1,histone deacetylase-like protein (AHRD V3.3 *** AT2G25625.2),HDA-like
 Solyc08g080640.2.1,NP24 protein precursor,NP24-pre
 Solyc08g080670.1.1,Pathogenesis-related 5-like protein,PR5-like
-Solyc09g011630.3.1,Glutation-S-transferase,GST
-Solyc10g076510.2.1,Pyruvate decarboxylase (AHRD V3.3 *** Q8H9C6_SOLTU),PDC
+Solyc09g011630.3.1,Glutation-S-transferase,GSTa
+Solyc10g076510.2.1,Pyruvate decarboxylase (AHRD V3.3 *** Q8H9C6_SOLTU),PDCa
 Solyc10g083690.3.1,Cytochrome P450 (AHRD V3.3 *** Q8H0I8_PETHY),CYP450
-Solyc10g084400.2.1,Glutathione S-transferase (AHRD V3.3 *** Q76KW1_PEA),GSTa
-Solyc10g084960.2.1,Glutathione S-transferase (AHRD V3.3 *** C0LF68_CAPAN),GSTb
+Solyc10g084400.2.1,Glutathione S-transferase (AHRD V3.3 *** Q76KW1_PEA),GSTb
+Solyc10g084960.2.1,Glutathione S-transferase (AHRD V3.3 *** C0LF68_CAPAN),GSTc
 Solyc11g007980.2.1,Cytochrome,Cytochrome
 Solyc11g044840.2.1,LL-diaminopimelate aminotransferase (AHRD V3.3 *** A0A2P5FUP3_TREOI),DapL
 Solyc12g005720.1.1,Cysteine-rich receptor-like protein kinase (AHRD V3.3 *** A0A2K3JS14_TRIPR),CRLK
-Solyc12g042480.3.1,Cytochrome (AHRD V3.3 *** A0A2G2Y725_CAPAN),CYP736A12
-Solyc12g045020.2.1,Cytochrome (AHRD V3.3 *** A0A2G2Y725_CAPAN),CYP736A12
+Solyc12g042480.3.1,Cytochrome (AHRD V3.3 *** A0A2G2Y725_CAPAN),CYP736A12a
+Solyc12g045020.2.1,Cytochrome (AHRD V3.3 *** A0A2G2Y725_CAPAN),CYP736A12b
 Solyc12g049030.1.1,Fatty acid desaturase (AHRD V3.3 *** A0A200QRI1_9MAGN),FAD
 Solyc09g010530.3.1,Cation/H(+) antiporter 20 (AHRD V3.3 *** A0A1U8E5Q9_CAPAN),CHX20
 Solyc01g097240.3.1,Pathogenesis-related protein 4 (AHRD V3.3 *** I6VW44_CAPAN),PR4
@@ -39,7 +39,7 @@ Solyc09g008760.1.1,VQ motif-containing protein 29 (AHRD V3.3 *** A0A2G3BIN0_CAPC
 Solyc03g119370.2.1,R2R3MYB transcription factor 62,MYB62
 Solyc09g066350.1.1,Ethylene-responsive transcription factor (AHRD V3.3 *** A0A2G2X630_CAPBA),ERF9-4
 Solyc12g045035.1.1,Fatty acid desaturase (AHRD V3.3 *** A0A200QRI1_9MAGN),FDS
-Solyc04g064880.4.1,Pathogen-related protein (AHRD V3.3 *** A0A1U8GE43_CAPAN),ERF
+Solyc04g064880.4.1,Pathogen-related protein (AHRD V3.3 *** A0A1U8GE43_CAPAN),ERFa
 Solyc04g077300.3.1,G-type lectin S-receptor-like serine/threonine-protein kinase (AHRD V3.3 *** A0A2G3CPG9_CAPCH),GsSRK
 Solyc04g079260.3.1,Patatin (AHRD V3.3 *** A0A2G2ZRS1_CAPAN),Palatin
 Solyc05g008220.5.1,Plastid movement impaired protein (AHRD V3.11 *** tr|A0A072VEV4|A0A072VEV4_MEDTR),PMI1
@@ -48,14 +48,14 @@ Solyc06g069650.4.1,LRR receptor-like kinase family protein (AHRD V3.3 *** A0A072
 Solyc06g073760.3.1,Glycosyl hydrolase family protein (AHRD V3.3 *** A0A1P8BG25_ARATH),GH
 Solyc07g005150.3.1,receptor-like protein 12 (AHRD V3.3 *** A0A1S3ZS92_TOBAC),RLP12
 Solyc07g054720.2.1,Proteinase inhibitor type-2 (AHRD V3.3 *-* A0A2G3A0T9_CAPAN),PI-II
-Solyc07g056510.3.1,Glutathione S-transferase-like protein (AHRD V3.3 *** A0A2K3N2T5_TRIPR),GST
+Solyc07g056510.3.1,Glutathione S-transferase-like protein (AHRD V3.3 *** A0A2K3N2T5_TRIPR),GSTd
 Solyc08g074682.1.1,Polyphenol oxidase (AHRD V3.3 *** Q41427_SOLTU),PPOb
 Solyc09g011870.3.1,Arogenate dehydrogenase 2 (AHRD V3.3 *** F1BPV6_SOLPN),ADH
-Solyc09g089910.1.1,Ethylene-responsive transcription factor (AHRD V3.3 *** A0A1U8GJ51_CAPAN),ERF
+Solyc09g089910.1.1,Ethylene-responsive transcription factor (AHRD V3.3 *** A0A1U8GJ51_CAPAN),ERFb
 Solyc09g091000.5.1,Pathogenesis-related protein STH-2 (AHRD V3.11 *** sp|P17642|PRS2_SOLTU),PR-STH2
 Solyc09g091670.3.1,Pleiotropic drug resistance protein (AHRD V3.3 *** C8CA13_CUCSA),PDRb
 Solyc10g076240.3.1,Peroxidase (AHRD V3.3 *** K4D1W6_SOLLC),PO
-Solyc10g076510.2.1,Pyruvate decarboxylase (AHRD V3.3 *** Q8H9C6_SOLTU),PDC
+Solyc10g076510.2.1,Pyruvate decarboxylase (AHRD V3.3 *** Q8H9C6_SOLTU),PDCb
 Solyc11g044840.2.1,LL-diaminopimelate aminotransferase (AHRD V3.3 *** A0A2P5FUP3_TREOI),ALD1
 Solyc11g073075.1.1,Zinc finger protein (AHRD V3.3 *** A0A200PZ96_9MAGN),ZNF
 Solyc03g119910.5.1,2-oxoglutarate (2OG) and Fe(II)-dependent oxygenase superfamily protein (AHRD V3.11 *** tr|A0A2U1MX13|A0A2U1MX13_ARTAN),2OG-FeII
