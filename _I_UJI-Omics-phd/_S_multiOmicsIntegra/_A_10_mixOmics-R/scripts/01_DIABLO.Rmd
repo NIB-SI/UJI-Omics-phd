@@ -2063,9 +2063,9 @@ write cor
 ```{r}
 
 fp = file.path('..', 'output')
-fn = '01_DIABLO-Enz_Met_Pph-both.txt'
+fn = '01_DIABLO-Enz_Met_Pph.txt'
 
-write.table(merged, 
+write.table(toWrite, 
             file = file.path(fp, fn), 
             append = FALSE, 
             quote = FALSE, 
