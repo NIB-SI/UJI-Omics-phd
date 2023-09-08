@@ -1,0 +1,2221 @@
+---
+title: "02_DIABLO_5omics_levels"
+author: "Maria, zagor"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    fig_caption: yes
+    self_contained: yes
+    fig_width: 12
+    fig_height: 9
+    toc: yes
+    toc_depth: 2
+    number_sections: yes
+    theme: flatly
+    highlight: tango
+  pdf_document:
+    toc: yes
+    toc_depth: '2'
+  word_document:
+    toc: yes
+    toc_depth: '2'
+editor_options:
+  chunk_output_type: console
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(#dev = c('pdf', 'png'),  # this embeds pdf and crates scrolable blocks
+                      dev = c('png', 'svg', 'pdf'), 
+                      fig.align = 'center', 
+                      fig.height = 9, 
+                      fig.width = 12 ,
+                      warning = FALSE, message = FALSE
+                      )
+# options(knitr.table.format = "html")
+
+```
+
+```{r}
+
+gc()
+rm(list = ls(all = TRUE))
+gc()
+
+set.seed(123456)
+
+library(igraph)
+
+```
+
+
+fix layout error
+
+```{r, echo=FALSE}
+
+bin.color = function(mat, cutoff, breaks, col, symkey) 
+{
+    if (isTRUE(symkey)) {
+        max.mat = max(abs(mat))
+        min.mat = -max.mat
+    }
+    else {
+        max.mat = max(mat)
+        min.mat = min(mat)
+    }
+	
+	    if (missing(breaks) || is.null(breaks)) {
+        if (class(col) == "function") breaks = 32
+            else breaks = length(col) 
+    }
+
+    if (length(breaks) == 1) {
+		if (isTRUE(symkey)) {
+				if ((breaks/2) - trunc(breaks/2) != 0) 
+					stop("'breaks' must be a even number if 'symkey = TRUE'", call. = FALSE)
+			
+			if (cutoff == 0) breaks = c(seq(min.mat, max.mat, length = breaks + 1))
+			else {			
+				nb = breaks/2
+				breaks = c(seq(min.mat, -cutoff, length = nb + 1), 0, 
+						   seq(cutoff, max.mat, length = nb + 1))					   
+				id = which(breaks == 0)
+				breaks = breaks[-c(id - 1, id + 1)]			
+			}
+		}
+		else { 
+			breaks = breaks + 1
+			
+			if ((min.mat < -cutoff) & (max.mat < cutoff))
+				breaks = seq(min.mat, -cutoff, length = breaks)
+				
+			if ((min.mat > -cutoff) & (max.mat > cutoff))
+				breaks = seq(cutoff, max.mat, length = breaks)
+				
+			if ((min.mat < -cutoff) & (max.mat > cutoff)) {
+				if (cutoff == 0) breaks = c(seq(min.mat, max.mat, length = breaks))
+				else {
+					long = max.mat - min.mat - 2*cutoff
+					bin = long/breaks
+					breaks = seq(cutoff, -min.mat, by = bin)
+					o = order(breaks, decreasing = TRUE)
+					breaks = c(-breaks[o], 0, seq(cutoff, max.mat, by = bin))
+					id = which(breaks == 0)				
+					breaks = breaks[-c(id - 1, id + 1)]
+				}
+			}
+		}
+    }
+
+    ncol = length(breaks) - 1
+
+    if (class(col) == "function") 
+        col = col(ncol)
+		
+	if (length(breaks) != length(col) + 1) 
+        stop("must have one more break than colour", call. = FALSE)	
+
+    min.breaks = min(breaks)
+    max.breaks = max(breaks)
+
+    mat[mat < min.breaks] = min.breaks
+    mat[mat > max.breaks] = max.breaks
+    
+    bin = .bincode(as.double(mat), as.double(breaks), TRUE, TRUE)
+
+    return(invisible(list(bin = bin, col = col, breaks = breaks, lim = c(min.mat, max.mat))))		
+}
+
+
+network <- function (mat, comp = NULL, blocks = c(1, 2), cutoff = 0, row.names = TRUE, 
+    col.names = TRUE, block.var.names = TRUE, graph.scale = 0.5, 
+    size.node = 0.5, color.node = NULL, shape.node = NULL, alpha.node = 0.85, 
+    cex.node.name = NULL, color.edge = color.GreenRed(100), lty.edge = "solid", 
+    lwd.edge = 1, show.edge.labels = FALSE, cex.edge.label = 1, 
+    show.color.key = TRUE, symkey = TRUE, keysize = c(1, 1), 
+    keysize.label = 1, breaks, interactive = FALSE, layout.fun = NULL, 
+    save = NULL, name.save = NULL, plot.graph = TRUE) 
+{
+    arg.call = match.call()
+    user.arg = names(arg.call)[-1]
+    err = tryCatch(mget(names(formals()), sys.frame(sys.nframe())), 
+        error = function(e) e)
+    if ("simpleError" %in% class(err)) 
+        stop(err[[1]], ".", call. = FALSE)
+    function.arg = names(mget(names(formals()), sys.frame(sys.nframe())))
+    not.arg = !(user.arg %in% function.arg)
+    if (any(not.arg)) {
+        unused.arg = user.arg[not.arg]
+        not.arg = which(not.arg) + 1
+        output = rep("", length(not.arg))
+        for (i in 1:length(not.arg)) {
+            output[i] = paste0(unused.arg[i], " = ", arg.call[[not.arg[i]]])
+        }
+        output = paste0("(", paste(output, collapse = ", "), 
+            ").")
+        msg = "unused argument "
+        if (length(not.arg) > 1) 
+            msg = "unused arguments "
+        stop(msg, output, call. = FALSE)
+    }
+    if (!is.null(save)) {
+        if (!save %in% c("jpeg", "tiff", "png", "pdf")) 
+            stop("'save' must be one of 'jpeg', 'png', 'tiff' or 'pdf'.", 
+                call. = FALSE)
+    }
+    if (!is.null(name.save)) {
+        if (!is.character(name.save) || length(name.save) > 1) 
+            stop("'name.save' must be a character.", call. = FALSE)
+    }
+    else {
+        if (!is.null(save)) 
+            name.save = paste0("network_", gsub(".", "_", deparse(substitute(mat)), 
+                fixed = TRUE))
+    }
+    if (!is.null(save)) {
+        while (dev.cur() > 1) dev.off()
+        if (save == "jpeg") 
+            jpeg(filename = paste0(name.save, ".jpeg"), res = 600, 
+                width = 4000, height = 4000)
+        if (save == "png") 
+            jpeg(filename = paste0(name.save, ".png"), res = 600, 
+                width = 4000, height = 4000)
+        if (save == "tiff") 
+            tiff(filename = paste0(name.save, ".tiff"), res = 600, 
+                width = 4000, height = 4000)
+        if (save == "pdf") 
+            pdf(file = paste0(name.save, ".pdf"))
+    }
+    if (!plot.graph & interactive) {
+        stop("plot.graph cannot be FALSE if interactive = TRUE", 
+            call. = FALSE)
+    }
+    class.object = class(mat)
+    object.pls = c("mixo_pls", "mixo_spls", "mixo_mlspls")
+    object.rcc = "rcc"
+    object.blocks = c("sgcca", "rgcca")
+    if (!any(class.object %in% c(object.pls, object.rcc, object.blocks, 
+        "matrix"))) 
+        stop(" 'network' is only implemented for the following objects: matrix, pls, plsda, spls, splsda, rcc, sgcca, rgcca, sgccda", 
+            call. = FALSE)
+    if (any(class.object %in% c(object.rcc, object.pls))) {
+        p = ncol(mat$X)
+        if (any(class.object == "DA")) 
+            mat$Y = mat$ind.mat
+        q = ncol(mat$Y)
+        n = nrow(mat$X)
+        ncomp = mat$ncomp
+        if (is.null(comp)) 
+            comp = 1:mat$ncomp
+        if (length(comp) == 1) {
+            if (comp > ncomp) {
+                stop("the elements of 'comp' must be smaller than or equal to ", 
+                  ncomp, ".", call. = FALSE)
+            }
+            else if (!is.numeric(comp) || comp <= 0) {
+                stop("invalid value for 'comp'.", call. = FALSE)
+            }
+        }
+        if (length(comp) > 1) {
+            if (length(comp) > ncomp) 
+                stop("the length of 'comp' must be smaller than or equal to ", 
+                  ncomp, ".", call. = FALSE)
+            if (!is.numeric(comp) || any(comp < 1)) 
+                stop("invalid vector for 'comp'.", call. = FALSE)
+            if (any(comp > ncomp)) 
+                stop("the elements of 'comp' must be <= ", ncomp, 
+                  ".", call. = FALSE)
+        }
+        comp = round(comp)
+        row.names.plot = TRUE
+        if (is.logical(row.names)) {
+            if (!isTRUE(row.names)) {
+                row.names.plot = FALSE
+            }
+            row.names = mat$names$colnames$X
+        }
+        else {
+            row.names = as.vector(row.names)
+            if (length(unique(row.names)) != p) 
+                stop("'row.names' must be a character vector of ", 
+                  p, " unique entries.", call. = FALSE)
+        }
+        if (row.names.plot == TRUE) {
+            row.names.plot = row.names
+        }
+        else {
+            row.names.plot = rep("", p)
+        }
+        col.names.plot = TRUE
+        if (is.logical(col.names)) {
+            if (!isTRUE(col.names)) {
+                col.names.plot = FALSE
+            }
+            col.names = mat$names$colnames$Y
+        }
+        else {
+            col.names = as.vector(col.names)
+            if (length(col.names) != q) 
+                stop("'col.names' must be a character vector of ", 
+                  q, " unique entries.", call. = FALSE)
+        }
+        if (col.names.plot == TRUE) {
+            col.names.plot = col.names
+        }
+        else {
+            col.names.plot = rep("", q)
+        }
+        if (any(class.object %in% object.rcc)) {
+            bisect = mat$variates$X[, comp] + mat$variates$Y[, 
+                comp]
+            cord.X = cor(mat$X, bisect, use = "pairwise")
+            cord.Y = cor(mat$Y, bisect, use = "pairwise")
+            mat = cord.X %*% t(cord.Y)
+        }
+        else if (any(class.object %in% object.pls)) {
+            if (all(class(mat) %in% "mixo_pls")) {
+                keep.X = rep(TRUE, p)
+                keep.Y = rep(TRUE, q)
+            }
+            else {
+                keep.X = apply(abs(mat$loadings$X[, comp, drop = FALSE]), 
+                  1, sum) > 0
+                keep.Y = apply(abs(mat$loadings$Y[, comp, drop = FALSE]), 
+                  1, sum) > 0
+                row.names = row.names[keep.X]
+                col.names = col.names[keep.Y]
+            }
+            if (mat$mode == "canonical") {
+                cord.X = cor(mat$X[, keep.X], mat$variates$X[, 
+                  comp], use = "pairwise")
+                cord.Y = cor(mat$Y[, keep.Y], mat$variates$Y[, 
+                  comp], use = "pairwise")
+            }
+            else {
+                cord.X = cor(mat$X[, keep.X], mat$variates$X[, 
+                  comp], use = "pairwise")
+                cord.Y = cor(mat$Y[, keep.Y], mat$variates$X[, 
+                  comp], use = "pairwise")
+            }
+            mat = cord.X %*% t(cord.Y)
+        }
+    }
+    else if (any(class.object %in% object.blocks)) {
+        mat$X <- mapply(mat$X, names(mat$X), FUN = function(x, 
+            y) {
+            colnames(x) <- paste0(colnames(x), "_", y)
+            x
+        }, SIMPLIFY = FALSE)
+        if (any(class.object == "DA")) {
+            mat$names$blocks = mat$names$blocks[-mat$indY]
+            mat$names$colnames = mat$names$colnames[-mat$indY]
+            mat$ncomp = mat$ncomp[-mat$indY]
+        }
+        if (is.null(blocks)) {
+            if (any(mat$ncomp > 1)) {
+                blocks = mat$names$blocks[which(mat$ncomp > 1)]
+            }
+            else {
+                stop(("The number of components for each block is 1. The number of components must be superior or equal to 2."), 
+                  call. = FALSE)
+            }
+        }
+        else if (is.numeric(blocks) & min(blocks) > 0 & max(blocks) <= 
+            length(mat$names$blocks)) {
+            blocks = mat$names$blocks[blocks]
+        }
+        else if (is.character(blocks)) {
+            if (!all(blocks %in% mat$names$blocks)) 
+                stop("One element of 'blocks' does not match with the names of the blocks")
+        }
+        else {
+            stop("Incorrect value for 'blocks", call. = FALSE)
+        }
+        if (is.null(comp)) {
+            comp = vector("list", length(blocks))
+            names(comp) = blocks
+            for (i in blocks) comp[[i]] = 1:mat$ncomp[i]
+        }
+        if (is.list(comp)) {
+            if (length(comp) != length(blocks)) 
+                stop("'comp' must be either NULL a list of length ", 
+                  length(blocks), ".", call. = FALSE)
+            if (!all(blocks %in% names(comp))) 
+                stop("names of 'comp' must be from {", paste(blocks, 
+                  collapse = ", "), "}.", call. = FALSE)
+            for (i in blocks) {
+                if (any(!is.finite(comp[[i]]))) 
+                  stop("invalid value for 'comp' of the block '", 
+                    i, "'.", call. = FALSE)
+                if (any(comp[[i]] > mat$ncomp[i])) 
+                  stop("the elements of 'comp' for block '", 
+                    i, "' must be <= ", mat$ncomp[i], ".", call. = FALSE)
+                if (any(comp[[i]] < 1)) 
+                  stop("invalid value for 'comp' of the block '", 
+                    i, "'.", call. = FALSE)
+            }
+        }
+        else {
+            stop("'comp' must be either NULL or a list of length ", 
+                length(blocks), ".", call. = FALSE)
+        }
+        num.var = unlist(lapply(mat$X[blocks], ncol))
+        if (is.logical(block.var.names)) {
+            if (length(block.var.names) == 1) 
+                block.var.names = rep(block.var.names, length(blocks))
+            if (length(block.var.names) != length(blocks)) 
+                stop("'block.var.names' must be a logical vector of length 1 or ", 
+                  length(blocks), ", or a list of length ", length(blocks), 
+                  ".", call. = FALSE)
+            vec = (which(block.var.names == FALSE))
+            block.var.names = mat$names$colnames
+            for (i in 1:length(blocks)) {
+                if (i %in% vec) 
+                  block.var.names[[blocks[i]]] = rep(" ", length(mat$names$colnames[[blocks[i]]]))
+            }
+        }
+        else {
+            if (is.list(block.var.names)) {
+                if (length(block.var.names) != length(blocks)) {
+                  stop("'block.var.names' must be a logical vector or a list of length ", 
+                    length(blocks), ".", call. = FALSE)
+                }
+                else {
+                  if (!all(unlist(lapply(block.var.names, is.vector)))) 
+                    stop("each component of 'block.var.names' must be a vector.", 
+                      call. = FALSE)
+                  block.var.names.length = unlist(lapply(block.var.names, 
+                    length))
+                  if (any(block.var.names.length != num.var)) 
+                    stop("components of 'block.var.names' must be vectors of length ", 
+                      paste(num.var, collapse = ", "), ".", call. = FALSE)
+                }
+            }
+            else {
+                stop("'block.var.names' must be either a logical value or a list of length ", 
+                  length(blocks), ".", call. = FALSE)
+            }
+        }
+        coord = M_block = list()
+        j = 1
+        if (is(mat, "sgcca")) {
+            for (k in blocks) {
+                if (length(comp[[k]]) > 1) {
+                  keep = (apply(abs(mat$loadings[[k]][, comp[[k]]]), 
+                    1, sum) > 0)
+                }
+                else {
+                  keep = abs(mat$loadings[[k]][, comp[[k]]]) > 
+                    0
+                }
+                coord[[j]] = cor(mat$X[[k]][, keep], mat$variates[[k]][, 
+                  comp[[k]]], use = "pairwise")
+                j = j + 1
+            }
+        }
+        else {
+            for (k in blocks) {
+                coord[[j]] = cor(mat$X[[k]], mat$variates[[k]][, 
+                  comp[[k]]], use = "pairwise")
+                j = j + 1
+            }
+        }
+        node.X = node.Y = w = NULL
+        l = 1
+        for (j in 1:(length(blocks) - 1)) {
+            for (k in (j + 1):length(blocks)) {
+                if (!any(comp[[blocks[j]]] %in% comp[[blocks[k]]])) 
+                  stop("comp of block ", blocks[j], " is ", comp[[blocks[j]]], 
+                    " but comp of block ", blocks[k], " is ", 
+                    comp[[blocks[k]]], call. = FALSE)
+                int.comp = intersect(comp[[blocks[j]]], comp[[blocks[k]]])
+                object = coord[[j]][, comp[[blocks[j]]] %in% 
+                  int.comp] %*% t(coord[[k]][, comp[[blocks[k]]] %in% 
+                  int.comp])
+                M_block[[l]] = object
+                l = l + 1
+                X = rownames(coord[[j]])
+                Y = rownames(coord[[k]])
+                rep.X = rep(X, each = length(Y))
+                rep.Y = rep(Y, length(X))
+                node.X = c(node.X, rep.X)
+                node.Y = c(node.Y, rep.Y)
+                w = c(w, as.vector(t(object)))
+            }
+        }
+    }
+    else {
+        if (!is.matrix(mat)) 
+            stop("'mat' must be a numeric matrix.", call. = FALSE)
+        if (length(dim(mat)) != 2) 
+            stop("'mat' must be a numeric matrix.")
+        if (!is.numeric(mat)) 
+            stop("'mat' must be a numeric matrix.")
+        p = nrow(mat)
+        q = ncol(mat)
+        row.names.plot = TRUE
+        if (is.logical(row.names)) {
+            if (!isTRUE(row.names)) {
+                row.names.plot = FALSE
+            }
+            row.names = rownames(mat)
+        }
+        else {
+            row.names = as.vector(row.names)
+            if (length(row.names) != p) 
+                stop("'row.names' must be a character vector of ", 
+                  p, " unique entries.", call. = FALSE)
+        }
+        if (row.names.plot == TRUE) {
+            row.names.plot = row.names
+        }
+        else {
+            row.names.plot = rep("", p)
+        }
+        col.names.plot = TRUE
+        if (is.logical(col.names)) {
+            if (!isTRUE(col.names)) {
+                col.names.plot = FALSE
+            }
+            col.names = colnames(mat)
+        }
+        else {
+            col.names = as.vector(col.names)
+            if (length(col.names) != q) 
+                stop("'col.names' must be a character vector of ", 
+                  q, " unique entries.", call. = FALSE)
+        }
+        if (col.names.plot == TRUE) {
+            col.names.plot = col.names
+        }
+        else {
+            col.names.plot = rep("", q)
+        }
+    }
+    if (!is.null(size.node)) {
+        if (!is.finite(size.node) || size.node < 0 || size.node > 
+            1) {
+            stop("'size.node' must be a numerical value between 0 - 1.", 
+                call. = FALSE)
+        }
+        if (size.node == 0) {
+            shape.node <- "none"
+            size.node <- 1
+        }
+    }
+    if (!is.finite(graph.scale) || graph.scale < 0 || graph.scale > 
+        1) {
+        stop("'graph.scale' must be a numerical value between 0 - 1.", 
+            call. = FALSE)
+    }
+    if (any(class.object %in% object.blocks)) {
+        if (is.null(color.node)) {
+            color.blocks = brewer.pal(n = 12, name = "Paired")
+            if (length(blocks) > 6) {
+                color.blocks <- colorRampPalette(color.blocks)(2 * 
+                  length(object$X))
+            }
+            color.node = color.blocks[seq(from = 1, to = 2 * 
+                length(blocks), by = 2)]
+            color.node = adjustcolor(color.node, alpha.f = alpha.node)
+            names(color.node) = blocks
+        }
+        else {
+            if (!is.vector(color.node) || length(color.node) != 
+                length(blocks)) 
+                stop("'color.node' must be a vector of length ", 
+                  length(blocks), ".", call. = FALSE)
+        }
+    }
+    else {
+        if (is.null(color.node)) 
+            color.node = brewer.pal(n = 12, name = "Paired")[c(1, 
+                3)]
+        color.node = adjustcolor(color.node, alpha.f = alpha.node)
+        if (!is.list(color.node)) {
+            if (!is.vector(color.node) || length(color.node) != 
+                2) 
+                stop("'color.node' must be a vector of length 2.", 
+                  call. = FALSE)
+        }
+        else {
+            stop("'color.node' must be a vector of length 2.", 
+                call. = FALSE)
+        }
+    }
+    if (any(!sapply(color.node, function(x) {
+        tryCatch(is.matrix(col2rgb(x)), error = function(e) FALSE)
+    }))) 
+        stop("'color.node' must be a character vector of recognized colors.", 
+            call. = FALSE)
+    if (any(class.object %in% object.blocks)) {
+        if (is.null(shape.node)) 
+            shape.node = "circle"
+        if (is.vector(shape.node)) {
+            if (length(shape.node) == 1) 
+                shape.node = rep(shape.node, length(blocks))
+        }
+        if (!is.list(shape.node)) {
+            if (!is.vector(shape.node) || length(shape.node) != 
+                length(blocks)) 
+                stop("'shape.node' must be a character vector of length ", 
+                  length(blocks), ".", call. = FALSE)
+        }
+        else {
+            stop("'shape.node' must be a numeric vector of length ", 
+                length(blocks), ".", call. = FALSE)
+        }
+        if (!all(shape.node %in% c("none", "circle", "rectangle"))) 
+            stop("elements of 'shape.node' must be from {'none', 'circle', 'rectangle'}.", 
+                call. = FALSE)
+        if (is.null(names(shape.node))) 
+            names(shape.node) = blocks
+    }
+    else {
+        if (is.null(shape.node)) 
+            shape.node = c("circle", "rectangle")
+        if (length(shape.node) == 1) {
+            if (shape.node == "none") {
+                shape.node = c("none", "none")
+            }
+        }
+        if (!is.list(shape.node)) {
+            if (!is.vector(shape.node) || length(shape.node) != 
+                2) 
+                stop("'shape.node' must be a vector of length 2.", 
+                  call. = FALSE)
+        }
+        else {
+            stop("'shape.node' must be a vector of length 2.", 
+                call. = FALSE)
+        }
+        if (!all(shape.node %in% c("none", "circle", "rectangle"))) 
+            stop("elements of 'shape.node' must be from {'none', 'circle', 'rectangle'}.", 
+                call. = FALSE)
+    }
+    if (!is.null(cex.node.name)) {
+        if (!is.finite(cex.node.name) || cex.node.name < 0 || 
+            length(cex.node.name) > 1) {
+            stop("'cex.node.name' must be a non-negative numerical value.", 
+                call. = FALSE)
+        }
+    }
+    if (length(color.edge) < 2 && (!is(color.edge, "function"))) 
+        stop("'color.edge' must be a vector of length larger than or equal to 2.", 
+            call. = FALSE)
+    if ((length(color.edge)%%2) != 0 && (!is(color.edge, "function")) && 
+        isTRUE(symkey)) 
+        stop("'color.edge' must be a vector of length an even number if 'symkey = TRUE'.", 
+            call. = FALSE)
+    if (any(!sapply(color.edge, function(x) {
+        tryCatch(is.matrix(col2rgb(x)), error = function(e) FALSE)
+    }))) 
+        stop("'color.edge' must be a character vector of recognized colors.", 
+            call. = FALSE)
+    if (length(lty.edge) > 2) 
+        stop("\"lty.edge\" must a character vector of up to 2 entries from\n        'solid', 'dashed', 'dotted', 'dotdash', 'longdash', twodash' or 'blank'.\n        see ?network", 
+            call. = FALSE)
+    if (length(lty.edge) == 1) 
+        lty.edge = c(lty.edge, lty.edge)
+    choices = c("solid", "dashed", "dotted", "dotdash", "longdash", 
+        "twodash", "blank")
+    lty.edge = choices[pmatch(lty.edge, choices, duplicates.ok = TRUE)]
+    if (any(is.na(lty.edge))) 
+        stop("'lty.edge' should be from 'solid', 'dashed', 'dotted', 'dotdash', 'longdash', twodash' or 'blank'.", 
+            call. = FALSE)
+    if (length(lwd.edge) > 2) 
+        stop("'lwd.edge' must be a vector of up to 2 positive numbers.\n        See ?network")
+    if (length(lwd.edge) == 1) 
+        lwd.edge = c(lwd.edge, lwd.edge)
+    if (length(lwd.edge) != 2 || any(!is.finite(lwd.edge)) || 
+        any(lwd.edge <= 0)) 
+        stop("'lwd.edge' must be positive.")
+    if (!is.logical(show.edge.labels)) 
+        stop("'show.edge.labels' must be a logical constant (TRUE or FALSE).", 
+            call. = FALSE)
+    if (!is.finite(cex.edge.label) || cex.edge.label < 0 || length(cex.edge.label) > 
+        1) 
+        stop("'cex.edge.label' must be a non-negative numerical value.", 
+            call. = FALSE)
+    if (!is.logical(show.color.key)) 
+        stop("'show.color.key' must be a logical constant (TRUE or FALSE).", 
+            call. = FALSE)
+    if (!is.logical(symkey)) 
+        stop("'symkey' must be a logical constant (TRUE or FALSE).", 
+            call. = FALSE)
+    if (length(keysize) != 2 || any(!is.finite(keysize))) 
+        stop("'keysize' must be a numeric vector of length 2.", 
+            call. = FALSE)
+    if (length(keysize.label) != 1 || any(!is.finite(keysize))) 
+        stop("'keysize' must be a numeric vector of length 1.", 
+            call. = FALSE)
+    if (!is.logical(interactive)) 
+        stop("'interactive' must be a logical constant (TRUE or FALSE).", 
+            call. = FALSE)
+    if (!is.null(layout.fun) && !is(layout.fun, "function")) 
+        stop("'layout.fun' must be a valid layout function.", 
+            call. = FALSE)
+    if (!(any(class.object %in% object.blocks))) 
+        w = as.vector(t(mat))
+    if (round(max(abs(w)), 2) == 0) 
+        stop("There is no correlation between these blocks whith these components.", 
+            "Try a different value of 'comp'.", call. = FALSE)
+    if (!is.numeric(cutoff) || cutoff < 0 || cutoff > 1) 
+        stop("'cutoff' should be a numeric between 0 and 1", 
+            call. = FALSE)
+    if (cutoff > max(abs(w))) 
+        stop("You have chosen a high cutoff value of ", cutoff, 
+            " which is greaer than the max value in the similarity matrix which is ", 
+            round(max(abs(w)), 2), call. = FALSE)
+    if (any(class.object %in% object.blocks)) {
+        group = NULL
+        temp = lapply(mat$X, function(x) colnames(x))
+        for (i in 1:length(temp)) {
+            group = c(group, rep(names(temp)[i], length(temp[[i]])))
+        }
+        nodes = data.frame(name = unlist(temp), group = group)
+    }
+    else if (any(class.object %in% object.pls)) {
+        w = as.vector(t(mat))
+        Xn = sum(keep.X)
+        Yn = sum(keep.Y)
+        node.X = row.names
+        node.Y = col.names
+        row.names.plot = row.names.plot[keep.X]
+        col.names.plot = col.names.plot[keep.Y]
+        nodes = data.frame(name = c(node.X, node.Y), group = c(rep("x", 
+            Xn), rep("y", Yn)))
+        node.X = rep(node.X, each = Yn)
+        node.Y = rep(node.Y, Xn)
+    }
+    else {
+        node.X = row.names
+        node.Y = col.names
+        nodes = data.frame(name = c(node.X, node.Y), group = c(rep("x", 
+            p), rep("y", q)))
+        node.X = rep(node.X, each = q)
+        node.Y = rep(node.Y, p)
+    }
+    relations = data.frame(from = node.X, to = node.Y, weight = w)
+    id = bin.color(w, cutoff = cutoff, breaks = breaks, col = color.edge, 
+        symkey = symkey)
+    col.id = id$bin
+    color.edge = id$col[col.id]
+    idx = (abs(w) >= cutoff)
+    relations = relations[idx, ]
+    color.edge = color.edge[idx]
+    gR = graph.data.frame(relations, directed = FALSE, vertices = nodes)
+    V(gR)$label.color = "black"
+    V(gR)$label.family = "sans"
+    if (any(class.object %in% object.blocks)) {
+        V(gR)$label = unlist(block.var.names)
+        j = 1
+        for (i in blocks) {
+            V(gR)$color[V(gR)$group == i] = color.node[j]
+            V(gR)$shape[V(gR)$group == i] = shape.node[j]
+            if (shape.node[j] == "none") {
+                V(gR)$label.color[V(gR)$group == i] = paste0(substr(color.node[j], 
+                  1, 7), "FF")
+            }
+            j = j + 1
+        }
+    }
+    else {
+        V(gR)$label = c(row.names.plot, col.names.plot)
+        V(gR)$color = color.node[1]
+        V(gR)$color[V(gR)$group == "y"] = color.node[2]
+        V(gR)$shape = shape.node[1]
+        if (shape.node[1] == "none") {
+            V(gR)$label.color = paste0(substr(color.node[1], 
+                1, 7), "FF")
+        }
+        V(gR)$shape[V(gR)$group == "y"] = shape.node[2]
+        if (shape.node[2] == "none") {
+            V(gR)$label.color[V(gR)$group == "y"] = paste0(substr(color.node[2], 
+                1, 7), "FF")
+        }
+    }
+    if (show.edge.labels) 
+        E(gR)$label = round(E(gR)$weight, 2)
+    E(gR)$label.color = "black"
+    E(gR)$color = color.edge
+    E(gR)$lty = lty.edge[1]
+    E(gR)$lty[E(gR)$weight < 0] = lty.edge[2]
+    E(gR)$width = lwd.edge[1]
+    E(gR)$width[E(gR)$weight < 0] = lwd.edge[2]
+    gR = delete.vertices(gR, which(degree(gR) == 0))
+    lwid = c(keysize[1], 4)
+    lhei = c(keysize[2], 4)
+    lmat = matrix(c(1, 2, 3, 4), 2, 2, byrow = TRUE)
+    nc = length(id$col)
+    x = seq(0, 1, length = nc + 2)
+    z.mat = seq(0, 1, length = nc + 1)
+    z.mat = matrix(z.mat, ncol = 1)
+    if ((id$lim[1] < -cutoff) & (id$lim[2] < cutoff)) {
+        xv = c(0, x[nc + 1])
+        lv = round(c(id$lim[1], -cutoff), 2)
+        col = c(id$col, "white")
+    }
+    if ((id$lim[1] > -cutoff) & (id$lim[2] > cutoff)) {
+        xv = c(x[2], 1)
+        lv = round(c(cutoff, id$lim[2]), 2)
+        col = c("white", id$col)
+    }
+    if ((id$lim[1] < -cutoff) & (id$lim[2] > cutoff)) {
+        idn = max(which(id$breaks < 0))
+        idp = min(which(id$breaks > 0))
+        xv = c(0, x[idn + 1], x[idp], 1)
+        lv = round(c(id$lim[1], -cutoff, cutoff, id$lim[2]), 
+            2)
+        col = c(id$col[1:idn], "white", id$col[(idn + 1):nc])
+    }
+    nn = vcount(gR)
+    V(gR)$label.cex = ifelse(is.null(cex.node.name), 1, cex.node.name)
+    E(gR)$label.cex = min(2.25 * cex.edge.label/log(nn), 1)
+    cex0 = 2 * V(gR)$label.cex
+    def.par = par(no.readonly = TRUE)
+    dev.new()
+    par(pty = "s", mar = c(0, 0, 0, 0), mfrow = c(1, 1))
+    upr.bnd <- 190 * (graph.scale^2) + 10
+    plot(1:upr.bnd, 1:upr.bnd, type = "n", axes = FALSE, xlab = "", 
+        ylab = "")
+    cha = V(gR)$label
+    cha = paste("", cha, "")
+    xh = strwidth(cha, cex = ifelse(size.node == 0.5, cex0, size.node * 
+        4)) * 1.5 * (2 - graph.scale)
+    yh = strheight(cha, cex = ifelse(size.node == 0.5, cex0, 
+        size.node * 4)) * 3 * (2 - graph.scale)
+    V(gR)$size = xh
+    V(gR)$size2 = yh
+    dev.off()
+    if (is.null(layout.fun)) {
+        l = layout.fruchterman.reingold(gR, weights = (2 - abs(E(gR)$weight))) # 1 -> 2
+    }
+    else {
+        l = layout.fun(gR)
+    }
+    if (isTRUE(!interactive)) {
+        if (isTRUE(show.color.key)) {
+            l = layout.fruchterman.reingold(gR, weights = (2 - # 1 -> 2
+                abs(E(gR)$weight)))
+        }
+        else {
+            l = layout.fun(gR)
+        }
+        if (isTRUE(!interactive)) {
+            if (isTRUE(show.color.key)) {
+                layout(lmat, widths = lwid, heights = lhei, respect = FALSE)
+                par(mar = c(5, 4, 2, 1), cex = 0.75)
+                image(z.mat, col = col, xaxt = "n", yaxt = "n")
+                box()
+                par(usr = c(0, 1, 0, 1))
+                axis(1, at = xv, labels = lv, cex.axis = keysize.label)
+                title("Color key", font.main = 1, cex.main = keysize.label)
+                par(def.par)
+                par(new = TRUE)
+            }
+            par(pty = "s", mar = c(0, 0, 0, 0), mfrow = c(1, 
+                1))
+            plot(gR, layout = l)
+            par(def.par)
+        }
+    }
+    gE.none = FALSE
+    if (isTRUE(interactive)) {
+        min.cut = cutoff
+        max.cut = max(abs(w))
+        cutoff.old = cutoff
+        dev.new(width = 5, height = 2.7, xpos = -1)
+        def.par = par(no.readonly = TRUE)
+        cuts = seq(0, 1, length = 21)
+        par(mai = c(0.25, 0.15, 0.3, 0.15), bg = gray(0.95))
+        layout(matrix(c(0, 1, 0), ncol = 1, nrow = 3), widths = 1, 
+            heights = c(0.25, 1, 0.25))
+        plot(cuts, type = "n", rep(0, 21), xlab = "", ylab = "", 
+            xlim = c(-0.1, 1.1), axes = FALSE)
+        title("cutoff control", cex.main = 1.9, font.main = 1)
+        text(0.5, -0.6, "value", cex = 1.5)
+        text(0, -0.6, round(min.cut, 2), cex = 1.4)
+        text(1, -0.6, round(max.cut, 2), cex = 1.4)
+        mtext(min.cut, side = 1, line = -1, outer = FALSE, cex = 0.95)
+        rect(-0.1, -0.3, -0.02, 0.3, col = "white")
+        rect(1.02, -0.3, 1.1, 0.3, col = "white")
+        points(1.06, 0, pch = 3, cex = 2.4)
+        lines(c(-0.085, -0.035), c(0, 0))
+        for (i in seq(0, 1, length = 21)) lines(c(i, i), c(-0.22, 
+            0.2))
+        x = pos = 0
+        rect(-0.01, -0.045, x, 0.04, col = "red")
+        rect(x, -0.045, 1.01, 0.04, col = "white")
+        bar.dev = dev.cur()
+        dev.new()
+        net.dev = dev.cur()
+        if (isTRUE(show.color.key)) {
+            layout(lmat, widths = lwid, heights = lhei, respect = FALSE)
+            par(mar = c(5, 4, 2, 1), cex = 0.75)
+            image(z.mat, col = col, xaxt = "n", yaxt = "n")
+            box()
+            par(usr = c(0, 1, 0, 1))
+            axis(1, at = xv, labels = lv, cex.axis = keysize.label)
+            title("Color key", font.main = 1, cex.main = keysize.label)
+            par(def.par)
+            par(new = TRUE)
+        }
+        par(pty = "s", mar = c(0, 0, 0, 0))
+        plot(gR, layout = l)
+        par(def.par)
+        old.pos = -1
+        repeat {
+            dev.set(bar.dev)
+            z = locator(1, type = "n")
+            x = z[[1]]
+            y = z[[2]]
+            if (is.null(z)) 
+                break
+            if (0 <= x & x <= 1 & -0.22 <= y & y <= 0.22) {
+                rect(0, -0.045, x, 0.04, col = "red")
+                rect(x, -0.045, 1.01, 0.04, col = "white")
+                pos = x
+            }
+            if (1.02 <= x & x <= 1.1 & -0.3 <= y & y <= 0.3) {
+                x = pos + 0.05
+                idx = which.min(abs(cuts - x))
+                x = cuts[idx]
+                pos = x
+                rect(0, -0.045, x, 0.04, col = "red")
+                rect(x, -0.045, 1.01, 0.04, col = "white")
+            }
+            if (-0.1 <= x & x <= -0.02 & -0.3 <= y & y <= 0.3) {
+                x = pos - 0.05
+                idx = which.min(abs(cuts - x))
+                x = cuts[idx]
+                pos = x
+                rect(0, -0.045, x, 0.04, col = "red")
+                rect(x, -0.045, 1.01, 0.04, col = "white")
+            }
+            if (old.pos != pos) {
+                old.pos = pos
+                rect(0.4, -0.8, 0.6, -1.5, col = gray(0.95), 
+                  border = NA)
+                cutoff = (max.cut - min.cut) * pos + min.cut
+                mtext(round(cutoff, 3), side = 1, line = -1, 
+                  cex = 0.9)
+                dev.set(net.dev)
+                if (cutoff >= cutoff.old) {
+                  supp.edge = E(gR)[abs(E(gR)$weight) < cutoff]
+                  gE = delete.edges(gR, supp.edge)
+                  gE = delete.vertices(gE, which(degree(gE) == 
+                    0))
+                  nn = vcount(gE)
+                  V(gR)$label.cex = min(2.5 * cex.node.name/log(nn), 
+                    1)
+                  E(gR)$label.cex = min(2.25 * cex.edge.label/log(nn), 
+                    1)
+                  cex0 = 2 * V(gE)$label.cex
+                  def.par = par(no.readonly = TRUE)
+                  par(pty = "s", mar = c(0, 0, 0, 0))
+                  plot(1:100, 1:100, type = "n", xaxt = "n")
+                  cha = V(gE)$label
+                  cha = paste("", cha, "")
+                  xh = strwidth(cha, cex = cex0) * 1.5
+                  yh = strheight(cha, cex = cex0) * 3
+                  V(gE)$size = xh
+                  V(gE)$size2 = yh
+                  par(def.par)
+                  if (is.null(layout.fun)) {
+                    l = layout.fruchterman.reingold(gE, weights = (2 - # 1 -> 2
+                      abs(E(gE)$weight)))
+                  }
+                  else {
+                    l = layout.fun(gE)
+                  }
+                  if (isTRUE(show.color.key)) {
+                    layout(lmat, widths = lwid, heights = lhei, 
+                      respect = FALSE)
+                    par(mar = c(5, 4, 2, 1), cex = 0.75)
+                    image(z.mat, col = col, xaxt = "n", yaxt = "n")
+                    box()
+                    par(usr = c(0, 1, 0, 1))
+                    axis(1, at = xv, labels = lv, cex.axis = keysize.label)
+                    title("Color key", font.main = 1, cex.main = keysize.label)
+                    par(def.par)
+                    par(new = TRUE)
+                  }
+                  par(pty = "s", mar = c(0, 0, 0, 0))
+                  plot(gE, layout = l)
+                  par(def.par)
+                  cutoff.old = cutoff
+                }
+                else {
+                  supp.edge = E(gR)[abs(E(gR)$weight) < cutoff]
+                  gE = delete.edges(gR, supp.edge)
+                  gE = delete.vertices(gE, which(degree(gE) == 
+                    0))
+                  nn = vcount(gE)
+                  V(gR)$label.cex = min(2.5 * cex.node.name/log(nn), 
+                    1)
+                  E(gR)$label.cex = min(2.25 * cex.edge.label/log(nn), 
+                    1)
+                  cex0 = 2 * V(gE)$label.cex
+                  def.par = par(no.readonly = TRUE)
+                  par(pty = "s", mar = c(0, 0, 0, 0))
+                  plot(1:100, 1:100, type = "n", xaxt = "n")
+                  cha = V(gE)$label
+                  cha = paste("", cha, "")
+                  xh = strwidth(cha, cex = cex0) * 1.5
+                  yh = strheight(cha, cex = cex0) * 3
+                  V(gE)$size = xh
+                  V(gE)$size2 = yh
+                  par(def.par)
+                  if (is.null(layout.fun)) {
+                    l = layout.fruchterman.reingold(gE, weights = (2 - # 1 -> 2
+                      abs(E(gE)$weight)))
+                  }
+                  else {
+                    l = layout.fun(gE)
+                  }
+                  if (isTRUE(show.color.key)) {
+                    layout(lmat, widths = lwid, heights = lhei, 
+                      respect = FALSE)
+                    par(mar = c(5, 4, 2, 1), cex = 0.75)
+                    image(z.mat, col = col, xaxt = "n", yaxt = "n")
+                    box()
+                    par(usr = c(0, 1, 0, 1))
+                    axis(1, at = xv, labels = lv, cex.axis = keysize.label)
+                    title("Color key", font.main = 1, cex.main = keysize.label)
+                    par(def.par)
+                    par(new = TRUE)
+                  }
+                  par(pty = "s", mar = c(0, 0, 0, 0))
+                  plot(gE, layout = l)
+                  par(def.par)
+                  cutoff.old = cutoff
+                }
+                gE.none = TRUE
+            }
+        }
+        if (gE.none != FALSE) 
+            gR = gE
+    }
+    res = list(gR = gR)
+    if (any(class.object %in% object.blocks)) {
+        l = 1
+        for (i in 1:(length(blocks) - 1)) {
+            for (j in (i + 1):length(blocks)) {
+                M_block[[l]][abs(M_block[[l]]) < cutoff] = 0
+                res[paste("M", blocks[i], blocks[j], sep = "_")] = list(M_block[[l]])
+                l = l + 1
+            }
+        }
+    }
+    else {
+        mat[abs(mat) < cutoff] = 0
+        res$M = mat
+    }
+    res$cutoff = cutoff
+    if (!is.null(save)) 
+        dev.off()
+    return(invisible(res))
+}
+
+
+```
+
+
+
+```{r}
+
+# BiocManager::install("mixOmicsTeam/mixOmics@devel")
+library(mixOmics)
+
+
+# if (!requireNamespace("BiocManager", quietly = TRUE))
+#     install.packages("BiocManager")
+
+# BiocManager::install("BiocParallel")
+library(BiocParallel)
+
+
+
+```
+
+# Data: Enz, Met, rna, pro and Pph
+
+```{r}
+
+fp = file.path('..', 'input')
+
+
+fnfp = file.path('..', 'input')
+
+
+fn = 'Enzymomics_only_24_shortnames_used_diablo.csv'
+E = read.delim(file = file.path(fp, fn), 
+               header = TRUE, 
+               sep = ",", 
+               quote = NULL,
+               dec = ".", 
+               fill = TRUE, 
+               comment.char = '@')
+
+fn = 'Metabolomics_only_24_shortnames_diablo.csv'
+M = read.delim(file = file.path(fp, fn), 
+               header = TRUE, 
+               sep = ",", 
+               quote = NULL,
+               dec = ".", 
+               fill = TRUE, 
+               comment.char = '@')
+
+fn = 'phosphoProteomics_filtered_sig_24_shortnames_diablo.csv'
+PP = read.delim(file = file.path(fp, fn), 
+               header = TRUE, 
+               sep = ",", 
+               quote = NULL,
+               dec = ".", 
+               fill = TRUE, 
+               comment.char = '@')
+
+fn = 'Proteomics_filtered_sig_24_with short names.csv'
+P = read.delim(file = file.path(fp, fn), 
+               header = TRUE, 
+               sep = ",", 
+               quote = NULL,
+               dec = ".", 
+               fill = TRUE, 
+               comment.char = '@')
+
+fn = 'rnaseq_diablo_filtered_shortnames.csv'
+R = read.delim(file = file.path(fp, fn), 
+               header = TRUE, 
+               sep = ",", 
+               quote = NULL,
+               dec = ".", 
+               fill = TRUE, 
+               comment.char = '@')
+
+all(P$treatment == E$treatment)
+all(P$treatment == M$treatment)
+all(P$treatment == PP$treatment)
+all(P$treatment == R$treatment)
+
+
+
+
+```
+
+
+## log2
+
+
+```{r, 00_densities}
+
+range(P[, -1], na.rm = TRUE)
+range(M[, -1], na.rm = TRUE)
+range(E[, -1], na.rm = TRUE)
+range(PP[, -1], na.rm = TRUE)
+range(R[, -1], na.rm = TRUE)
+
+# range(log(M[, -1], 10), na.rm = TRUE)
+# range(log(E[, -1], 10), na.rm = TRUE)
+
+range(log(M[, -1], 2), na.rm = TRUE)
+range(log(E[, -1], 2), na.rm = TRUE)
+
+
+# PBSmodelling::plotDens(M[, -1])
+# PBSmodelling::plotDens(log(M[, -1], 2))
+
+
+tmp = tidyr::gather(M, var, measurement, colnames(M)[2]:colnames(M)[ncol(M)], 
+                    factor_key = FALSE)
+
+range(tmp$measurement, na.rm = TRUE)
+
+ggplot(tmp, aes(x=measurement, fill=treatment)) +
+  geom_density(alpha = 0.1)
+
+ggplot(tmp, aes(x=measurement, fill=var)) +
+  geom_density(alpha = 0.1) +
+  theme(legend.position="none")
+
+
+tmp$measurement = log(tmp$measurement, 2)
+
+range(tmp$measurement, na.rm = TRUE)
+
+ggplot(tmp, aes(x=measurement, fill=treatment)) +
+  geom_density(alpha = 0.1)
+
+ggplot(tmp, aes(x=measurement, fill=var)) +
+  geom_density(alpha = 0.1) +
+  theme(legend.position="none")
+
+
+
+tmp = tidyr::gather(E, var, measurement, colnames(E)[2]:colnames(E)[ncol(E)], 
+                    factor_key = FALSE)
+range(tmp$measurement, na.rm = TRUE)
+
+ggplot(tmp, aes(x=measurement, fill=treatment)) +
+  geom_density(alpha = 0.1)
+
+ggplot(tmp, aes(x=measurement, fill=var)) +
+  geom_density(alpha = 0.1) +
+  theme(legend.position="none")
+
+
+tmp$measurement = log(tmp$measurement, 2)
+range(tmp$measurement, na.rm = TRUE)
+
+ggplot(tmp, aes(x=measurement, fill=treatment)) +
+  geom_density(alpha = 0.1)
+
+ggplot(tmp, aes(x=measurement, fill=var)) +
+  geom_density(alpha = 0.1) +
+  theme(legend.position="none")
+
+
+
+```
+
+
+
+```{r}
+
+
+M[, -1] = log(M[, -1], 2)
+E[, -1] = log(E[, -1], 2)
+
+```
+
+see also <https://mixomics.org/methods/missing-values/>
+
+<https://mixomics.org/faq/common-issues-and-errors/>
+
+A large degree of sparsity within your data, such that there is a large number of missing or zero values. One suggestion would be to remove all features that have more than a certain threshold (eg. 20%) of zero/missing value. If this does not work, refer to the Missing Values page on how to impute these values manually. 
+
+
+
+```{r}
+
+E.imp = impute.nipals(X = E[, -1], ncomp = 10)
+
+
+```
+
+
+numeric table
+
+```{r}
+
+data = list(Enz = as.matrix(E[, -1]),
+            Met = as.matrix(M[, -1]),
+            Pph = as.matrix(P[, -1]),
+            Pro = as.matrix(PP[, -1]),
+            Rna = as.matrix(R[, -1]))
+
+
+
+
+
+```
+
+<https://mixomics.org/mixdiablo/diablo-tcga-case-study/>
+
+```{r}
+
+
+lapply(data, dim) # check their dimensions
+Y = factor(E$treatment, levels = unique(E$treatment))
+summary(Y)
+
+
+```
+
+# Pairwise PLS Comparisons
+
+Circle Correlation Plots for pairwise PLS models 
+
+
+Only displays the top 24 features for each dimension, subsetting by those with a correlation above 0.5
+
+```{r, 01_paired-plotVar}
+
+# 24 is the smalles data set here
+no = min(unlist(lapply(data, ncol)))
+list.keepX = c(no, no) # select arbitrary values of features to keep
+list.keepY = c(no, no)
+
+pls1 <- spls(data[["Enz"]], data[["Met"]], 
+             keepX = list.keepX, keepY = list.keepY) 
+pls2 <- spls(data[["Enz"]], data[["Pph"]], 
+             keepX = list.keepX, keepY = list.keepY)
+pls3 <- spls(data[["Met"]], data[["Pph"]], 
+             keepX = list.keepX, keepY = list.keepY)
+pls4 <- spls(data[["Enz"]], data[["Pro"]], 
+             keepX = list.keepX, keepY = list.keepY)
+pls5 <- spls(data[["Enz"]], data[["Rna"]], 
+             keepX = list.keepX, keepY = list.keepY)
+pls6 <- spls(data[["Met"]], data[["Pro"]], 
+             keepX = list.keepX, keepY = list.keepY)
+pls7 <- spls(data[["Met"]], data[["Rna"]], 
+             keepX = list.keepX, keepY = list.keepY)
+pls8 <- spls(data[["Pph"]], data[["Pro"]], 
+             keepX = list.keepX, keepY = list.keepY)
+pls9 <- spls(data[["Pph"]], data[["Rna"]], 
+             keepX = list.keepX, keepY = list.keepY)
+pls10 <- spls(data[["Pro"]], data[["Rna"]], 
+             keepX = list.keepX, keepY = list.keepY)
+# plot features of first PLS
+plotVar(pls1, cutoff = 0.5, title = "(a) enzymomics vs metabolomics", 
+        legend = c("enzymomics", "metabolomics"), 
+        var.names = TRUE, style = 'graphics', 
+        pch = c(16, 17), cex = c(0.5,0.5), 
+        col = c('darkorchid', 'lightgreen'))
+plotVar(pls1, cutoff = 0.5, title = "(a) enzymomics vs metabolomics", 
+        legend = c("enzymomics", "metabolomics"), 
+        var.names = FALSE, style = 'graphics', 
+        pch = c(16, 17), cex = c(2,2), 
+        col = c('darkorchid', 'lightgreen'))
+
+# plot features of second PLS
+plotVar(pls2, cutoff = 0.5, title = "(b) enzymomics vs phosphoproteomics", 
+        legend = c("enzymomics", "phosphoproteomics"), 
+        var.names = TRUE, style = 'graphics', 
+        pch = c(16, 17), cex = c(0.5,0.5), 
+        col = c('darkorchid', 'blue'))
+plotVar(pls2, cutoff = 0.5, title = "(b) enzymomics vs phosphoproteomics", 
+        legend = c("enzymomics", "phosphoproteomics"), 
+        var.names = FALSE, style = 'graphics', 
+        pch = c(16, 17), cex = c(2,2), 
+        col = c('darkorchid', 'blue'))
+
+
+# plot features of third PLS
+plotVar(pls3, cutoff = 0.5, title = "(c) metabolomics vs phosphoproteomics", 
+        legend = c("metabolomics", "phosphoproteomics"), 
+        var.names = TRUE, style = 'graphics', 
+        pch = c(16, 17), cex = c(0.5,0.5), 
+        col = c('lightgreen', 'blue'))
+plotVar(pls3, cutoff = 0.5, title = "(c) metabolomics vs phosphoproteomics", 
+        legend = c("metabolomics", "phosphoproteomics"), 
+        var.names = FALSE, style = 'graphics', 
+        pch = c(16, 17), cex = c(2,2), 
+        col = c('lightgreen', 'blue'))
+
+plotVar(pls4, cutoff = 0.5, title = "(a) enzymomics vs proteomicss", 
+        legend = c("enzymomics", "proteomics"), 
+        var.names = TRUE, style = 'graphics', 
+        pch = c(16, 17), cex = c(0.5,0.5), 
+        col = c('darkorchid', 'red'))
+plotVar(pls4, cutoff = 0.5, title = "(a) enzymomics vs proteomics", 
+        legend = c("enzymomics", "proteomics"), 
+        var.names = FALSE, style = 'graphics', 
+        pch = c(16, 17), cex = c(2,2), 
+        col = c('darkorchid', 'red'))
+
+plotVar(pls5, cutoff = 0.5, title = "(a) enzymomics vs RNA-seq", 
+        legend = c("enzymomics", "RNA-seq"), 
+        var.names = TRUE, style = 'graphics', 
+        pch = c(16, 17), cex = c(0.5,0.5), 
+        col = c('darkorchid', 'orange'))
+plotVar(pls5, cutoff = 0.5, title = "(a) enzymomics vs RNA-seq", 
+        legend = c("enzymomics", "RNA-seq"), 
+        var.names = FALSE, style = 'graphics', 
+        pch = c(16, 17), cex = c(2,2), 
+        col = c('darkorchid', 'orange'))
+
+plotVar(pls6, cutoff = 0.5, title = "(c) metabolomics vs proteomics", 
+        legend = c("metabolomics", "proteomics"), 
+        var.names = TRUE, style = 'graphics', 
+        pch = c(16, 17), cex = c(0.5,0.5), 
+        col = c('lightgreen', 'red'))
+plotVar(pls6, cutoff = 0.5, title = "(c) metabolomics vs proteomics", 
+        legend = c("metabolomics", "proteomics"), 
+        var.names = FALSE, style = 'graphics', 
+        pch = c(16, 17), cex = c(2,2), 
+        col = c('lightgreen', 'red'))
+
+plotVar(pls7, cutoff = 0.5, title = "(c) metabolomics vs RNA-seq", 
+        legend = c("metabolomics", "RNA-seq"), 
+        var.names = TRUE, style = 'graphics', 
+        pch = c(16, 17), cex = c(0.5,0.5), 
+        col = c('lightgreen', 'orange'))
+plotVar(pls7, cutoff = 0.5, title = "(c) metabolomics vs RNA-seq", 
+        legend = c("metabolomics", "RNA-seq"), 
+        var.names = FALSE, style = 'graphics', 
+        pch = c(16, 17), cex = c(2,2), 
+        col = c('lightgreen', 'orange'))
+
+plotVar(pls8, cutoff = 0.5, title = "(c) phosphoproteomics vs proteomics", 
+        legend = c("phosphoproteomics", "proteomics"), 
+        var.names = TRUE, style = 'graphics', 
+        pch = c(16, 17), cex = c(0.5,0.5), 
+        col = c('blue', 'red'))
+plotVar(pls8, cutoff = 0.5, title = "(c) phosphoproteomics vs phosphoproteomics", 
+        legend = c("phosphoproteomics", "proteomics"), 
+        var.names = FALSE, style = 'graphics', 
+        pch = c(16, 17), cex = c(2,2), 
+        col = c('blue', 'red'))
+
+plotVar(pls9, cutoff = 0.5, title = "(c) phosphoproteomics vs RNA-seq", 
+        legend = c("phosphoproteomics", "RNA-seq"), 
+        var.names = TRUE, style = 'graphics', 
+        pch = c(16, 17), cex = c(0.5,0.5), 
+        col = c('blue', 'orange'))
+plotVar(pls9, cutoff = 0.5, title = "(c) phosphoproteomics vs RNA-seq", 
+        legend = c("phosphoproteomics", "RNA-seq"), 
+        var.names = FALSE, style = 'graphics', 
+        pch = c(16, 17), cex = c(2,2), 
+        col = c('blue', 'orange'))
+
+plotVar(pls10, cutoff = 0.5, title = "(c) proteomics vs RNA-seq", 
+        legend = c("proteomics", "RNA-seq"), 
+        var.names = TRUE, style = 'graphics', 
+        pch = c(16, 17), cex = c(0.5,0.5), 
+        col = c('red', 'orange'))
+plotVar(pls10, cutoff = 0.5, title = "(c) proteomics vs RNA-seq", 
+        legend = c("proteomics", "RNA-seq"), 
+        var.names = FALSE, style = 'graphics', 
+        pch = c(16, 17), cex = c(2,2), 
+        col = c('red', 'orange'))
+
+
+```
+
+## correlation
+
+```{r}
+
+c
+cor(pls1$variates$X, pls1$variates$Y) # calculate correlation of Enz and Met
+cor(pls2$variates$X, pls2$variates$Y) # calculate correlation of Enz and Pph
+cor(pls3$variates$X, pls3$variates$Y) # calculate correlation of Met and Pph
+cor(pls4$variates$X, pls4$variates$Y)
+cor(pls5$variates$X, pls5$variates$Y)
+cor(pls6$variates$X, pls6$variates$Y)
+cor(pls7$variates$X, pls7$variates$Y)
+cor(pls8$variates$X, pls8$variates$Y)
+cor(pls9$variates$X, pls9$variates$Y)
+cor(pls10$variates$X, pls10$variates$Y)
+
+```
+
+
+# Design
+
+
+
+```{r}
+
+design = matrix(0.5, ncol = length(data), nrow = length(data), # for square matrix filled with 0.1s
+                dimnames = list(names(data), names(data)))
+diag(design) = 0 # set diagonal to 0s
+
+design
+
+```
+
+#  the initial DIABLO 
+
+
+```{r}
+
+basic.diablo.model = block.splsda(X = data, Y = Y, ncomp = 5, design = design) # form basic DIABLO model
+
+```
+
+
+# Tuning the number of components
+
+Choosing the number of components in block.plsda using perf() with 10 × 10-fold CV function 
+
+
+10-fold Cross-validation & leave-one-out cross-validation: <https://stats.stackexchange.com/questions/154830/10-fold-cross-validation-vs-leave-one-out-cross-validation>
+
+```{r, 02_no-components}
+## ---- fig.cap = "FIGURE 2: Choosing the number of components in `block.plsda` using `perf()` with 10 × 10-fold CV function in the `breast.TCGA` study. Classification error rates (overall and balanced, see Section 7.3) are represented on the y-axis with respect to the number of components on the x-axis for each prediction distance presented in PLS-DA"----
+
+perf.diablo = perf(basic.diablo.model, 
+                   dist = 'all', 
+                   cpus = 1,
+                   validation = 'loo', 
+                   progressBar = TRUE,
+                   folds = 10, 
+                   nrepeat = 10) # run component number tuning with repeated CV
+
+plot(perf.diablo) # plot output of tuning
+
+```
+
+
+##  set the optimal ncomp value
+
+
+```{r}
+
+
+ncomp = perf.diablo$choice.ncomp$WeightedVote["Overall.BER", "centroids.dist"] # set the optimal ncomp value
+perf.diablo$choice.ncomp$WeightedVote # show the optimal choice for ncomp for each dist metric
+
+
+```
+
+# Tuning the number of features
+
+We choose the optimal number of variables to select in each data set using the tune.block.splsda() function, for a grid of keepX values for each type of omics. Note that the function has been set to favour a relatively small signature while allowing us to obtain a sufficient number of variables for downstream validation and/or interpretation.
+
+
+## setup cluster - use SnowParam() on Widnows
+
+<https://rdrr.io/bioc/BiocParallel/man/BiocParallelParam-class.html>
+
+
+bplapply erro solution <https://support.bioconductor.org/p/133353/#133356>
+
+```{r}
+
+options(SnowParam=SnowParam(workers=1))
+BPPARAM  = bpparam()
+BPPARAM <- BiocParallel::SnowParam(workers = parallel::detectCores()-1)
+
+
+
+
+```
+
+
+Crate tune.MIR with tune.block.splsda
+
+and save RData (beacuse it takes cca 1h)
+
+then comment these lines
+
+and just load RData
+
+10-fold Cross-validation & leave-one-out cross-validation: <https://stats.stackexchange.com/questions/154830/10-fold-cross-validation-vs-leave-one-out-cross-validation>
+
+```{r}
+
+# set grid of values for each component to test
+
+
+ # test.keepX = list (Met = c(5:9, seq(10, 15, 2), seq(20,24,4)),
+ #                    Enz = c(5:9, seq(10, 15, 2), seq(20,24,4)),
+ #                    Pph = c(5:9, seq(10, 15, 2), seq(20,24,4)))
+
+x <- list()
+for (i in 1:length(data)){
+x[[i]] <- c( seq(5,min(24, ncol(data[[i]])) ,2))
+}
+names(x) <- names(data)
+test.keepX  <-  x
+test.keepX
+
+
+
+fp = file.path('..', 'output')
+fn = '01_DIABLO-Enz-Met-Pph-Pro-Rna_tune.MIR.RData'
+
+
+# You have provided a sequence of keepX of length: 10 for block Met and 10 for block Enz and 10 for block Pph.
+# This results in 1000 models being fitted for each component and each nrepeat, this may take some time to run, be patient!
+# Because of a too high number of 'folds' required, 2 folds were randomly assigned no data: the number of 'folds' is reduced to 8
+# .....
+ 
+  t1 = proc.time()
+ # 
+ #run the feature selection tuning
+ library(stats)
+ tune.MIR = tune.block.splsda(X = data, Y = Y,
+                              ncomp = ncomp,
+                              test.keepX = test.keepX,
+                              design = design,
+                              validation = 'loo',
+                             folds = 10, nrepeat = 1, # Leave-One-Out validation does not need to be repeated
+                              BPPARAM  = BPPARAM ,
+                              dist = "centroids.dist",
+                              max.iter = 200)
+ t2 = proc.time()
+ running_time = t2 - t1; running_time
+ save(tune.MIR, file = file.path(fp, fn))
+ 
+load(file.path(fp, fn))
+
+
+list.keepX = tune.MIR$choice.keepX
+list.keepX
+
+
+
+```
+
+
+The number of features to select on each component is returned in
+
+
+```{r}
+
+
+
+list.keepX = tune.MIR$choice.keepX # set the optimal values of features to retain
+list.keepX
+
+
+```
+
+# Final model
+
+```{r}
+
+
+# set the optimised DIABLO model
+final.diablo.model = block.splsda(X = data, Y = Y, ncomp = ncomp
+                          , keepX = list.keepX
+                          , design = design)
+
+## Design matrix has changed to include Y; each block will be
+##             linked to Y.
+
+
+
+```
+
+
+
+```{r}
+
+# the features selected from components
+for (comp in 1:ncomp){
+cat("\nComponent ", comp,":\n")
+for(i in 1:length(data)){
+cat(names(data)[i],"\n")
+print(selectVar(final.diablo.model, comp = comp)[[i]]$name)
+}
+}
+
+
+
+```
+
+
+# Sample plots
+
+
+```{r, 03_Sample-Component-plots}
+
+
+for(comp in 1:ncomp){
+plotDiablo(final.diablo.model, ncomp = comp)
+title(paste("Component",comp), adj=0.1, line=-1, outer=TRUE)
+}
+
+```
+
+
+```{r, 04_Sample-plots}
+
+
+plind <- plotIndiv(final.diablo.model, ind.names = FALSE, legend = TRUE,
+          title = 'DIABLO Sample Plots'
+          , ellipse = TRUE,
+          comp = c(1,3)
+          )
+
+plind <- plotIndiv(final.diablo.model, ind.names = FALSE, legend = TRUE,
+          title = 'DIABLO Sample Plots'
+          , ellipse = TRUE,
+          comp = c(1,2)
+          )
+plind <- plotIndiv(final.diablo.model, ind.names = FALSE, legend = TRUE,
+          title = 'DIABLO Sample Plots'
+          , ellipse = TRUE,
+          comp = c(2,3)
+          )
+
+
+```
+
+
+```{r, 05_Arrow-sample-plot}
+
+plotArrow(final.diablo.model, ind.names = FALSE, legend = TRUE,
+          title = paste(groups,collapse=", ")
+          )
+
+
+
+```
+
+
+# Variable plots
+
+```{r, 06_Correlation-circle-plots}
+
+if(length(data)==3) pick <- 1:3 else pick <- c(4,1:3)
+cols <- c('orange1', 'brown1', 'lightgreen',"lightblue")[pick]
+pchs <- c(16, 17, 15, 18)[pick]
+plotVar(final.diablo.model, var.names = FALSE,
+        style = 'graphics', legend = TRUE
+        , pch = pchs, cex = rep(2,length(data))
+        , col = cols
+)
+
+plotVar(final.diablo.model, var.names = TRUE,
+        style = 'graphics', legend = TRUE
+        , pch = pchs, cex = rep(0.5,length(data))
+        , col = cols
+)
+
+```
+
+
+```{r, 07_circosPlot_0.50}
+
+cutoff = 0.50
+
+circosPlot(final.diablo.model, cutoff = cutoff, line = TRUE,
+           color.blocks= cols,
+           color.cor = c(3,2), size.labels = 1
+           , xpd=TRUE)
+
+
+
+
+```
+
+
+```{r, 07_circosPlot_0.90}
+
+cutoff = 0.90
+
+circosPlot(final.diablo.model, cutoff = cutoff, line = TRUE,
+           color.blocks= cols,
+           color.cor = c(3,2), size.labels = 1
+           , xpd=TRUE)
+
+
+
+
+```
+
+
+
+```{r, 07_circosPlot_0.75}
+
+cutoff = 0.75
+
+circosPlot(final.diablo.model, cutoff = cutoff, line = TRUE,
+           color.blocks= cols,
+           color.cor = c(3,2), size.labels = 1
+           , xpd=TRUE)
+
+
+
+
+```
+
+
+
+
+# Relevance networks
+
+
+
+
+
+# more plots
+
+issue <https://github.com/mixOmicsTeam/mixOmics/issues/45>
+
+```{r, 08_plot-Loadings}
+
+
+for(i in 1:ncomp)
+plotLoadings(final.diablo.model, comp = i, contrib = 'max', method = 'median')
+
+
+# plotLoadings encountered margin errors. Ensure feature names are not too long (see 'name.var' argument) and the 'Plots' pane is cleared and enlargened.
+
+
+traceback()
+
+
+```
+
+```{r, Clustered-Image-Maps}
+
+cimfn <- "cim.png"
+png(cimfn, res = 600, width = 8000, height = 8000)
+cimDiablo(final.diablo.model, size.legend=0.7, margins = c(15, 15))
+dev.off()
+
+
+
+```
+
+
+```{r, 09_Clustered-Image-Maps}
+#heatmaps
+cimDiablo(final.diablo.model, margins = c(13, 13), size.legend=0.8)
+
+```
+
+
+```{r, 10_network}
+#cutoff for correlations
+
+network(final.diablo.model, 
+        blocks = c(1,2,3),
+        color.node = c('darkorchid', 'brown1', 'lightgreen'), 
+        cutoff = 0.50,
+        size.node = 0.05)
+
+network(final.diablo.model, 
+        blocks = c(1,2,3),
+        color.node = c('darkorchid', 'brown1', 'lightgreen'), 
+        cutoff = 0.90,
+        size.node = 0.10)
+
+
+network(final.diablo.model, 
+        blocks = c(1,2,3),
+        color.node = c('darkorchid', 'brown1', 'lightgreen'), 
+        cutoff = 0.75,
+        size.node = 0.10)
+
+```
+
+
+```{r, 11_ROC}
+
+par(mfrow=c(2,2))
+for(i in 1:length(data))
+auc.splsda = auroc(final.diablo.model, roc.block = names(data[i]),
+                   roc.comp = 2, print = FALSE)
+
+
+
+```
+
+
+
+
+no cut-off
+
+```{r}
+
+net = network(final.diablo.model, 
+              blocks = seq(1, ncomp, 1),
+              color.node = c('darkorchid', 'brown1', 'lightgreen'), 
+              cutoff = 0,
+              size.node = 0.05,
+              plot.graph = FALSE,
+              layout.fun = igraph::layout_in_circle)
+
+typeof(net)
+mode(net)
+names(net)
+summary(net)
+
+net$cutoff
+# net$gR
+range(net$M_Enz_Met)
+range(net$M_Enz_Pph)
+range(net$M_Met_Pph)
+
+names(dimnames(net$M_Enz_Met)) = c('from','to')
+a = as.data.frame(
+  as.table(net$M_Enz_Met),
+  responseName = 'CC'
+  )
+a$fromType = 'Enz'
+a$toType = 'Met'
+a$ID1 = gsub('_Enz$', '', a$from)
+a$ID2 = gsub('_Met$', '', a$to)
+
+names(dimnames(net$M_Enz_Pph)) = c('from','to')
+b = as.data.frame(
+  as.table(net$M_Enz_Pph),
+  responseName = 'CC'
+  )
+b$fromType = 'Enz'
+b$toType = 'Pph'
+b$ID1 = gsub('_Enz$', '', b$from)
+b$ID2 = gsub('_Pph$', '', b$to)
+
+names(dimnames(net$M_Met_Pph)) = c('from','to')
+e = as.data.frame(
+  as.table(net$M_Met_Pph),
+  responseName = 'CC'
+  )
+e$fromType = 'Met'
+e$toType = 'Pph'
+e$ID1 = gsub('_Met$', '', e$from)
+e$ID2 = gsub('_Pph$', '', e$to)
+
+merged = rbind(a, b, e)
+dim(merged)
+summary(net$gR)
+gl = igraph::as_edgelist(net$gR, names = TRUE)
+dim(gl)
+
+```
+
+
+<!-- # Final analysis -->
+
+<!-- c/p from ```GitHub/UJI-Omics-phd/_I_UJI-Omics-phd/_S_multiOmicsIntegra/_A_10_mixOmics-R/scripts/03_Step5.html``` -->
+
+
+# per groups
+
+## NM only
+
+```{r}
+
+ind = grep('NM', E[, 1])
+data.NM = purrr::map(data, function(x) {
+  x[ind,]
+  })
+
+
+
+res.NM <- block.splsda(X = data.NM
+                       , Y = as.factor(E[ind, 1])
+                       , ncomp = ncomp
+                       , keepX = list.keepX
+                       , design = design
+                       )
+
+range(res.NM$weights)
+
+net.NM = network(res.NM, 
+                 blocks = seq(1, ncomp, 1),
+                 color.node = c('darkorchid', 'brown1', 'lightgreen'), 
+                 cutoff = 0,
+                 size.node = 0.05,
+                 plot.graph = FALSE,
+                 layout.fun = igraph::layout_in_circle)
+
+names(dimnames(net.NM$M_Enz_Met)) = c('from','to')
+a = as.data.frame(
+  as.table(net.NM$M_Enz_Met),
+  responseName = 'CC'
+  )
+a$fromType = 'Enz'
+a$toType = 'Met'
+a$ID1 = gsub('_Enz$', '', a$from)
+a$ID2 = gsub('_Met$', '', a$to)
+
+names(dimnames(net.NM$M_Enz_Pph)) = c('from','to')
+b = as.data.frame(
+  as.table(net.NM$M_Enz_Pph),
+  responseName = 'CC'
+  )
+b$fromType = 'Enz'
+b$toType = 'Pph'
+b$ID1 = gsub('_Enz$', '', b$from)
+b$ID2 = gsub('_Pph$', '', b$to)
+
+names(dimnames(net.NM$M_Met_Pph)) = c('from','to')
+e = as.data.frame(
+  as.table(net.NM$M_Met_Pph),
+  responseName = 'CC'
+  )
+e$fromType = 'Met'
+e$toType = 'Pph'
+e$ID1 = gsub('_Met$', '', e$from)
+e$ID2 = gsub('_Pph$', '', e$to)
+
+merged.NM = rbind(a, b, e)
+
+
+```
+
+
+## AM only
+
+```{r}
+
+
+ind = grep('AM', E[, 1])
+data.AM = purrr::map(data, function(x) {
+  x[ind,]
+  })
+
+res.AM <- block.splsda(X = data.AM
+                       , Y = as.factor(E[ind, 1])
+                       , ncomp = ncomp
+                       , keepX = list.keepX
+                       , design = design
+                       )
+
+range(res.AM$weights)
+
+net.AM = network(res.AM, 
+                blocks = seq(1, ncomp, 1),
+                 color.node = c('darkorchid', 'brown1', 'lightgreen'), 
+                 cutoff = 0,
+                 size.node = 0.05,
+                 plot.graph = FALSE,
+                 layout.fun = igraph::layout_in_circle)
+
+names(dimnames(net.AM$M_Enz_Met)) = c('from','to')
+a = as.data.frame(
+  as.table(net.AM$M_Enz_Met),
+  responseName = 'CC'
+  )
+a$fromType = 'Enz'
+a$toType = 'Met'
+a$ID1 = gsub('_Enz$', '', a$from)
+a$ID2 = gsub('_Met$', '', a$to)
+
+names(dimnames(net.AM$M_Enz_Pph)) = c('from','to')
+b = as.data.frame(
+  as.table(net.AM$M_Enz_Pph),
+  responseName = 'CC'
+  )
+b$fromType = 'Enz'
+b$toType = 'Pph'
+b$ID1 = gsub('_Enz$', '', b$from)
+b$ID2 = gsub('_Pph$', '', b$to)
+
+names(dimnames(net.AM$M_Met_Pph)) = c('from','to')
+e = as.data.frame(
+  as.table(net.AM$M_Met_Pph),
+  responseName = 'CC'
+  )
+e$fromType = 'Met'
+e$toType = 'Pph'
+e$ID1 = gsub('_Met$', '', e$from)
+e$ID2 = gsub('_Pph$', '', e$to)
+
+merged.AM = rbind(a, b, e)
+
+
+```
+
+## inf only
+
+```{r}
+
+
+ind = grep('inf', E[, 1])
+data.inf = purrr::map(data, function(x) {
+  x[ind,]
+  })
+
+res.inf <- block.splsda(X = data.inf
+                       , Y = as.factor(E[ind, 1])
+                       , ncomp = ncomp
+                       , keepX = list.keepX
+                       , design = design
+                       )
+
+range(res.inf$weights)
+
+net.inf = network(res.inf, 
+                blocks = seq(1, ncomp, 1),
+                 color.node = c('darkorchid', 'brown1', 'lightgreen'), 
+                 cutoff = 0,
+                 size.node = 0.05,
+                 plot.graph = FALSE,
+                 layout.fun = igraph::layout_in_circle)
+
+names(dimnames(net.inf$M_Enz_Met)) = c('from','to')
+a = as.data.frame(
+  as.table(net.inf$M_Enz_Met),
+  responseName = 'CC'
+  )
+a$fromType = 'Enz'
+a$toType = 'Met'
+a$ID1 = gsub('_Enz$', '', a$from)
+a$ID2 = gsub('_Met$', '', a$to)
+
+names(dimnames(net.inf$M_Enz_Pph)) = c('from','to')
+b = as.data.frame(
+  as.table(net.inf$M_Enz_Pph),
+  responseName = 'CC'
+  )
+b$fromType = 'Enz'
+b$toType = 'Pph'
+b$ID1 = gsub('_Enz$', '', b$from)
+b$ID2 = gsub('_Pph$', '', b$to)
+
+names(dimnames(net.inf$M_Met_Pph)) = c('from','to')
+e = as.data.frame(
+  as.table(net.inf$M_Met_Pph),
+  responseName = 'CC'
+  )
+e$fromType = 'Met'
+e$toType = 'Pph'
+e$ID1 = gsub('_Met$', '', e$from)
+e$ID2 = gsub('_Pph$', '', e$to)
+
+merged.inf = rbind(a, b, e)
+
+
+```
+
+## uninf only
+
+```{r}
+
+
+ind = grep('inf', E[, 1], invert = TRUE)
+data.uninf = purrr::map(data, function(x) {
+  x[ind,]
+  })
+
+res.uninf <- block.splsda(X = data.uninf
+                       , Y = as.factor(E[ind, 1])
+                       , ncomp = ncomp
+                       , keepX = list.keepX
+                       , design = design
+                       )
+
+range(res.uninf$weights)
+
+net.uninf = network(res.uninf, 
+                blocks = seq(1, ncomp, 1),
+                 color.node = c('darkorchid', 'brown1', 'lightgreen'), 
+                 cutoff = 0.000000,
+                 size.node = 0.05,
+                 plot.graph = FALSE,
+                 layout.fun = igraph::layout_in_circle)
+
+names(dimnames(net.uninf$M_Enz_Met)) = c('from','to')
+a = as.data.frame(
+  as.table(net.uninf$M_Enz_Met),
+  responseName = 'CC'
+  )
+a$fromType = 'Enz'
+a$toType = 'Met'
+a$ID1 = gsub('_Enz$', '', a$from)
+a$ID2 = gsub('_Met$', '', a$to)
+
+names(dimnames(net.uninf$M_Enz_Pph)) = c('from','to')
+b = as.data.frame(
+  as.table(net.uninf$M_Enz_Pph),
+  responseName = 'CC'
+  )
+b$fromType = 'Enz'
+b$toType = 'Pph'
+b$ID1 = gsub('_Enz$', '', b$from)
+b$ID2 = gsub('_Pph$', '', b$to)
+
+names(dimnames(net.uninf$M_Met_Pph)) = c('from','to')
+e = as.data.frame(
+  as.table(net.uninf$M_Met_Pph),
+  responseName = 'CC'
+  )
+e$fromType = 'Met'
+e$toType = 'Pph'
+e$ID1 = gsub('_Met$', '', e$from)
+e$ID2 = gsub('_Pph$', '', e$to)
+
+merged.uninf = rbind(a, b, e)
+
+
+```
+
+
+
+```{r}
+
+colnames(merged)[3] = paste(colnames(merged)[3], 'all', sep = '_')
+colnames(merged.AM)[3] = paste(colnames(merged.AM)[3], 'AM', sep = '_')
+colnames(merged.NM)[3] = paste(colnames(merged.NM)[3], 'NM', sep = '_')
+colnames(merged.inf)[3] = paste(colnames(merged.inf)[3], 'inf', sep = '_')
+colnames(merged.uninf)[3] = paste(colnames(merged.uninf)[3], 'uninf', sep = '_')
+
+dim(merged)
+dim(merged.AM)
+dim(merged.NM)
+dim(merged.inf)
+dim(merged.uninf)
+
+toWrite = NULL
+toWrite = merge(merged, 
+                merged.AM, 
+                #merged.NM,
+                #merged.inf,
+                #merged.uninf,
+                by = c('from', 'to', "fromType", "toType", "ID1", "ID2"),
+                all.x = TRUE, all.y = TRUE)
+dim(toWrite)
+toWrite = merge(toWrite,
+                merged.NM,
+                #merged.inf,
+                #merged.uninf,
+                by = c('from', 'to', "fromType", "toType", "ID1", "ID2"),
+                all.x = TRUE, all.y = TRUE)
+dim(toWrite)
+toWrite = merge(toWrite,
+                merged.inf,
+                #merged.uninf,
+                by = c('from', 'to', "fromType", "toType", "ID1", "ID2"),
+                all.x = TRUE, all.y = TRUE)
+dim(toWrite)
+toWrite = merge(toWrite,
+                merged.uninf,
+                by = c('from', 'to', "fromType", "toType", "ID1", "ID2"),
+                all.x = TRUE, all.y = TRUE)
+dim(toWrite)
+table(duplicated(toWrite[, 1:2]))
+
+intersect(grep('IDH', toWrite$from), grep('sophoroside', toWrite$to))
+intersect(grep('IDH', merged$to), grep('sophoroside', merged$from))
+intersect(grep('IDH', gl[, 2]), grep('sophoroside', gl[, 1]))
+intersect(grep('IDH', gl[, 1]), grep('sophoroside', gl[, 2]))
+
+
+table(toWrite$from %in% toWrite$to)
+table(toWrite$fromType %in% toWrite$toType)
+rs = rowSums(is.na(toWrite[, 7:ncol(toWrite)]))
+table(rs)
+toWrite[which(rs == 4), ]
+
+
+```
+
+
+write cor
+
+```{r}
+
+fp = file.path('..', 'output')
+fn = '01_DIABLO-Enz_Met_Pph-both.txt'
+
+write.table(merged, 
+            file = file.path(fp, fn), 
+            append = FALSE, 
+            quote = FALSE, 
+            sep = "\t",
+            eol = "\n", 
+            na = "NA", 
+            dec = ".", 
+            row.names = FALSE,
+            col.names = TRUE, 
+            qmethod = "escape",
+            fileEncoding = "UTF-8")
+
+
+```
+
+
+
+
+
+# Session
+
+```{r}
+
+# devtools::session_info()
+sessionInfo()
+
+```
+
