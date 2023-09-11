@@ -1624,7 +1624,10 @@ traceback()
 
 cimfn <- "cim.png"
 png(cimfn, res = 600, width = 8000, height = 8000)
-cimDiablo(final.diablo.model, size.legend=0.7, margins = c(15, 15))
+cimDiablo(final.diablo.model, size.legend=0.99, margins = c(15, 15),
+          xlab = "Variables", ylab = "Samples",
+          color.Y = c('pink', 'purple', 'blue', 'yellow'),
+          color.blocks = c('orange', 'red', 'green'))
 dev.off()
 
 
@@ -1634,7 +1637,11 @@ dev.off()
 
 ```{r, 09_Clustered-Image-Maps}
 #heatmaps
-cimDiablo(final.diablo.model, margins = c(13, 13), size.legend=0.8)
+cimDiablo(final.diablo.model, margins = c(13, 13), 
+          xlab = "Variables", ylab = "Samples",
+          color.Y = c('pink', 'purple', 'blue', 'yellow'),
+          color.blocks = c('orange', 'red', 'green'),
+          size.legend = 1)
 
 ```
 
